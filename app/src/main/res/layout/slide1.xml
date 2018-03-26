@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <ImageView
+        android:id="@+id/slide_image"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/slide1"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="100dp"/>
+    <TextView
+        android:id="@+id/slide_head"
+        android:text="Lokasi Penjual"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="10pt"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="40dp"
+        android:layout_below="@id/slide_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/slide_desc"
+        android:text="Bekonang adalah salah satu
+daerah di Solo tempatnya para
+pengrajin gamelan yang terbaik"
+        android:textColor="@color/white"
+        android:layout_marginTop="30dp"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/slide_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
