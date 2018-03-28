@@ -7,7 +7,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
-import com.gamelanbekonang.HomeActivity;
+import com.gamelanbekonang.MainActivity;
 import com.gamelanbekonang.R;
 
 public class SplashScreen extends AppCompatActivity {
@@ -20,7 +20,7 @@ public class SplashScreen extends AppCompatActivity {
         iv = findViewById(R.id.iv);
         Animation myanim = new AnimationUtils().loadAnimation(this,R.anim.mytransitiont);
         iv.startAnimation(myanim);
-        final Intent i = new Intent(this, HomeActivity.class);
+        final Intent i = new Intent(this, MainActivity.class);
         Thread timer = new Thread(){
             public void run(){
                 try{
