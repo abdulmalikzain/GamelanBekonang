@@ -39,8 +39,8 @@ public class AdapterIklan extends RecyclerView.Adapter<AdapterIklan.CustomViewHo
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
         Iklan iklan = iklans.get(position);
-        holder.tvUser.setText(iklan.getUserId());
-        holder.tvJenis.setText(iklan.getJenis());
+        holder.tvUser.setText(iklan.getJudul());
+        holder.tvJenis.setText(iklan.getDeskripsi());
         Picasso.get().load("http://bekonang-store.000webhostapp.com/images/"+iklan.getImage())
                 .error(R.mipmap.ic_launcher)
                 .resize(200, 200)

@@ -22,10 +22,13 @@ import com.gamelanbekonang.beans.Iklan;
 import com.gamelanbekonang.beans.IklanList;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.content.ContentValues.TAG;
 
@@ -33,8 +36,8 @@ public class HomeFragment extends Fragment {
 
     private ArrayList<Iklan> iklans;
     private ProgressDialog dialog;
-    private AdapterIklan eAdapter;
-    RecyclerView rv;
+    private AdapterIklan adapter;
+    RecyclerView recyclerView;
 
 
     @Override
@@ -42,51 +45,38 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
-        rv = view.findViewById(R.id.rv_iklan);
-//        LinearLayoutManager linearLayoutManager=
-//                new LinearLayoutManager(getActivity());
-//        rv.setLayoutManager(linearLayoutManager);
-        loadData();
-
+        recyclerView = view.findViewById(R.id.rv_iklan);
+        initViews();
         return view;
     }
 
-    private void loadData(){
-        //Creating an object of our api interface
-        ApiService api = RetroClient.getApiService();
+    private void initViews(){
+        recyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
+        loadJSON();
+    }
 
-        /**
-         * Calling JSON
-         */
-        Call<IklanList> call = api.getMyJSONIklan();
-
-        /**
-         * Enqueue Callback will be call when get response...
-         */
-        call.enqueue(new Callback<IklanList>() {
+    private void loadJSON(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://bekonang-store.000webhostapp.com")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiService request = retrofit.create(ApiService.class);
+        Call<RetroClient> call = request.getJSON();
+        call.enqueue(new Callback<RetroClient>() {
             @Override
-            public void onResponse(Call<IklanList> call, Response<IklanList> response) {
-                //Dismiss Dialog
+            public void onResponse(Call<RetroClient> call, Response<RetroClient> response) {
 
-                if (response.isSuccessful()) {
-                    /**
-                     * Got Successfully
-                     */
-
-                    iklans = (ArrayList<Iklan>) response.body().getIklans();
-                    eAdapter = new AdapterIklan(iklans);
-
-                    RecyclerView.LayoutManager eLayoutManager = new LinearLayoutManager(getActivity());
-                    rv.setLayoutManager(eLayoutManager);
-                    rv.setItemAnimator(new DefaultItemAnimator());
-                    rv.setAdapter(eAdapter);
-                    Log.d(TAG, "aaaaaaaa: " +iklans);
-                }
+                RetroClient jsonResponse = response.body();
+                iklans = new ArrayList<>(Arrays.asList(jsonResponse.getAndroid()));
+                adapter = new AdapterIklan(iklans);
+                recyclerView.setAdapter(adapter);
             }
 
             @Override
-            public void onFailure(Call<IklanList> call, Throwable t) {
+            public void onFailure(Call<RetroClient> call, Throwable t) {
+                Log.d("Error",t.getMessage());
             }
         });
     }

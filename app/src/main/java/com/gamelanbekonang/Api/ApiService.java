@@ -11,6 +11,10 @@ import retrofit2.http.GET;
 
 public interface ApiService {
 
+//    @GET("api/v1/iklan")
+//    Call<IklanList> getMyJSONIklan();
+
+
     @GET("api/v1/iklan")
-    Call<IklanList> getMyJSONIklan();
+    Call<RetroClient> getJSON();
 }
