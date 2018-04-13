@@ -1,6 +1,5 @@
 package com.gamelanbekonang.Api;
 
-import com.gamelanbekonang.beans.IklanList;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -10,10 +9,6 @@ import retrofit2.http.GET;
  */
 
 public interface ApiService {
-
-//    @GET("api/v1/iklan")
-//    Call<IklanList> getMyJSONIklan();
-
 
     @GET("api/v1/iklan")
     Call<RetroClient> getJSON();

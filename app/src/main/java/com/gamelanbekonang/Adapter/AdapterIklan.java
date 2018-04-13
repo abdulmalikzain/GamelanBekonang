@@ -44,11 +44,9 @@ public class AdapterIklan extends RecyclerView.Adapter<AdapterIklan.CustomViewHo
         holder.tvJudul.setText(iklan.getJudul());
         holder.tvJenis.setText(iklan.getJenis());
         holder.tvWaktu.setText(iklan.getCreated_at());
-        holder.tvHarga.setText("Rp" +iklan.getHarga());
+        holder.tvHarga.setText("Rp " + iklan.getHarga());
         Picasso.get().load("http://bekonang-store.000webhostapp.com/images/"+iklan.getImage())
                 .error(R.mipmap.ic_launcher)
-                .resize(730, 400)
-                .centerCrop()
                 .into(holder.ivGambar);
 
 //        Picasso.get().load("http://bekonang-store.000webhostapp.com/images/"+iklan.getImage())
