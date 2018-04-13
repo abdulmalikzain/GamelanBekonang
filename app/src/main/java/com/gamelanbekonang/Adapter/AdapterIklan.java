@@ -15,6 +15,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 import static android.content.ContentValues.TAG;
 
 /**
@@ -39,24 +41,33 @@ public class AdapterIklan extends RecyclerView.Adapter<AdapterIklan.CustomViewHo
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
         Iklan iklan = iklans.get(position);
-        holder.tvUser.setText(iklan.getJudul());
-        holder.tvJenis.setText(iklan.getDeskripsi());
+        holder.tvJudul.setText(iklan.getJudul());
+        holder.tvJenis.setText(iklan.getJenis());
+        holder.tvWaktu.setText(iklan.getCreated_at());
+        holder.tvHarga.setText("Rp" +iklan.getHarga());
         Picasso.get().load("http://bekonang-store.000webhostapp.com/images/"+iklan.getImage())
                 .error(R.mipmap.ic_launcher)
-                .resize(200, 200)
+                .resize(730, 400)
                 .centerCrop()
                 .into(holder.ivGambar);
-        Log.d(TAG, "gambarrrrrr: "+iklan.getImage());
+
+//        Picasso.get().load("http://bekonang-store.000webhostapp.com/images/"+iklan.getImage())
+//                .error(R.mipmap.ic_launcher)
+//                .into(holder.ivGambar);
     }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
-        TextView tvUser, tvJenis;
+        TextView tvJudul, tvJenis, tvWaktu, tvHarga;
         ImageView ivGambar;
+        CircleImageView civFotouser;
         public CustomViewHolder(View itemView) {
             super(itemView);
-            tvUser  = itemView.findViewById(R.id.tv_namaiklan);
-            tvJenis = itemView.findViewById(R.id.tv_emailiklan);
-            ivGambar = itemView.findViewById(R.id.iv_fotoiklan);
+            tvJudul  = itemView.findViewById(R.id.tv_judulhome);
+            tvJenis = itemView.findViewById(R.id.tv_jenishome);
+            ivGambar = itemView.findViewById(R.id.iv_fotoiklanhome);
+            tvWaktu     = itemView.findViewById(R.id.tv_waktuhome);
+            tvHarga     = itemView.findViewById(R.id.tv_hargahome);
+            civFotouser = itemView.findViewById(R.id.civ_fotohome);
         }
     }
 
