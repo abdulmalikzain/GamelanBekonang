@@ -1,5 +1,7 @@
 package com.gamelanbekonang.Adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.gamelanbekonang.MenuHome.DetailIklanActivity;
 import com.gamelanbekonang.R;
 import com.gamelanbekonang.beans.Iklan;
 import com.squareup.picasso.Picasso;
@@ -58,6 +61,9 @@ public class AdapterIklan extends RecyclerView.Adapter<AdapterIklan.CustomViewHo
         TextView tvJudul, tvJenis, tvWaktu, tvHarga;
         ImageView ivGambar;
         CircleImageView civFotouser;
+        int post;
+        Context context;
+
         public CustomViewHolder(View itemView) {
             super(itemView);
             tvJudul  = itemView.findViewById(R.id.tv_judulhome);
@@ -66,6 +72,21 @@ public class AdapterIklan extends RecyclerView.Adapter<AdapterIklan.CustomViewHo
             tvWaktu     = itemView.findViewById(R.id.tv_waktuhome);
             tvHarga     = itemView.findViewById(R.id.tv_hargahome);
             civFotouser = itemView.findViewById(R.id.civ_fotohome);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    post = getAdapterPosition();
+
+                    Intent intent = new Intent(context, DetailIklanActivity.class);
+//                    intent.putExtra("username", tvAUsername.getText().toString().trim());
+//                    intent.putExtra("waktu", tvAWaktu.getText().toString().trim());
+//                    intent.putExtra("status", tvStatus.getText().toString().trim());
+//                    intent.putExtra("tujuan", tvTujuan.getText().toString().trim());
+//                    intent.putExtra("foto_status", tvFoto_status.getText().toString().trim());
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 

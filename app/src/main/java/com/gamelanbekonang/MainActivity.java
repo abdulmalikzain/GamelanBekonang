@@ -2,6 +2,7 @@ package com.gamelanbekonang;
 
 
 import android.app.ProgressDialog;
+import android.os.Handler;
 import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -18,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.gamelanbekonang.Adapter.AdapterIklan;
 import com.gamelanbekonang.Api.ApiService;
@@ -25,7 +27,10 @@ import com.gamelanbekonang.Api.RetroClient;
 import com.gamelanbekonang.MenuAkun.AkunFragment;
 import com.gamelanbekonang.MenuFavorite.FavoriteFragment;
 import com.gamelanbekonang.MenuHome.HomeFragment;
+import com.gamelanbekonang.MenuKategori.KategoriFragment;
+import com.gamelanbekonang.Utils.BottomNavigationViewHelper;
 import com.gamelanbekonang.beans.Iklan;
+import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,73 +41,97 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener  {
+public class MainActivity extends AppCompatActivity {
     private ArrayList<Iklan> iklans;
     private ProgressDialog dialog;
     private AdapterIklan adapter;
     RecyclerView recyclerView;
     FrameLayout frameLayout;
     RelativeLayout relativeLayout;
+    private static final String TAG = "MainActivity";
+
+    boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //loading the default fragment
-        loadFragment(new HomeFragment());
-        frameLayout = findViewById(R.id.fragment_container);
         relativeLayout = findViewById(R.id.rel_home);
-
-        //getting bottom navigation view and attaching the listener
-        BottomNavigationView navigation = findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(this);
+        frameLayout = findViewById(R.id.fragment_container);
 
         initViews();
+        setupBottomNavigationView();
 
     }
 
+    private BottomNavigationView.OnNavigationItemSelectedListener botnav = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+            switch (item.getItemId()){
+                case R.id.navigation_home:
+                    transaction.replace(R.id.fragment_container, new HomeFragment()).commit();
+                    relativeLayout.setVisibility(View.VISIBLE);
+                    frameLayout.setVisibility(View.INVISIBLE);
+                    return true;
+
+                case R.id.navigation_favorite:
+                    transaction.replace(R.id.fragment_container, new FavoriteFragment()).commit();
+                    relativeLayout.setVisibility(View.INVISIBLE);
+                    frameLayout.setVisibility(View.VISIBLE);
+                    return true;
+
+                case R.id.navigation_kategori:
+                    transaction.replace(R.id.fragment_container, new KategoriFragment()).commit();
+                    relativeLayout.setVisibility(View.INVISIBLE);
+                    frameLayout.setVisibility(View.VISIBLE);
+                    return true;
+
+                case R.id.navigation_akun:
+                    transaction.replace(R.id.fragment_container, new AkunFragment()).commit();
+                    relativeLayout.setVisibility(View.INVISIBLE);
+                    frameLayout.setVisibility(View.VISIBLE);
+                    return true;
+            }
+            return false;
+        }
+    };
+
+    private void setupBottomNavigationView(){
+        Log.d(TAG, "setupBottomNavigationView: setting up BottomNavigationView");
+        BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx) findViewById(R.id.navigasi);
+        BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
+
+        BottomNavigationView BNV = (BottomNavigationView) findViewById(R.id.navigasi);
+        BNV.setOnNavigationItemSelectedListener(botnav);
+
+    }
+
+    //////////////BECK PRESED
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        Fragment fragment = null;
-
-        switch (item.getItemId()) {
-            case R.id.navigation_home:
-                fragment = new HomeFragment();
-                relativeLayout.setVisibility(View.VISIBLE);
-                frameLayout.setVisibility(View.INVISIBLE);
-                break;
-
-            case R.id.navigation_favorite:
-                fragment = new FavoriteFragment();
-                frameLayout.setVisibility(View.VISIBLE);
-                relativeLayout.setVisibility(View.INVISIBLE);
-                break;
-
-            case R.id.navigation_akun:
-                fragment = new AkunFragment();
-                frameLayout.setVisibility(View.VISIBLE);
-                relativeLayout.setVisibility(View.INVISIBLE);
-                break;
-
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
         }
 
-        return loadFragment(fragment);
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Tekan beck lagi untuk keluar", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
     }
 
-    private boolean loadFragment(Fragment fragment) {
-        //switching fragment
-        if (fragment != null) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, fragment)
-                    .commit();
-            return true;
-        }
-        return false;
-    }
-
-////////////////////////////    PARSING RETROFIT TAMPIL DATA
+    ////////////////////////////    PARSING RETROFIT TAMPIL DATA
     private void initViews(){
         recyclerView = findViewById(R.id.rv_iklan);
         recyclerView.setHasFixedSize(true);

@@ -11,6 +11,10 @@
         android:title="Favorite" />
 
     <item
+        android:id="@+id/navigation_kategori"
+        android:icon="@drawable/ic_akun"
+        android:title="Kategori" />
+    <item
         android:id="@+id/navigation_akun"
         android:icon="@drawable/ic_akun"
         android:title="Akun" />
