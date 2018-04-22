@@ -136,6 +136,7 @@ public class Iklan {
     private String jenis;
     private String harga;
     private String created_at;
+    private String user_image;
 
     public String getJudul() {
         return judul;
@@ -159,5 +160,9 @@ public class Iklan {
 
     public String getCreated_at() {
         return created_at;
+    }
+
+    public String getUser_image() {
+        return user_image;
     }
 }

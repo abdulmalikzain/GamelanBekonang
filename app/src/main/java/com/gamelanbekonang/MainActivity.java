@@ -3,17 +3,15 @@ package com.gamelanbekonang;
 
 import android.app.ProgressDialog;
 import android.os.Handler;
-import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,14 +19,14 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.gamelanbekonang.Adapter.AdapterIklan;
-import com.gamelanbekonang.Api.ApiService;
-import com.gamelanbekonang.Api.RetroClient;
-import com.gamelanbekonang.MenuAkun.AkunFragment;
-import com.gamelanbekonang.MenuFavorite.FavoriteFragment;
-import com.gamelanbekonang.MenuHome.HomeFragment;
-import com.gamelanbekonang.MenuKategori.KategoriFragment;
-import com.gamelanbekonang.Utils.BottomNavigationViewHelper;
+import com.gamelanbekonang.adapter.AdapterIklan;
+import com.gamelanbekonang.api.ApiService;
+import com.gamelanbekonang.api.RetroClient;
+import com.gamelanbekonang.menuAkun.AkunFragment;
+import com.gamelanbekonang.menuFavorite.FavoriteFragment;
+import com.gamelanbekonang.menuHome.HomeFragment;
+import com.gamelanbekonang.menuKategori.KategoriFragment;
+import com.gamelanbekonang.utils.BottomNavigationViewHelper;
 import com.gamelanbekonang.beans.Iklan;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
@@ -49,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
     FrameLayout frameLayout;
     RelativeLayout relativeLayout;
     private static final String TAG = "MainActivity";
+    Toolbar mToolbar;
+    private BottomNavigationViewEx bottomNavigationViewEx;
+
 
     boolean doubleBackToExitPressedOnce = false;
 
@@ -60,8 +61,14 @@ public class MainActivity extends AppCompatActivity {
         relativeLayout = findViewById(R.id.rel_home);
         frameLayout = findViewById(R.id.fragment_container);
 
+        mToolbar = findViewById(R.id.toolbar_home);
+        setSupportActionBar(mToolbar);
+        mToolbar.setTitle("Gamelan Bekonang");
+
         initViews();
         setupBottomNavigationView();
+
+
 
     }
 
@@ -69,14 +76,14 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-            android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
 
             switch (item.getItemId()){
                 case R.id.navigation_home:
                     transaction.replace(R.id.fragment_container, new HomeFragment()).commit();
                     relativeLayout.setVisibility(View.VISIBLE);
-                    frameLayout.setVisibility(View.INVISIBLE);
+                    frameLayout.setVisibility(View.GONE);
                     return true;
 
                 case R.id.navigation_favorite:
@@ -103,13 +110,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupBottomNavigationView(){
         Log.d(TAG, "setupBottomNavigationView: setting up BottomNavigationView");
-        BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx) findViewById(R.id.navigasi);
+        bottomNavigationViewEx = findViewById(R.id.navigasi);
         BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
 
-        BottomNavigationView BNV = (BottomNavigationView) findViewById(R.id.navigasi);
+        BottomNavigationView BNV = findViewById(R.id.navigasi);
         BNV.setOnNavigationItemSelectedListener(botnav);
 
     }
+
 
     //////////////BECK PRESED
     @Override
@@ -153,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
 
                 RetroClient jsonResponse = response.body();
                 iklans = new ArrayList<>(Arrays.asList(jsonResponse.getAndroid()));
-                adapter = new AdapterIklan(iklans);
+                adapter = new AdapterIklan(MainActivity.this, iklans);
                 recyclerView.setAdapter(adapter);
             }
 

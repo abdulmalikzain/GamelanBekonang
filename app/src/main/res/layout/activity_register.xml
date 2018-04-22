@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.gamelanbekonang..LogRes.RegisterActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tabs"
+        android:background="@color/colorPrimaryDark"
+        android:theme="@style/Base.Theme.AppCompat">
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="28sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginBottom="40dp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
+            android:text="REGISTER"/>
+
+        <EditText
+            android:id="@+id/etNama"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nama"
+            android:textColorHint="#000"
+            android:padding="8dp"
+            android:textSize="18sp"
+            android:inputType="textPersonName"
+            android:background="@color/cardview_shadow_start_color"
+            android:textColor="#000"/>
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:textSize="18sp"
+            android:textColorHint="#000"
+            android:padding="8dp"
+            android:inputType="textEmailAddress"
+            android:background="@color/cardview_shadow_start_color"
+            android:textColor="#000"/>
+
+        <EditText
+            android:id="@+id/etNotelp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nomer Telephone"
+            android:textSize="18sp"
+            android:textColorHint="#000"
+            android:padding="8dp"
+            android:inputType="textEmailAddress"
+            android:background="@color/cardview_shadow_start_color"
+            android:textColor="#000"/>
+
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:textSize="18sp"
+            android:textColorHint="#000"
+            android:inputType="textPassword"
+            android:padding="8dp"
+            android:background="@color/cardview_shadow_start_color"
+            android:textColor="#000"/>
+
+        <EditText
+            android:id="@+id/etConfirmPassword"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirmation Password"
+            android:textSize="18sp"
+            android:textColorHint="#000"
+            android:inputType="textPassword"
+            android:padding="8dp"
+            android:background="@color/cardview_shadow_start_color"
+            android:textColor="#000"/>
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#FFF"
+            android:text="REGISTER"
+            android:background="@color/colorPrimaryDark"/>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -12,7 +12,7 @@
 
     <item
         android:id="@+id/navigation_kategori"
-        android:icon="@drawable/ic_akun"
+        android:icon="@drawable/ic_kategori"
         android:title="Kategori" />
     <item
         android:id="@+id/navigation_akun"

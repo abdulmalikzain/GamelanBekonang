@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6e0707</color>
+    <color name="colorPrimary">#A67C00</color>
     <color name="colorPrimaryDark">#A67C00</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#291802</color>
     <color name="white">#fff</color>
+    <color name="Black">#000000</color>
 
     <color name="color_home">#009688</color>
+
+    <color name="kuningFirebase">#FFCA28</color>
+    <color name="ambarFirebase">#FFA000</color>
+    <color name="orangeFirebase">#F57C00</color>
 </resources>
