@@ -1,7 +1,10 @@
 <resources>
-    <string name="app_name">GamelanBekonang</string>
+    <string name="app_name">GamelanWirun</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="text_home">Home Fragment</string>
+    <string name="pesan_gamelan">Gamelan Wirun ini tempatnya salah gamelan gamelan berkualitas</string>
+    <string name="dek_kontakpenjual">Hubungi langsung dengan penjual gamelan wirun dan dapatkan harga yang sesuai</string>
+    <string name="dek_lokasipenjual">Wirun adalah salah satu daerah di Solo tempatnya para pengrajin gamelan yang terbaik</string>
 </resources>

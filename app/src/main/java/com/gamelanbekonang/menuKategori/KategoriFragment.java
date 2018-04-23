@@ -42,9 +42,9 @@ public class KategoriFragment extends Fragment {
 //        url_maps.put("Game of Thrones", "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");
         // Load Image Dari res/drawable
         HashMap<String,Integer> file_maps = new HashMap<String, Integer>();
-        file_maps.put("Hannibal",R.drawable.gamelanemas);
-        file_maps.put("Big Bang Theory",R.drawable.pem);
-        file_maps.put("House of Cards",R.drawable.pembuatan);
+        file_maps.put("Gamelan Emas",R.drawable.gamelanemas);
+        file_maps.put("Pengrajin Gamelan",R.drawable.pem);
+        file_maps.put("Pembuatan gamelan",R.drawable.pembuatan);
         for(String name : file_maps.keySet()){
             TextSliderView textSliderView = new TextSliderView(getContext());
             // initialize a SliderLayout
@@ -61,6 +61,7 @@ public class KategoriFragment extends Fragment {
         sliderLayout.setPresetTransformer(SliderLayout.Transformer.Accordion);
         sliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Left_Top);
         sliderLayout.setCustomAnimation(new DescriptionAnimation());
+
         sliderLayout.setDuration(4000);
 
         return view;

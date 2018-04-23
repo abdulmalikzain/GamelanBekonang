@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         mToolbar = findViewById(R.id.toolbar_home);
         setSupportActionBar(mToolbar);
-        mToolbar.setTitle("Gamelan Bekonang");
+        mToolbar.setTitle("Gamelan Wirun");
 
         initViews();
         setupBottomNavigationView();
