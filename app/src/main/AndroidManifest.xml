@@ -24,7 +24,8 @@
         <activity android:name=".splash.SplashScreen" />
         <activity android:name=".menuHome.DetailIklanActivity" />
         <activity android:name=".menuAkun.TentangActivity" />
-        <activity android:name=".menuAkun.BantuanActivity"></activity>
+        <activity android:name=".menuAkun.BantuanActivity" />
+        <activity android:name=".menuProfil.ProfilActivity"></activity>
     </application>
 
 </manifest>
