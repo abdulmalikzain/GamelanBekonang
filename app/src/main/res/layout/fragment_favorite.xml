@@ -17,7 +17,6 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
         <TextView
-            android:id="@+id/tv_fav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Favorite"
@@ -26,64 +25,7 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:fontFamily="sans-serif"/>
-
-
-
     </RelativeLayout>
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/tv_fav"
-        android:layout_marginTop="60dp"
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"
-        android:layout_marginBottom="2dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="120dp"
-                android:layout_height="150dp"
-                android:layout_marginTop="70dp"
-                android:layout_marginLeft="140dp"
-                android:src="@drawable/ic_akun"/>
-
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:textSize="22sp"
-            android:gravity="center"
-            android:id="@+id/text1"
-            android:layout_gravity="center"
-            android:onClick="cobaclick"
-            android:text="ANDA HARUS LOGIN JIKA INGIN MENANDAI BARANG KESUKAANMU BURUAN LOGIN"
-            tools:ignore="OnClick" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="225dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btn_masuk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
-                android:text="LOGIN"  />
-
-        </LinearLayout>
-
-    </android.support.v7.widget.CardView>
-
-
 
 
 </FrameLayout>

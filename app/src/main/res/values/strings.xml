@@ -7,10 +7,4 @@
     <string name="pesan_gamelan">Gamelan Wirun ini tempatnya salah gamelan gamelan berkualitas</string>
     <string name="dek_kontakpenjual">Hubungi langsung dengan penjual gamelan wirun dan dapatkan harga yang sesuai</string>
     <string name="dek_lokasipenjual">Wirun adalah salah satu daerah di Solo tempatnya para pengrajin gamelan yang terbaik</string>
-    <string name="lihat_semua">lihat semua</string>
-    <string name="tutup_teks">tutup</string>
-
-
-    <string name="permission_dialog">Accessing Location Permissions required</string>
-    <string name="go_to_permissions_settings">Go to App settings and enable permissions</string>
 </resources>
