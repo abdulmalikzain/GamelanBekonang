@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.gamelanbekonang..LogRes.RegisterActivity">
+    tools:context="com.gamelanbekonang.logRes.RegisterActivity">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
             android:text="REGISTER"/>
 
         <EditText
-            android:id="@+id/etNama"
+            android:id="@+id/et_namar"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
             android:textColor="#000"/>
 
         <EditText
-            android:id="@+id/etEmail"
+            android:id="@+id/et_emailr"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
             android:textColor="#000"/>
 
         <EditText
-            android:id="@+id/etNotelp"
+            android:id="@+id/et_notelpr"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
 
 
         <EditText
-            android:id="@+id/etPassword"
+            android:id="@+id/et_passwordr"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
             android:textColor="#000"/>
 
         <EditText
-            android:id="@+id/etConfirmPassword"
+            android:id="@+id/et_confirmpasswordr"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
             android:textColor="#000"/>
 
         <Button
-            android:id="@+id/btnRegister"
+            android:id="@+id/btn_registerr"
             android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

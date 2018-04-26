@@ -37,7 +37,7 @@
             android:text="LOGIN"/>
 
         <EditText
-            android:id="@+id/etEmail"
+            android:id="@+id/et_emaill"
             android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
             android:textColor="#000"/>
 
         <EditText
-            android:id="@+id/etPassword"
+            android:id="@+id/et_passwordl"
             android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
             android:text="Tampilkan Password" />
 
         <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/btn_loginl"
             android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
             android:layout_gravity="center"/>
 
         <Button
-            android:id="@+id/btnRegister"
+            android:id="@+id/btn_registerl"
             android:layout_marginTop="8dp"
             android:textSize="18sp"
             android:layout_width="match_parent"
