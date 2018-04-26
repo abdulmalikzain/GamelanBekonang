@@ -29,16 +29,16 @@ import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText etNama;
-    private EditText etEmail;
-    private EditText etPassword,etConfirm;
-    private EditText etNotelp;
-    private Button btnRegister;
-    private ProgressDialog loading;
+    EditText etNama;
+    EditText etEmail;
+    EditText etPassword,etConfirm;
+    EditText etNotelp;
+    Button btnRegister;
+    ProgressDialog loading;
 
-    private Context mContext;
-    private BaseApiService mApiService;
-    private Toolbar mActionToolbar;
+    Context mContext;
+    BaseApiService mApiService;
+    Toolbar mActionToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,12 +61,12 @@ public class RegisterActivity extends AppCompatActivity {
     }
     private void initComponents() {
 
-        etNama = (EditText) findViewById(R.id.et_namar);
-        etEmail = (EditText) findViewById(R.id.et_emailr);
-        etNotelp = (EditText) findViewById(R.id.et_notelpr);
-        etPassword = (EditText) findViewById(R.id.et_passwordr);
-        etConfirm = (EditText) findViewById(R.id.et_confirmpasswordr);
-        btnRegister = (Button) findViewById(R.id.btn_registerr);
+        etNama = (EditText) findViewById(R.id.etNama);
+        etEmail = (EditText) findViewById(R.id.etEmail);
+        etNotelp = (EditText) findViewById(R.id.etNotelp);
+        etPassword = (EditText) findViewById(R.id.etPassword);
+        etConfirm = (EditText) findViewById(R.id.etConfirmPassword);
+        btnRegister = (Button) findViewById(R.id.btnRegister);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override

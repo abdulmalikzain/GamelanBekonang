@@ -37,17 +37,17 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText etEmail;
-    private EditText etPassword;
-    private TextView coba;
-    private Button btnLogin;
-    private Button btnRegister;
-    private CheckBox c;
-    private ProgressDialog loading;
-    private String TAG="";
-    private Context mContext;
-    private BaseApiService mApiService;
-    private Toolbar mActionToolbar;
+    EditText etEmail;
+    EditText etPassword;
+    TextView coba;
+    Button btnLogin;
+    Button btnRegister;
+    CheckBox c;
+    ProgressDialog loading;
+    String TAG="";
+    Context mContext;
+    BaseApiService mApiService;
+    Toolbar mActionToolbar;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -73,9 +73,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private void initComponents() {
         coba = (TextView) findViewById(R.id.coba);
-        etEmail = (EditText) findViewById(R.id.et_emaill);
-        etPassword = (EditText) findViewById(R.id.et_passwordl);
-        btnLogin = (Button) findViewById(R.id.btn_loginl);
+        etEmail = (EditText) findViewById(R.id.etEmail);
+        etPassword = (EditText) findViewById(R.id.etPassword);
+        btnLogin = (Button) findViewById(R.id.btnLogin);
         c = (CheckBox) findViewById(R.id.checkBox);
         c.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -87,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-        btnRegister = (Button) findViewById(R.id.btn_registerl);
+        btnRegister = (Button) findViewById(R.id.btnRegister);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
