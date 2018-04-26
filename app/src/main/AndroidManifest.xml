@@ -30,12 +30,9 @@
         <activity android:name=".menuHome.DetailIklanActivity" />
         <activity android:name=".menuAkun.TentangActivity" />
         <activity android:name=".menuAkun.BantuanActivity" />
-<<<<<<< HEAD
+
         <activity android:name=".menuProfil.ProfilActivity" />
 
-=======
-        <activity android:name=".menuProfil.ProfilActivity"></activity>
->>>>>>> master
     </application>
 
 </manifest>
