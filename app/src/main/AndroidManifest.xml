@@ -7,7 +7,6 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_icon_gw"
@@ -15,7 +14,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".slide.SlideScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,9 +28,10 @@
         <activity android:name=".menuHome.DetailIklanActivity" />
         <activity android:name=".menuAkun.TentangActivity" />
         <activity android:name=".menuAkun.BantuanActivity" />
-
         <activity android:name=".menuProfil.ProfilActivity" />
+        <activity android:name=".splash.SplashPermissionActivity">
 
+        </activity>
     </application>
 
 </manifest>

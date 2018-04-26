@@ -20,7 +20,7 @@ public class SplashScreen extends AppCompatActivity {
         iv = findViewById(R.id.iv);
         Animation myanim = new AnimationUtils().loadAnimation(this,R.anim.mytransitiont);
         iv.startAnimation(myanim);
-        final Intent i = new Intent(SplashScreen.this, MainActivity.class);
+        final Intent i = new Intent(SplashScreen.this, SplashPermissionActivity.class);
         Thread timer = new Thread(){
             public void run(){
                 try{
