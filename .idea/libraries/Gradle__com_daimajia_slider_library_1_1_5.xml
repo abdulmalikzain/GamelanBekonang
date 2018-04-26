@@ -1,8 +1,13 @@
 <component name="libraryTable">
   <library name="Gradle: com.daimajia.slider:library-1.1.5">
     <CLASSES>
+<<<<<<< HEAD
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.1.5.aar/62e1fe79852f0a25cca5969259c898ee/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.1.5.aar/62e1fe79852f0a25cca5969259c898ee/jars/classes.jar!/" />
+=======
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.1.5.aar/38192b6abb9f7e708ffbfa8e36203bfd/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.1.5.aar/38192b6abb9f7e708ffbfa8e36203bfd/jars/classes.jar!/" />
+>>>>>>> coba
     </CLASSES>
     <JAVADOC />
     <SOURCES>

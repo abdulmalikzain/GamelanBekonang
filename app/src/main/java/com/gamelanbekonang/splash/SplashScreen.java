@@ -21,7 +21,11 @@ public class SplashScreen extends AppCompatActivity {
         Animation myanim = new AnimationUtils().loadAnimation(this,R.anim.mytransitiont);
         iv.startAnimation(myanim);
 <<<<<<< HEAD
+<<<<<<< HEAD
         final Intent i = new Intent(this, MainActivity.class);
+=======
+        final Intent i = new Intent(SplashScreen.this, MainActivity.class);
+>>>>>>> coba
 =======
         final Intent i = new Intent(SplashScreen.this, MainActivity.class);
 >>>>>>> coba
