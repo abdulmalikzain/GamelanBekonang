@@ -118,9 +118,9 @@
                     <com.borjabravo.readmoretextview.ReadMoreTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:trimExpandedText="lihat detail"
+                        app:trimExpandedText="@string/tutup_teks"
                         app:trimMode="trimModeLength"
-                        app:trimCollapsedText="tutup"
+                        app:trimCollapsedText="@string/lihat_semua"
                         app:trimLength="10"
                         app:colorClickableText="@color/ambarFirebase"
                         android:text="deskripsi barang" />
@@ -148,13 +148,15 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Related"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+                        android:text="Alamat penjual"
+                        android:textColor="@color/kuningFirebase"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="huuuu" />
+                        android:drawableLeft="@drawable/ic_place"
+                        android:text="Solo"
+                        android:layout_gravity="center"/>
 
                 </LinearLayout>
 
