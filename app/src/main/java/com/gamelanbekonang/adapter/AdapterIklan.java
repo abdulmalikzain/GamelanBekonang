@@ -40,9 +40,9 @@ public class AdapterIklan extends RecyclerView.Adapter<AdapterIklan.IklanViewHol
             holder.tvJenis.setText(iklan.getJenis());
             holder.tvWaktu.setText(iklan.getCreated_at());
             holder.tvHarga.setText("Rp " + iklan.getHarga());
-            holder.tvGambariklan.setText(iklan.getImage());
+            holder.tvGambariklan.setText(iklan.getFilename());
 //        holder.tvGambarUser.setText(iklan.getUser_image());
-            Picasso.with(context).load(BaseApiService.BASE_URL_IMAGE+iklan.getImage())
+            Picasso.with(context).load(BaseApiService.BASE_URL_IMAGE+iklan.getFilename())
                     .error(R.mipmap.ic_launcher)
                     .into(holder.ivGambar);
 

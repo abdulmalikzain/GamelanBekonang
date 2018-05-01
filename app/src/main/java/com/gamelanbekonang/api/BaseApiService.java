@@ -14,6 +14,7 @@ public interface BaseApiService {
 
     String BASE_API_URL = "http://bekonang-store.000webhostapp.com";
     String BASE_URL_IMAGE = "http://bekonang-store.000webhostapp.com/images/";
+    String BASE_URL_IKLAN = "https://bekonang-store.000webhostapp.com/api/v1/";
 
     @FormUrlEncoded
     @POST("signin")

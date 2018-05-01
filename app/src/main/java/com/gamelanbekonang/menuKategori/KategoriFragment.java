@@ -3,12 +3,9 @@ package com.gamelanbekonang.menuKategori;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
@@ -70,7 +67,7 @@ public class KategoriFragment extends Fragment {
         llKenong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), KenongActivity.class);
+                Intent intent = new Intent(getContext(), KategoriIklanActivity.class);
                 startActivity(intent);
             }
         });

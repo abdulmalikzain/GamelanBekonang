@@ -12,10 +12,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetroClient {
 
-    private Iklan[] iklans;
+    private Iklan[] iklan;
 
     public Iklan[] getIklan() {
-        return iklans;
+        return iklan;
     }
 
     private Kategori[] Category;

@@ -33,6 +33,7 @@
         <activity android:name=".menuBantuan.CaraDaftarActivity" />
         <activity android:name=".menuBantuan.JualBeliActivity" />
         <activity android:name=".menuBantuan.KetentuanActivity" />
+        <activity android:name=".menuKategori.KategoriIklanActivity"></activity>
         <activity android:name=".menuBantuan.KebijakanActivity"></activity>
     </application>
 

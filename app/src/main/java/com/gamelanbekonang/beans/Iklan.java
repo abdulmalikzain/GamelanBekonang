@@ -130,20 +130,34 @@ public class Iklan {
 //        this.updatedAt = updatedAt;
 //    }
 
+//    public Iklan(){}
+//
+//    public Iklan (String judul, String image, String deskripsi, String jenis, String harga, String created_at, String user_image){
+//        this.judul = judul;
+//        this.filename = image;
+//        this.deskripsi = deskripsi;
+//        this.jenis = jenis;
+//        this.harga = harga;
+//        this.created_at = created_at;
+//        this.user_image = user_image;
+//    }
+
     private String judul;
-    private String image;
+    private String filename;
     private String deskripsi;
     private String jenis;
     private String harga;
     private String created_at;
     private String user_image;
 
+
+
     public String getJudul() {
         return judul;
     }
 
-    public String getImage() {
-        return image;
+    public String getFilename() {
+        return filename;
     }
 
     public String getDeskripsi() {
@@ -165,4 +179,35 @@ public class Iklan {
     public String getUser_image() {
         return user_image;
     }
+
+
+
+
+//    public void setJudul(String judul) {
+//        this.judul = judul;
+//    }
+//
+//    public void setImage(String image) {
+//        this.filename = image;
+//    }
+//
+//    public void setDeskripsi(String deskripsi) {
+//        this.deskripsi = deskripsi;
+//    }
+//
+//    public void setJenis(String jenis) {
+//        this.jenis = jenis;
+//    }
+//
+//    public void setHarga(String harga) {
+//        this.harga = harga;
+//    }
+//
+//    public void setCreated_at(String created_at) {
+//        this.created_at = created_at;
+//    }
+//
+//    public void setUser_image(String user_image) {
+//        this.user_image = user_image;
+//    }
 }
