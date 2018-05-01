@@ -1,6 +1,7 @@
 package com.gamelanbekonang.api;
 
 import com.gamelanbekonang.beans.Iklan;
+import com.gamelanbekonang.beans.Kategori;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -10,34 +11,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class RetroClient {
-    /********
-     * URLS
-     *******/
-//    private static final String ROOT_URL = "http://bekonang-store.000webhostapp.com/";
-
-    /**
-     * Get Retrofit Instance
-     */
-//    private static Retrofit getRetrofitInstance() {
-//        return new Retrofit.Builder()
-//                .baseUrl(ROOT_URL)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//    }
-
-    /**
-     * Get API Service
-     *
-     * @return API Service
-     */
-//    public static ApiService getApiService() {
-//        return getRetrofitInstance().create(ApiService.class);
-//    }
 
     private Iklan[] iklans;
 
-    public Iklan[] getAndroid() {
+    public Iklan[] getIklan() {
         return iklans;
     }
 
+    private Kategori[] Category;
+
+    public Kategori[] getCategory() {
+        return Category;
+    }
 }

@@ -7,21 +7,25 @@ import android.net.Uri;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.gamelanbekonang.R;
+import com.gamelanbekonang.api.BaseApiService;
 import com.squareup.picasso.Picasso;
 
 public class DetailIklanActivity extends AppCompatActivity {
     private String gambarIklan, noTelp;
+    private ToggleButton tbAddfavorite;
 
     private FloatingActionButton fabTelpMess;
 
@@ -41,6 +45,24 @@ public class DetailIklanActivity extends AppCompatActivity {
 
         final Toolbar toolbar = findViewById(R.id.toolbar);
         fabTelpMess = findViewById(R.id.FAB_telp_mess);
+        tbAddfavorite = findViewById(R.id.tb_add_favorite);
+
+        tbAddfavorite.setChecked(false);
+        tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite_border));
+        tbAddfavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_favorite_kuning));
+                    Toast.makeText(DetailIklanActivity.this, "iklan ditambahkan ke favorite", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite_border));
+                    Toast.makeText(DetailIklanActivity.this, "diahpus dari Favorite", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -92,7 +114,7 @@ public class DetailIklanActivity extends AppCompatActivity {
 
     private void loadBackdrop() {
         final ImageView imageView = findViewById(R.id.backdrop);
-        Picasso.with(getApplication()).load("http://bekonang-store.000webhostapp.com/images/"+gambarIklan).centerCrop().resize(1600, 850).error(R.mipmap.ic_launcher).into(imageView);
+        Picasso.with(getApplication()).load(BaseApiService.BASE_URL_IMAGE+gambarIklan).centerCrop().resize(1600, 850).error(R.mipmap.ic_launcher).into(imageView);
     }
 
     //button back toolbar

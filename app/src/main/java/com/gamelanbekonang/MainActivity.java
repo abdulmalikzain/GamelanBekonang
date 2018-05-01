@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.gamelanbekonang.adapter.AdapterIklan;
 import com.gamelanbekonang.api.ApiService;
+import com.gamelanbekonang.api.BaseApiService;
 import com.gamelanbekonang.api.RetroClient;
 import com.gamelanbekonang.menuAkun.AkunFragment;
 import com.gamelanbekonang.menuFavorite.FavoriteFragment;
@@ -28,10 +29,14 @@ import com.gamelanbekonang.menuHome.HomeFragment;
 import com.gamelanbekonang.menuKategori.KategoriFragment;
 import com.gamelanbekonang.utils.BottomNavigationViewHelper;
 import com.gamelanbekonang.beans.Iklan;
+import com.gamelanbekonang.utils.EndlessRecyclerViewScrollListener;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,14 +45,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
-    private ArrayList<Iklan> iklans;
-    private ProgressDialog dialog;
+    private ArrayList<Iklan> iklans ;
     private AdapterIklan adapter;
-    RecyclerView recyclerView;
-    FrameLayout frameLayout;
-    RelativeLayout relativeLayout;
+    private RecyclerView recyclerView;
+    private FrameLayout frameLayout;
+    private RelativeLayout relativeLayout;
     private static final String TAG = "MainActivity";
-    Toolbar mToolbar;
+    private Toolbar mToolbar;
     private BottomNavigationViewEx bottomNavigationViewEx;
 
 
@@ -146,11 +150,12 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         loadJSON();
+
     }
 
     private void loadJSON(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://bekonang-store.000webhostapp.com")
+                .baseUrl(BaseApiService.BASE_API_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiService request = retrofit.create(ApiService.class);
@@ -158,9 +163,8 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<RetroClient>() {
             @Override
             public void onResponse(Call<RetroClient> call, Response<RetroClient> response) {
-
                 RetroClient jsonResponse = response.body();
-                iklans = new ArrayList<>(Arrays.asList(jsonResponse.getAndroid()));
+                iklans = new ArrayList<>(Arrays.asList(jsonResponse.getIklan()));
                 adapter = new AdapterIklan(MainActivity.this, iklans);
                 recyclerView.setAdapter(adapter);
             }

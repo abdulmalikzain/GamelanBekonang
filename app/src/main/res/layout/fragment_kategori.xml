@@ -47,12 +47,15 @@
             android:layout_margin="4dp"
             android:layout_weight="3"
             app:cardElevation="2dp"
+            android:background="@drawable/ripple_effect"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             app:cardCornerRadius="7dp">
 
             <LinearLayout
+                android:id="@+id/ll_kenong"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:orientation="vertical"
-                android:background="@drawable/ripple_effect"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -66,6 +69,8 @@
                     android:textAlignment="center"
                     android:text="Bonang"
                     android:textColor="#000"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
                     android:textSize="12sp"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
@@ -80,13 +85,15 @@
             android:layout_height="100dp"
             android:layout_margin="4dp"
             app:cardElevation="2dp"
+            android:background="@drawable/ripple_effect"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             android:layout_weight="3"
             app:cardCornerRadius="7dp">
 
             <LinearLayout
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:orientation="vertical"
-                android:background="@drawable/ripple_effect"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -101,6 +108,8 @@
                     android:text="Kenong"
                     android:textColor="#000"
                     android:textSize="12sp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -114,13 +123,15 @@
             android:layout_height="100dp"
             android:layout_margin="4dp"
             android:layout_weight="3"
+            android:background="@drawable/ripple_effect"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             app:cardElevation="2dp"
             app:cardCornerRadius="7dp">
 
             <LinearLayout
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:orientation="vertical"
-                android:background="@drawable/ripple_effect"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -135,6 +146,8 @@
                     android:text="Kendang"
                     android:textColor="#000"
                     android:textSize="12sp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -159,13 +172,15 @@
             android:layout_height="100dp"
             android:layout_margin="4dp"
             android:layout_weight="3"
+            android:background="@drawable/ripple_effect"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             app:cardElevation="2dp"
             app:cardCornerRadius="7dp">
 
             <LinearLayout
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:orientation="vertical"
-                android:background="@drawable/ripple_effect"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -179,6 +194,8 @@
                     android:textAlignment="center"
                     android:text="Bonang"
                     android:textColor="#000"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
                     android:textSize="12sp"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
@@ -193,13 +210,15 @@
             android:layout_height="100dp"
             android:layout_margin="4dp"
             app:cardElevation="2dp"
+            android:background="@drawable/ripple_effect"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             android:layout_weight="3"
             app:cardCornerRadius="7dp">
 
             <LinearLayout
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:orientation="vertical"
-                android:background="@drawable/ripple_effect"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -213,6 +232,8 @@
                     android:textAlignment="center"
                     android:text="Kenong"
                     android:textColor="#000"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
                     android:textSize="12sp"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
@@ -227,13 +248,16 @@
             android:layout_height="100dp"
             android:layout_margin="4dp"
             android:layout_weight="3"
+            android:background="@drawable/ripple_effect"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             app:cardElevation="2dp"
             app:cardCornerRadius="7dp">
 
             <LinearLayout
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:orientation="vertical"
-                android:background="@drawable/ripple_effect"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -248,6 +272,8 @@
                     android:text="Kendang"
                     android:textColor="#000"
                     android:textSize="12sp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />

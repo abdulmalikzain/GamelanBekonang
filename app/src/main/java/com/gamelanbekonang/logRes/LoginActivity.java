@@ -121,9 +121,7 @@ public class LoginActivity extends AppCompatActivity {
                                     Toast.makeText(mContext, success, Toast.LENGTH_SHORT).show();
                                     String nama = jsonRESULTS.getJSONObject("user").getString("email");
                                     Intent intent = new Intent(mContext, MainActivity.class);
-//                                    intent.putExtra("result_nama", nama);
                                     startActivity(intent);
-//                                    Log.d("hh", "uuuuuu"+nama );
                                 } else {
                                     // Jika login gagal
                                     String error_message = jsonRESULTS.getString("404");

@@ -29,9 +29,8 @@
         <activity android:name=".menuAkun.TentangActivity" />
         <activity android:name=".menuAkun.BantuanActivity" />
         <activity android:name=".menuProfil.ProfilActivity" />
-        <activity android:name=".splash.SplashPermissionActivity">
-
-        </activity>
+        <activity android:name=".splash.SplashPermissionActivity"></activity>
+        <activity android:name=".menuKategori.KenongActivity"></activity>
     </application>
 
 </manifest>

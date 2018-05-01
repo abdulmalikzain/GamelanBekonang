@@ -1,5 +1,6 @@
 package com.gamelanbekonang.menuKategori;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -22,6 +23,7 @@ import java.util.HashMap;
 public class KategoriFragment extends Fragment {
 
     private SliderLayout sliderLayout;
+    private LinearLayout llKenong;
 
     public KategoriFragment(){
 
@@ -34,6 +36,7 @@ public class KategoriFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_kategori, container, false);
 
         sliderLayout = view.findViewById(R.id.slider);
+        llKenong        = view.findViewById(R.id.ll_kenong);
         // Load image dari URL
 //        HashMap<String,String> url_maps = new HashMap<String, String>();
 //        url_maps.put("Hannibal", "http://static2.hypable.com/wp-content/uploads/2013/12/hannibal-season-2-release-date.jpg");
@@ -63,6 +66,14 @@ public class KategoriFragment extends Fragment {
         sliderLayout.setCustomAnimation(new DescriptionAnimation());
 
         sliderLayout.setDuration(4000);
+
+        llKenong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), KenongActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }

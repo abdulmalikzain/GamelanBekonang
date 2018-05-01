@@ -11,13 +11,15 @@ import retrofit2.http.POST;
  */
 
 public interface BaseApiService {
-    // Fungsi ini untuk memanggil API http://localhost/mahasiswa/include/login.php
+
+    String BASE_API_URL = "http://bekonang-store.000webhostapp.com";
+    String BASE_URL_IMAGE = "http://bekonang-store.000webhostapp.com/images/";
+
     @FormUrlEncoded
     @POST("signin")
     Call<ResponseBody> loginRequest(@Field("email") String email,
                                     @Field("password") String password);
 
-    // Fungsi ini untuk memanggil API http://localhost/mahasiswa/include/register.php
     @FormUrlEncoded
     @POST("register")
     Call<ResponseBody> registerRequest(@Field("name") String name,

@@ -12,4 +12,7 @@ public interface ApiService {
 
     @GET("api/v1/iklan")
     Call<RetroClient> getJSON();
+
+    @GET("api/v1/category/1")
+    Call<RetroClient> getJSONCategory();
 }

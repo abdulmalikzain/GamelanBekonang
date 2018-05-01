@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.gamelanbekonang.api.BaseApiService;
 import com.gamelanbekonang.menuHome.DetailIklanActivity;
 import com.gamelanbekonang.R;
 import com.gamelanbekonang.beans.Iklan;
@@ -41,11 +42,11 @@ public class AdapterIklan extends RecyclerView.Adapter<AdapterIklan.IklanViewHol
             holder.tvHarga.setText("Rp " + iklan.getHarga());
             holder.tvGambariklan.setText(iklan.getImage());
 //        holder.tvGambarUser.setText(iklan.getUser_image());
-            Picasso.with(context).load("http://bekonang-store.000webhostapp.com/images/"+iklan.getImage())
+            Picasso.with(context).load(BaseApiService.BASE_URL_IMAGE+iklan.getImage())
                     .error(R.mipmap.ic_launcher)
                     .into(holder.ivGambar);
 
-            Picasso.with(context).load("http://bekonang-store.000webhostapp.com/images/"+iklan.getUser_image())
+            Picasso.with(context).load(BaseApiService.BASE_URL_IMAGE+iklan.getUser_image())
                     .centerCrop()
                     .resize(600, 800)
                     .error(R.mipmap.ic_launcher)
@@ -53,10 +54,10 @@ public class AdapterIklan extends RecyclerView.Adapter<AdapterIklan.IklanViewHol
     }
 
     public class IklanViewHolder extends RecyclerView.ViewHolder {
-        TextView tvJudul, tvJenis, tvWaktu, tvHarga, tvGambariklan, tvGambarUser;
-        ImageView ivGambar;
-        CircleImageView civFotouser;
-        int post;
+        private TextView tvJudul, tvJenis, tvWaktu, tvHarga, tvGambariklan, tvGambarUser;
+        private ImageView ivGambar;
+        private CircleImageView civFotouser;
+        private int post;
 
 
         public IklanViewHolder(View itemView) {
