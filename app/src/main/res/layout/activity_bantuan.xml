@@ -15,5 +15,166 @@
 
     </android.support.v7.widget.Toolbar>
 
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv_akun"
+        android:layout_below="@id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_marginLeft="3dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_akun"/>
+            <TextView
+                android:id="@+id/tv_akun"
+                android:onClick="akun"
+                android:layout_gravity="center"
+                android:layout_marginLeft="7dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Bagaimana Cara Mendaftar di Gamelan Wirun ?"
+                tools:ignore="OnClick" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv_tips"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_below="@id/cv_akun">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_marginLeft="3dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_akun"/>
+            <TextView
+                android:id="@+id/tv_tips"
+                android:onClick="tip"
+                android:layout_gravity="center"
+                android:layout_marginLeft="7dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Bagaimana Cara Beli Di Sini ?"
+                tools:ignore="OnClick" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <!--<android.support.v7.widget.CardView-->
+    <!--android:id="@+id/cv_syarat"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="60dp"-->
+    <!--android:layout_marginLeft="3dp"-->
+    <!--android:layout_marginRight="3dp"-->
+    <!--android:layout_below="@id/cv_tips">-->
+    <!--<LinearLayout-->
+    <!--android:orientation="horizontal"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
+    <!--<ImageView-->
+    <!--android:layout_marginLeft="3dp"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:src="@drawable/ic_akun"/>-->
+    <!--<TextView-->
+    <!--android:id="@+id/tv_syarat"-->
+    <!--android:onClick="syarat"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:layout_marginLeft="7dp"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:textSize="18sp"-->
+    <!--android:text="Syarat dan Ketentuan"-->
+    <!--tools:ignore="OnClick" />-->
+    <!--</LinearLayout>-->
+    <!--</android.support.v7.widget.CardView>-->
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv_syaratumum"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_below="@id/cv_tips">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_marginLeft="3dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_akun"/>
+            <TextView
+                android:id="@+id/tv_syaratumum"
+                android:onClick="syaratumum"
+                android:layout_gravity="center"
+                android:layout_marginLeft="7dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Ketentuan Umum"
+                tools:ignore="OnClick" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv_privasi"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_below="@id/cv_syaratumum">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_marginLeft="3dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_akun"/>
+            <TextView
+                android:id="@+id/tv_privasi"
+                android:onClick="privasi"
+                android:layout_gravity="center"
+                android:layout_marginLeft="7dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Kebijakan Privasi"
+                tools:ignore="OnClick" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <ImageView
+        android:layout_below="@id/cv_privasi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gamelanemas"/>
+
+
 
 </RelativeLayout>
