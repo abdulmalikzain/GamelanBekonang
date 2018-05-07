@@ -31,7 +31,7 @@
     <com.daimajia.slider.library.SliderLayout
         android:id="@+id/slider"
         android:layout_width="match_parent"
-        android:layout_height="180dp" />
+        android:layout_height="160dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,7 +42,7 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_height="90dp"
             android:layout_weight="4"
             app:cardElevation="1dp"
             android:background="@drawable/ripple_effect"
@@ -53,6 +53,7 @@
             >
 
             <LinearLayout
+                android:id="@+id/ll_bonang"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
@@ -81,7 +82,7 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_height="90dp"
             app:cardElevation="1dp"
             android:background="@drawable/ripple_effect"
             android:clickable="true"
@@ -120,7 +121,7 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_height="90dp"
             android:layout_weight="4"
             android:background="@drawable/ripple_effect"
             android:clickable="true"
@@ -130,6 +131,7 @@
             app:cardElevation="1dp">
 
             <LinearLayout
+                android:id="@+id/ll_kendang"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
@@ -158,7 +160,7 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_height="90dp"
             android:layout_weight="4"
             android:layout_marginBottom="1dp"
             android:background="@drawable/ripple_effect"
@@ -167,6 +169,7 @@
             app:cardElevation="1dp">
 
             <LinearLayout
+                android:id="@+id/ll_gambang"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
@@ -193,7 +196,6 @@
 
         </android.support.v7.widget.CardView>
 
-
     </LinearLayout>
 
     <LinearLayout
@@ -205,16 +207,18 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_height="90dp"
             android:layout_weight="4"
             app:cardElevation="2dp"
+            android:layout_marginBottom="1dp"
+            android:layout_marginRight="1dp"
             android:background="@drawable/ripple_effect"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
             >
 
             <LinearLayout
-                android:id="@+id/ll_bonang"
+                android:id="@+id/ll_peking"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
@@ -243,14 +247,17 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_height="90dp"
             app:cardElevation="2dp"
             android:background="@drawable/ripple_effect"
             android:clickable="true"
+            android:layout_marginBottom="1dp"
+            android:layout_marginRight="1dp"
             android:foreground="?android:attr/selectableItemBackground"
             android:layout_weight="4">
 
             <LinearLayout
+                android:id="@+id/ll_gong"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
@@ -279,14 +286,17 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_height="90dp"
             android:layout_weight="4"
             android:background="@drawable/ripple_effect"
             android:clickable="true"
+            android:layout_marginBottom="1dp"
+            android:layout_marginRight="1dp"
             android:foreground="?android:attr/selectableItemBackground"
             app:cardElevation="2dp">
 
             <LinearLayout
+                android:id="@+id/ll_rebab"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
@@ -315,11 +325,12 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_height="90dp"
             android:layout_weight="4"
-            android:layout_marginBottom="0dp"
             android:background="@drawable/ripple_effect"
             android:clickable="true"
+            android:layout_marginBottom="1dp"
+            android:layout_marginRight="1dp"
             android:foreground="?android:attr/selectableItemBackground"
             app:cardElevation="2dp">
 
@@ -350,6 +361,167 @@
 
         </android.support.v7.widget.CardView>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="90dp"
+            android:layout_weight="4"
+            app:cardElevation="2dp"
+            android:layout_marginBottom="1dp"
+            android:layout_marginRight="1dp"
+            android:background="@drawable/ripple_effect"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            >
+
+            <LinearLayout
+                android:id="@+id/ll_gender"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="80dp"
+                    android:layout_height="70dp" />
+
+                <TextView
+                    android:textAlignment="center"
+                    android:text="Gender"
+                    android:textColor="#000"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:textSize="14sp"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="90dp"
+            app:cardElevation="2dp"
+            android:background="@drawable/ripple_effect"
+            android:clickable="true"
+            android:layout_marginBottom="1dp"
+            android:layout_marginRight="1dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:layout_weight="4">
+
+            <LinearLayout
+                android:id="@+id/ll_saron"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="80dp"
+                    android:layout_height="70dp" />
+
+                <TextView
+                    android:textAlignment="center"
+                    android:text="Saron"
+                    android:textColor="#000"
+                    android:textSize="14sp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="90dp"
+            android:layout_weight="4"
+            android:background="@drawable/ripple_effect"
+            android:clickable="true"
+            android:layout_marginBottom="1dp"
+            android:layout_marginRight="1dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:id="@+id/ll_demung"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="80dp"
+                    android:layout_height="70dp" />
+
+                <TextView
+                    android:textAlignment="center"
+                    android:text="Demung"
+                    android:textColor="#000"
+                    android:textSize="14sp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="90dp"
+            android:layout_weight="4"
+            android:background="@drawable/ripple_effect"
+            android:clickable="true"
+            android:layout_marginBottom="1dp"
+            android:layout_marginRight="1dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:id="@+id/ll_slentem"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="80dp"
+                    android:layout_height="70dp" />
+
+                <TextView
+                    android:textAlignment="center"
+                    android:text="Slentem"
+                    android:textColor="#000"
+                    android:textSize="14sp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
 
     </LinearLayout>
 
