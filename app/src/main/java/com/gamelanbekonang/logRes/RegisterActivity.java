@@ -45,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        mActionToolbar = (Toolbar) findViewById(R.id.tabs);
+        mActionToolbar = (Toolbar) findViewById(R.id.tabs_register);
         setSupportActionBar(mActionToolbar);
         getSupportActionBar().setTitle("REGISTER");
 

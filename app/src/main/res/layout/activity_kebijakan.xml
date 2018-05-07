@@ -1,9 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".menuBantuan.KebijakanActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tabs_kebijakan"
+        android:background="@color/colorPrimaryDark"
+        android:theme="@style/Base.Theme.AppCompat">
+
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tabs_kebijakan"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    android:gravity="center"
+                    android:textSize="24sp"
+                    android:textColor="#000"
+                    android:textStyle="italic|bold"
+                    android:text="Kebijakan Privasi"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#bbb"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#000"
+                    android:text="Kami bertekad untuk melindungi dan menghargai hak pribadi pengguna kami. Kenyamanan dan rasa aman anda sebagai pengguna dalam menggunakan Layanan ini sangatlah penting bagi kami.
+Kebijakan Privasi ini beserta Syarat &amp; Ketentuan Umum menggambarkan praktek kami terkait dengan data pribadi yang terkumpul melalui Layanan kami, dimana pengguna dapat terlibat di dalam kegiatan, antara lain, mendaftar dengan kami, membuat profil, memuat atau melihat iklan baris online, bertukar pesan dan melaksanakan sejumlah fungsi lain yang terkait.
+Kebijakan Privasi ini tunduk pada hukum yang berlaku di Republik Indonesia khususnya Undang-undang No. 11 tahun 2008 tentang Informasi dan Transaksi Elektronik dan Peraturan Pemerintah No. 82 tahun 2012 tentang Penyelenggaraan Sistem dan Transaksi Elektronik.
+Dengan menggunakan Layanan dimana Kebijakan Privasi ini muncul, anda dianggap telah membaca, mengerti dan memberikan persetujuan kepada penggunaan data pribadi anda oleh kami sesuai dengan Kebijakan Privasi ini.
+
+
+"
+                    tools:ignore="RtlCompat" />
+            </LinearLayout>
+        </ScrollView>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

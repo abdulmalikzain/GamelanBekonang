@@ -3,8 +3,10 @@ package com.gamelanbekonang.logRes;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -24,6 +26,9 @@ import com.gamelanbekonang.MainActivity;
 import com.gamelanbekonang.R;
 import com.gamelanbekonang.api.BaseApiService;
 import com.gamelanbekonang.api.UtilsApi;
+import com.gamelanbekonang.menuAkun.ResellerFragment;
+import com.gamelanbekonang.menuProfil.ProfilActivity;
+import com.gamelanbekonang.menuProfil.ProfileReseller;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -48,6 +53,17 @@ public class LoginActivity extends AppCompatActivity {
     private Context mContext;
     private BaseApiService mApiService;
     private Toolbar mActionToolbar;
+    SharedPreferences sharedpreferences;
+    public static final  String value = "key";
+    Boolean session = false;
+    private String id,image,name,email,notelp;
+    public static final String session_status = "session_status";
+    public static final String my_shared_preferences = "signin";
+    SharedPreferences sharedPreferences;
+    private int i;
+
+    private String ctm = "ctm";
+    private String seller = "seller";
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -55,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mActionToolbar = (Toolbar) findViewById(R.id.tabs);
+        mActionToolbar = (Toolbar) findViewById(R.id.tabs_login);
         setSupportActionBar(mActionToolbar);
         getSupportActionBar().setTitle("LOGIN");
 
@@ -72,6 +88,15 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private void initComponents() {
+        sharedpreferences = getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
+//        session = sharedpreferences.getBoolean(session_status, false);
+        id = sharedpreferences.getString("id",null);
+        image = sharedpreferences.getString("iamge", null);
+        name = sharedpreferences.getString("name", null);
+        email = sharedpreferences.getString("email", null);
+        notelp = sharedpreferences.getString("notelp",null);
+        int i = sharedpreferences.getInt(value, 0);
+
         coba = (TextView) findViewById(R.id.coba);
         etEmail = (EditText) findViewById(R.id.et_emaill);
         etPassword = (EditText) findViewById(R.id.et_passwordl);
@@ -105,6 +130,13 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    public void saveMessage(View view) {
+        i += 1;
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putInt(value, i);
+        editor.apply();
+    }
+
     private void requestLogin() {
         mApiService.loginRequest(etEmail.getText().toString(), etPassword.getText().toString())
                 .enqueue(new Callback<ResponseBody>() {
@@ -119,9 +151,56 @@ public class LoginActivity extends AppCompatActivity {
                                     // akan diparsing ke activity selanjutnya.
                                     String success =  jsonRESULTS.getString("msg");
                                     Toast.makeText(mContext, success, Toast.LENGTH_SHORT).show();
-                                    String nama = jsonRESULTS.getJSONObject("user").getString("email");
-                                    Intent intent = new Intent(mContext, MainActivity.class);
-                                    startActivity(intent);
+                                    String id = jsonRESULTS.getJSONObject("user").getString("id");
+                                    String image = jsonRESULTS.getJSONObject("user").getString("image");
+                                    String nama = jsonRESULTS.getJSONObject("user").getString("name");
+                                    String email = jsonRESULTS.getJSONObject("user").getString("email");
+                                    String notelp = jsonRESULTS.getJSONObject("user").getString("notelp");
+                                    String rule = jsonRESULTS.getJSONObject("user").getString("roles");
+                                    Log.d(TAG, "iyaaaaa: "+id+image+nama+email+notelp);
+                                    if (rule.equals("2")){
+                                        SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
+
+                                        //Creating editor to store values to shared preferences
+                                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                                        editor.putString("id", id);
+                                        editor.putString("image", image);
+                                        editor.putString("name", nama);
+                                        editor.putString("email", email);
+                                        editor.putString("notelp", notelp);
+                                        editor.commit();
+//                                        loading.dismiss();
+                                        Intent intent = new Intent(mContext, ProfilActivity.class);
+                                        startActivity(intent);
+
+                                    }else if (rule.equals("3")){
+                                        SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
+
+                                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                                        editor.putString("id", id);
+                                        editor.putString("image", image);
+                                        editor.putString("name", nama);
+                                        editor.putString("email", email);
+                                        editor.putString("notelp", notelp);
+                                        editor.commit();
+                                        loading.dismiss();
+                                        Intent intent = new Intent(getApplicationContext(), ProfileReseller.class);
+                                        startActivity(intent);
+                                    }
+
+
+//                                    SharedPreferences sharedPreferences = PreferenceManager
+//                                            .getDefaultSharedPreferences(getApplicationContext());
+//                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+////                                    editor.putBoolean(session_status, true);
+//                                    editor.putString("id", id);
+//                                    editor.putString("image", image);
+//                                    editor.putString("name", nama);
+//                                    editor.putString("email", email);
+//                                    editor.putString("notelp", notelp);
+//                                    editor.commit();
+//                                    Intent intent = new Intent(mContext, ProfilActivity.class);
+//                                    startActivity(intent);
                                 } else {
                                     // Jika login gagal
                                     String error_message = jsonRESULTS.getString("404");

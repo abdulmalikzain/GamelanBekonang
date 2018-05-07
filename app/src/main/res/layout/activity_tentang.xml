@@ -9,11 +9,77 @@
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tabs"
+        android:id="@+id/tabs_tentang"
         android:background="@color/colorPrimaryDark"
         android:theme="@style/Base.Theme.AppCompat">
 
     </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:layout_marginTop="100sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gamelan Wirun"
+        android:textSize="28sp"
+        android:textStyle="bold|italic"
+        android:textColor="@color/colorPrimary"
+        android:gravity="center"/>
+
+
+    <android.support.v7.widget.CardView
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginBottom="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:lineSpacingExtra="4sp"
+                    android:text="     Wirun merupakan nama desa yang berada di kecamatan Mojolaban yang memiliki akses yang mudah untuk dituju dari Kota Solo dan Karang Anyar.  satu kilometer dari Kota Solo, Desa Wirun menjadi lokasi yang banyak dikunjungi wisatawan lokal hingga mancanegara.
+                Salah satu potensi terbesar yang membuat Wirun dikenal secara global adalah pembuatan kerajinan gamelan oleh para warga desanya.  Oleh karena itu dibuatkan platform iklan berbasis android yang menyediakan sebuah tempat penjualan dengan teknologi yang berkembang pada zaman ini.  Untuk mempermudah pengrajin Gamelan menjual kerajinannya dan bertemu langsung dengan konsumen."
+                    android:textAlignment="viewStart"
+                    android:textColor="#000"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_marginTop="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="Tujuan"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/splash_screen" />
+
+                <TextView
+                    android:layout_marginTop="10sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10sp"
+                    android:textColor="#000"
+                    android:lineSpacingExtra="4sp"
+                    android:text="Gamelan Wirun meningkatkan taraf hidup bagi pengrajin gamelan di daerah Wirun Kecamatan Mojolaban Kabupaten Sukoharjo.  Pengrajin dapat langsung bertemu konsumen tanpa melalui perantara atau calo dan para konsumen pun juga akan senang jika bisa langsung bernegosiasi dengan pengrajin."/>
+
+
+            </LinearLayout>
+        </ScrollView>
+    </android.support.v7.widget.CardView>
 
 
 </RelativeLayout>

@@ -33,8 +33,10 @@
         <activity android:name=".menuBantuan.CaraDaftarActivity" />
         <activity android:name=".menuBantuan.JualBeliActivity" />
         <activity android:name=".menuBantuan.KetentuanActivity" />
-        <activity android:name=".menuKategori.KategoriIklanActivity"></activity>
-        <activity android:name=".menuBantuan.KebijakanActivity"></activity>
+        <activity android:name=".menuKategori.KategoriIklanActivity" />
+        <activity android:name=".menuBantuan.KebijakanActivity" />
+        <activity android:name=".menuProfil.ProfileReseller"></activity>
+
     </application>
 
 </manifest>

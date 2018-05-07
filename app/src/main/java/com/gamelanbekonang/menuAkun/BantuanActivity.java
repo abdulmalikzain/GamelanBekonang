@@ -24,7 +24,7 @@ public class BantuanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bantuan);
 
-        mActionToolbar = (Toolbar) findViewById(R.id.tabs);
+        mActionToolbar = (Toolbar) findViewById(R.id.tabs_bantuan);
         setSupportActionBar(mActionToolbar);
         getSupportActionBar().setTitle("BANTUAN");
 

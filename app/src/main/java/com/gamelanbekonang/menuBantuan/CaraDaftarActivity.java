@@ -17,7 +17,7 @@ public class CaraDaftarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cara_daftar);
 
 
-        mActionToolbar = (Toolbar) findViewById(R.id.tabs);
+        mActionToolbar = (Toolbar) findViewById(R.id.tabs_caradaftar);
         setSupportActionBar(mActionToolbar);
         getSupportActionBar().setTitle("CARA DAFTAR");
 

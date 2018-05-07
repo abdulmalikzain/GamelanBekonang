@@ -106,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
 
+
             switch (item.getItemId()){
                 case R.id.navigation_home:
                     transaction.replace(R.id.fragment_container, new HomeFragment()).commit();

@@ -1,9 +1,491 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".menuBantuan.KetentuanActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tabs_ketentuan"
+        android:background="@color/colorPrimaryDark"
+        android:theme="@style/Base.Theme.AppCompat">
+
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tabs_ketentuan"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    android:gravity="center"
+                    android:textSize="24sp"
+                    android:textColor="#000"
+                    android:textStyle="italic|bold"
+                    android:text="Ketentuan Umum"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#bbb"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#000"
+                    android:text="Gamelan Wirun mempunyai bisnis utama yaitu sebagai perantara dari pengrajin gamelan di daerah Solo tepatnya di Kabupaten Sukoharjo Kecamatan Mojolaban.  Sebagai aplikasi mobile yang mengiklankan barang dari pengrajin."
+                    tools:ignore="RtlCompat" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="Layanan ini disediakan kepada anda sebagai syarat dan ketentuan umum, anda atau pengguna yang mengakses layanan ini termasuk semua orang yang dapat melihat-lihat baris iklan yang ada di dalamnya atau merespon iklan yang di pasang."
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#000"
+                    tools:ignore="RtlCompat" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="Dengan menggunakan layanan, anda setuju dengan syarat ketentuan umum ini."
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#000"
+                    tools:ignore="RtlCompat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="Apabila anda tidak setuju atas Syarat &amp; Ketentuan Umum ini, kami mempersilakan anda untuk tidak melanjutkan penggunaan Layanan"
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#000"
+                    tools:ignore="RtlCompat"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="Batasan Tanggung Jawab"
+                    android:textStyle="italic"
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#f40303"
+                    tools:ignore="RtlCompat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="1. Aplikasi ini tidak bertanggung jawab atas kebenaran informasi iklan beserta informasi tentang penjual."
+                    android:textStyle="italic"
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#f40303"
+                    tools:ignore="RtlCompat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="Disarankan untuk menghubungi dan bertemu langsung dengan pemasang iklan untuk memastikan kebenaran tentang infomasi tersebut"
+                    android:textStyle="italic"
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#0d0d0d"
+                    tools:ignore="RtlCompat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="2. Aplikasi ini tidak bertanggung jawab untuk semua garansi dan kondisi."
+                    android:textStyle="italic"
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#f40303"
+                    tools:ignore="RtlCompat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="3. Gamelan Wirun  tidak bertanggung jawab atas akibat langsung atau tidak langsung dari keputusan pengguna/calon pembeli dalam mengajukan penawaran atau negosiasi ke pemasang iklan."
+                    android:textStyle="italic"
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#f40303"
+                    tools:ignore="RtlCompat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="4. Gamelan Wirun tidak bertanggung jawab atas penyerahan barang yang di iklankan"
+                    android:textStyle="italic"
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#f40303"
+                    tools:ignore="RtlCompat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="5. Gamelan Wirun tidak bertanggung jawab atas waktu saat bertransaksi atau bernegosiasi"
+                    android:textStyle="italic"
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#f40303"
+                    tools:ignore="RtlCompat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="6. Layanan yang diberikan Gamelan Wirun Sebagaimana Adanya dengan Aplikasinya."
+                    android:textStyle="italic"
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#f40303"
+                    tools:ignore="RtlCompat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="7. Pengguna memahami dan menyetujui bahwa penggunaan dan pelaksanaan kegiatan sehubungan dengan Layanan oleh pengguna adalah atas kebijakan dan risiko pengguna sendiri dan bahwa pengguna sendiri bertanggung jawab penuh atas materi pengguna"
+                    android:textStyle="italic"
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#f40303"
+                    tools:ignore="RtlCompat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="8. Pengguna secara khusus mengakui bahwa Gamelan Wirun tidak akan bertanggung jawab atas Materi atau tindakan pencemaran nama baik, tindakan yang melanggar, atau tindakan yang melawan hukum"
+                    android:textStyle="italic"
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#f40303"
+                    tools:ignore="RtlCompat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="KEWAJIBAN PENGGUNA"
+                    android:textStyle="italic|bold"
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#000000"
+                    tools:ignore="RtlCompat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="Pengguna wajib menjaga data pribadi miliknya dari kerusakan/kehilangan, termasuk tapi tidak terbatas pada upaya mencegah agar data pribadi miliknya tidak disalahgunakan oleh pihak lain."
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#000000"
+                    tools:ignore="RtlCompat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="Pengguna dengan ini mengetahui dan menyetujui bahwa Gamelan Wirun tidak dapat dimintai pertanggungjawaban oleh pengguna dan/atau pihak manapun atas hal-hal yang terjadi, termasuk tapi tidak terbatas pada:"
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#000000"
+                    tools:ignore="RtlCompat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="1. Kehilangan Data Pribadi."
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#000000"
+                    tools:ignore="RtlCompat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="2. Pemalsuan Data Pribadi Pengguna."
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#000000"
+                    tools:ignore="RtlCompat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="3. Kehilangan atau kerugian lain apapun jenisnya, terlepas dari bagaimana hal itu timbul dan apakah disebabkan oleh kelalaian, pelanggaran terhadap suatu perikatan atau lainnya, meskipun dapat diperkirakan sebelumnya"
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#000000"
+                    tools:ignore="RtlCompat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="4. Segala kerugian sebagai akibat dari penggunaan data pribadi atau akun milik pengguna yang terindikasi melanggar hukum dan/atau penyalahgunaan oleh pihak yang tidak berwenang."
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#000000"
+                    tools:ignore="RtlCompat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="GANTI RUGI"
+                    android:textStyle="bold|italic"
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#000000"
+                    tools:ignore="RtlCompat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="Pengguna setuju untuk melepaskan, membela dan membebaskan Gamelan Wirun, perusahaan terafiliasinya dan para direkturnya, komisarisnya, pejabatnya, karyawannya dan agennya dari dan terhadap suatu dan semua tuntutan, kewajiban, kerugian dan biaya (termasuk biaya hukum, penggantian kerusakan dan jumlah penyelesaian yang wajar) yang timbul dari atau berkaitan dengan atau yang mungkin timbul dari penggunaan dan/atau pengaksesan Layanan; pelanggaran atas suatu syarat dalam Syarat &amp; Ketentuan Umum ini, Kebijakan Privasi dan Larangan Iklan oleh pengguna; pelanggaran terhadap suatu hak pihak ketiga manapun, termasuk namun tidak terbatas pada hak atas kekayaan intelektual, aset baik yang berupa harta bergerak ataupun harta tidak bergerak, hak privasi; dan/atau tuntutan apapun sehubungan dengan Materi pengguna yang menyebabkan kerugian terhadap pihak ketiga. Dalam hal ini Gamelan Wirun juga dapat turut serta dalam suatu pembelaan bersama dengan penasihat hukum pilihannya."
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#000000"
+                    tools:ignore="HardcodedText,RtlCompat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="KETERANGAN ISI DARI LAYANAN"
+                    android:textStyle="bold|italic"
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#000000"
+                    tools:ignore="RtlCompat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="Materi yang ditayangkan di Layanan disediakan tanpa ketentuan atau jaminan apapun dalam hal isi, materi dan ketepatannya. Sejauh diijinkan oleh hukum yang berlaku di Republik Indonesia,Gamelan Wirun dengan ini secara tegas mengecualikan:"
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#000000"
+                    tools:ignore="HardcodedText,RtlCompat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="1. Semua ketentuan, jaminan dan syarat lain yang dapat dinyatakan secara langsung maupun tidak langsung oleh undang-undang sebagai isi, materi dan ketepatannya"
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#000000"
+                    tools:ignore="HardcodedText,RtlCompat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="2. Kewajiban atas kehilangan atau kerugian langsung, tidak langsung atau yang merupakan akibat yang ditanggung oleh pengguna dalam hubungannya dengan Layanan atau dalam hubungannya dengan penggunaan, ketidakmampuan menggunakan, atau akibat dari penggunaan Layanan, setiap situs web yang terkait dengannya dan setiap materi yang ditempatkan padanya.
+Materi yang ditayangkan di Layanan adalah semata-mata untuk informasi guna membangun hubungan antara pemasang iklan dengan pengguna Layanan lainnya serta membantu pengguna Layanan untuk memutuskan mengajukan penawaran atau tidak mengajukan penawaran untuk barang atau jasa yang ditawarkan oleh Pemasang Iklan di Layanan.
+Apabila sebagai pengguna anda menggunakan informasi yang ada pada Layanan untuk kepentingan selain daripada yang dinyatakan pada paragraf di atas, maka kami dapat membatasi akses anda terhadap Layanan serta mengambil langkah hukum yang diperlukan atas tindakan anda.
+"
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#000000"
+                    tools:ignore="HardcodedText,RtlCompat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="HUBUNGAN DENGAN PIHAK KETIGA"
+                    android:textStyle="bold|italic"
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#000000"
+                    tools:ignore="RtlCompat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="Anda mengakui dan setuju bahwa Gamelan Wirun tidak akan bertanggung jawab atas interaksi anda dengan pihak ketiga di dalam Situs maupun melalui Layanan. Hal ini termasuk, namun tidak terbatas pada, pembayaran dan pengiriman barang dan jasa, serta syarat, kondisi, jaminan atau pernyataan lain yang terkait dengan interaksi antara anda dengan pihak ketiga.  Hubungan ini adalah antara anda dengan pihak ketiga tersebut. Anda mengakui dan setuju bahwa Gamelan Wirun tidak akan bertanggung jawab atas setiap kerugian atau kerusakan yang timbul dari hubungan atau interaksi tersebut. Dalam hal terjadi perselisihan antara pengguna dengan pihak ketiga, anda mengerti dan setuju bahwa Gamelan Wirun tidak bertanggung jawab untuk melibatkan diri dalam perselisihan tersebut dan anda dengan ini membebaskan Gamelan Wirun, karyawannya, petugasnya dan agennya dari setiap tuntutan dan kerugian yang timbul dalam bentuk apapun sehubungan dengan Layanan kami."
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#000000"
+                    tools:ignore="HardcodedText,RtlCompat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="Terimaksih Atas Kunjungan anda ke Layanan Kami."
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#000000"
+                    tools:ignore="RtlCompat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="Semoga sukses dalam bertransaksi"
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#000000"
+                    tools:ignore="RtlCompat"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="5sp"
+                    android:textAlignment="viewStart"
+                    android:textSize="12sp"
+                    android:text="GAMELAN WIRUN"
+                    android:textStyle="bold|italic"
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="#000000"
+                    tools:ignore="RtlCompat"/>
+
+
+
+            </LinearLayout>
+        </ScrollView>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

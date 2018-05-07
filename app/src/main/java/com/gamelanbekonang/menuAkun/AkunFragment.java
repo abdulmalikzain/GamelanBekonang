@@ -11,10 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.gamelanbekonang.adapter.AdapterAkun;
 import com.gamelanbekonang.logRes.LoginActivity;
 import com.gamelanbekonang.R;
+import com.gamelanbekonang.menuProfil.ProfilActivity;
 
 import java.util.ArrayList;
 
@@ -26,6 +28,7 @@ public class AkunFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<String> InfoAkun;
     private ArrayList<Integer> GambarAkun;
+    private TextView tv_detail;
     //nama listnya
     private String[] Nama = {"TENTANG", "BANTUAN"};
     //Daftar gambar
@@ -64,6 +67,14 @@ public class AkunFragment extends Fragment {
         adapter = new AdapterAkun(InfoAkun, GambarAkun);
         //Memasang Adapter pada RecyclerView
         recyclerView.setAdapter(adapter);
+        tv_detail = (TextView) view.findViewById(R.id.tv_detailakun);
+        tv_detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ProfilActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
 
         btnlogin = (Button) view.findViewById(R.id.btn_masuk);
 
