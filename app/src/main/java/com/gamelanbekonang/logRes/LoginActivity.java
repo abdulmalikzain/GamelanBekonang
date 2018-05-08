@@ -152,9 +152,12 @@ public class LoginActivity extends AppCompatActivity {
                                     String email = jsonRESULTS.getJSONObject("user").getString("email");
                                     String notelp = jsonRESULTS.getJSONObject("user").getString("notelp");
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                                     String address = jsonRESULTS.getJSONObject("user").getString("address");
 =======
 <<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
                                     JSONArray jsonArray = jsonRESULTS.getJSONObject("user").getJSONArray("roles");
