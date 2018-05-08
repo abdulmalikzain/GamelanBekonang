@@ -30,7 +30,7 @@ public class ProfilActivity extends AppCompatActivity {
 
     SharedPreferences sharedpreferences;
     Context context;
-    private TextView tv_id, tv_name, tv_email, tv_notelp, keluar;
+    private TextView tv_id, tv_name, tv_email, tv_notelp, tv_address, tv_reseller,keluar;
     private CircleImageView civp;
     public static final  String value = "id";
     private int i;
@@ -48,7 +48,9 @@ public class ProfilActivity extends AppCompatActivity {
         tv_id =  findViewById(R.id.tv_id);
         tv_name = findViewById(R.id.tv_namep);
         tv_email = findViewById(R.id.tv_emailp);
+        tv_address = findViewById(R.id.tv_address);
         tv_notelp = findViewById(R.id.tv_notelp);
+        tv_reseller = findViewById(R.id.tv_reseller);
 
 //        SharedPreferences sharedPreferences = PreferenceManager
 //                .getDefaultSharedPreferences(this);
@@ -68,6 +70,10 @@ public class ProfilActivity extends AppCompatActivity {
         tv_email.setText(email);
         String notelp = (sp.getString("notelp", ""));
         tv_notelp.setText(notelp);
+        String address = (sp.getString("address",""));
+        tv_address.setText(address);
+        String namerules = (sp.getString("name", ""));
+        tv_reseller.setText(namerules);
         Log.d(TAG, "JKOEr: "+id+civp+name+email+notelp);
 
         mActionToolbar = (Toolbar) findViewById(R.id.tabs_profil);
@@ -111,6 +117,7 @@ public class ProfilActivity extends AppCompatActivity {
         editor.putString("name", null);
         editor.putString("email", null);
         editor.putString("notelp", null);
+        editor.putString("address", null);
         editor.clear();
         editor.commit();
         finish();
