@@ -20,27 +20,27 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class AdapterKenong extends RecyclerView.Adapter<AdapterKenong.KenongViewHolder>{
+public class AdapterKategori extends RecyclerView.Adapter<AdapterKategori.KenongViewHolder>{
 
     private List<Kategori> kategoris;
     private Context context;
 
-    public AdapterKenong(Context context, List<Kategori> list) {
+    public AdapterKategori(Context context, List<Kategori> list) {
         this.kategoris = list;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public AdapterKenong.KenongViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AdapterKategori.KenongViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.iklan_list, parent, false);
 
-        return new AdapterKenong.KenongViewHolder(itemView);
+        return new AdapterKategori.KenongViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterKenong.KenongViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AdapterKategori.KenongViewHolder holder, int position) {
         Kategori kategori = kategoris.get(position);
         holder.tvJudul.setText(kategori.getJudul());
         holder.tvJenis.setText(kategori.getJenis());

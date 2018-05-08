@@ -151,7 +151,11 @@ public class LoginActivity extends AppCompatActivity {
                                     String nama = jsonRESULTS.getJSONObject("user").getString("name");
                                     String email = jsonRESULTS.getJSONObject("user").getString("email");
                                     String notelp = jsonRESULTS.getJSONObject("user").getString("notelp");
+<<<<<<< Updated upstream
                                     String address = jsonRESULTS.getJSONObject("user").getString("address");
+=======
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
 
                                     JSONArray jsonArray = jsonRESULTS.getJSONObject("user").getJSONArray("roles");
                                     for (int i = 0 ; i < jsonArray.length() ; i++) {
@@ -171,6 +175,29 @@ public class LoginActivity extends AppCompatActivity {
                                             editor.putString("notelp", notelp);
                                             editor.putString("name", namerules);
                                             editor.commit();
+=======
+                                    String rule = jsonRESULTS.getJSONObject("user").getString("roles");
+
+                                    JSONArray jsonArray = jsonRESULTS.getJSONArray("roles");
+                                    for (int i = 0; i < jsonArray.length() ; i++) {
+                                        JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                                        String namerule = jsonObject1.optString("name");
+                                        Log.d(TAG, "Jancooookkkk noooobbbbbb: "+namerule);
+                                    }
+
+
+                                    if (rule.equals("2")){
+                                        SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
+
+                                        //Creating editor to store values to shared preferences
+                                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                                        editor.putString("id", id);
+                                        editor.putString("image", image);
+                                        editor.putString("name", nama);
+                                        editor.putString("email", email);
+                                        editor.putString("notelp", notelp);
+                                        editor.commit();
+>>>>>>> Stashed changes
 //                                        loading.dismiss();
                                             Intent intent = new Intent(mContext, ProfilActivity.class);
                                             startActivity(intent);

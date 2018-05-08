@@ -9,7 +9,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.gamelanbekonang.R;
-import com.gamelanbekonang.adapter.AdapterKenong;
+import com.gamelanbekonang.adapter.AdapterKategori;
 import com.gamelanbekonang.api.ApiService;
 import com.gamelanbekonang.api.BaseApiService;
 import com.gamelanbekonang.api.RetroClient;
@@ -28,7 +28,7 @@ public class KategoriIklanActivity extends AppCompatActivity {
 
     private Toolbar mActionToolbar;
     private ArrayList<Kategori> kategoris;
-    private AdapterKenong adapter;
+    private AdapterKategori adapter;
     private RecyclerView recyclerView;
 
     @Override
@@ -77,7 +77,7 @@ public class KategoriIklanActivity extends AppCompatActivity {
             public void onResponse(Call<RetroClient> call, Response<RetroClient> response) {
                 RetroClient jsonResponse = response.body();
                 kategoris = new ArrayList<>(Arrays.asList(jsonResponse.getCategory()));
-                adapter = new AdapterKenong(KategoriIklanActivity.this, kategoris);
+                adapter = new AdapterKategori(KategoriIklanActivity.this, kategoris);
                 recyclerView.setAdapter(adapter);
             }
 
