@@ -17,6 +17,7 @@ import com.gamelanbekonang.R;
 import com.gamelanbekonang.api.BaseApiService;
 import com.gamelanbekonang.api.UtilsApi;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -33,6 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText etEmail;
     private EditText etPassword,etConfirm;
     private EditText etNotelp;
+    private EditText etAddress;
     private Button btnRegister;
     private ProgressDialog loading;
 
@@ -64,6 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
         etNama = (EditText) findViewById(R.id.et_namar);
         etEmail = (EditText) findViewById(R.id.et_emailr);
         etNotelp = (EditText) findViewById(R.id.et_notelpr);
+        etAddress = findViewById(R.id.et_addressr);
         etPassword = (EditText) findViewById(R.id.et_passwordr);
         etConfirm = (EditText) findViewById(R.id.et_confirmpasswordr);
         btnRegister = (Button) findViewById(R.id.btn_registerr);
@@ -80,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void requestRegister() {
 
         mApiService.registerRequest(etNama.getText().toString(),
-                etEmail.getText().toString(), etNotelp.getText().toString(),
+                etEmail.getText().toString(), etNotelp.getText().toString(), etAddress.getText().toString(),
                 etPassword.getText().toString(), etConfirm.getText().toString())
                 .enqueue(new Callback<ResponseBody>() {
                     @Override

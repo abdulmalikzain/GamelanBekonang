@@ -30,6 +30,7 @@ import com.gamelanbekonang.menuAkun.ResellerFragment;
 import com.gamelanbekonang.menuProfil.ProfilActivity;
 import com.gamelanbekonang.menuProfil.ProfileReseller;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -130,12 +131,6 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void saveMessage(View view) {
-        i += 1;
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putInt(value, i);
-        editor.apply();
-    }
 
     private void requestLogin() {
         mApiService.loginRequest(etEmail.getText().toString(), etPassword.getText().toString())
@@ -156,51 +151,44 @@ public class LoginActivity extends AppCompatActivity {
                                     String nama = jsonRESULTS.getJSONObject("user").getString("name");
                                     String email = jsonRESULTS.getJSONObject("user").getString("email");
                                     String notelp = jsonRESULTS.getJSONObject("user").getString("notelp");
-                                    String rule = jsonRESULTS.getJSONObject("user").getString("roles");
-                                    Log.d(TAG, "iyaaaaa: "+id+image+nama+email+notelp);
-                                    if (rule.equals("2")){
-                                        SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
 
-                                        //Creating editor to store values to shared preferences
-                                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                                        editor.putString("id", id);
-                                        editor.putString("image", image);
-                                        editor.putString("name", nama);
-                                        editor.putString("email", email);
-                                        editor.putString("notelp", notelp);
-                                        editor.commit();
+                                    JSONArray jsonArray = jsonRESULTS.getJSONObject("user").getJSONArray("roles");
+                                    for (int i = 0 ; i < jsonArray.length() ; i++) {
+                                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                        String namerules = jsonObject.optString("name");
+
+                                        if (namerules.equals("customer")){
+                                            SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
+
+                                            //Creating editor to store values to shared preferences
+                                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                                            editor.putString("id", id);
+                                            editor.putString("image", image);
+                                            editor.putString("name", nama);
+                                            editor.putString("email", email);
+                                            editor.putString("notelp", notelp);
+                                            editor.commit();
 //                                        loading.dismiss();
-                                        Intent intent = new Intent(mContext, ProfilActivity.class);
-                                        startActivity(intent);
+                                            Intent intent = new Intent(mContext, ProfilActivity.class);
+                                            startActivity(intent);
 
-                                    }else if (rule.equals("3")){
-                                        SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
+                                        }else if (namerules.equals("seller")){
+                                            SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
 
-                                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                                        editor.putString("id", id);
-                                        editor.putString("image", image);
-                                        editor.putString("name", nama);
-                                        editor.putString("email", email);
-                                        editor.putString("notelp", notelp);
-                                        editor.commit();
-                                        loading.dismiss();
-                                        Intent intent = new Intent(getApplicationContext(), ProfileReseller.class);
-                                        startActivity(intent);
+                                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                                            editor.putString("id", id);
+                                            editor.putString("image", image);
+                                            editor.putString("name", nama);
+                                            editor.putString("email", email);
+                                            editor.putString("notelp", notelp);
+                                            editor.commit();
+                                            loading.dismiss();
+                                            Intent intent = new Intent(getApplicationContext(), ProfileReseller.class);
+                                            startActivity(intent);
+                                        }
+
                                     }
 
-
-//                                    SharedPreferences sharedPreferences = PreferenceManager
-//                                            .getDefaultSharedPreferences(getApplicationContext());
-//                                    SharedPreferences.Editor editor = sharedPreferences.edit();
-////                                    editor.putBoolean(session_status, true);
-//                                    editor.putString("id", id);
-//                                    editor.putString("image", image);
-//                                    editor.putString("name", nama);
-//                                    editor.putString("email", email);
-//                                    editor.putString("notelp", notelp);
-//                                    editor.commit();
-//                                    Intent intent = new Intent(mContext, ProfilActivity.class);
-//                                    startActivity(intent);
                                 } else {
                                     // Jika login gagal
                                     String error_message = jsonRESULTS.getString("404");
