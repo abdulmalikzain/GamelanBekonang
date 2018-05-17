@@ -151,14 +151,9 @@ public class LoginActivity extends AppCompatActivity {
                                     String nama = jsonRESULTS.getJSONObject("user").getString("name");
                                     String email = jsonRESULTS.getJSONObject("user").getString("email");
                                     String notelp = jsonRESULTS.getJSONObject("user").getString("notelp");
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
                                     String address = jsonRESULTS.getJSONObject("user").getString("address");
-=======
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
 
                                     JSONArray jsonArray = jsonRESULTS.getJSONObject("user").getJSONArray("roles");
                                     for (int i = 0 ; i < jsonArray.length() ; i++) {
@@ -178,11 +173,11 @@ public class LoginActivity extends AppCompatActivity {
                                             editor.putString("notelp", notelp);
                                             editor.putString("role_name", namerules);
                                             editor.commit();
-=======
+
                                     String rule = jsonRESULTS.getJSONObject("user").getString("roles");
 
-                                    JSONArray jsonArray = jsonRESULTS.getJSONArray("roles");
-                                    for (int i = 0; i < jsonArray.length() ; i++) {
+                                            jsonArray = jsonRESULTS.getJSONArray("roles");
+                                    for (i = 0; i < jsonArray.length() ; i++) {
                                         JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                                         String namerule = jsonObject1.optString("name");
                                         Log.d(TAG, "Jancooookkkk noooobbbbbb: "+namerule);
@@ -190,25 +185,25 @@ public class LoginActivity extends AppCompatActivity {
 
 
                                     if (rule.equals("2")){
-                                        SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
+                                        sharedPreferences = LoginActivity.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
 
                                         //Creating editor to store values to shared preferences
-                                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                                        editor = sharedPreferences.edit();
                                         editor.putString("id", id);
                                         editor.putString("image", image);
                                         editor.putString("name", nama);
                                         editor.putString("email", email);
                                         editor.putString("notelp", notelp);
                                         editor.commit();
->>>>>>> Stashed changes
-//                                        loading.dismiss();
+
+                                        loading.dismiss();
                                             Intent intent = new Intent(mContext, ProfilActivity.class);
                                             startActivity(intent);
 
                                         }else if (namerules.equals("seller")){
-                                            SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
+                                        sharedPreferences = LoginActivity.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
 
-                                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                                        editor = sharedPreferences.edit();
                                             editor.putString("id", id);
                                             editor.putString("image", image);
                                             editor.putString("name", nama);
@@ -221,27 +216,30 @@ public class LoginActivity extends AppCompatActivity {
                                             Intent intent = new Intent(getApplicationContext(), ProfileReseller.class);
                                             startActivity(intent);
                                         }
-
+                                        }
                                     }
 
-                                } else {
+
+                                }else {
                                     // Jika login gagal
                                     String error_message = jsonRESULTS.getString("404");
                                     Toast.makeText(mContext, error_message, Toast.LENGTH_SHORT).show();
 
                                     Log.d(TAG, "onResponse: "+error_message);
                                 }
-                            } catch (JSONException e) {
+
+
+                        }catch (JSONException e) {
                                 e.printStackTrace();
 
                                 Toast.makeText(mContext, "Login Gagal", Toast.LENGTH_SHORT).show();
-                            } catch (IOException e) {
+                            }catch (IOException e) {
                                 e.printStackTrace();
                             }
-                        } else {
-                            loading.dismiss();
-                        }
                     }
+
+
+                }
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
@@ -249,8 +247,10 @@ public class LoginActivity extends AppCompatActivity {
                         loading.dismiss();
                     }
                 });
-
     }
+
+
+
 
     //button back toolbar
     @Override
