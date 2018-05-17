@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.gamelanbekonang.R;
-import com.gamelanbekonang.menuProfil.ProfilActivity;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -28,14 +26,9 @@ import static com.gamelanbekonang.logRes.LoginActivity.my_shared_preferences;
  */
 public class CustomerFragment extends Fragment {
 
-    SharedPreferences sharedpreferences;
-    Context context;
-    private TextView tv_id, tv_name, tv_email, tv_notelp, keluar;
+    private TextView tv_idctm, tv_namectm, tv_emailctm, tv_notelpctm, keluar;
     private CircleImageView civp;
     public static final  String value = "id";
-    private int i;
-    private Toolbar mActionToolbar;
-
 
     public CustomerFragment() {
         // Required empty public constructor
@@ -57,10 +50,10 @@ public class CustomerFragment extends Fragment {
 
         keluar = view.findViewById(R.id.tv_keluar);
         civp = view.findViewById(R.id.civ_customer);
-        tv_id =  view.findViewById(R.id.tv_idctm);
-        tv_name = view.findViewById(R.id.tv_namectm);
-        tv_email = view.findViewById(R.id.tv_emailctm);
-        tv_notelp = view.findViewById(R.id.tv_notelpctm);
+        tv_idctm =  view.findViewById(R.id.tv_idctm);
+        tv_namectm = view.findViewById(R.id.tv_namectm);
+        tv_emailctm = view.findViewById(R.id.tv_emailctm);
+        tv_notelpctm = view.findViewById(R.id.tv_notelpctm);
 
 //        SharedPreferences sharedPreferences = PreferenceManager
 //                .getDefaultSharedPreferences(this);
@@ -73,13 +66,13 @@ public class CustomerFragment extends Fragment {
                 .placeholder(R.drawable.ic_akun)
                 .into(civp);
         String id = (sp.getString("id", ""));
-        tv_id.setText(id);
+        tv_idctm.setText(id);
         String name = (sp.getString("name", ""));
-        tv_name.setText(name);
+        tv_namectm.setText(name);
         String email = (sp.getString("email", ""));
-        tv_email.setText(email);
+        tv_emailctm.setText(email);
         String notelp = (sp.getString("notelp", ""));
-        tv_notelp.setText(notelp);
+        tv_notelpctm.setText(notelp);
         Log.d(TAG, "JKOEr: "+id+civp+name+email+notelp);
     }
 

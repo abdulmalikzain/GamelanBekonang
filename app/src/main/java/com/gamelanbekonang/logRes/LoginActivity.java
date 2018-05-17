@@ -163,7 +163,7 @@ public class LoginActivity extends AppCompatActivity {
                                     JSONArray jsonArray = jsonRESULTS.getJSONObject("user").getJSONArray("roles");
                                     for (int i = 0 ; i < jsonArray.length() ; i++) {
                                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                        String namerules = jsonObject.optString("name");
+                                        String namerules = jsonObject.optString("role_name");
 
                                         if (namerules.equals("customer")){
                                             SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
@@ -176,7 +176,7 @@ public class LoginActivity extends AppCompatActivity {
                                             editor.putString("email", email);
                                             editor.putString("address", address);
                                             editor.putString("notelp", notelp);
-                                            editor.putString("name", namerules);
+                                            editor.putString("role_name", namerules);
                                             editor.commit();
 =======
                                     String rule = jsonRESULTS.getJSONObject("user").getString("roles");
@@ -215,7 +215,7 @@ public class LoginActivity extends AppCompatActivity {
                                             editor.putString("email", email);
                                             editor.putString("address", address);
                                             editor.putString("notelp", notelp);
-                                            editor.putString("name", namerules);
+                                            editor.putString("role_name", namerules);
                                             editor.commit();
                                             loading.dismiss();
                                             Intent intent = new Intent(getApplicationContext(), ProfileReseller.class);
