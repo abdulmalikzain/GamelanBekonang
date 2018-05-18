@@ -160,7 +160,7 @@ public class LoginActivity extends AppCompatActivity {
                                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                                         String namerules = jsonObject.optString("role_name");
 
-                                        if (namerules.equals("customer")){
+                                        if (namerules.equals("customer")) {
                                             SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
 
                                             //Creating editor to store values to shared preferences
@@ -174,36 +174,14 @@ public class LoginActivity extends AppCompatActivity {
                                             editor.putString("role_name", namerules);
                                             editor.commit();
 
-                                    String rule = jsonRESULTS.getJSONObject("user").getString("roles");
-
-                                            jsonArray = jsonRESULTS.getJSONArray("roles");
-                                    for (i = 0; i < jsonArray.length() ; i++) {
-                                        JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                                        String namerule = jsonObject1.optString("name");
-                                        Log.d(TAG, "Jancooookkkk noooobbbbbb: "+namerule);
-                                    }
-
-
-                                    if (rule.equals("2")){
-                                        sharedPreferences = LoginActivity.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
-
-                                        //Creating editor to store values to shared preferences
-                                        editor = sharedPreferences.edit();
-                                        editor.putString("id", id);
-                                        editor.putString("image", image);
-                                        editor.putString("name", nama);
-                                        editor.putString("email", email);
-                                        editor.putString("notelp", notelp);
-                                        editor.commit();
-
-                                        loading.dismiss();
-                                            Intent intent = new Intent(mContext, ProfilActivity.class);
+                                            loading.dismiss();
+                                            Intent intent = new Intent(getApplicationContext(), ProfilActivity.class);
                                             startActivity(intent);
 
-                                        }else if (namerules.equals("seller")){
-                                        sharedPreferences = LoginActivity.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
-
-                                        editor = sharedPreferences.edit();
+                                        }else if (namerules.equals("seller")) {
+                                            SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
+                                            //Creating editor to store values to shared preferences
+                                            SharedPreferences.Editor editor = sharedPreferences.edit();
                                             editor.putString("id", id);
                                             editor.putString("image", image);
                                             editor.putString("name", nama);
@@ -212,11 +190,12 @@ public class LoginActivity extends AppCompatActivity {
                                             editor.putString("notelp", notelp);
                                             editor.putString("role_name", namerules);
                                             editor.commit();
+
                                             loading.dismiss();
                                             Intent intent = new Intent(getApplicationContext(), ProfileReseller.class);
                                             startActivity(intent);
                                         }
-                                        }
+
                                     }
 
 
@@ -248,9 +227,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
-
-
-
 
     //button back toolbar
     @Override
