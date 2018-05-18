@@ -181,7 +181,33 @@ public class Iklan {
     }
 
 
+    public void setJudul(String judul) {
+        this.judul = judul;
+    }
 
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+    public void setDeskripsi(String deskripsi) {
+        this.deskripsi = deskripsi;
+    }
+
+    public void setJenis(String jenis) {
+        this.jenis = jenis;
+    }
+
+    public void setHarga(String harga) {
+        this.harga = harga;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
+    }
+
+    public void setUser_image(String user_image) {
+        this.user_image = user_image;
+    }
 
 //    public void setJudul(String judul) {
 //        this.judul = judul;

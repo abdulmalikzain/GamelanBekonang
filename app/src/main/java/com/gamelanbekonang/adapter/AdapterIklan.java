@@ -40,17 +40,17 @@ public class AdapterIklan extends RecyclerView.Adapter<AdapterIklan.IklanViewHol
             holder.tvJenis.setText(iklan.getJenis());
             holder.tvWaktu.setText(iklan.getCreated_at());
             holder.tvHarga.setText("Rp " + iklan.getHarga());
-            holder.tvGambariklan.setText(iklan.getFilename());
+//            holder.tvGambariklan.setText(iklan.getFilename());
 //        holder.tvGambarUser.setText(iklan.getUser_image());
-            Picasso.with(context).load(BaseApiService.BASE_URL_IMAGE+iklan.getFilename())
-                    .error(R.mipmap.ic_launcher)
-                    .into(holder.ivGambar);
-
-            Picasso.with(context).load(BaseApiService.BASE_URL_IMAGE+iklan.getUser_image())
-                    .centerCrop()
-                    .resize(600, 800)
-                    .error(R.mipmap.ic_launcher)
-                    .into(holder.civFotouser);
+//            Picasso.with(context).load(BaseApiService.BASE_URL_IMAGE+iklan.getFilename())
+//                    .error(R.mipmap.ic_launcher)
+//                    .into(holder.ivGambar);
+//
+//            Picasso.with(context).load(BaseApiService.BASE_URL_IMAGE+iklan.getUser_image())
+//                    .centerCrop()
+//                    .resize(600, 800)
+//                    .error(R.mipmap.ic_launcher)
+//                    .into(holder.civFotouser);
     }
 
     public class IklanViewHolder extends RecyclerView.ViewHolder {
@@ -64,11 +64,11 @@ public class AdapterIklan extends RecyclerView.Adapter<AdapterIklan.IklanViewHol
             super(itemView);
             tvJudul  = itemView.findViewById(R.id.tv_judulhome);
             tvJenis = itemView.findViewById(R.id.tv_jenishome);
-            ivGambar = itemView.findViewById(R.id.iv_fotoiklanhome);
+//            ivGambar = itemView.findViewById(R.id.iv_fotoiklanhome);
             tvWaktu     = itemView.findViewById(R.id.tv_waktuhome);
             tvHarga     = itemView.findViewById(R.id.tv_hargahome);
-            civFotouser = itemView.findViewById(R.id.civ_fotohome);
-            tvGambariklan = itemView.findViewById(R.id.tv_gambariklan);
+//            civFotouser = itemView.findViewById(R.id.civ_fotohome);
+//            tvGambariklan = itemView.findViewById(R.id.tv_gambariklan);
 //            tvGambarUser = itemView.findViewById(R.id.tv_gambaruser);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +79,7 @@ public class AdapterIklan extends RecyclerView.Adapter<AdapterIklan.IklanViewHol
                     Intent intent = new Intent(context, DetailIklanActivity.class);
                     intent.putExtra("judul", tvJudul.getText().toString().trim());
                     intent.putExtra("jenis", tvJenis.getText().toString().trim());
-                    intent.putExtra("image", tvGambariklan.getText().toString().trim());
+//                    intent.putExtra("image", tvGambariklan.getText().toString().trim());
                     intent.putExtra("waktu", tvWaktu.getText().toString().trim());
 //                    intent.putExtra("gambaruser", tvGambarUser.getText().toString().trim());
                     context.startActivity(intent);

@@ -50,7 +50,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     private ArrayList<Iklan> iklans ;
-    private List<Iklan> iklans1 = new ArrayList<>();
+    private List<Iklan> iklans1;
     private AdapterIklan adapter;
     private RecyclerView recyclerView;
     private FrameLayout frameLayout;
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         initViews();
         setupBottomNavigationView();
 
-
+        iklans1 = new ArrayList<>();
 
     }
 
@@ -173,110 +173,112 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        loadJSON();
-//        getData();
+//        loadJSON();
+        getData();
     }
 
-    private void loadJSON(){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BaseApiService.BASE_API_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        ApiService request = retrofit.create(ApiService.class);
-        Call<RetroClient> call = request.getJSON();
-        call.enqueue(new Callback<RetroClient>() {
-            @Override
-            public void onResponse(Call<RetroClient> call, Response<RetroClient> response) {
-                RetroClient jsonResponse = response.body();
-                iklans = new ArrayList<>(Arrays.asList(jsonResponse.getIklan()));
-                adapter = new AdapterIklan(MainActivity.this, iklans);
-                recyclerView.setAdapter(adapter);
-            }
-
-            @Override
-            public void onFailure(Call<RetroClient> call, Throwable t) {
-                Log.d("Error",t.getMessage());
-            }
-        });
-    }
-
-
-//    private void getData() {
-//        ApiService apiService  = RetrofitClient.getInstanceRetrofit();
-//        apiService.getData().enqueue(new Callback<ResponseBody>() {
+//    private void loadJSON(){
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(BaseApiService.BASE_API_URL)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//        ApiService request = retrofit.create(ApiService.class);
+//        Call<RetroClient> call = request.getJSON();
+//        call.enqueue(new Callback<RetroClient>() {
 //            @Override
-//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                try {
-//                    JSONObject object = new JSONObject(response.body().string());
-//                    JSONArray jsonArray  = object.optJSONArray("iklan");
+//            public void onResponse(Call<RetroClient> call, Response<RetroClient> response) {
+//                RetroClient jsonResponse = response.body();
+//                iklans = new ArrayList<>(Arrays.asList(jsonResponse.getIklan()));
+//                adapter = new AdapterIklan(MainActivity.this, iklans);
+//                recyclerView.setAdapter(adapter);
+//            }
 //
-//                    for (int i = 0; i < jsonArray.length(); i++) {
-//                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-//                        id = jsonObject.optString("id");
-//                        user_id = jsonObject.optString("user_id");
-//                        category_id = jsonObject.optString("category_id");
-//                        judul = jsonObject.optString("judul");
-//                        url = jsonObject.optString("url");
-//                        deskripsi = jsonObject.optString("deskripsi");
-//                        lokasi = jsonObject.optString("lokasi");
-//                        jenis = jsonObject.optString("jenis");
-//                        harga = jsonObject.optString("harga");
-//                        created_at = jsonObject.optString("created_at");
-//                        updated_at = jsonObject.optString("updated_at");
-//
-//
-//                        JSONArray jsonArray1 = jsonObject.getJSONArray("photos");
-//                        for (int j = 0; j < jsonArray1.length(); j++) {
-//                            JSONObject jsonObject1 = jsonArray1.getJSONObject(i);
-//
-//                            id1 = jsonObject1.optString("id");
-//                            iklan_id = jsonObject1.optString("iklan_id");
-//                            filename = jsonObject1.optString("filename");
-//                            created_at1 = jsonObject1.optString("created_at");
-//                            updated_at1 = jsonObject1.optString("updated_at");
-//                        }
-//
-//                        JSONObject jsonObject1 = jsonObject.optJSONObject("users");
-//                        String id = jsonObject1.getString("id");
-//                        String image = jsonObject1.getString("image");
-//                        String name = jsonObject1.getString("name");
-//                        String email = jsonObject1.getString("email");
-//                        String notelp = jsonObject1.getString("notelp");
-//                        String created_at = jsonObject1.getString("created_at");
-//
-//
+//            @Override
+//            public void onFailure(Call<RetroClient> call, Throwable t) {
+//                Log.d("Error",t.getMessage());
+//            }
+//        });
+//    }
+
+
+    private void getData() {
+        ApiService apiService  = RetrofitClient.getInstanceRetrofit();
+        apiService.getData().enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    JSONObject object = new JSONObject(response.body().string());
+                    JSONArray jsonArray  = object.optJSONArray("iklan");
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        id = jsonObject.optString("id");
+                        user_id = jsonObject.optString("user_id");
+                        category_id = jsonObject.optString("category_id");
+                        judul = jsonObject.optString("judul");
+                        url = jsonObject.optString("url");
+                        deskripsi = jsonObject.optString("deskripsi");
+                        lokasi = jsonObject.optString("lokasi");
+                        jenis = jsonObject.optString("jenis");
+                        harga = jsonObject.optString("harga");
+                        created_at = jsonObject.optString("created_at");
+                        updated_at = jsonObject.optString("updated_at");
+
+
+                        JSONObject jsonObject1 = jsonObject.optJSONObject("users");
+                        String id = jsonObject1.getString("id");
+                        String image = jsonObject1.getString("image");
+                        String name = jsonObject1.getString("name");
+                        String email = jsonObject1.getString("email");
+                        String notelp = jsonObject1.getString("notelp");
+                        String created_at = jsonObject1.getString("created_at");
+
+                        JSONArray jsonArray1 = jsonObject.getJSONArray("photos");
+                        for (int j = 0; j < jsonArray1.length(); j++) {
+                            JSONObject jsonObject2 = jsonArray1.getJSONObject(i);
+
+                            id1 = jsonObject2.optString("id");
+                            iklan_id = jsonObject2.optString("iklan_id");
+                            filename = jsonObject2.optString("filename");
+                            created_at1 = jsonObject2.optString("created_at");
+                            updated_at1 = jsonObject2.optString("updated_at");
+
+                            Iklan iklan = new Iklan();
+                            iklan.setJudul(judul);
+//                            iklan.setImage(filename);
+                            iklan.setCreated_at(created_at);
+                            iklan.setDeskripsi(deskripsi);
+                            iklan.setHarga(harga);
+                            iklan.setJenis(jenis);
+                            iklan.setUser_image(image);
+                            iklans1.add(iklan);
+                            AdapterIklan adapter = new AdapterIklan(MainActivity.this, iklans1);
+                            recyclerView.setAdapter(adapter);
+                        }
+
+
 //                        JSONObject jsonObject2 = jsonObject.optJSONObject("category");
 //                        String id1 = jsonObject2.optString("id");
 //                        String image1 = jsonObject2.optString("image");
 //                        String name1 = jsonObject2.optString("name");
 //                        String created_at1 = jsonObject2.optString("created_at");
 //                        String updated_at1 = jsonObject2.optString("updated_at");
-//
-//                        Iklan iklan = new Iklan();
-//                        iklan.setJudul(judul);
-//                        iklan.setImage(filename);
-//                        iklan.setCreated_at(created_at);
-//                        iklan.setDeskripsi(deskripsi);
-//                        iklan.setHarga(harga);
-//                        iklan.setJenis(jenis);
-//                        iklan.setUser_image(image);
-//                        iklans1.add(iklan);
-//                        adapter = new AdapterIklan(MainActivity.this, iklans);
-//                        recyclerView.setAdapter(adapter);
-//                    }
-//
-//
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//
-//            }
-//        });
-//    }
+
+
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
+    }
 }
