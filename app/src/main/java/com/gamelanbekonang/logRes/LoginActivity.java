@@ -151,7 +151,6 @@ public class LoginActivity extends AppCompatActivity {
                                     String nama = jsonRESULTS.getJSONObject("user").getString("name");
                                     String email = jsonRESULTS.getJSONObject("user").getString("email");
                                     String notelp = jsonRESULTS.getJSONObject("user").getString("notelp");
-
                                     String address = jsonRESULTS.getJSONObject("user").getString("address");
 
 
@@ -192,7 +191,7 @@ public class LoginActivity extends AppCompatActivity {
                                             editor.commit();
 
                                             loading.dismiss();
-                                            Intent intent = new Intent(getApplicationContext(), ProfileReseller.class);
+                                            Intent intent = new Intent(getApplicationContext(), ProfilActivity.class);
                                             startActivity(intent);
                                         }
 
