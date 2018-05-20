@@ -8,232 +8,160 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class Iklan {
-//    @SerializedName("id")
-//    @Expose
-//    private Integer id;
-//    @SerializedName("user_id")
-//    @Expose
-//    private String userId;
-//    @SerializedName("judul")
-//    @Expose
-//    private String judul;
-//    @SerializedName("url")
-//    @Expose
-//    private String url;
-//    @SerializedName("image")
-//    @Expose
-//    private String image;
-//    @SerializedName("deskripsi")
-//    @Expose
-//    private String deskripsi;
-//    @SerializedName("lokasi")
-//    @Expose
-//    private String lokasi;
-//    @SerializedName("jenis")
-//    @Expose
-//    private String jenis;
-//    @SerializedName("harga")
-//    @Expose
-//    private String harga;
-//    @SerializedName("created_at")
-//    @Expose
-//    private String createdAt;
-//    @SerializedName("updated_at")
-//    @Expose
-//    private String updatedAt;
-//
-//    public Integer getId() {
-//        return id;
-//    }
-//
-//    public void setId(Integer id) {
-//        this.id = id;
-//    }
-//
-//    public String getUserId() {
-//        return userId;
-//    }
-//
-//    public void setUserId(String userId) {
-//        this.userId = userId;
-//    }
-//
-//    public String getJudul() {
-//        return judul;
-//    }
-//
-//    public void setJudul(String judul) {
-//        this.judul = judul;
-//    }
-//
-//    public String getUrl() {
-//        return url;
-//    }
-//
-//    public void setUrl(String url) {
-//        this.url = url;
-//    }
-//
-//    public String getImage() {
-//        return image;
-//    }
-//
-//    public void setImage(String image) {
-//        this.image = image;
-//    }
-//
-//    public String getDeskripsi() {
-//        return deskripsi;
-//    }
-//
-//    public void setDeskripsi(String deskripsi) {
-//        this.deskripsi = deskripsi;
-//    }
-//
-//    public String getLokasi() {
-//        return lokasi;
-//    }
-//
-//    public void setLokasi(String lokasi) {
-//        this.lokasi = lokasi;
-//    }
-//
-//    public String getJenis() {
-//        return jenis;
-//    }
-//
-//    public void setJenis(String jenis) {
-//        this.jenis = jenis;
-//    }
-//
-//    public String getHarga() {
-//        return harga;
-//    }
-//
-//    public void setHarga(String harga) {
-//        this.harga = harga;
-//    }
-//
-//    public String getCreatedAt() {
-//        return createdAt;
-//    }
-//
-//    public void setCreatedAt(String createdAt) {
-//        this.createdAt = createdAt;
-//    }
-//
-//    public String getUpdatedAt() {
-//        return updatedAt;
-//    }
-//
-//    public void setUpdatedAt(String updatedAt) {
-//        this.updatedAt = updatedAt;
-//    }
 
-//    public Iklan(){}
-//
-//    public Iklan (String judul, String image, String deskripsi, String jenis, String harga, String created_at, String user_image){
-//        this.judul = judul;
-//        this.filename = image;
-//        this.deskripsi = deskripsi;
-//        this.jenis = jenis;
-//        this.harga = harga;
-//        this.created_at = created_at;
-//        this.user_image = user_image;
-//    }
-
+    private String id;
+    private String userId;
     private String judul;
-    private String filename;
     private String deskripsi;
+    private String volume;
+    private String stok;
     private String jenis;
     private String harga;
     private String created_at;
-    private String user_image;
+    private String view_count;
 
+    private String fileName;
 
+    private String image;
+    private String name;
+    private String email;
+    private String notelp;
+    private String alamat;
+    private String perusahaan;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public String getJudul() {
         return judul;
     }
 
-    public String getFilename() {
-        return filename;
+    public void setJudul(String judul) {
+        this.judul = judul;
     }
 
     public String getDeskripsi() {
         return deskripsi;
     }
 
-    public String getJenis() {
-        return jenis;
-    }
-
-    public String getHarga() {
-        return harga;
-    }
-
-    public String getCreated_at() {
-        return created_at;
-    }
-
-    public String getUser_image() {
-        return user_image;
-    }
-
-
-    public void setJudul(String judul) {
-        this.judul = judul;
-    }
-
-    public void setFilename(String filename) {
-        this.filename = filename;
-    }
-
     public void setDeskripsi(String deskripsi) {
         this.deskripsi = deskripsi;
+    }
+
+    public String getVolume() {
+        return volume;
+    }
+
+    public void setVolume(String volume) {
+        this.volume = volume;
+    }
+
+    public String getStok() {
+        return stok;
+    }
+
+    public void setStok(String stok) {
+        this.stok = stok;
+    }
+
+    public String getJenis() {
+        return jenis;
     }
 
     public void setJenis(String jenis) {
         this.jenis = jenis;
     }
 
+    public String getHarga() {
+        return harga;
+    }
+
     public void setHarga(String harga) {
         this.harga = harga;
+    }
+
+    public String getCreated_at() {
+        return created_at;
     }
 
     public void setCreated_at(String created_at) {
         this.created_at = created_at;
     }
 
-    public void setUser_image(String user_image) {
-        this.user_image = user_image;
+    public String getFileName() {
+        return fileName;
     }
 
-//    public void setJudul(String judul) {
-//        this.judul = judul;
-//    }
-//
-//    public void setImage(String image) {
-//        this.filename = image;
-//    }
-//
-//    public void setDeskripsi(String deskripsi) {
-//        this.deskripsi = deskripsi;
-//    }
-//
-//    public void setJenis(String jenis) {
-//        this.jenis = jenis;
-//    }
-//
-//    public void setHarga(String harga) {
-//        this.harga = harga;
-//    }
-//
-//    public void setCreated_at(String created_at) {
-//        this.created_at = created_at;
-//    }
-//
-//    public void setUser_image(String user_image) {
-//        this.user_image = user_image;
-//    }
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getNotelp() {
+        return notelp;
+    }
+
+    public void setNotelp(String notelp) {
+        this.notelp = notelp;
+    }
+
+    public String getAlamat() {
+        return alamat;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
+    }
+
+    public String getView_count() {
+        return view_count;
+    }
+
+    public void setView_count(String view_count) {
+        this.view_count = view_count;
+    }
+
+    public String getPerusahaan() {
+        return perusahaan;
+    }
+
+    public void setPerusahaan(String perusahaan) {
+        this.perusahaan = perusahaan;
+    }
 }

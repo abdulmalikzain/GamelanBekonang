@@ -37,24 +37,25 @@ public class AdapterIklan extends RecyclerView.Adapter<AdapterIklan.IklanViewHol
 
             Iklan iklan = iklans.get(position);
             holder.tvJudul.setText(iklan.getJudul());
-            holder.tvJenis.setText(iklan.getJenis());
-            holder.tvWaktu.setText(iklan.getCreated_at());
-            holder.tvHarga.setText("Rp " + iklan.getHarga());
-//            holder.tvGambariklan.setText(iklan.getFilename());
-//        holder.tvGambarUser.setText(iklan.getUser_image());
-//            Picasso.with(context).load(BaseApiService.BASE_URL_IMAGE+iklan.getFilename())
-//                    .error(R.mipmap.ic_launcher)
-//                    .into(holder.ivGambar);
-//
-//            Picasso.with(context).load(BaseApiService.BASE_URL_IMAGE+iklan.getUser_image())
-//                    .centerCrop()
-//                    .resize(600, 800)
-//                    .error(R.mipmap.ic_launcher)
-//                    .into(holder.civFotouser);
+            holder.tvVolume.setText(iklan.getVolume());
+//            holder.tvWaktu.setText(iklan.getCreated_at());
+            holder.tvHarga.setText(iklan.getHarga());
+//            holder.tvGambariklan.setText(iklan.getFileName());
+//            holder.tvGambarUser.setText(iklan.getImage());
+            holder.tvId.setText(iklan.getId());
+            Picasso.with(context).load(BaseApiService.BASE_URL_IMAGE+iklan.getFileName())
+                    .error(R.mipmap.ic_launcher)
+                    .into(holder.ivGambar);
+
+            Picasso.with(context).load(BaseApiService.BASE_URL_IMAGE+iklan.getImage())
+                    .centerCrop()
+                    .resize(80, 80)
+                    .error(R.mipmap.ic_launcher)
+                    .into(holder.civFotouser);
     }
 
     public class IklanViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvJudul, tvJenis, tvWaktu, tvHarga, tvGambariklan, tvGambarUser;
+        private TextView tvJudul, tvVolume, tvPerusahaan, tvWaktu, tvHarga, tvGambariklan, tvGambarUser, tvId, tvIdUser;
         private ImageView ivGambar;
         private CircleImageView civFotouser;
         private int post;
@@ -62,25 +63,24 @@ public class AdapterIklan extends RecyclerView.Adapter<AdapterIklan.IklanViewHol
 
         public IklanViewHolder(View itemView) {
             super(itemView);
-            tvJudul  = itemView.findViewById(R.id.tv_judulhome);
-            tvJenis = itemView.findViewById(R.id.tv_jenishome);
-//            ivGambar = itemView.findViewById(R.id.iv_fotoiklanhome);
-            tvWaktu     = itemView.findViewById(R.id.tv_waktuhome);
-            tvHarga     = itemView.findViewById(R.id.tv_hargahome);
-//            civFotouser = itemView.findViewById(R.id.civ_fotohome);
-//            tvGambariklan = itemView.findViewById(R.id.tv_gambariklan);
-//            tvGambarUser = itemView.findViewById(R.id.tv_gambaruser);
-
+            tvId        = itemView.findViewById(R.id.tv_iklan_idiklan);
+            tvJudul  = itemView.findViewById(R.id.tv_iklan_judul);
+            tvVolume = itemView.findViewById(R.id.tv_iklan_volume);
+//            tvPerusahaan = itemView.findViewById(R.id.tv_iklan_perusahaan);
+            tvHarga     = itemView.findViewById(R.id.tv_iklan_harga);
+            civFotouser = itemView.findViewById(R.id.civ_iklan_fotouser);
+            ivGambar    = itemView.findViewById(R.id.iv_iklan_foto);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     post = getAdapterPosition();
 
                     Intent intent = new Intent(context, DetailIklanActivity.class);
+                    intent.putExtra("id", tvId.getText().toString().trim());
                     intent.putExtra("judul", tvJudul.getText().toString().trim());
-                    intent.putExtra("jenis", tvJenis.getText().toString().trim());
+//                    intent.putExtra("jenis", tvJenis.getText().toString().trim());
 //                    intent.putExtra("image", tvGambariklan.getText().toString().trim());
-                    intent.putExtra("waktu", tvWaktu.getText().toString().trim());
+//                    intent.putExtra("waktu", tvWaktu.getText().toString().trim());
 //                    intent.putExtra("gambaruser", tvGambarUser.getText().toString().trim());
                     context.startActivity(intent);
                 }
@@ -95,9 +95,6 @@ public class AdapterIklan extends RecyclerView.Adapter<AdapterIklan.IklanViewHol
 
         return new AdapterIklan.IklanViewHolder(itemView);
 
-//        IklanViewHolder vh = new IklanViewHolder(itemView);
-//
-//        return vh;
     }
 
 

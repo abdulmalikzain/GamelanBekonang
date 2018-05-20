@@ -19,4 +19,7 @@ public interface ApiService {
 
     @GET("iklan")
     Call<ResponseBody> getData();
+
+    @GET("api/v1/iklan")
+    Call<ResponseBody> getDataCount();
 }

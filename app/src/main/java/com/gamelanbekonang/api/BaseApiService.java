@@ -29,4 +29,8 @@ public interface BaseApiService {
                                        @Field("address") String address,
                                        @Field("password") String password,
                                        @Field("password_confirmation") String password_confirmation);
+
+    @FormUrlEncoded
+    @POST("signin")
+    Call<ResponseBody> loginRequest();
 }

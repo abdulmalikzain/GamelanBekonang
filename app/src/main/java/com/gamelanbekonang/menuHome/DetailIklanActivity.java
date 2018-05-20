@@ -11,6 +11,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -19,12 +20,31 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.gamelanbekonang.MainActivity;
 import com.gamelanbekonang.R;
+import com.gamelanbekonang.adapter.AdapterIklan;
+import com.gamelanbekonang.api.ApiService;
 import com.gamelanbekonang.api.BaseApiService;
+import com.gamelanbekonang.api.RetroClient;
+import com.gamelanbekonang.api.RetrofitClient;
+import com.gamelanbekonang.beans.Iklan;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class DetailIklanActivity extends AppCompatActivity {
-    private String gambarIklan, noTelp;
+    private String gambarIklan, noTelp, id;
     private ToggleButton tbAddfavorite;
 
     private FloatingActionButton fabTelpMess;
@@ -35,13 +55,16 @@ public class DetailIklanActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail_iklan);
 
         Bundle bundle = getIntent().getExtras();
+        id     = bundle.getString("id");
         final String judul = bundle.getString("judul");
+//        final String volume = bundle.getString("volume");
 //        tvDetUsername.setText(bundle.getString("username"));
 //        tvDetWaktu.setText(bundle.getString("waktu"));
 //        tvDetStatus.setText(bundle.getString("status"));
 //        tvDetTujuan.setText(bundle.getString("tujuan"));
         gambarIklan = bundle.getString("image");
         noTelp = "085226152856";
+        Log.d("aa", "onCreate: "+id);
 
         final Toolbar toolbar = findViewById(R.id.toolbar);
         fabTelpMess = findViewById(R.id.FAB_telp_mess);
@@ -124,4 +147,6 @@ public class DetailIklanActivity extends AppCompatActivity {
             finish();
         return super.onOptionsItemSelected(item);
     }
+
+
 }

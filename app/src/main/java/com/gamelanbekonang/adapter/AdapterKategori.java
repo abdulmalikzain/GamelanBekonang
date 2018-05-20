@@ -69,15 +69,12 @@ public class AdapterKategori extends RecyclerView.Adapter<AdapterKategori.Kenong
 
         public KenongViewHolder(View itemView) {
             super(itemView);
-            tvJudul  = itemView.findViewById(R.id.tv_judulhome);
-            tvJenis = itemView.findViewById(R.id.tv_jenishome);
-            ivGambar = itemView.findViewById(R.id.iv_fotoiklanhome);
-            tvWaktu     = itemView.findViewById(R.id.tv_waktuhome);
-            tvHarga     = itemView.findViewById(R.id.tv_hargahome);
-//            civFotouser = itemView.findViewById(R.id.civ_fotohome);
-            tvGambariklan = itemView.findViewById(R.id.tv_gambariklan);
-//            tvGambarUser = itemView.findViewById(R.id.tv_gambaruser);
-
+            tvJudul  = itemView.findViewById(R.id.tv_iklan_judul);
+//            tvVolume = itemView.findViewById(R.id.tv_iklan_volume);
+//            tvPerusahaan = itemView.findViewById(R.id.tv_iklan_perusahaan);
+            tvHarga     = itemView.findViewById(R.id.tv_iklan_harga);
+            civFotouser = itemView.findViewById(R.id.civ_iklan_fotouser);
+            ivGambar    = itemView.findViewById(R.id.iv_iklan_foto);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -85,10 +82,10 @@ public class AdapterKategori extends RecyclerView.Adapter<AdapterKategori.Kenong
 
                     Intent intent = new Intent(context, DetailIklanActivity.class);
                     intent.putExtra("judul", tvJudul.getText().toString().trim());
-                    intent.putExtra("jenis", tvJenis.getText().toString().trim());
+//                    intent.putExtra("jenis", tvJenis.getText().toString().trim());
                     intent.putExtra("image", tvGambariklan.getText().toString().trim());
-                    intent.putExtra("waktu", tvWaktu.getText().toString().trim());
-//                    intent.putExtra("gambaruser", tvGambarUser.getText().toString().trim());
+//                    intent.putExtra("waktu", tvWaktu.getText().toString().trim());
+                    intent.putExtra("gambaruser", tvGambarUser.getText().toString().trim());
                     context.startActivity(intent);
                 }
             });

@@ -1,11 +1,16 @@
 package com.gamelanbekonang;
 
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,14 +28,19 @@ import com.gamelanbekonang.api.ApiService;
 import com.gamelanbekonang.api.BaseApiService;
 import com.gamelanbekonang.api.RetroClient;
 import com.gamelanbekonang.api.RetrofitClient;
+import com.gamelanbekonang.logRes.LoginActivity;
 import com.gamelanbekonang.menuAkun.AkunFragment;
+import com.gamelanbekonang.menuAkun.CustomerFragment;
+import com.gamelanbekonang.menuAkun.ResellerFragment;
 import com.gamelanbekonang.menuFavorite.FavoriteFragment;
 import com.gamelanbekonang.menuHome.HomeFragment;
 import com.gamelanbekonang.menuKategori.KategoriFragment;
+import com.gamelanbekonang.menuProfil.ProfilActivity;
 import com.gamelanbekonang.utils.BottomNavigationViewHelper;
 import com.gamelanbekonang.beans.Iklan;
 import com.gamelanbekonang.utils.EndlessRecyclerViewScrollListener;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,6 +58,9 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.gamelanbekonang.api.BaseApiService.BASE_URL_IMAGE;
+import static com.gamelanbekonang.logRes.LoginActivity.my_shared_preferences;
+
 public class MainActivity extends AppCompatActivity {
     private ArrayList<Iklan> iklans ;
     private List<Iklan> iklans1;
@@ -58,25 +71,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private Toolbar mToolbar;
     private BottomNavigationViewEx bottomNavigationViewEx;
-
-    private String id;
-    private String user_id;
-    private String category_id;
-    private String judul;
-    private String url;
-    private String deskripsi;
-    private String lokasi;
-    private String jenis;
-    private String harga;
-    private String created_at;
-    private String updated_at;
-
-    private String id1;
-    private String iklan_id;
-    private String filename;
-    private String created_at1;
-    private String updated_at1;
-
+    private String roleName;
 
     boolean doubleBackToExitPressedOnce = false;
 
@@ -97,6 +92,9 @@ public class MainActivity extends AppCompatActivity {
 
         iklans1 = new ArrayList<>();
 
+        SharedPreferences sp = getApplicationContext().getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
+        roleName = (sp.getString("role_name", ""));
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener botnav = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -115,10 +113,24 @@ public class MainActivity extends AppCompatActivity {
                     return true;
 
                 case R.id.navigation_favorite:
-                    transaction.replace(R.id.fragment_container, new FavoriteFragment()).commit();
-                    relativeLayout.setVisibility(View.INVISIBLE);
-                    frameLayout.setVisibility(View.VISIBLE);
-                    return true;
+                    if (roleName.equals("customer")){
+                        transaction.replace(R.id.fragment_container, new FavoriteFragment()).commit();
+                        relativeLayout.setVisibility(View.INVISIBLE);
+                        frameLayout.setVisibility(View.VISIBLE);
+                        return true;
+                    }else if (roleName.equals("seller")){
+                        transaction.replace(R.id.fragment_container, new FavoriteFragment()).commit();
+                        relativeLayout.setVisibility(View.INVISIBLE);
+                        frameLayout.setVisibility(View.VISIBLE);
+                        return true;
+                    }else {
+                        alertFavorite();
+                        transaction.replace(R.id.fragment_container, new HomeFragment()).commit();
+                        relativeLayout.setVisibility(View.VISIBLE);
+                        frameLayout.setVisibility(View.GONE);
+                        return true;
+                    }
+
 
                 case R.id.navigation_kategori:
                     transaction.replace(R.id.fragment_container, new KategoriFragment()).commit();
@@ -127,10 +139,24 @@ public class MainActivity extends AppCompatActivity {
                     return true;
 
                 case R.id.navigation_akun:
-                    transaction.replace(R.id.fragment_container, new AkunFragment()).commit();
-                    relativeLayout.setVisibility(View.INVISIBLE);
-                    frameLayout.setVisibility(View.VISIBLE);
-                    return true;
+                    if (roleName.equals("customer")){
+                        transaction.replace(R.id.fragment_container, new CustomerFragment()).commit();
+                        relativeLayout.setVisibility(View.INVISIBLE);
+                        frameLayout.setVisibility(View.VISIBLE);
+                        return true;
+                    }else if (roleName.equals("seller")){
+                        transaction.replace(R.id.fragment_container, new ResellerFragment()).commit();
+                        relativeLayout.setVisibility(View.INVISIBLE);
+                        frameLayout.setVisibility(View.VISIBLE);
+                        return true;
+                    }else {
+                        alertAkun();
+                        transaction.replace(R.id.fragment_container, new HomeFragment()).commit();
+                        relativeLayout.setVisibility(View.VISIBLE);
+                        frameLayout.setVisibility(View.GONE);
+                        return true;
+                    }
+
             }
             return false;
         }
@@ -200,7 +226,6 @@ public class MainActivity extends AppCompatActivity {
 //        });
 //    }
 
-
     private void getData() {
         ApiService apiService  = RetrofitClient.getInstanceRetrofit();
         apiService.getData().enqueue(new Callback<ResponseBody>() {
@@ -212,61 +237,49 @@ public class MainActivity extends AppCompatActivity {
 
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        id = jsonObject.optString("id");
-                        user_id = jsonObject.optString("user_id");
-                        category_id = jsonObject.optString("category_id");
-                        judul = jsonObject.optString("judul");
-                        url = jsonObject.optString("url");
-                        deskripsi = jsonObject.optString("deskripsi");
-                        lokasi = jsonObject.optString("lokasi");
-                        jenis = jsonObject.optString("jenis");
-                        harga = jsonObject.optString("harga");
-                        created_at = jsonObject.optString("created_at");
-                        updated_at = jsonObject.optString("updated_at");
-
+                        String id = jsonObject.optString("id");
+                        String user_id = jsonObject.optString("user_id");
+                        String judul = jsonObject.optString("judul");
+                        String deskripsi = jsonObject.optString("deskripsi");
+                        String volume = jsonObject.optString("volume");
+                        String stock     = jsonObject.optString("stock");
+                        String jenis = jsonObject.optString("jenis");
+                        String harga = jsonObject.optString("harga");
+                        String created_at = jsonObject.optString("created_at");
+                        String view_count   = jsonObject.optString("view_count");
 
                         JSONObject jsonObject1 = jsonObject.optJSONObject("users");
-                        String id = jsonObject1.getString("id");
-                        String image = jsonObject1.getString("image");
-                        String name = jsonObject1.getString("name");
-                        String email = jsonObject1.getString("email");
-                        String notelp = jsonObject1.getString("notelp");
-                        String created_at = jsonObject1.getString("created_at");
+                        String imageuser = jsonObject1.getString("image");
+                        String nameuser = jsonObject1.getString("name");
+                        String emailuser = jsonObject1.getString("email");
+                        String notelpuser = jsonObject1.getString("notelp");
 
                         JSONArray jsonArray1 = jsonObject.getJSONArray("photos");
                         for (int j = 0; j < jsonArray1.length(); j++) {
                             JSONObject jsonObject2 = jsonArray1.getJSONObject(i);
-
-                            id1 = jsonObject2.optString("id");
-                            iklan_id = jsonObject2.optString("iklan_id");
-                            filename = jsonObject2.optString("filename");
-                            created_at1 = jsonObject2.optString("created_at");
-                            updated_at1 = jsonObject2.optString("updated_at");
+                            String filename = jsonObject2.optString("filename");
 
                             Iklan iklan = new Iklan();
+                            iklan.setId(id);
+                            iklan.setUserId(user_id);
                             iklan.setJudul(judul);
-//                            iklan.setImage(filename);
                             iklan.setCreated_at(created_at);
                             iklan.setDeskripsi(deskripsi);
+                            iklan.setVolume(volume);
+                            iklan.setStok(stock);
                             iklan.setHarga(harga);
                             iklan.setJenis(jenis);
-                            iklan.setUser_image(image);
+                            iklan.setImage(imageuser);
+                            iklan.setName(nameuser);
+                            iklan.setEmail(emailuser);
+                            iklan.setNotelp(notelpuser);
+                            iklan.setFileName(filename);
                             iklans1.add(iklan);
                             AdapterIklan adapter = new AdapterIklan(MainActivity.this, iklans1);
                             recyclerView.setAdapter(adapter);
                         }
 
-
-//                        JSONObject jsonObject2 = jsonObject.optJSONObject("category");
-//                        String id1 = jsonObject2.optString("id");
-//                        String image1 = jsonObject2.optString("image");
-//                        String name1 = jsonObject2.optString("name");
-//                        String created_at1 = jsonObject2.optString("created_at");
-//                        String updated_at1 = jsonObject2.optString("updated_at");
-
-
                     }
-
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -280,5 +293,47 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void alertFavorite(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Belum Login");
+        builder.setMessage("anda harus login lebih dahulu untuk melihat menu favorite")
+                .setIcon(R.mipmap.ic_icon_gw)
+                .setCancelable(false)
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    private void alertAkun(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Belum Login");
+        builder.setMessage("anda harus login lebih dahulu untuk melihat menu akun")
+                .setIcon(R.mipmap.ic_icon_gw)
+                .setCancelable(false)
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }
