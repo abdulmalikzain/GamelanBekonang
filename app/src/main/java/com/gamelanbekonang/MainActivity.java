@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -72,8 +73,13 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private BottomNavigationViewEx bottomNavigationViewEx;
     private String roleName;
-
+    private SwipeRefreshLayout swipeMain;
     boolean doubleBackToExitPressedOnce = false;
+
+    private int previousTotal = 0;
+    private boolean loading = true;
+    private int visibleThreshold = 5;
+    int firstVisibleItem, visibleItemCount, totalItemCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
         relativeLayout = findViewById(R.id.rel_home);
         frameLayout = findViewById(R.id.fragment_container);
+        swipeMain   = findViewById(R.id.swipe_main);
 
         mToolbar = findViewById(R.id.toolbar_home);
         setSupportActionBar(mToolbar);
@@ -94,6 +101,8 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sp = getApplicationContext().getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
         roleName = (sp.getString("role_name", ""));
+
+
 
     }
 
@@ -172,7 +181,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     //////////////BECK PRESED
     @Override
     public void onBackPressed() {
@@ -193,14 +201,47 @@ public class MainActivity extends AppCompatActivity {
         }, 2000);
     }
 
+
+
     ////////////////////////////    PARSING RETROFIT TAMPIL DATA
     private void initViews(){
         recyclerView = findViewById(R.id.rv_iklan);
         recyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+//        recyclerView.setLayoutManager(layoutManager);
+        final LinearLayoutManager mLayoutManager;
+        mLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(mLayoutManager);
 //        loadJSON();
         getData();
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener()
+        {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy)
+            {
+                visibleItemCount = mLayoutManager.getChildCount();
+                totalItemCount = mLayoutManager.getItemCount();
+                firstVisibleItem = mLayoutManager.findFirstVisibleItemPosition();
+
+                if (loading) {
+                    if (totalItemCount > previousTotal) {
+                        loading = false;
+                        previousTotal = totalItemCount;
+                    }
+                }
+                if (!loading && (totalItemCount - visibleItemCount)
+                        <= (firstVisibleItem + visibleThreshold)) {
+                    // End has been reached
+
+                    Log.i("Yaeye!", "end called");
+
+                    // Do something
+
+                    loading = true;
+                }
+            }
+        });
     }
 
 //    private void loadJSON(){
@@ -336,4 +377,5 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog alert = builder.create();
         alert.show();
     }
+
 }

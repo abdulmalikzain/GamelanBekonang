@@ -37,17 +37,22 @@
                 -->
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
-
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_iklan"
-            android:layout_marginBottom="56dp"
+        <android.support.v4.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/my_appbar_container"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:id="@+id/swipe_main"
+            android:layout_below="@id/my_appbar_container">
 
-        </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_iklan"
+                android:layout_marginBottom="56dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            </android.support.v7.widget.RecyclerView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
     </RelativeLayout>
 
     <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
