@@ -30,9 +30,9 @@ public class AkunFragment extends Fragment {
     private ArrayList<Integer> GambarAkun;
     private TextView tv_detail;
     //nama listnya
-    private String[] Nama = {"TENTANG", "BANTUAN"};
+//    private String[] Nama = {"TENTANG", "BANTUAN"};
     //Daftar gambar
-    private int[] Gambar = {R.drawable.ic_akun, R.drawable.ic_home};
+//    private int[] Gambar = {R.drawable.ic_akun, R.drawable.ic_home};
 
     Button btnlogin;
     public AkunFragment() {
@@ -54,27 +54,27 @@ public class AkunFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        InfoAkun = new ArrayList<>();
-        GambarAkun = new ArrayList<>();
-        recyclerView = view.findViewById(R.id.rv_akun);
-        DaftarItem();
+//
+//        InfoAkun = new ArrayList<>();
+//        GambarAkun = new ArrayList<>();
+//        recyclerView = view.findViewById(R.id.rv_akun);
+//        DaftarItem();
 
         layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        adapter = new AdapterAkun(InfoAkun, GambarAkun);
+//        recyclerView.setLayoutManager(layoutManager);
+//        recyclerView.setHasFixedSize(true);
+//        recyclerView.setItemAnimator(new DefaultItemAnimator());
+//        adapter = new AdapterAkun(InfoAkun, GambarAkun);
         //Memasang Adapter pada RecyclerView
-        recyclerView.setAdapter(adapter);
-        tv_detail = (TextView) view.findViewById(R.id.tv_detailakun);
-        tv_detail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ProfilActivity.class);
-                getActivity().startActivity(intent);
-            }
-        });
+//        recyclerView.setAdapter(adapter);
+//        tv_detail = (TextView) view.findViewById(R.id.tv_detailakun);
+//        tv_detail.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity(), ProfilActivity.class);
+//                getActivity().startActivity(intent);
+//            }
+//        });
 
         btnlogin = (Button) view.findViewById(R.id.btn_masuk);
 
@@ -88,10 +88,10 @@ public class AkunFragment extends Fragment {
 
     }
 
-    private void DaftarItem() {
-        for (int w=0; w<Nama.length; w++){
-            GambarAkun.add(Gambar[w]);
-            InfoAkun.add(Nama[w]);
-        }
-    }
+//    private void DaftarItem() {
+//        for (int w=0; w<Nama.length; w++){
+//            GambarAkun.add(Gambar[w]);
+//            InfoAkun.add(Nama[w]);
+//        }
+//    }
 }

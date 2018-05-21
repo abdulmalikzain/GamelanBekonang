@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
     tools:context="com.gamelanbekonang.logRes.RegisterActivity">
 
     <android.support.v7.widget.Toolbar
@@ -15,23 +17,60 @@
 
     </android.support.v7.widget.Toolbar>
 
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        app:cardBackgroundColor="#e67e17"
+        android:layout_marginLeft="4dp"
+        android:layout_marginBottom="6dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="4dp">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:padding="16dp"
+        android:padding="19dp"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:textSize="28sp"-->
+            <!--android:fontFamily="casual"-->
+            <!--android:textStyle="bold"-->
+            <!--android:textColor="@color/Black"-->
+            <!--android:text="REGISTER"/>-->
+        <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="2dp"-->
+            <!--android:background="@color/white"-->
+            <!--android:layout_marginBottom="15dp"/>-->
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="119dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_register_black_24dp"
+            app:civ_border_color="@color/color_home"
             android:layout_gravity="center"
-            android:textSize="28sp"
-            android:textColor="@color/colorPrimaryDark"
-            android:layout_marginBottom="40dp"
+            app:civ_border_width="2dp"
+            app:civ_circle_background_color="@color/white" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:fontFamily="casual"
             android:textStyle="bold"
-            android:fontFamily="sans-serif"
-            android:text="REGISTER"/>
+            android:textColorHint="@color/white"
+            android:padding="8dp"
+            android:textColor="@color/white"/>
 
         <EditText
             android:id="@+id/et_namar"
@@ -39,12 +78,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Isikan Nama Anda"
-            android:textColorHint="#000"
+            android:drawableLeft="@drawable/ic_akun_white_24dp"
+            android:textColorHint="@color/white"
+            android:fontFamily="casual"
             android:padding="8dp"
             android:textSize="18sp"
             android:inputType="textPersonName"
-            android:background="@color/cardview_shadow_start_color"
-            android:textColor="#000"/>
+            android:textColor="@color/white"
+            android:backgroundTint="@color/white"/>
+
+            <!--android:background="@color/cardview_shadow_start_color"-->
+
 
         <EditText
             android:id="@+id/et_emailr"
@@ -52,12 +96,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Isikan Email Anda"
+            android:drawableLeft="@drawable/ic_email_white_24dp"
+            android:backgroundTint="@color/white"
             android:textSize="18sp"
-            android:textColorHint="#000"
+            android:fontFamily="casual"
+            android:textColorHint="@color/white"
             android:padding="8dp"
             android:inputType="textEmailAddress"
-            android:background="@color/cardview_shadow_start_color"
-            android:textColor="#000"/>
+            android:textColor="@color/white"/>
 
         <EditText
             android:id="@+id/et_notelpr"
@@ -66,23 +112,27 @@
             android:layout_height="wrap_content"
             android:hint="Isikan Nomer Telephone Anda"
             android:textSize="18sp"
-            android:textColorHint="#000"
+            android:fontFamily="casual"
+            android:backgroundTint="@color/white"
+            android:textColorHint="@color/white"
+            android:drawableLeft="@drawable/ic_call_white_24dp"
             android:padding="8dp"
             android:inputType="textEmailAddress"
-            android:background="@color/cardview_shadow_start_color"
-            android:textColor="#000"/>
+            android:textColor="@color/white"/>
         <EditText
             android:id="@+id/et_addressr"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Isikan Alamat anda"
+            android:backgroundTint="@color/white"
+            android:drawableLeft="@drawable/ic_location_on_black_24dp"
             android:textSize="18sp"
-            android:textColorHint="#000"
+            android:fontFamily="casual"
+            android:textColorHint="@color/white"
             android:padding="8dp"
             android:inputType="textEmailAddress"
-            android:background="@color/cardview_shadow_start_color"
-            android:textColor="#000"/>
+            android:textColor="@color/white"/>
 
 
         <EditText
@@ -92,11 +142,13 @@
             android:layout_height="wrap_content"
             android:hint="Password"
             android:textSize="18sp"
-            android:textColorHint="#000"
+            android:fontFamily="casual"
+            android:textColorHint="@color/white"
+            android:drawableLeft="@drawable/ic_lock_white_24dp"
             android:inputType="textPassword"
+            android:backgroundTint="@color/white"
             android:padding="8dp"
-            android:background="@color/cardview_shadow_start_color"
-            android:textColor="#000"/>
+            android:textColor="@color/white"/>
 
         <EditText
             android:id="@+id/et_confirmpasswordr"
@@ -105,21 +157,26 @@
             android:layout_height="wrap_content"
             android:hint="Confirmation Password"
             android:textSize="18sp"
-            android:textColorHint="#000"
+            android:fontFamily="casual"
+            android:drawableLeft="@drawable/ic_lock_white_24dp"
+            android:backgroundTint="@color/white"
+            android:textColorHint="@color/white"
             android:inputType="textPassword"
             android:padding="8dp"
-            android:background="@color/cardview_shadow_start_color"
-            android:textColor="#000"/>
+            android:textColor="@color/white"/>
 
         <Button
             android:id="@+id/btn_registerr"
             android:layout_marginTop="15dp"
-            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textColor="#FFF"
             android:text="REGISTER"
-            android:background="@color/colorPrimaryDark"/>
+            android:fontFamily="serif"
+            android:background="@drawable/btn_selector_shape"/>
     </LinearLayout>
-
-</RelativeLayout>
+        </ScrollView>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

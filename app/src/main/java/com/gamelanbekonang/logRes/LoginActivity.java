@@ -26,6 +26,7 @@ import com.gamelanbekonang.MainActivity;
 import com.gamelanbekonang.R;
 import com.gamelanbekonang.api.BaseApiService;
 import com.gamelanbekonang.api.UtilsApi;
+import com.gamelanbekonang.menuAkun.CustomerFragment;
 import com.gamelanbekonang.menuAkun.ResellerFragment;
 import com.gamelanbekonang.menuProfil.ProfilActivity;
 import com.gamelanbekonang.menuProfil.ProfileReseller;
@@ -74,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mActionToolbar = (Toolbar) findViewById(R.id.tabs_login);
         setSupportActionBar(mActionToolbar);
-        getSupportActionBar().setTitle("LOGIN");
+        getSupportActionBar().setTitle("LOGIN ACCOUNT");
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -174,8 +175,8 @@ public class LoginActivity extends AppCompatActivity {
                                             editor.commit();
 
                                             loading.dismiss();
-                                            Intent intent = new Intent(getApplicationContext(), ProfilActivity.class);
-                                            startActivity(intent);
+                                            Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
+                                            startActivity(intent1);
 
                                         }else if (namerules.equals("seller")) {
                                             SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
@@ -191,8 +192,8 @@ public class LoginActivity extends AppCompatActivity {
                                             editor.commit();
 
                                             loading.dismiss();
-                                            Intent intent = new Intent(getApplicationContext(), ProfilActivity.class);
-                                            startActivity(intent);
+                                            Intent intent2 = new Intent(getApplicationContext(), MainActivity.class);
+                                            startActivity(intent2);
                                         }
 
                                     }

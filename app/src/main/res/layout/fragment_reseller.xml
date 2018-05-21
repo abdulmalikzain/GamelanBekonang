@@ -20,27 +20,25 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="170dp"
+        android:layout_height="180dp"
         android:orientation="vertical"
         android:background="@color/color_home">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/id_seller"/>
+            android:id="@+id/tv_idseller"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
             android:orientation="horizontal"
             android:layout_gravity="center">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/civ_seller"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
                 android:src="@drawable/ic_akun"
                 app:civ_border_width="3dp" />
 
@@ -57,9 +55,9 @@
             android:layout_gravity="center"/>
         <LinearLayout
             android:layout_marginTop="-5dp"
-            android:layout_marginLeft="120dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:orientation="horizontal">
 
             <TextView
@@ -72,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="1sp"
-                android:layout_marginTop="8sp"
+                android:layout_marginTop="4sp"
                 android:text="Pengaturan"
                 android:textSize="18sp" />
 
@@ -81,6 +79,13 @@
 
 
     </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
@@ -88,13 +93,14 @@
         android:textStyle="bold|italic"
         android:text="AKUN PROFIL"
         android:textSize="20sp"
-        android:layout_marginTop="20sp"
+        android:layout_marginTop="15sp"
         android:layout_marginLeft="25sp"/>
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardElevation="5dp"
+        android:layout_marginTop="2dp"
         android:layout_marginBottom="1dp">
 
         <LinearLayout
@@ -142,6 +148,7 @@
                 android:text="Alamat"/>
         </LinearLayout>
     </android.support.v7.widget.CardView>
+
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -167,13 +174,35 @@
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="5dp"
+        android:layout_marginBottom="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="5dp"
+            android:gravity="center">
+
+            <TextView
+                android:gravity="center"
+                android:id="@+id/tv_keluarseller"
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="KELUAR"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold|italic"
         android:text="PENGATURAN LAINNYA"
         android:textSize="20sp"
-        android:layout_marginTop="40sp"
+        android:layout_marginTop="20sp"
         android:layout_marginLeft="25sp"/>
 
 
@@ -181,7 +210,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardElevation="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="2dp"
         android:layout_marginBottom="1dp">
 
         <LinearLayout
@@ -221,5 +250,7 @@
                 android:textSize="20sp"/>
         </LinearLayout>
     </android.support.v7.widget.CardView>
+</LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
