@@ -9,11 +9,13 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.gamelanbekonang.R;
+import com.gamelanbekonang.adapter.AdapterIklan;
 import com.gamelanbekonang.adapter.AdapterKategori;
 import com.gamelanbekonang.api.ApiService;
 import com.gamelanbekonang.api.BaseApiService;
 import com.gamelanbekonang.api.RetroClient;
 import com.gamelanbekonang.api.RetrofitClient;
+import com.gamelanbekonang.api.UtilsApi;
 import com.gamelanbekonang.beans.Iklan;
 import com.gamelanbekonang.beans.Kategori;
 
@@ -35,9 +37,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class KategoriIklanActivity extends AppCompatActivity {
 
     private Toolbar mActionToolbar;
-    private ArrayList<Kategori> kategoris;
+    private ArrayList<Iklan> kategoris;
     private AdapterKategori adapter;
     private RecyclerView recyclerView;
+    private ApiService mApiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,7 @@ public class KategoriIklanActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         kategoris = new ArrayList<>();
+        getData();
     }
 
     //button back toolbar
@@ -73,13 +77,14 @@ public class KategoriIklanActivity extends AppCompatActivity {
 
 
     private void getData() {
-        ApiService apiService  = RetrofitClient.getInstanceRetrofit();
-        apiService.getData().enqueue(new Callback<ResponseBody>() {
+//        mApiService = UtilsApi.getAPICount();
+        mApiService = RetrofitClient.getInstanceRetrofit();
+        mApiService.getCategory("1").enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
                     JSONObject object = new JSONObject(response.body().string());
-                    JSONArray jsonArray  = object.optJSONArray("iklan");
+                    JSONArray jsonArray  = object.optJSONArray("Category");
 
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -120,8 +125,8 @@ public class KategoriIklanActivity extends AppCompatActivity {
                             iklan.setEmail(emailuser);
                             iklan.setNotelp(notelpuser);
                             iklan.setFileName(filename);
-//                            kategoris.add(iklan);
-                            AdapterKategori adapter = new AdapterKategori(KategoriIklanActivity.this, kategoris);
+                            kategoris.add(iklan);
+                            AdapterIklan adapter = new AdapterIklan(KategoriIklanActivity.this, kategoris);
                             recyclerView.setAdapter(adapter);
                         }
 

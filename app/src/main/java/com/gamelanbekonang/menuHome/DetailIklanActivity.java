@@ -1,6 +1,7 @@
 package com.gamelanbekonang.menuHome;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -28,6 +29,7 @@ import com.gamelanbekonang.api.ApiService;
 import com.gamelanbekonang.api.BaseApiService;
 import com.gamelanbekonang.api.RetroClient;
 import com.gamelanbekonang.api.RetrofitClient;
+import com.gamelanbekonang.api.UtilsApi;
 import com.gamelanbekonang.beans.Iklan;
 import com.squareup.picasso.Picasso;
 
@@ -51,7 +53,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class DetailIklanActivity extends AppCompatActivity {
     private String gambarIklan, noTelp, id;
     private ToggleButton tbAddfavorite;
-
+    private BaseApiService mApiService;
+    private Context mContext;
     private FloatingActionButton fabTelpMess;
 
     @Override
@@ -138,7 +141,8 @@ public class DetailIklanActivity extends AppCompatActivity {
             }
         }); //closing the setOnClickListener method
 
-        viewCount();
+        mApiService = UtilsApi.getAPICount();
+//        viewCount();
 
     }
 
@@ -156,21 +160,22 @@ public class DetailIklanActivity extends AppCompatActivity {
     }
 
     private void viewCount() {
+        mApiService.viewCount(id, "_method", "PATCH")
+                .enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()){
+                            Log.i("debug", "onResponse: BERHASIL");
+                        }
+                    }
 
-//        public static final MediaType JSON
-//                = MediaType.parse("application/json; charset=utf-8");
-//
-//        OkHttpClient client = new OkHttpClient();
-//
-//        String post (String json) throws IOException {
-//            RequestBody body = RequestBody.create(JSON, json);
-//            Request request = new Request.Builder()
-//                    .url("https://bekonang-store.000webhostapp.com/api/v1/iklan" + id + "viewcount")
-//                    .post(body)
-//                    .build();
-//            try (Response response = client.newCall(request).execute()) {
-//                return response.body().string();
-//            }
-//        }
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Log.e("debug", "onFailure: ERROR > " + t.getMessage());
+                        Toast.makeText(mContext, "Koneksi Internet Bermasalah", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
+
+
 }

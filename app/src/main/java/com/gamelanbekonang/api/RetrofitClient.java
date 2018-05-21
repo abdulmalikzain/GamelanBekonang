@@ -30,7 +30,7 @@ public class RetrofitClient {
 
 
     ////////////////////////////////////////////
-    private static Retrofit getClient(){
+    private static Retrofit getClient1(){
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
@@ -44,6 +44,6 @@ public class RetrofitClient {
     }
 
     public static ApiService getInstanceRetrofit(){
-        return getClient().create(ApiService.class);
+        return getClient1().create(ApiService.class);
     }
 }

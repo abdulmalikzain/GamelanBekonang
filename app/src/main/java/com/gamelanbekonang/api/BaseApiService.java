@@ -5,7 +5,9 @@ import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 /**
  * Created by user on 4/5/2018.
@@ -31,11 +33,12 @@ public interface BaseApiService {
                                        @Field("password") String password);
 //                                       @Field("password_confirmation") String password_confirmation);
 
-    @FormUrlEncoded
-    @POST("signin")
-    Call<ResponseBody> loginRequest();
 
     @FormUrlEncoded
-    @POST("iklan")
-    Call<Response> viewcount();
+    @POST("iklan/{iklanId}/countview")
+    Call <ResponseBody> viewCount(@Path("iklanId") String iklanId,
+                                  @Field("Key") String Key,
+                                  @Field("Value") String Value);
+
+
 }
