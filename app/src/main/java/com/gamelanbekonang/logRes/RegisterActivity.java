@@ -66,9 +66,9 @@ public class RegisterActivity extends AppCompatActivity {
         etNama = (EditText) findViewById(R.id.et_namar);
         etEmail = (EditText) findViewById(R.id.et_emailr);
         etNotelp = (EditText) findViewById(R.id.et_notelpr);
-        etAddress = findViewById(R.id.et_addressr);
+//        etAddress = findViewById(R.id.et_addressr);
         etPassword = (EditText) findViewById(R.id.et_passwordr);
-        etConfirm = (EditText) findViewById(R.id.et_confirmpasswordr);
+//        etConfirm = (EditText) findViewById(R.id.et_confirmpasswordr);
         btnRegister = (Button) findViewById(R.id.btn_registerr);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
@@ -83,8 +83,8 @@ public class RegisterActivity extends AppCompatActivity {
     private void requestRegister() {
 
         mApiService.registerRequest(etNama.getText().toString(),
-                etEmail.getText().toString(), etNotelp.getText().toString(), etAddress.getText().toString(),
-                etPassword.getText().toString(), etConfirm.getText().toString())
+                etEmail.getText().toString(), etNotelp.getText().toString(),
+                etPassword.getText().toString())
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

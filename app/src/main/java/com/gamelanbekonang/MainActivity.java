@@ -25,22 +25,16 @@ import android.widget.Toast;
 
 import com.gamelanbekonang.adapter.AdapterIklan;
 import com.gamelanbekonang.api.ApiService;
-import com.gamelanbekonang.api.BaseApiService;
-import com.gamelanbekonang.api.RetroClient;
 import com.gamelanbekonang.api.RetrofitClient;
 import com.gamelanbekonang.logRes.LoginActivity;
-import com.gamelanbekonang.menuAkun.AkunFragment;
 import com.gamelanbekonang.menuAkun.CustomerFragment;
-import com.gamelanbekonang.menuAkun.ResellerFragment;
+import com.gamelanbekonang.menuAkun.SellerFragment;
 import com.gamelanbekonang.menuFavorite.FavoriteFragment;
 import com.gamelanbekonang.menuHome.HomeFragment;
 import com.gamelanbekonang.menuKategori.KategoriFragment;
-import com.gamelanbekonang.menuProfil.ProfilActivity;
 import com.gamelanbekonang.utils.BottomNavigationViewHelper;
 import com.gamelanbekonang.beans.Iklan;
-import com.gamelanbekonang.utils.EndlessRecyclerViewScrollListener;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,17 +42,13 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.gamelanbekonang.api.BaseApiService.BASE_URL_IMAGE;
 import static com.gamelanbekonang.logRes.LoginActivity.my_shared_preferences;
 
 public class MainActivity extends AppCompatActivity {
@@ -145,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
                         frameLayout.setVisibility(View.VISIBLE);
                         return true;
                     }else if (roleName.equals("seller")){
-                        transaction.replace(R.id.fragment_container, new ResellerFragment()).commit();
+                        transaction.replace(R.id.fragment_container, new SellerFragment()).commit();
                         relativeLayout.setVisibility(View.INVISIBLE);
                         frameLayout.setVisibility(View.VISIBLE);
                         return true;

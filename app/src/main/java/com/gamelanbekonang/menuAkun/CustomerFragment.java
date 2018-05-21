@@ -18,6 +18,10 @@ import android.widget.TextView;
 import com.gamelanbekonang.MainActivity;
 import com.gamelanbekonang.R;
 import com.gamelanbekonang.logRes.LoginActivity;
+import com.gamelanbekonang.menuBantuan.CaraDaftarActivity;
+import com.gamelanbekonang.menuBantuan.JualBeliActivity;
+import com.gamelanbekonang.menuBantuan.KebijakanActivity;
+import com.gamelanbekonang.menuBantuan.KetentuanActivity;
 import com.gamelanbekonang.menuProfil.ProfilActivity;
 import com.squareup.picasso.Picasso;
 
@@ -33,7 +37,7 @@ import static com.gamelanbekonang.logRes.LoginActivity.my_shared_preferences;
 public class CustomerFragment extends Fragment {
 
     private TextView tv_idctm, tv_namectm, tv_emailctm, tv_notelpctm, keluar_ctm;
-    private TextView tentangctm, bantuanctm;
+    private TextView tentangctm, caradaftarctm, tipsctm, kebijkanctm, ketentuanctm;
     private CircleImageView civ_ctm;
     public static final  String value = "id";
 
@@ -61,7 +65,10 @@ public class CustomerFragment extends Fragment {
         tv_namectm = view.findViewById(R.id.tv_namectm);
         tv_emailctm = view.findViewById(R.id.tv_emailctm);
         tentangctm = view.findViewById(R.id.tv_tentangctm);
-        bantuanctm = view.findViewById(R.id.tv_bantuanctm);
+        caradaftarctm = view.findViewById(R.id.tv_caradaftarctm);
+        kebijkanctm = view.findViewById(R.id.tv_kebijakanctm);
+        tipsctm = view.findViewById(R.id.tv_tipscs);
+        ketentuanctm = view.findViewById(R.id.tv_ketentuanctm);
         tv_notelpctm = view.findViewById(R.id.tv_notelpctm);
 
 //        SharedPreferences sharedPreferences = PreferenceManager
@@ -110,11 +117,32 @@ public class CustomerFragment extends Fragment {
                 startActivity(intenttcm);
             }
         });
-        bantuanctm.setOnClickListener(new View.OnClickListener() {
+        caradaftarctm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentbcm = new Intent(getActivity(), BantuanActivity.class);
+                Intent intentbcm = new Intent(getActivity(), CaraDaftarActivity.class);
                 startActivity(intentbcm);
+            }
+        });
+        tipsctm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intenttip = new Intent(getActivity(), JualBeliActivity.class);
+                startActivity(intenttip);
+            }
+        });
+        kebijkanctm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentkjcs = new Intent(getActivity(), KebijakanActivity.class);
+                startActivity(intentkjcs);
+            }
+        });
+        ketentuanctm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentktncs = new Intent(getActivity(), KetentuanActivity.class);
+                startActivity(intentktncs);
             }
         });
     }
@@ -134,7 +162,7 @@ public class CustomerFragment extends Fragment {
         editor.clear();
         editor.commit();
 
-        Intent intent1 = new Intent(getActivity(), MainActivity.class);
+        Intent intent1 = new Intent(getActivity(), LoginActivity.class);
         startActivity(intent1);
     }
 
