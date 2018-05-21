@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -26,10 +25,6 @@ import com.gamelanbekonang.MainActivity;
 import com.gamelanbekonang.R;
 import com.gamelanbekonang.api.BaseApiService;
 import com.gamelanbekonang.api.UtilsApi;
-import com.gamelanbekonang.menuAkun.CustomerFragment;
-import com.gamelanbekonang.menuAkun.ResellerFragment;
-import com.gamelanbekonang.menuProfil.ProfilActivity;
-import com.gamelanbekonang.menuProfil.ProfileReseller;
 
 import org.json.JSONArray;
 import org.json.JSONException;

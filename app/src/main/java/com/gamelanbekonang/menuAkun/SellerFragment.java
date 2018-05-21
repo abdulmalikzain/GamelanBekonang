@@ -15,9 +15,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.gamelanbekonang.MainActivity;
 import com.gamelanbekonang.R;
 import com.gamelanbekonang.logRes.LoginActivity;
+import com.gamelanbekonang.menuBantuan.CaraDaftarActivity;
+import com.gamelanbekonang.menuBantuan.JualBeliActivity;
+import com.gamelanbekonang.menuBantuan.KebijakanActivity;
+import com.gamelanbekonang.menuBantuan.KetentuanActivity;
 import com.squareup.picasso.Picasso;
 
 
@@ -30,14 +33,14 @@ import static com.gamelanbekonang.logRes.LoginActivity.my_shared_preferences;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ResellerFragment extends Fragment {
+public class SellerFragment extends Fragment {
 
     private TextView tv_idseller, tv_nameseller, tv_emailseller, tv_notelpseller, tv_alamatseller, tv_keluarseller;
-    private TextView tv_tentangs, tv_bantuans;
+    private TextView tv_tentangsr, tv_caradftsr, tv_tipssr, tv_kebijakansr, tv_ketentuansr;
     private CircleImageView civ_seller;
     public static final  String value = "id";
 
-    public ResellerFragment() {
+    public SellerFragment() {
         // Required empty public constructor
     }
 
@@ -47,7 +50,7 @@ public class ResellerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_reseller, container, false);
+        return inflater.inflate(R.layout.fragment_seller, container, false);
     }
 
     @Override
@@ -60,8 +63,11 @@ public class ResellerFragment extends Fragment {
         tv_emailseller = view.findViewById(R.id.tv_emailseller);
         tv_alamatseller = view.findViewById(R.id.tv_alamatseller);
         tv_notelpseller = view.findViewById(R.id.tv_notelpseller);
-        tv_tentangs = view.findViewById(R.id.tv_tentangseller);
-        tv_bantuans = view.findViewById(R.id.tv_bantuanseller);
+        tv_tentangsr = view.findViewById(R.id.tv_tentangseller);
+        tv_caradftsr = view.findViewById(R.id.tv_caradaftarsr);
+        tv_tipssr = view.findViewById(R.id.tv_tipssr);
+        tv_kebijakansr = view.findViewById(R.id.tv_kebijakansr);
+        tv_ketentuansr = view.findViewById(R.id.tv_ketentuansr);
         tv_keluarseller = view.findViewById(R.id.tv_keluarseller);
 
 
@@ -103,18 +109,39 @@ public class ResellerFragment extends Fragment {
             }
         });
 
-        tv_tentangs.setOnClickListener(new View.OnClickListener() {
+        tv_tentangsr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intenttgs = new Intent(getActivity(), TentangActivity.class);
                 startActivity(intenttgs);
             }
         });
-        tv_bantuans.setOnClickListener(new View.OnClickListener() {
+        tv_caradftsr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentbts = new Intent(getActivity(), BantuanActivity.class);
+                Intent intentbts = new Intent(getActivity(), CaraDaftarActivity.class);
                 startActivity(intentbts);
+            }
+        });
+        tv_tipssr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intenttipsr = new Intent(getActivity(), JualBeliActivity.class);
+                startActivity(intenttipsr);
+            }
+        });
+        tv_kebijakansr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentkbjksr = new Intent(getActivity(), KebijakanActivity.class);
+                startActivity(intentkbjksr);
+            }
+        });
+        tv_ketentuansr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentktsr = new Intent(getActivity(), KetentuanActivity.class);
+                startActivity(intentktsr);
             }
         });
     }
@@ -133,7 +160,7 @@ public class ResellerFragment extends Fragment {
         editor.clear();
         editor.commit();
 
-        Intent intent1 = new Intent(getActivity(), MainActivity.class);
+        Intent intent1 = new Intent(getActivity(), LoginActivity.class);
         startActivity(intent1);
     }
 

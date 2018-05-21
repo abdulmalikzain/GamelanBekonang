@@ -116,7 +116,7 @@
             android:layout_marginTop="8dp"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:fontFamily="sans-serif-condensed"
+            android:fontFamily="casual"
             android:text="Tampilkan Password" />
 
 
@@ -148,10 +148,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
-            android:background="@drawable/btn_selector_shape"
-            android:fontFamily="serif"
+            android:background="@drawable/ripple_effect"
+            android:fontFamily="casual"
             android:text="LOGIN"
-            android:textColor="@color/white"
+            android:textColor="@color/colorPrimary"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -162,10 +162,10 @@
             android:layout_gravity="center"
             android:layout_marginLeft="35dp"
             android:layout_marginTop="16dp"
-            android:background="@drawable/btn_selector_shape"
-            android:fontFamily="serif"
+            android:background="@drawable/ripple_effect"
+            android:fontFamily="casual"
             android:text="REGISTER"
-            android:textColor="@color/white"
+            android:textColor="@color/colorPrimary"
             android:textSize="18sp"
             android:textStyle="bold" />
 
