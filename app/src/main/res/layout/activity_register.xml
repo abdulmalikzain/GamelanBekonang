@@ -66,7 +66,6 @@
             android:text="Register"
             android:textSize="20sp"
             android:gravity="center"
-            android:fontFamily="casual"
             android:textStyle="bold"
             android:textColorHint="@color/white"
             android:padding="8dp"
@@ -80,7 +79,6 @@
             android:hint="Isikan Nama Anda"
             android:drawableLeft="@drawable/ic_akun_white_24dp"
             android:textColorHint="@color/white"
-            android:fontFamily="casual"
             android:padding="8dp"
             android:textSize="18sp"
             android:inputType="textPersonName"
@@ -99,7 +97,6 @@
             android:drawableLeft="@drawable/ic_email_white_24dp"
             android:backgroundTint="@color/white"
             android:textSize="18sp"
-            android:fontFamily="casual"
             android:textColorHint="@color/white"
             android:padding="8dp"
             android:inputType="textEmailAddress"
@@ -112,7 +109,6 @@
             android:layout_height="wrap_content"
             android:hint="Isikan Nomer Telephone Anda"
             android:textSize="18sp"
-            android:fontFamily="casual"
             android:backgroundTint="@color/white"
             android:textColorHint="@color/white"
             android:drawableLeft="@drawable/ic_call_white_24dp"
@@ -142,7 +138,6 @@
             android:layout_height="wrap_content"
             android:hint="Password (minimal 6 karakter)"
             android:textSize="18sp"
-            android:fontFamily="casual"
             android:textColorHint="@color/white"
             android:drawableLeft="@drawable/ic_lock_white_24dp"
             android:inputType="textPassword"
@@ -174,7 +169,6 @@
             android:textSize="18sp"
             android:textColor="@color/colorPrimary"
             android:text="REGISTER"
-            android:fontFamily="casual"
             android:background="@drawable/ripple_effect"/>
     </LinearLayout>
         </ScrollView>

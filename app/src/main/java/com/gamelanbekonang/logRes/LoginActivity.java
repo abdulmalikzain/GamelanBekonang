@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
     SharedPreferences sharedpreferences;
     public static final  String value = "key";
     Boolean session = false;
-    private String id,image,name,email,notelp;
+    private String id,image,name,email,notelp,address, store_name,remember_token;
     public static final String session_status = "session_status";
     public static final String my_shared_preferences = "signin";
     SharedPreferences sharedPreferences;
@@ -61,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private String ctm = "ctm";
     private String seller = "seller";
+    private String token;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -92,6 +93,9 @@ public class LoginActivity extends AppCompatActivity {
         name = sharedpreferences.getString("name", null);
         email = sharedpreferences.getString("email", null);
         notelp = sharedpreferences.getString("notelp",null);
+        address = sharedpreferences.getString("address", null);
+        store_name = sharedpreferences.getString("store_name", null);
+        remember_token = sharedpreferences.getString("remember_token", null);
         int i = sharedpreferences.getInt(value, 0);
 
         coba = (TextView) findViewById(R.id.coba);
@@ -148,6 +152,9 @@ public class LoginActivity extends AppCompatActivity {
                                     String email = jsonRESULTS.getJSONObject("user").getString("email");
                                     String notelp = jsonRESULTS.getJSONObject("user").getString("notelp");
                                     String address = jsonRESULTS.getJSONObject("user").getString("address");
+                                    String store_name = jsonRESULTS.getJSONObject("user").getString("store_name");
+                                    String remember_token = jsonRESULTS.getString("token");
+
 
 
                                     JSONArray jsonArray = jsonRESULTS.getJSONObject("user").getJSONArray("roles");
@@ -167,8 +174,9 @@ public class LoginActivity extends AppCompatActivity {
                                             editor.putString("address", address);
                                             editor.putString("notelp", notelp);
                                             editor.putString("role_name", namerules);
+                                            editor.putString("token", remember_token);
                                             editor.commit();
-
+                                            Log.d(TAG, "Custome: "+remember_token);
                                             loading.dismiss();
                                             Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
                                             startActivity(intent1);
@@ -184,8 +192,10 @@ public class LoginActivity extends AppCompatActivity {
                                             editor.putString("address", address);
                                             editor.putString("notelp", notelp);
                                             editor.putString("role_name", namerules);
+                                            editor.putString("token", remember_token);
+                                            editor.putString("store_name", store_name);
                                             editor.commit();
-
+                                            Log.d(TAG, "Seller: "+remember_token);
                                             loading.dismiss();
                                             Intent intent2 = new Intent(getApplicationContext(), MainActivity.class);
                                             startActivity(intent2);

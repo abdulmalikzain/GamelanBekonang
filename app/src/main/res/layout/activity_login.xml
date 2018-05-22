@@ -71,10 +71,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="GamelanWirun"
+            android:text="Gamelan Wirun"
             android:textSize="20sp"
             android:gravity="center"
-            android:fontFamily="casual"
             android:textStyle="bold"
             android:textColorHint="@color/white"
             android:padding="8dp"
@@ -88,7 +87,6 @@
             android:hint="  Email"
             android:drawableLeft="@drawable/ic_email_white_24dp"
             android:textSize="18sp"
-            android:fontFamily="casual"
             android:textColorHint="@color/white"
             android:padding="8dp"
             android:inputType="textEmailAddress"
@@ -103,7 +101,6 @@
             android:drawableLeft="@drawable/ic_lock_white_24dp"
             android:textColorHint="@color/white"
             android:textSize="18sp"
-            android:fontFamily="casual"
             android:inputType="textPassword"
             android:padding="8dp"
             android:layout_marginBottom="2dp"
@@ -116,7 +113,6 @@
             android:layout_marginTop="8dp"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:fontFamily="casual"
             android:text="Tampilkan Password" />
 
 
@@ -149,7 +145,6 @@
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:background="@drawable/ripple_effect"
-            android:fontFamily="casual"
             android:text="LOGIN"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
@@ -163,7 +158,6 @@
             android:layout_marginLeft="35dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/ripple_effect"
-            android:fontFamily="casual"
             android:text="REGISTER"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".menuProfil.ProfileSeller">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tabs_profilsr"
+        android:background="@color/colorPrimaryDark"
+        android:theme="@style/Base.Theme.AppCompat">
+
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        app:cardBackgroundColor="#e67e17"
+        android:layout_marginLeft="4dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginRight="3dp">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:padding="19dp"
+                android:orientation="vertical">
+
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:textSize="28sp"-->
+                <!--android:fontFamily="casual"-->
+                <!--android:textStyle="bold"-->
+                <!--android:textColor="@color/Black"-->
+                <!--android:text="REGISTER"/>-->
+                <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="2dp"-->
+                <!--android:background="@color/white"-->
+                <!--android:layout_marginBottom="15dp"/>-->
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="119dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_register_black_24dp"
+                    app:civ_border_color="@color/color_home"
+                    android:layout_gravity="center"
+                    app:civ_border_width="2dp"
+                    app:civ_circle_background_color="@color/white" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Edit Profil"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textColorHint="@color/white"
+                    android:padding="8dp"
+                    android:textColor="@color/white"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:background="@drawable/ic_akun_white_24dp"/>
+                    <EditText
+                        android:id="@+id/et_namapsr"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Name"
+                        android:layout_marginLeft="10sp"
+                        android:textColorHint="@color/white"
+                        android:textSize="18sp"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/white"
+                        android:backgroundTint="@color/white"/>
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:background="@drawable/ic_email_white_24dp"/>
+
+                        <EditText
+                            android:id="@+id/et_emailpsr"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Email"
+                            android:backgroundTint="@color/white"
+                            android:textSize="18sp"
+                            android:textColorHint="@color/white"
+                            android:layout_marginLeft="10sp"
+                            android:inputType="textEmailAddress"
+                            android:textColor="@color/white"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:backgroundTint="@color/white"
+                        android:background="@drawable/ic_location_on_black_24dp"/>
+
+                    <EditText
+                        android:id="@+id/et_alamatpsr"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Alamat"
+                        android:textSize="18sp"
+                        android:backgroundTint="@color/white"
+                        android:textColorHint="@color/white"
+                        android:padding="8dp"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:background="@drawable/ic_call_white_24dp"/>
+
+                    <EditText
+                        android:id="@+id/et_notelppsr"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Telephone"
+                        android:textSize="18sp"
+                        android:backgroundTint="@color/white"
+                        android:textColorHint="@color/white"
+                        android:padding="8dp"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_simpanpsr"
+                    android:layout_marginTop="30dp"
+                    android:layout_gravity="center"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="SIMPAN"
+                    android:background="@drawable/ripple_effect"/>
+            </LinearLayout>
+        </ScrollView>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

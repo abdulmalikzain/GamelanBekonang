@@ -35,7 +35,7 @@
         <activity android:name=".menuBantuan.KetentuanActivity" />
         <activity android:name=".menuKategori.KategoriIklanActivity" />
         <activity android:name=".menuBantuan.KebijakanActivity" />
-        <activity android:name=".menuProfil.ProfileReseller"></activity>
+        <activity android:name=".menuProfil.ProfileSeller"></activity>
 
     </application>
 
