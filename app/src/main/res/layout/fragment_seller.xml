@@ -217,10 +217,11 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tv_editpctm"
+                android:id="@+id/tv_editpsr"
                 android:layout_width="340sp"
                 android:layout_height="wrap_content"
                 android:text="Edit Profil"
+                android:background="@drawable/ripple_effect"
                 android:textSize="18sp"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -241,6 +242,40 @@
         android:layout_marginTop="10sp"
         android:layout_marginBottom="10sp"
         android:layout_marginLeft="9sp"/>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ripple_effect"
+        android:layout_marginBottom="1dp"
+        app:cardElevation="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_iklanseller"
+                android:layout_width="340sp"
+                android:layout_height="wrap_content"
+                android:text="Iklan Saya"
+                android:background="@drawable/ripple_effect"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15sp"
+                android:textSize="18sp"
+                android:background="@drawable/ic_keyboard_arrow_right_black_24dp"/>
+
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
 
 
     <android.support.v7.widget.CardView

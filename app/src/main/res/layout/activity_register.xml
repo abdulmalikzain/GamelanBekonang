@@ -70,14 +70,21 @@
             android:textColorHint="@color/white"
             android:padding="8dp"
             android:textColor="@color/white"/>
-
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:background="@drawable/ic_akun_white_24dp"/>
         <EditText
             android:id="@+id/et_namar"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Isikan Nama Anda"
-            android:drawableLeft="@drawable/ic_akun_white_24dp"
             android:textColorHint="@color/white"
             android:padding="8dp"
             android:textSize="18sp"
@@ -85,36 +92,55 @@
             android:textColor="@color/white"
             android:backgroundTint="@color/white"/>
 
+        </LinearLayout>
+
             <!--android:background="@color/cardview_shadow_start_color"-->
 
-
-        <EditText
-            android:id="@+id/et_emailr"
+        <LinearLayout
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:background="@drawable/ic_email_white_24dp"/>
+        <EditText
+            android:id="@+id/et_emailr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="Isikan Email Anda"
-            android:drawableLeft="@drawable/ic_email_white_24dp"
             android:backgroundTint="@color/white"
             android:textSize="18sp"
             android:textColorHint="@color/white"
             android:padding="8dp"
             android:inputType="textEmailAddress"
             android:textColor="@color/white"/>
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:background="@drawable/ic_call_white_24dp"/>
         <EditText
             android:id="@+id/et_notelpr"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Isikan Nomer Telephone Anda"
             android:textSize="18sp"
             android:backgroundTint="@color/white"
             android:textColorHint="@color/white"
-            android:drawableLeft="@drawable/ic_call_white_24dp"
             android:padding="8dp"
             android:inputType="textEmailAddress"
             android:textColor="@color/white"/>
+            </LinearLayout>
         <!--<EditText-->
             <!--android:id="@+id/et_addressr"-->
             <!--android:layout_marginTop="10dp"-->
@@ -129,22 +155,29 @@
             <!--android:padding="8dp"-->
             <!--android:inputType="textEmailAddress"-->
             <!--android:textColor="@color/white"/>-->
-
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:background="@drawable/ic_lock_white_24dp"/>
 
         <EditText
             android:id="@+id/et_passwordr"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password (minimal 6 karakter)"
             android:textSize="18sp"
             android:textColorHint="@color/white"
-            android:drawableLeft="@drawable/ic_lock_white_24dp"
             android:inputType="textPassword"
             android:backgroundTint="@color/white"
             android:padding="8dp"
             android:textColor="@color/white"/>
-
+            </LinearLayout>
         <!--<EditText-->
             <!--android:id="@+id/et_confirmpasswordr"-->
             <!--android:layout_marginTop="10dp"-->
@@ -162,7 +195,7 @@
 
         <Button
             android:id="@+id/btn_registerr"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="50dp"
             android:layout_gravity="center"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
