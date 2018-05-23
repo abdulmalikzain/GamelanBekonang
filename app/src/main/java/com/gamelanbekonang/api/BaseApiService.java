@@ -7,12 +7,12 @@ import retrofit2.Response;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-<<<<<<< Updated upstream
+
 import retrofit2.http.Header;
 import retrofit2.http.PATCH;
-=======
+
 import retrofit2.http.Multipart;
->>>>>>> Stashed changes
+
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
@@ -42,16 +42,12 @@ public interface BaseApiService {
 //                                       @Field("password_confirmation") String password_confirmation);
 
 
-<<<<<<< Updated upstream
-=======
-
 
     @FormUrlEncoded
     @POST("iklan/{iklanId}/countview")
     Call <ResponseBody> viewCount(@Path("iklanId") String iklanId,
                                   @Field("Key") String Key,
                                   @Field("Value") String Value);
->>>>>>> Stashed changes
 
     @Multipart
     @POST("myprofile")

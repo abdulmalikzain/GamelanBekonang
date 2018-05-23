@@ -30,20 +30,19 @@ public class RetrofitClient {
 
 
 
-<<<<<<< Updated upstream
-}
-=======
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BaseApiService.BASE_URL_IKLAN)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build();
-        return retrofit;
-    }
 
-    public static ApiService getInstanceRetrofit(){
-        return getClient1().create(ApiService.class);
-    }
+
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(BaseApiService.BASE_URL_IKLAN)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .client(client)
+//                .build();
+//        return retrofit;
+//    }
+//
+//    public static ApiService getInstanceRetrofit(){
+//        return getClient1().create(ApiService.class);
+//    }
 
 
 
@@ -70,6 +69,5 @@ public class RetrofitClient {
 
 
 
-    ////////
  }
->>>>>>> Stashed changes
+

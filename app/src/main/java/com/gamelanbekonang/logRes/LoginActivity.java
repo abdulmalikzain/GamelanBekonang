@@ -141,8 +141,8 @@ public class LoginActivity extends AppCompatActivity {
                             loading.dismiss();
                             try {
                                 JSONObject jsonRESULTS = new JSONObject(response.body().string());
-//                                jsonRESULTS.getString("msg").equals("404")Awalll
-                                if (response.isSuccessful()){
+
+                                if (!jsonRESULTS.getString("msg").equals("404")){
                                     // Jika login berhasil maka data nama yang ada di response API
                                     // akan diparsing ke activity selanjutnya.
                                     String success =  jsonRESULTS.getString("msg");
@@ -159,8 +159,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                                     JSONArray jsonArray = jsonRESULTS.getJSONObject("user").getJSONArray("roles");
-                                    //Coba awal
-                                    loading.dismiss();
+
                                     for (int i = 0 ; i < jsonArray.length() ; i++) {
                                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                                         String namerules = jsonObject.optString("role_name");
@@ -222,7 +221,11 @@ public class LoginActivity extends AppCompatActivity {
                             }catch (IOException e) {
                                 e.printStackTrace();
                             }
-                    }
+                    }else {
+
+                            loading.dismiss();
+                            Toast.makeText(mContext, "Password atau Email Salah", Toast.LENGTH_SHORT).show();
+                        }
 
 
                 }
