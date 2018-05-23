@@ -10,14 +10,10 @@ import android.view.MenuItem;
 
 import com.gamelanbekonang.R;
 import com.gamelanbekonang.adapter.AdapterIklan;
-import com.gamelanbekonang.adapter.AdapterKategori;
 import com.gamelanbekonang.api.ApiService;
-import com.gamelanbekonang.api.BaseApiService;
 import com.gamelanbekonang.api.RetroClient;
 import com.gamelanbekonang.api.RetrofitClient;
-import com.gamelanbekonang.api.UtilsApi;
 import com.gamelanbekonang.beans.Iklan;
-import com.gamelanbekonang.beans.Kategori;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,20 +21,16 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class KategoriIklanActivity extends AppCompatActivity {
 
     private Toolbar mActionToolbar;
     private ArrayList<Iklan> kategoris;
-    private AdapterKategori adapter;
     private RecyclerView recyclerView;
     private ApiService mApiService;
 
@@ -74,12 +66,12 @@ public class KategoriIklanActivity extends AppCompatActivity {
     }
 
     ////////////////////////////    PARSING RETROFIT TAMPIL DATA
-
-
     private void getData() {
-//        mApiService = UtilsApi.getAPICount();
-        mApiService = RetrofitClient.getInstanceRetrofit();
-        mApiService.getCategory("1").enqueue(new Callback<ResponseBody>() {
+        Bundle bundle = getIntent().getExtras();
+        String idCategory     = bundle.getString("idCategory");
+        Log.d("bbbbbbbbb", "bbb: "+idCategory);
+        mApiService = RetroClient.getInstanceRetrofit();
+        mApiService.getCategory(idCategory).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
@@ -89,46 +81,27 @@ public class KategoriIklanActivity extends AppCompatActivity {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String id = jsonObject.optString("id");
-                        String user_id = jsonObject.optString("user_id");
                         String judul = jsonObject.optString("judul");
-                        String deskripsi = jsonObject.optString("deskripsi");
+                        String image1   = jsonObject.optString("image1");
                         String volume = jsonObject.optString("volume");
-                        String stock     = jsonObject.optString("stock");
-                        String jenis = jsonObject.optString("jenis");
                         String harga = jsonObject.optString("harga");
                         String created_at = jsonObject.optString("created_at");
-                        String view_count   = jsonObject.optString("view_count");
+                        String imageuser = jsonObject.getString("user_image");
+                        String storename = jsonObject.getString("store_name");
 
-                        JSONObject jsonObject1 = jsonObject.optJSONObject("users");
-                        String imageuser = jsonObject1.getString("image");
-                        String nameuser = jsonObject1.getString("name");
-                        String emailuser = jsonObject1.getString("email");
-                        String notelpuser = jsonObject1.getString("notelp");
+                        Iklan iklan = new Iklan();
+                        iklan.setId(id);
+                        iklan.setJudul(judul);
+                        iklan.setImage1(image1);
+                        iklan.setCreated_at(created_at);
+                        iklan.setVolume(volume);
+                        iklan.setHarga(harga);
+                        iklan.setUser_image(imageuser);
+                        iklan.setStore_name(storename);
 
-                        JSONArray jsonArray1 = jsonObject.getJSONArray("photos");
-                        for (int j = 0; j < jsonArray1.length(); j++) {
-                            JSONObject jsonObject2 = jsonArray1.getJSONObject(i);
-                            String filename = jsonObject2.optString("filename");
-
-                            Iklan iklan = new Iklan();
-                            iklan.setId(id);
-                            iklan.setUserId(user_id);
-                            iklan.setJudul(judul);
-                            iklan.setCreated_at(created_at);
-                            iklan.setDeskripsi(deskripsi);
-                            iklan.setVolume(volume);
-                            iklan.setStok(stock);
-                            iklan.setHarga(harga);
-                            iklan.setJenis(jenis);
-                            iklan.setImage(imageuser);
-                            iklan.setName(nameuser);
-                            iklan.setEmail(emailuser);
-                            iklan.setNotelp(notelpuser);
-                            iklan.setFileName(filename);
-                            kategoris.add(iklan);
-                            AdapterIklan adapter = new AdapterIklan(KategoriIklanActivity.this, kategoris);
-                            recyclerView.setAdapter(adapter);
-                        }
+                        kategoris.add(iklan);
+                        AdapterIklan adapter = new AdapterIklan(KategoriIklanActivity.this, kategoris);
+                        recyclerView.setAdapter(adapter);
 
                     }
 

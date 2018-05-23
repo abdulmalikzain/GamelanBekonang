@@ -29,21 +29,5 @@ public class RetrofitClient {
     }
 
 
-    ////////////////////////////////////////////
-    private static Retrofit getClient1(){
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BaseApiService.BASE_URL_IKLAN)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build();
-        return retrofit;
-    }
-
-    public static ApiService getInstanceRetrofit(){
-        return getClient1().create(ApiService.class);
-    }
 }

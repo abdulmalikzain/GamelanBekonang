@@ -6,6 +6,8 @@ import retrofit2.Response;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -15,9 +17,8 @@ import retrofit2.http.Path;
 
 public interface BaseApiService {
 
-    String BASE_API_URL = "http://bekonang-store.000webhostapp.com";
-    String BASE_URL_IMAGE = "http://bekonang-store.000webhostapp.com/images/";
-    String BASE_URL_IKLAN = "https://bekonang-store.000webhostapp.com/api/v1/";
+//    String BASE_API_URL = "http://bekonang-store.000webhostapp.com";
+    String BASE_URL_IMAGE = "http://bekonang-store.000webhostapp.com/images/iklans";
 
     @FormUrlEncoded
     @POST("signin")
@@ -34,11 +35,6 @@ public interface BaseApiService {
 //                                       @Field("password_confirmation") String password_confirmation);
 
 
-    @FormUrlEncoded
-    @POST("iklan/{iklanId}/countview")
-    Call <ResponseBody> viewCount(@Path("iklanId") String iklanId,
-                                  @Field("Key") String Key,
-                                  @Field("Value") String Value);
 
 
 }

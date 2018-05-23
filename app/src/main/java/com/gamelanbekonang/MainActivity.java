@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.gamelanbekonang.adapter.AdapterIklan;
 import com.gamelanbekonang.api.ApiService;
+import com.gamelanbekonang.api.RetroClient;
 import com.gamelanbekonang.api.RetrofitClient;
 import com.gamelanbekonang.logRes.LoginActivity;
 import com.gamelanbekonang.menuAkun.CustomerFragment;
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private Toolbar mToolbar;
     private BottomNavigationViewEx bottomNavigationViewEx;
-    private String roleName;
+    private String roleName, filename;
     private SwipeRefreshLayout swipeMain;
     boolean doubleBackToExitPressedOnce = false;
 
@@ -203,36 +204,35 @@ public class MainActivity extends AppCompatActivity {
         final LinearLayoutManager mLayoutManager;
         mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
-//        loadJSON();
         getData();
 
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener()
-        {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy)
-            {
-                visibleItemCount = mLayoutManager.getChildCount();
-                totalItemCount = mLayoutManager.getItemCount();
-                firstVisibleItem = mLayoutManager.findFirstVisibleItemPosition();
-
-                if (loading) {
-                    if (totalItemCount > previousTotal) {
-                        loading = false;
-                        previousTotal = totalItemCount;
-                    }
-                }
-                if (!loading && (totalItemCount - visibleItemCount)
-                        <= (firstVisibleItem + visibleThreshold)) {
-                    // End has been reached
-
-                    Log.i("Yaeye!", "end called");
-
-                    // Do something
-
-                    loading = true;
-                }
-            }
-        });
+//        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener()
+//        {
+//            @Override
+//            public void onScrolled(RecyclerView recyclerView, int dx, int dy)
+//            {
+//                visibleItemCount = mLayoutManager.getChildCount();
+//                totalItemCount = mLayoutManager.getItemCount();
+//                firstVisibleItem = mLayoutManager.findFirstVisibleItemPosition();
+//
+//                if (loading) {
+//                    if (totalItemCount > previousTotal) {
+//                        loading = false;
+//                        previousTotal = totalItemCount;
+//                    }
+//                }
+//                if (!loading && (totalItemCount - visibleItemCount)
+//                        <= (firstVisibleItem + visibleThreshold)) {
+//                    // End has been reached
+//
+//                    Log.i("Yaeye!", "end called");
+//
+//                    // Do something
+//
+//                    loading = true;
+//                }
+//            }
+//        });
     }
 
 //    private void loadJSON(){
@@ -259,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
     private void getData() {
-        ApiService apiService  = RetrofitClient.getInstanceRetrofit();
+        ApiService apiService  = RetroClient.getInstanceRetrofit();
         apiService.getData().enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -270,46 +270,27 @@ public class MainActivity extends AppCompatActivity {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String id = jsonObject.optString("id");
-                        String user_id = jsonObject.optString("user_id");
                         String judul = jsonObject.optString("judul");
-                        String deskripsi = jsonObject.optString("deskripsi");
+                        String image1   = jsonObject.optString("image1");
                         String volume = jsonObject.optString("volume");
-                        String stock     = jsonObject.optString("stock");
-                        String jenis = jsonObject.optString("jenis");
                         String harga = jsonObject.optString("harga");
                         String created_at = jsonObject.optString("created_at");
-                        String view_count   = jsonObject.optString("view_count");
+                        String imageuser = jsonObject.getString("user_image");
+                        String storename = jsonObject.getString("store_name");
 
-                        JSONObject jsonObject1 = jsonObject.optJSONObject("users");
-                        String imageuser = jsonObject1.getString("image");
-                        String nameuser = jsonObject1.getString("name");
-                        String emailuser = jsonObject1.getString("email");
-                        String notelpuser = jsonObject1.getString("notelp");
+                        Iklan iklan = new Iklan();
+                        iklan.setId(id);
+                        iklan.setJudul(judul);
+                        iklan.setImage1(image1);
+                        iklan.setCreated_at(created_at);
+                        iklan.setVolume(volume);
+                        iklan.setHarga(harga);
+                        iklan.setUser_image(imageuser);
+                        iklan.setStore_name(storename);
 
-                        JSONArray jsonArray1 = jsonObject.getJSONArray("photos");
-                        for (int j = 0; j < jsonArray1.length(); j++) {
-                            JSONObject jsonObject2 = jsonArray1.getJSONObject(i);
-                            String filename = jsonObject2.optString("filename");
-
-                            Iklan iklan = new Iklan();
-                            iklan.setId(id);
-                            iklan.setUserId(user_id);
-                            iklan.setJudul(judul);
-                            iklan.setCreated_at(created_at);
-                            iklan.setDeskripsi(deskripsi);
-                            iklan.setVolume(volume);
-                            iklan.setStok(stock);
-                            iklan.setHarga(harga);
-                            iklan.setJenis(jenis);
-                            iklan.setImage(imageuser);
-                            iklan.setName(nameuser);
-                            iklan.setEmail(emailuser);
-                            iklan.setNotelp(notelpuser);
-                            iklan.setFileName(filename);
-                            iklans1.add(iklan);
-                            AdapterIklan adapter = new AdapterIklan(MainActivity.this, iklans1);
-                            recyclerView.setAdapter(adapter);
-                        }
+                        iklans1.add(iklan);
+                        AdapterIklan adapter = new AdapterIklan(MainActivity.this, iklans1);
+                        recyclerView.setAdapter(adapter);
 
                     }
 

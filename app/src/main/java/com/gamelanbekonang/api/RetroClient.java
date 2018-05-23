@@ -1,8 +1,9 @@
 package com.gamelanbekonang.api;
 
 import com.gamelanbekonang.beans.Iklan;
-import com.gamelanbekonang.beans.Kategori;
 
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -18,9 +19,24 @@ public class RetroClient {
         return iklan;
     }
 
-    private Kategori[] Category;
 
-    public Kategori[] getCategory() {
-        return Category;
+    static final String BASE_URL_API = "https://bekonang-store.000webhostapp.com/api/v1/";
+    ////////////////////////////////////////////
+    public static Retrofit getClient1(){
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL_API)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build();
+        return retrofit;
     }
+
+    public static ApiService getInstanceRetrofit(){
+        return getClient1().create(ApiService.class);
+    }
+
 }

@@ -3,6 +3,7 @@ package com.gamelanbekonang.menuHome;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.renderscript.Sampler;
@@ -31,6 +32,7 @@ import com.gamelanbekonang.api.RetroClient;
 import com.gamelanbekonang.api.RetrofitClient;
 import com.gamelanbekonang.api.UtilsApi;
 import com.gamelanbekonang.beans.Iklan;
+import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -50,10 +52,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.gamelanbekonang.logRes.LoginActivity.my_shared_preferences;
+
 public class DetailIklanActivity extends AppCompatActivity {
-    private String gambarIklan, noTelp, id;
+    private String gambarIklan, noTelp, id, userId, token;
     private ToggleButton tbAddfavorite;
-    private BaseApiService mApiService;
+//    private BaseApiService mApiService;
+    private ApiService apiService;
     private Context mContext;
     private FloatingActionButton fabTelpMess;
 
@@ -64,13 +69,10 @@ public class DetailIklanActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         id     = bundle.getString("id");
-        final String judul = bundle.getString("judul");
-//        final String volume = bundle.getString("volume");
-//        tvDetUsername.setText(bundle.getString("username"));
-//        tvDetWaktu.setText(bundle.getString("waktu"));
-//        tvDetStatus.setText(bundle.getString("status"));
-//        tvDetTujuan.setText(bundle.getString("tujuan"));
-        gambarIklan = bundle.getString("image");
+
+        SharedPreferences sp = getApplicationContext().getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
+        token = (sp.getString("token", ""));
+
         noTelp = "085226152856";
         Log.d("aa", "onCreate: "+id);
 
@@ -84,6 +86,7 @@ public class DetailIklanActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    postFavorite();
                     tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_favorite_kuning));
                     Toast.makeText(DetailIklanActivity.this, "iklan ditambahkan ke favorite", Toast.LENGTH_SHORT).show();
                 }
@@ -99,7 +102,7 @@ public class DetailIklanActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         CollapsingToolbarLayout collapsingToolbar = findViewById(R.id.collapsing_toolbar);
-        collapsingToolbar.setTitle(judul);
+        collapsingToolbar.setTitle("aa");
 
         loadBackdrop();
 
@@ -141,8 +144,8 @@ public class DetailIklanActivity extends AppCompatActivity {
             }
         }); //closing the setOnClickListener method
 
-        mApiService = UtilsApi.getAPICount();
-//        viewCount();
+//        apiService = UtilsApi.getAPICount();
+        viewCount();
 
     }
 
@@ -159,8 +162,58 @@ public class DetailIklanActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void getDataIklanId(){
+        apiService = RetroClient.getInstanceRetrofit();
+        apiService.getDataId(id)
+                .enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        try {
+                            JSONObject object = new JSONObject(response.body().string());
+                            JSONArray jsonArray  = object.optJSONArray("iklan");
+                            for (int i = 0; i <jsonArray.length() ; i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String idIklan  = jsonObject.optString("id");
+
+
+                            }
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Log.e("debug", "onFailure: ERROR > " + t.getMessage());
+                        Toast.makeText(mContext, "Koneksi Internet Bermasalah", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
     private void viewCount() {
-        mApiService.viewCount(id, "_method", "PATCH")
+        apiService = RetroClient.getInstanceRetrofit();
+        apiService.viewCount(id, "PATCH")
+                .enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()){
+                            Log.i("debug", "onResponse: BERHASIL");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Log.e("debug", "onFailure: ERROR > " + t.getMessage());
+                    }
+                });
+    }
+
+    private void postFavorite(){
+        apiService = RetroClient.getInstanceRetrofit();
+        apiService.postFavorite(token, userId,  id)
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

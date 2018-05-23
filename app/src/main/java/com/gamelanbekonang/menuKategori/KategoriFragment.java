@@ -3,6 +3,7 @@ package com.gamelanbekonang.menuKategori;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +17,16 @@ import com.gamelanbekonang.R;
 
 import java.util.HashMap;
 
+import static android.content.ContentValues.TAG;
+
 
 public class KategoriFragment extends Fragment {
 
     private SliderLayout sliderLayout;
-    private LinearLayout llKenong;
+    private LinearLayout llKenong, llDemung, llBonang, llGambang, llKendang, llPeking, llRebab,
+    llSaron, llSlenthem, llGong, llKethukKempyang;
+    private int kenong = 1, demung =2, bonang = 3, gambang =5, kendang=6, peking =7, rebab=8,
+            saron=9, slenthem=10, gong=11, kethukKempyang=12;
 
     public KategoriFragment(){
 
@@ -34,6 +40,17 @@ public class KategoriFragment extends Fragment {
 
         sliderLayout = view.findViewById(R.id.slider);
         llKenong        = view.findViewById(R.id.ll_kenong);
+        llBonang        = view.findViewById(R.id.ll_bonang);
+        llDemung        = view.findViewById(R.id.ll_demung);
+        llGambang       = view.findViewById(R.id.ll_gambang);
+        llKendang       = view.findViewById(R.id.ll_kendang);
+        llPeking        = view.findViewById(R.id.ll_peking);
+        llRebab         = view.findViewById(R.id.ll_rebab);
+        llSaron         = view.findViewById(R.id.ll_saron);
+        llSlenthem      = view.findViewById(R.id.ll_slentem);
+        llGong          = view.findViewById(R.id.ll_gong);
+//        llKethukKempyang   = view.findViewById(R.id.ll);
+
         // Load image dari URL
 //        HashMap<String,String> url_maps = new HashMap<String, String>();
 //        url_maps.put("Hannibal", "http://static2.hypable.com/wp-content/uploads/2013/12/hannibal-season-2-release-date.jpg");
@@ -68,13 +85,23 @@ public class KategoriFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), KategoriIklanActivity.class);
+                intent.putExtra("idCategory", kenong);
+                Log.d(TAG, "idkenong: "+kenong);
                 startActivity(intent);
             }
         });
 
+        llBonang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), KategoriIklanActivity.class);
+                intent.putExtra("idCategory", bonang);
+                startActivity(intent);
+            }
+        });
+
+
         return view;
     }
-
-
 
 }

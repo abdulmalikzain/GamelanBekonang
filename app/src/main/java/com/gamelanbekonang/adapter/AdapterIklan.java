@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.gamelanbekonang.api.ApiService;
 import com.gamelanbekonang.api.BaseApiService;
 import com.gamelanbekonang.menuHome.DetailIklanActivity;
 import com.gamelanbekonang.R;
@@ -40,14 +41,12 @@ public class AdapterIklan extends RecyclerView.Adapter<AdapterIklan.IklanViewHol
             holder.tvVolume.setText(iklan.getVolume());
 //            holder.tvWaktu.setText(iklan.getCreated_at());
             holder.tvHarga.setText(iklan.getHarga());
-//            holder.tvGambariklan.setText(iklan.getFileName());
-//            holder.tvGambarUser.setText(iklan.getImage());
             holder.tvId.setText(iklan.getId());
-            Picasso.with(context).load(BaseApiService.BASE_URL_IMAGE+iklan.getFileName())
+            Picasso.with(context).load(ApiService.BASE_URL_IMAGEIKLAN+iklan.getImage1())
                     .error(R.mipmap.ic_launcher)
                     .into(holder.ivGambar);
 
-            Picasso.with(context).load(BaseApiService.BASE_URL_IMAGE+iklan.getImage())
+            Picasso.with(context).load(ApiService.BASE_URL_IMAGEUSER+iklan.getUser_image())
                     .centerCrop()
                     .resize(80, 80)
                     .error(R.mipmap.ic_launcher)
@@ -55,7 +54,7 @@ public class AdapterIklan extends RecyclerView.Adapter<AdapterIklan.IklanViewHol
     }
 
     public class IklanViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvJudul, tvVolume, tvPerusahaan, tvWaktu, tvHarga, tvGambariklan, tvGambarUser, tvId, tvIdUser;
+        private TextView tvJudul, tvVolume, tvPerusahaan, tvWaktu, tvHarga, tvGambariklan, tvGambarUser, tvId, tvCreateAt;
         private ImageView ivGambar;
         private CircleImageView civFotouser;
         private int post;
@@ -66,7 +65,7 @@ public class AdapterIklan extends RecyclerView.Adapter<AdapterIklan.IklanViewHol
             tvId        = itemView.findViewById(R.id.tv_iklan_idiklan);
             tvJudul  = itemView.findViewById(R.id.tv_iklan_judul);
             tvVolume = itemView.findViewById(R.id.tv_iklan_volume);
-//            tvPerusahaan = itemView.findViewById(R.id.tv_iklan_perusahaan);
+            tvPerusahaan = itemView.findViewById(R.id.tv_iklan_perusahaan);
             tvHarga     = itemView.findViewById(R.id.tv_iklan_harga);
             civFotouser = itemView.findViewById(R.id.civ_iklan_fotouser);
             ivGambar    = itemView.findViewById(R.id.iv_iklan_foto);
@@ -77,11 +76,6 @@ public class AdapterIklan extends RecyclerView.Adapter<AdapterIklan.IklanViewHol
 
                     Intent intent = new Intent(context, DetailIklanActivity.class);
                     intent.putExtra("id", tvId.getText().toString().trim());
-                    intent.putExtra("judul", tvJudul.getText().toString().trim());
-//                    intent.putExtra("jenis", tvJenis.getText().toString().trim());
-//                    intent.putExtra("image", tvGambariklan.getText().toString().trim());
-//                    intent.putExtra("waktu", tvWaktu.getText().toString().trim());
-//                    intent.putExtra("gambaruser", tvGambarUser.getText().toString().trim());
                     context.startActivity(intent);
                 }
             });
@@ -96,7 +90,6 @@ public class AdapterIklan extends RecyclerView.Adapter<AdapterIklan.IklanViewHol
         return new AdapterIklan.IklanViewHolder(itemView);
 
     }
-
 
     @Override
     public int getItemCount() {
