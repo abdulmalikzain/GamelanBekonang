@@ -35,6 +35,11 @@
                 android:layout_centerInParent="true"
                 android:padding="19dp"
                 android:orientation="vertical">
+                <EditText
+                    android:id="@+id/et_idprs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible"/>
 
                 <!--<TextView-->
                 <!--android:layout_width="wrap_content"-->
@@ -52,6 +57,7 @@
                 <!--android:layout_marginBottom="15dp"/>-->
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/cv_profilsr"
                     android:layout_width="119dp"
                     android:layout_height="100dp"
                     android:src="@drawable/ic_register_black_24dp"
@@ -62,13 +68,25 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Edit Profil"
+                    android:text="Klik Gambar"
                     android:textSize="20sp"
                     android:gravity="center"
                     android:textStyle="bold"
                     android:textColorHint="@color/white"
                     android:padding="8dp"
                     android:textColor="@color/white"/>
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content">-->
+                    <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                        <!---->
+                        <!--android:layout_width="110dp"-->
+                        <!--android:layout_height="90dp"-->
+                        <!--android:src="@drawable/ic_akun"-->
+                        <!--app:civ_border_color="@color/color_home"-->
+                        <!--app:civ_border_width="2dp"-->
+                        <!--app:civ_circle_background_color="@color/white" />-->
+                <!--</LinearLayout>-->
 
                 <LinearLayout
                     android:layout_width="match_parent"

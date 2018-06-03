@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
         sharedpreferences = getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
 //        session = sharedpreferences.getBoolean(session_status, false);
         id = sharedpreferences.getString("id",null);
-        image = sharedpreferences.getString("iamge", null);
+        image = sharedpreferences.getString("image", null);
         name = sharedpreferences.getString("name", null);
         email = sharedpreferences.getString("email", null);
         notelp = sharedpreferences.getString("notelp",null);
@@ -141,6 +141,7 @@ public class LoginActivity extends AppCompatActivity {
                             loading.dismiss();
                             try {
                                 JSONObject jsonRESULTS = new JSONObject(response.body().string());
+
                                 if (!jsonRESULTS.getString("msg").equals("404")){
                                     // Jika login berhasil maka data nama yang ada di response API
                                     // akan diparsing ke activity selanjutnya.
@@ -158,6 +159,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                                     JSONArray jsonArray = jsonRESULTS.getJSONObject("user").getJSONArray("roles");
+
                                     for (int i = 0 ; i < jsonArray.length() ; i++) {
                                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                                         String namerules = jsonObject.optString("role_name");
@@ -209,26 +211,30 @@ public class LoginActivity extends AppCompatActivity {
                                     String error_message = jsonRESULTS.getString("404");
                                     Toast.makeText(mContext, error_message, Toast.LENGTH_SHORT).show();
 
-                                    Log.d(TAG, "onResponse: "+error_message);
+//                                    Log.d(TAG, "opo yaa: "+error_message);
                                 }
 
 
                         }catch (JSONException e) {
                                 e.printStackTrace();
-
-                                Toast.makeText(mContext, "Login Gagal", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(mContext, "Password atau Email Salah", Toast.LENGTH_SHORT).show();
                             }catch (IOException e) {
                                 e.printStackTrace();
                             }
-                    }
+                    }else {
+
+                            loading.dismiss();
+                            Toast.makeText(mContext, "Password atau Email Salah", Toast.LENGTH_SHORT).show();
+                        }
 
 
                 }
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Log.e("debug", "onFailure: ERROR > " + t.toString());
+//                        Log.e("debug", "onFailure: ERROR > " + t.toString());
                         loading.dismiss();
+                        Toast.makeText(mContext, "Login Gagal", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

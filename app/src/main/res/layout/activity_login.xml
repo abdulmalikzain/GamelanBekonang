@@ -79,32 +79,55 @@
             android:padding="8dp"
             android:textColor="@color/white"/>
 
-        <EditText
-            android:id="@+id/et_emaill"
-            android:layout_marginTop="5dp"
+        <LinearLayout
+            android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="  Email"
-            android:drawableLeft="@drawable/ic_email_white_24dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:background="@drawable/ic_email_white_24dp"/>
+
+            <EditText
+            android:id="@+id/et_emaill"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
             android:textSize="18sp"
             android:textColorHint="@color/white"
             android:padding="8dp"
             android:inputType="textEmailAddress"
             android:textColor="@color/white"/>
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/et_passwordl"
-            android:layout_marginTop="8dp"
+        <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="  Password"
-            android:drawableLeft="@drawable/ic_lock_white_24dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:background="@drawable/ic_lock_white_24dp"/>
+
+            <EditText
+            android:id="@+id/et_passwordl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
             android:textColorHint="@color/white"
             android:textSize="18sp"
+                android:password="true"
             android:inputType="textPassword"
             android:padding="8dp"
             android:layout_marginBottom="2dp"
             android:textColor="@color/white"/>
+        </LinearLayout>
 
         <CheckBox
             android:id="@+id/checkBox"
@@ -134,7 +157,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="85dp"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="370dp"
         android:gravity="center"
         android:orientation="horizontal">
 
