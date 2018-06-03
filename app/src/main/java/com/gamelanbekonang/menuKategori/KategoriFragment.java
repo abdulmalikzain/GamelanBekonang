@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
@@ -25,8 +26,10 @@ public class KategoriFragment extends Fragment {
     private SliderLayout sliderLayout;
     private LinearLayout llKenong, llDemung, llBonang, llGambang, llKendang, llPeking, llRebab,
     llSaron, llSlenthem, llGong, llKethukKempyang;
-    private int kenong = 1, demung =2, bonang = 3, gambang =5, kendang=6, peking =7, rebab=8,
-            saron=9, slenthem=10, gong=11, kethukKempyang=12;
+    private String kenong = "1", demung ="2", bonang = "3", gambang ="5", kendang="6", peking ="7", rebab="8",
+            saron="9", slenthem="10", gong="11", kethukKempyang="12";
+
+    private TextView tvKenong, tvBonang, tvDemung, tvGambang, tvKendang, tvPeking, tvRebab, tvSaron, tvSlenthem, tvGong, tvKethuk;
 
     public KategoriFragment(){
 
@@ -49,7 +52,9 @@ public class KategoriFragment extends Fragment {
         llSaron         = view.findViewById(R.id.ll_saron);
         llSlenthem      = view.findViewById(R.id.ll_slentem);
         llGong          = view.findViewById(R.id.ll_gong);
-//        llKethukKempyang   = view.findViewById(R.id.ll);
+        llKethukKempyang   = view.findViewById(R.id.ll_kethukkempyang);
+
+        tvKenong        = view.findViewById(R.id.tv_k_idkenong);
 
         // Load image dari URL
 //        HashMap<String,String> url_maps = new HashMap<String, String>();
@@ -81,12 +86,23 @@ public class KategoriFragment extends Fragment {
 
         sliderLayout.setDuration(4000);
 
+        tvKenong.setText(kenong);
+        tvBonang.setText(bonang);
+        tvDemung.setText(demung);
+        tvGambang.setText(gambang);
+        tvGong.setText(gong);
+        tvKendang.setText(kendang);
+        tvKethuk.setText(kethukKempyang);
+        tvPeking.setText(peking);
+        tvRebab.setText(rebab);
+        tvSlenthem.setText(slenthem);
+        tvSaron.setText(saron);
+
         llKenong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), KategoriIklanActivity.class);
-                intent.putExtra("idCategory", kenong);
-                Log.d(TAG, "idkenong: "+kenong);
+                intent.putExtra("idCategory", tvKenong.getText().toString().trim());
                 startActivity(intent);
             }
         });
@@ -95,11 +111,91 @@ public class KategoriFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), KategoriIklanActivity.class);
-                intent.putExtra("idCategory", bonang);
+                intent.putExtra("idCategory", tvBonang.getText().toString().trim());
                 startActivity(intent);
             }
         });
 
+        llKethukKempyang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), KategoriIklanActivity.class);
+                intent.putExtra("idCategory", tvKethuk.getText().toString().trim());
+                startActivity(intent);
+            }
+        });
+
+        llGong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), KategoriIklanActivity.class);
+                intent.putExtra("idCategory", tvGong.getText().toString().trim());
+                startActivity(intent);
+            }
+        });
+
+        llSlenthem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), KategoriIklanActivity.class);
+                intent.putExtra("idCategory", tvSlenthem.getText().toString().trim());
+                startActivity(intent);
+            }
+        });
+
+        llSaron.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), KategoriIklanActivity.class);
+                intent.putExtra("idCategory", tvSaron.getText().toString().trim());
+                startActivity(intent);
+            }
+        });
+
+        llRebab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), KategoriIklanActivity.class);
+                intent.putExtra("idCategory", tvRebab.getText().toString().trim());
+                startActivity(intent);
+            }
+        });
+
+        llKendang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), KategoriIklanActivity.class);
+                intent.putExtra("idCategory", tvKendang.getText().toString().trim());
+                startActivity(intent);
+            }
+        });
+
+        llPeking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), KategoriIklanActivity.class);
+                intent.putExtra("idCategory", tvPeking.getText().toString().trim());
+                startActivity(intent);
+            }
+        });
+
+        llGambang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), KategoriIklanActivity.class);
+                intent.putExtra("idCategory", tvGambang.getText().toString().trim());
+                startActivity(intent);
+            }
+        });
+
+        llDemung.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), KategoriIklanActivity.class);
+                intent.putExtra("idCategory", tvDemung.getText().toString().trim());
+                startActivity(intent);
+            }
+        });
 
         return view;
     }

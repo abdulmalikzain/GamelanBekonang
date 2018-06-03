@@ -40,6 +40,7 @@ public class AdapterIklan extends RecyclerView.Adapter<AdapterIklan.IklanViewHol
             holder.tvJudul.setText(iklan.getJudul());
             holder.tvVolume.setText(iklan.getVolume());
 //            holder.tvWaktu.setText(iklan.getCreated_at());
+            holder.tvPerusahaan.setText(iklan.getStore_name());
             holder.tvHarga.setText(iklan.getHarga());
             holder.tvId.setText(iklan.getId());
             Picasso.with(context).load(ApiService.BASE_URL_IMAGEIKLAN+iklan.getImage1())

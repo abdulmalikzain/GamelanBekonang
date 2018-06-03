@@ -33,6 +33,8 @@ public class KategoriIklanActivity extends AppCompatActivity {
     private ArrayList<Iklan> kategoris;
     private RecyclerView recyclerView;
     private ApiService mApiService;
+    private String tittle;
+    private String idKategori;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,7 @@ public class KategoriIklanActivity extends AppCompatActivity {
 
         mActionToolbar = findViewById(R.id.toolbar_kenong);
         setSupportActionBar(mActionToolbar);
-        getSupportActionBar().setTitle("Kenong");
+        getSupportActionBar().setTitle(tittle);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -54,7 +56,7 @@ public class KategoriIklanActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         kategoris = new ArrayList<>();
-        getData();
+//        getData();
     }
 
     //button back toolbar
@@ -68,10 +70,9 @@ public class KategoriIklanActivity extends AppCompatActivity {
     ////////////////////////////    PARSING RETROFIT TAMPIL DATA
     private void getData() {
         Bundle bundle = getIntent().getExtras();
-        String idCategory     = bundle.getString("idCategory");
-        Log.d("bbbbbbbbb", "bbb: "+idCategory);
+        idKategori     = bundle.getString("idCategory");
         mApiService = RetroClient.getInstanceRetrofit();
-        mApiService.getCategory(idCategory).enqueue(new Callback<ResponseBody>() {
+        mApiService.getCategory(idKategori).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {

@@ -38,14 +38,18 @@ public interface ApiService {
                                      @Field("iklan_id") String iklanId);
 
     @GET("wishlist")
-    Call <ResponseBody> getFavorite(@Query("token") String token,
-                                     @Field("user_id") String userId,
-                                     @Field("iklan_id") String iklanId);
+    Call <ResponseBody> getFavorite(@Query("token") String token);
+
+    @GET("wishlist/{id}")
+    Call <ResponseBody> delFavorite(@Path("id") String id);
 
     @FormUrlEncoded
     @POST("iklan/{iklanId}/countview")
     Call <ResponseBody> viewCount(@Path("iklanId") String iklanId,
                                   @Field("_method") String Key);
 
-
+    @FormUrlEncoded
+    @POST("iklan/{iklanId}/contactcount")
+    Call <ResponseBody> cantactCount(@Path("iklanId") String iklanId,
+                                  @Field("_method") String Key);
 }

@@ -37,6 +37,7 @@ public class FavoriteFragment extends Fragment {
 
         SharedPreferences sp = getContext().getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
         userId = (sp.getString("id", ""));
+        token = (sp.getString("token", ""));
 
         getFavorite();
         return view;
@@ -45,12 +46,13 @@ public class FavoriteFragment extends Fragment {
 
     private void getFavorite(){
         apiService = RetroClient.getInstanceRetrofit();
-        apiService.postFavorite(token, userId, id )
+        apiService.getFavorite(token)
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()){
                             Log.i("debug", "onResponse: BERHASIL");
+
                         }
                     }
 
