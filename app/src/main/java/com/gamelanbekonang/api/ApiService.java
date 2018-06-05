@@ -41,7 +41,9 @@ public interface ApiService {
     Call <ResponseBody> getFavorite(@Query("token") String token);
 
     @GET("wishlist/{id}")
-    Call <ResponseBody> delFavorite(@Path("id") String id);
+    Call <ResponseBody> delFavorite(@Path("id") String id,
+                                    @Query("token") String token,
+                                    @Field("_method") String method);
 
     @FormUrlEncoded
     @POST("iklan/{iklanId}/countview")

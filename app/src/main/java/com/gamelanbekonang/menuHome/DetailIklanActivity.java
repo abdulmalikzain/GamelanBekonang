@@ -55,7 +55,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static com.gamelanbekonang.logRes.LoginActivity.my_shared_preferences;
 
 public class DetailIklanActivity extends AppCompatActivity {
-    private String gambarIklan, noTelp, id, userId, token;
+    private String gambarIklan, noTelp, id, userId, token, role_name;
     private ToggleButton tbAddfavorite;
 //    private BaseApiService mApiService;
     private ApiService apiService;
@@ -72,6 +72,7 @@ public class DetailIklanActivity extends AppCompatActivity {
 
         SharedPreferences sp = getApplicationContext().getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
         token = (sp.getString("token", ""));
+        role_name = (sp.getString("role_name", ""));
 
         noTelp = "085226152856";
         Log.d("aa", "onCreate: "+id);
@@ -79,6 +80,12 @@ public class DetailIklanActivity extends AppCompatActivity {
         final Toolbar toolbar = findViewById(R.id.toolbar);
         fabTelpMess = findViewById(R.id.FAB_telp_mess);
         tbAddfavorite = findViewById(R.id.tb_add_favorite);
+
+        if (role_name.equals("customer")){
+
+        }else if (role_name.equals("seller")){
+
+        }
 
         tbAddfavorite.setChecked(false);
         tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite_border));

@@ -55,6 +55,16 @@ public class KategoriFragment extends Fragment {
         llKethukKempyang   = view.findViewById(R.id.ll_kethukkempyang);
 
         tvKenong        = view.findViewById(R.id.tv_k_idkenong);
+        tvBonang        = view.findViewById(R.id.tv_k_idbonang);
+        tvSaron         = view.findViewById(R.id.tv_k_idsaron);
+        tvDemung         = view.findViewById(R.id.tv_k_iddemung);
+        tvGambang         = view.findViewById(R.id.tv_k_idgambang);
+        tvGong          = view.findViewById(R.id.tv_k_idgong);
+        tvKendang         = view.findViewById(R.id.tv_k_idkendang);
+        tvPeking         = view.findViewById(R.id.tv_k_idpeking);
+        tvRebab         = view.findViewById(R.id.tv_k_idrebab);
+        tvKethuk         = view.findViewById(R.id.tv_k_idkethuk);
+        tvSlenthem         = view.findViewById(R.id.tv_k_idslenthem);
 
         // Load image dari URL
 //        HashMap<String,String> url_maps = new HashMap<String, String>();
