@@ -27,7 +27,6 @@ import android.widget.Toast;
 import com.gamelanbekonang.adapter.AdapterIklan;
 import com.gamelanbekonang.api.ApiService;
 import com.gamelanbekonang.api.RetroClient;
-import com.gamelanbekonang.api.RetrofitClient;
 import com.gamelanbekonang.logRes.LoginActivity;
 import com.gamelanbekonang.menuAkun.CustomerFragment;
 import com.gamelanbekonang.menuAkun.SellerFragment;

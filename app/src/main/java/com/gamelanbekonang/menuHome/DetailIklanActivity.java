@@ -60,7 +60,7 @@ public class DetailIklanActivity extends AppCompatActivity {
 //    private BaseApiService mApiService;
     private ApiService apiService;
     private Context mContext;
-    private FloatingActionButton fabTelpMess;
+//    private FloatingActionButton fabTelpMess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +78,7 @@ public class DetailIklanActivity extends AppCompatActivity {
         Log.d("aa", "onCreate: "+id);
 
         final Toolbar toolbar = findViewById(R.id.toolbar);
-        fabTelpMess = findViewById(R.id.FAB_telp_mess);
+//        fabTelpMess = findViewById(R.id.FAB_telp_mess);
         tbAddfavorite = findViewById(R.id.tb_add_favorite);
 
         if (role_name.equals("customer")){
@@ -111,54 +111,54 @@ public class DetailIklanActivity extends AppCompatActivity {
         CollapsingToolbarLayout collapsingToolbar = findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle("aa");
 
-        loadBackdrop();
+//        loadBackdrop();
 
-        fabTelpMess.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Creating the instance of PopupMenu
-                PopupMenu popup = new PopupMenu(DetailIklanActivity.this, fabTelpMess);
-                //Inflating the Popup using xml file
-                popup.getMenuInflater()
-                        .inflate(R.menu.popup_telp, popup.getMenu());
-
-                //registering popup with OnMenuItemClickListener
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    public boolean onMenuItemClick(MenuItem item) {
-
-                        switch (item.getItemId()){
-                            case R.id.popup_telephone :
-                                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                                callIntent.setData(Uri.parse("tel:" +noTelp));
-
-                                if (ActivityCompat.checkSelfPermission(DetailIklanActivity.this,
-                                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                                }
-                                startActivity(callIntent);
-                                return true;
-
-                            case R.id.popup_message :
-                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", noTelp,
-                                        null)));
-
-                                return true;
-                        }
-                        return false;
-                    }
-                });
-
-                popup.show(); //showing popup menu
-            }
-        }); //closing the setOnClickListener method
+//        fabTelpMess.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //Creating the instance of PopupMenu
+//                PopupMenu popup = new PopupMenu(DetailIklanActivity.this, fabTelpMess);
+//                //Inflating the Popup using xml file
+//                popup.getMenuInflater()
+//                        .inflate(R.menu.popup_telp, popup.getMenu());
+//
+//                //registering popup with OnMenuItemClickListener
+//                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+//                    public boolean onMenuItemClick(MenuItem item) {
+//
+//                        switch (item.getItemId()){
+//                            case R.id.popup_telephone :
+//                                Intent callIntent = new Intent(Intent.ACTION_CALL);
+//                                callIntent.setData(Uri.parse("tel:" +noTelp));
+//
+//                                if (ActivityCompat.checkSelfPermission(DetailIklanActivity.this,
+//                                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+//                                }
+//                                startActivity(callIntent);
+//                                return true;
+//
+//                            case R.id.popup_message :
+//                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", noTelp,
+//                                        null)));
+//
+//                                return true;
+//                        }
+//                        return false;
+//                    }
+//                });
+//
+//                popup.show(); //showing popup menu
+//            }
+//        }); //closing the setOnClickListener method
 
 //        apiService = UtilsApi.getAPICount();
         viewCount();
-
+//
     }
 
     private void loadBackdrop() {
-        final ImageView imageView = findViewById(R.id.backdrop);
-        Picasso.with(getApplication()).load(BaseApiService.BASE_URL_IMAGE+gambarIklan).centerCrop().resize(1600, 850).error(R.mipmap.ic_launcher).into(imageView);
+//        final ImageView imageView = findViewById(R.id.backdrop);
+//        Picasso.with(getApplication()).load(BaseApiService.BASE_URL_IMAGE+gambarIklan).centerCrop().resize(1600, 850).error(R.mipmap.ic_launcher).into(imageView);
     }
 
     //button back toolbar

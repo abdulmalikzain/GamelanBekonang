@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".menuProfil.ProfileSeller">
+    tools:context=".menuProfil.EditProfilCustomer">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tabs_profilsr"
+        android:id="@+id/tabs_etprofilcs"
+        app:titleTextColor="@color/white"
         android:background="@color/colorPrimaryDark"
         android:theme="@style/Base.Theme.AppCompat">
 
@@ -36,10 +37,17 @@
                 android:padding="19dp"
                 android:orientation="vertical">
                 <EditText
-                    android:id="@+id/et_idprs"
+                    android:id="@+id/et_tokenepcs"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="invisible"/>
+                    android:layout_height="0dp"
+                    android:visibility="invisible"
+                    tools:ignore="Suspicious0dp" />
+                <EditText
+                    android:id="@+id/et_idepcs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:visibility="invisible"
+                    tools:ignore="Suspicious0dp" />
 
                 <!--<TextView-->
                 <!--android:layout_width="wrap_content"-->
@@ -57,7 +65,7 @@
                 <!--android:layout_marginBottom="15dp"/>-->
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/cv_profilsr"
+                    android:id="@+id/cv_profilepcs"
                     android:layout_width="119dp"
                     android:layout_height="100dp"
                     android:src="@drawable/ic_register_black_24dp"
@@ -76,16 +84,16 @@
                     android:padding="8dp"
                     android:textColor="@color/white"/>
                 <!--<LinearLayout-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content">-->
-                    <!--<de.hdodenhof.circleimageview.CircleImageView-->
-                        <!---->
-                        <!--android:layout_width="110dp"-->
-                        <!--android:layout_height="90dp"-->
-                        <!--android:src="@drawable/ic_akun"-->
-                        <!--app:civ_border_color="@color/color_home"-->
-                        <!--app:civ_border_width="2dp"-->
-                        <!--app:civ_circle_background_color="@color/white" />-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
+                <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                <!---->
+                <!--android:layout_width="110dp"-->
+                <!--android:layout_height="90dp"-->
+                <!--android:src="@drawable/ic_akun"-->
+                <!--app:civ_border_color="@color/color_home"-->
+                <!--app:civ_border_width="2dp"-->
+                <!--app:civ_circle_background_color="@color/white" />-->
                 <!--</LinearLayout>-->
 
                 <LinearLayout
@@ -98,7 +106,7 @@
                         android:textSize="18sp"
                         android:background="@drawable/ic_akun_white_24dp"/>
                     <EditText
-                        android:id="@+id/et_namapsr"
+                        android:id="@+id/et_namapcs"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Name"
@@ -113,26 +121,26 @@
 
 
                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:background="@drawable/ic_email_white_24dp"/>
+
+                    <EditText
+                        android:id="@+id/et_emailpcs"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="18sp"
-                            android:background="@drawable/ic_email_white_24dp"/>
-
-                        <EditText
-                            android:id="@+id/et_emailpsr"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Email"
-                            android:backgroundTint="@color/white"
-                            android:textSize="18sp"
-                            android:textColorHint="@color/white"
-                            android:layout_marginLeft="10sp"
-                            android:inputType="textEmailAddress"
-                            android:textColor="@color/white"/>
+                        android:hint="Email"
+                        android:backgroundTint="@color/white"
+                        android:textSize="18sp"
+                        android:textColorHint="@color/white"
+                        android:layout_marginLeft="10sp"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/white"/>
 
                 </LinearLayout>
                 <LinearLayout
@@ -147,7 +155,7 @@
                         android:background="@drawable/ic_location_on_black_24dp"/>
 
                     <EditText
-                        android:id="@+id/et_alamatpsr"
+                        android:id="@+id/et_alamatpcs"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Alamat"
@@ -171,7 +179,7 @@
                         android:background="@drawable/ic_call_white_24dp"/>
 
                     <EditText
-                        android:id="@+id/et_notelppsr"
+                        android:id="@+id/et_notelppcs"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Telephone"
@@ -184,7 +192,7 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/btn_simpanpsr"
+                    android:id="@+id/btn_simpanpcs"
                     android:layout_marginTop="30dp"
                     android:layout_gravity="center"
                     android:layout_width="150dp"
@@ -196,4 +204,5 @@
             </LinearLayout>
         </ScrollView>
     </android.support.v7.widget.CardView>
+
 </LinearLayout>

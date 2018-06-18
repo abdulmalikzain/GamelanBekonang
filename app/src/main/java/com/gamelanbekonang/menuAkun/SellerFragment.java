@@ -13,7 +13,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.gamelanbekonang.R;
@@ -22,14 +21,15 @@ import com.gamelanbekonang.menuBantuan.CaraDaftarActivity;
 import com.gamelanbekonang.menuBantuan.JualBeliActivity;
 import com.gamelanbekonang.menuBantuan.KebijakanActivity;
 import com.gamelanbekonang.menuBantuan.KetentuanActivity;
-import com.gamelanbekonang.menuProfil.ProfileSeller;
+import com.gamelanbekonang.menuProfil.GantiPasswordActivity;
+import com.gamelanbekonang.menuProfil.EditProfileSeller;
+import com.gamelanbekonang.menuProfil.MyIklanActivity;
 import com.squareup.picasso.Picasso;
 
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.content.ContentValues.TAG;
-import static com.gamelanbekonang.api.BaseApiService.BASE_URL_IMAGE;
 import static com.gamelanbekonang.api.BaseApiService.BASE_URL_IMAGE_USER;
 import static com.gamelanbekonang.logRes.LoginActivity.my_shared_preferences;
 
@@ -39,7 +39,7 @@ import static com.gamelanbekonang.logRes.LoginActivity.my_shared_preferences;
 public class SellerFragment extends Fragment {
 
     private TextView tv_idseller, tv_nameseller, tv_emailseller, tv_notelpseller, tv_alamatseller, tv_keluarseller;
-    private TextView tv_tentangsr, tv_caradftsr, tv_tipssr, tv_kebijakansr, tv_ketentuansr, tv_iklanseller, tv_editsr;
+    private TextView tv_tentangsr, tv_caradftsr, tv_tipssr, tv_kebijakansr, tv_ketentuansr, tv_iklanseller, tv_editsr,tv_editpasssr;
     private CircleImageView civ_seller;
     public static final  String value = "id";
 
@@ -67,6 +67,7 @@ public class SellerFragment extends Fragment {
         tv_alamatseller = view.findViewById(R.id.tv_alamatseller);
         tv_notelpseller = view.findViewById(R.id.tv_notelpseller);
         tv_editsr = view.findViewById(R.id.tv_editpsr);
+        tv_editpasssr = view.findViewById(R.id.tv_editpasspsr);
         tv_iklanseller = view.findViewById(R.id.tv_iklanseller);
         tv_tentangsr = view.findViewById(R.id.tv_tentangseller);
         tv_caradftsr = view.findViewById(R.id.tv_caradaftarsr);
@@ -116,7 +117,7 @@ public class SellerFragment extends Fragment {
         tv_editsr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentiksr = new Intent(getActivity(), ProfileSeller.class);
+                Intent intentiksr = new Intent(getActivity(), EditProfileSeller.class);
                 startActivity(intentiksr);
             }
         });
@@ -159,7 +160,14 @@ public class SellerFragment extends Fragment {
         tv_iklanseller.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(getActivity(), MyIklanActivity.class));
 
+            }
+        });
+        tv_editpasssr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), GantiPasswordActivity.class));
             }
         });
     }

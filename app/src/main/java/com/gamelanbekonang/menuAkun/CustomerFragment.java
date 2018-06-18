@@ -22,6 +22,9 @@ import com.gamelanbekonang.menuBantuan.CaraDaftarActivity;
 import com.gamelanbekonang.menuBantuan.JualBeliActivity;
 import com.gamelanbekonang.menuBantuan.KebijakanActivity;
 import com.gamelanbekonang.menuBantuan.KetentuanActivity;
+import com.gamelanbekonang.menuProfil.EditProfilCustomer;
+import com.gamelanbekonang.menuProfil.EditProfileSeller;
+import com.gamelanbekonang.menuProfil.GantiPasswordActivity;
 import com.gamelanbekonang.menuProfil.ProfilActivity;
 import com.squareup.picasso.Picasso;
 
@@ -36,8 +39,8 @@ import static com.gamelanbekonang.logRes.LoginActivity.my_shared_preferences;
  */
 public class CustomerFragment extends Fragment {
 
-    private TextView tv_idctm, tv_namectm, tv_emailctm, tv_notelpctm, keluar_ctm;
-    private TextView tentangctm, caradaftarctm, tipsctm, kebijkanctm, ketentuanctm;
+    private TextView tv_idctm, tv_namectm, tv_emailctm, tv_addressctm, tv_notelpctm, keluar_ctm;
+    private TextView tentangctm, caradaftarctm, tipsctm, kebijkanctm, ketentuanctm,tv_editpcm, tv_gantipassctm;
     private CircleImageView civ_ctm;
     public static final  String value = "id";
 
@@ -64,7 +67,10 @@ public class CustomerFragment extends Fragment {
 //        tv_idctm =  view.findViewById(R.id.tv_idctm);
         tv_namectm = view.findViewById(R.id.tv_namectm);
         tv_emailctm = view.findViewById(R.id.tv_emailctm);
+        tv_addressctm= view.findViewById(R.id.tv_alamatctm);
         tentangctm = view.findViewById(R.id.tv_tentangctm);
+        tv_editpcm = view.findViewById(R.id.tv_editpctm);
+        tv_gantipassctm = view.findViewById(R.id.tv_editpassctm);
         caradaftarctm = view.findViewById(R.id.tv_caradaftarctm);
         kebijkanctm = view.findViewById(R.id.tv_kebijakanctm);
         tipsctm = view.findViewById(R.id.tv_tipscs);
@@ -88,6 +94,8 @@ public class CustomerFragment extends Fragment {
         tv_emailctm.setText(email);
         String notelp = (sp.getString("notelp", ""));
         tv_notelpctm.setText(notelp);
+        String address = (sp.getString("address",""));
+        tv_addressctm.setText(address);
         Log.d(TAG, "JKOEr: "+id+civ_ctm+name+email+notelp);
 
         keluar_ctm.setOnClickListener(new View.OnClickListener() {
@@ -110,6 +118,12 @@ public class CustomerFragment extends Fragment {
             }
         });
 
+        tv_editpcm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), EditProfileSeller.class));
+            }
+        });
         tentangctm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,6 +157,13 @@ public class CustomerFragment extends Fragment {
             public void onClick(View v) {
                 Intent intentktncs = new Intent(getActivity(), KetentuanActivity.class);
                 startActivity(intentktncs);
+            }
+        });
+
+        tv_gantipassctm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), GantiPasswordActivity.class));
             }
         });
     }

@@ -6,7 +6,6 @@ import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -20,6 +19,7 @@ public interface ApiService {
 
     String BASE_URL_IMAGEIKLAN = "http://bekonang-store.000webhostapp.com/images/iklans/";
     String BASE_URL_IMAGEUSER = "http://bekonang-store.000webhostapp.com/images/users/";
+
 
     @GET("iklan")
     Call<ResponseBody> getData();
@@ -50,8 +50,13 @@ public interface ApiService {
     Call <ResponseBody> viewCount(@Path("iklanId") String iklanId,
                                   @Field("_method") String Key);
 
-    @FormUrlEncoded
-    @POST("iklan/{iklanId}/contactcount")
-    Call <ResponseBody> cantactCount(@Path("iklanId") String iklanId,
-                                  @Field("_method") String Key);
+//<<<<<<< Updated upstream
+//    @FormUrlEncoded
+//    @POST("iklan/{iklanId}/contactcount")
+//    Call <ResponseBody> cantactCount(@Path("iklanId") String iklanId,
+//                                  @Field("_method") String Key);
+//=======
+//
+//
+//>>>>>>> Stashed changes
 }

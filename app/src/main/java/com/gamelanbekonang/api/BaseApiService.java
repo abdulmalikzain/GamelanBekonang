@@ -1,5 +1,7 @@
 package com.gamelanbekonang.api;
 
+import com.google.gson.annotations.SerializedName;
+
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -16,6 +18,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by user on 4/5/2018.
@@ -25,6 +28,9 @@ public interface BaseApiService {
 
 //    String BASE_API_URL = "http://bekonang-store.000webhostapp.com";
     String BASE_URL_IMAGE = "http://bekonang-store.000webhostapp.com/images/iklans";
+    String BASE_URL_UPDATE_PROFIL ="https://bekonang-store.000webhostapp.com/api/v1/user/myprofile/";
+    String BASE_URL_IMAGE_USER = "http://bekonang-store.000webhostapp.com/images/users/";
+    String BASE_URL_CHANGE_PASS = "https://bekonang-store.000webhostapp.com/api/v1/user/changePassword/";
 
 
     @FormUrlEncoded
@@ -56,11 +62,22 @@ public interface BaseApiService {
     @FormUrlEncoded
     @POST("myprofile")
     Call<ResponseBody> updateProfile(
+            @Query("token") String token,
+            @Field("id")  String id,
             @Field("name") String name,
             @Field("email") String email,
             @Field("address") String address,
-            @Field("notelp") String notelp);
-//                                     @Field("image") String image);
-    String BASE_URL_UPDATE_PROFIL ="https://bekonang-store.000webhostapp.com/api/user/myprofile/";
-    String BASE_URL_IMAGE_USER = "http://bekonang-store.000webhostapp.com/images/users/";
+            @Field("notelp") String notelp,
+            @Field("image") String image);
+
+    @FormUrlEncoded
+    @POST("changePassword")
+    Call<ResponseBody> ubahPassword(@Query("token") String token,
+                                      @Field("current_password") String current_password,
+                                      @Field("new_password") String new_password,
+                                      @Field("new_password_confirmation") String new_password_confirmation);
+
+
+    @GET("myiklan")
+    Call<ResponseBody> MyData(@Query("token") String token);
 }

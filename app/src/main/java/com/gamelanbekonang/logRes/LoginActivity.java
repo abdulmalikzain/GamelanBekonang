@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText etEmail;
     private EditText etPassword;
-    private TextView coba;
+    private TextView coba, tv_next, tv_skip;
     private Button btnLogin;
     private Button btnRegister;
     private CheckBox c;
@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
     private BaseApiService mApiService;
     private Toolbar mActionToolbar;
     SharedPreferences sharedpreferences;
-    public static final  String value = "key";
+    public static final  String value = "id";
     Boolean session = false;
     private String id,image,name,email,notelp,address, store_name,remember_token;
     public static final String session_status = "session_status";
@@ -69,14 +69,14 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mActionToolbar = (Toolbar) findViewById(R.id.tabs_login);
-        setSupportActionBar(mActionToolbar);
-        getSupportActionBar().setTitle("LOGIN ACCOUNT");
-
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-        }
+//        mActionToolbar = (Toolbar) findViewById(R.id.tabs_login);
+//        setSupportActionBar(mActionToolbar);
+//        getSupportActionBar().setTitle("LOGIN ACCOUNT");
+//
+//        if (getSupportActionBar() != null) {
+//            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//            getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        }
 
         mContext = this;
         mApiService = UtilsApi.getAPIService(); // meng-init yang ada di package apihelper
@@ -88,16 +88,18 @@ public class LoginActivity extends AppCompatActivity {
     private void initComponents() {
         sharedpreferences = getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
 //        session = sharedpreferences.getBoolean(session_status, false);
-        id = sharedpreferences.getString("id",null);
+        String id = sharedpreferences.getString("id", null);
         image = sharedpreferences.getString("image", null);
         name = sharedpreferences.getString("name", null);
         email = sharedpreferences.getString("email", null);
         notelp = sharedpreferences.getString("notelp",null);
         address = sharedpreferences.getString("address", null);
         store_name = sharedpreferences.getString("store_name", null);
-        remember_token = sharedpreferences.getString("remember_token", null);
-        int i = sharedpreferences.getInt(value, 0);
+        remember_token = sharedpreferences.getString("token", null);
+//        int i = sharedpreferences.getInt(value, 0);
 
+        tv_next = (TextView)findViewById(R.id.tv_next);
+        tv_skip = (TextView)findViewById(R.id.tv_skip);
         coba = (TextView) findViewById(R.id.coba);
         etEmail = (EditText) findViewById(R.id.et_emaill);
         etPassword = (EditText) findViewById(R.id.et_passwordl);
@@ -129,6 +131,19 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(mContext, RegisterActivity.class));
             }
         });
+
+        tv_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, MainActivity.class));
+            }
+        });
+        tv_skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, MainActivity.class));
+            }
+        });
     }
 
 
@@ -141,7 +156,7 @@ public class LoginActivity extends AppCompatActivity {
                             loading.dismiss();
                             try {
                                 JSONObject jsonRESULTS = new JSONObject(response.body().string());
-
+                                JSONArray jsonArray = jsonRESULTS.getJSONObject("user").getJSONArray("roles");
                                 if (!jsonRESULTS.getString("msg").equals("404")){
                                     // Jika login berhasil maka data nama yang ada di response API
                                     // akan diparsing ke activity selanjutnya.
@@ -155,14 +170,15 @@ public class LoginActivity extends AppCompatActivity {
                                     String address = jsonRESULTS.getJSONObject("user").getString("address");
                                     String store_name = jsonRESULTS.getJSONObject("user").getString("store_name");
                                     String remember_token = jsonRESULTS.getString("token");
+                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                    String namerules = jsonObject.optString("role_name");
 
 
 
-                                    JSONArray jsonArray = jsonRESULTS.getJSONObject("user").getJSONArray("roles");
 
-                                    for (int i = 0 ; i < jsonArray.length() ; i++) {
-                                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                        String namerules = jsonObject.optString("role_name");
+
+//                                    for (int i = 0 ; i < jsonArray.length() ; i++) {
+
 
                                         if (namerules.equals("customer")) {
                                             SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
@@ -198,12 +214,13 @@ public class LoginActivity extends AppCompatActivity {
                                             editor.putString("store_name", store_name);
                                             editor.commit();
                                             Log.d(TAG, "Seller: "+remember_token);
+                                            Log.d(TAG, "onResponse: ");
                                             loading.dismiss();
                                             Intent intent2 = new Intent(getApplicationContext(), MainActivity.class);
                                             startActivity(intent2);
                                         }
 
-                                    }
+//                                    }
 
 
                                 }else {
@@ -240,10 +257,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     //button back toolbar
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId()== android.R.id.home)
-            finish();
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        if (item.getItemId()== android.R.id.home)
+//            finish();
+//        return super.onOptionsItemSelected(item);
+//    }
 }

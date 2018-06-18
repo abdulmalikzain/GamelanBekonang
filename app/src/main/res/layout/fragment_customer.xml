@@ -7,14 +7,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".menuAkun.CustomerFragment">
 
-    <android.support.v7.widget.Toolbar
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tabs_csakun"
-        android:background="@color/colorPrimaryDark"
-        android:theme="@style/Base.Theme.AppCompat">
+        android:layout_height="wrap_content" >
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tabs_csakun"
+            style="@style/TechniqueToolbar">
 
-    </android.support.v7.widget.Toolbar>
+        </android.support.v7.widget.Toolbar>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ACCOUNT"
+            android:textSize="10pt"
+            android:textColor="@color/white"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="sans-serif"/>
+    </RelativeLayout>
 
 
     <LinearLayout
@@ -246,7 +256,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
@@ -255,7 +265,7 @@
                 <TextView
                     android:id="@+id/tv_editpctm"
                     android:layout_width="340sp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="Edit Profil"
                     android:textSize="18sp"/>
                 <TextView
@@ -264,6 +274,38 @@
                     android:layout_marginLeft="15sp"
                     android:textSize="18sp"
                     android:background="@drawable/ic_keyboard_arrow_right_black_24dp"/>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            app:cardElevation="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_editpassctm"
+                    android:layout_width="340sp"
+                    android:layout_height="match_parent"
+                    android:text="Ganti Password"
+                    android:background="@drawable/ripple_effect"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15sp"
+                    android:textSize="18sp"
+                    android:background="@drawable/ic_keyboard_arrow_right_black_24dp"/>
+
 
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -289,7 +331,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
@@ -298,7 +340,7 @@
             <TextView
                 android:id="@+id/tv_tentangctm"
                 android:layout_width="340sp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="Tentang"
                 android:background="@drawable/ripple_effect"
                 android:textSize="18sp"/>
@@ -320,7 +362,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
@@ -329,7 +371,7 @@
             <TextView
                 android:id="@+id/tv_caradaftarctm"
                 android:layout_width="340sp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="Cara Daftar"
                 android:background="@drawable/ripple_effect"
                 android:textSize="18sp"/>
@@ -353,7 +395,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
@@ -362,7 +404,7 @@
                 <TextView
                     android:id="@+id/tv_tipscs"
                     android:layout_width="340sp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="Tips Pembelian"
                     android:background="@drawable/ripple_effect"
                     android:textSize="18sp"/>
@@ -385,7 +427,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
@@ -395,7 +437,7 @@
                     android:id="@+id/tv_kebijakanctm"
                     android:layout_width="340sp"
                     android:background="@drawable/ripple_effect"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="Kebijakan"
                     android:textSize="18sp"/>
 
@@ -417,7 +459,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
@@ -427,7 +469,7 @@
                     android:id="@+id/tv_ketentuanctm"
                     android:layout_width="340sp"
                     android:background="@drawable/ripple_effect"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="Ketentuan"
                     android:textSize="18sp"/>
 

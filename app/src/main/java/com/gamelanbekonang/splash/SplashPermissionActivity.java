@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.gamelanbekonang.MainActivity;
 import com.gamelanbekonang.R;
+import com.gamelanbekonang.logRes.LoginActivity;
 
 public class SplashPermissionActivity extends AppCompatActivity {
 
@@ -27,7 +28,7 @@ public class SplashPermissionActivity extends AppCompatActivity {
         permissionHelper.permissionListener(new PermissionHelper.PermissionListener() {
             @Override
             public void onPermissionCheckDone() {
-                intent = new Intent(SplashPermissionActivity.this, MainActivity.class);
+                intent = new Intent(SplashPermissionActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }

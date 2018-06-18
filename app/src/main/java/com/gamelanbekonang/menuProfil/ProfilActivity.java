@@ -74,7 +74,6 @@ public class ProfilActivity extends AppCompatActivity {
         tv_address.setText(address);
         String namerules = (sp.getString("name", ""));
         tv_reseller.setText(namerules);
-        Log.d(TAG, "JKOEr: "+id+civp+name+email+notelp);
 
         mActionToolbar = (Toolbar) findViewById(R.id.tabs_profil);
         setSupportActionBar(mActionToolbar);

@@ -35,8 +35,10 @@
         <activity android:name=".menuBantuan.KetentuanActivity" />
         <activity android:name=".menuKategori.KategoriIklanActivity" />
         <activity android:name=".menuBantuan.KebijakanActivity" />
-        <activity android:name=".menuProfil.ProfileSeller"></activity>
-
+        <activity android:name=".menuProfil.EditProfileSeller" />
+        <activity android:name=".menuProfil.GantiPasswordActivity" />
+        <activity android:name=".menuProfil.EditProfilCustomer" />
+        <activity android:name=".menuProfil.MyIklanActivity"></activity>
     </application>
 
 </manifest>
