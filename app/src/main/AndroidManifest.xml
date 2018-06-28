@@ -38,7 +38,8 @@
         <activity android:name=".menuProfil.EditProfileSeller" />
         <activity android:name=".menuProfil.GantiPasswordActivity" />
         <activity android:name=".menuProfil.EditProfilCustomer" />
-        <activity android:name=".menuProfil.MyIklanActivity"></activity>
+        <activity android:name=".menuProfil.MyIklanActivity" />
+        <activity android:name=".menuProfil.InformasiPublikActivity"></activity>
     </application>
 
 </manifest>

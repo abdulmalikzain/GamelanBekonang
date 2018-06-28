@@ -32,6 +32,7 @@ import com.gamelanbekonang.api.RetroClient;
 import com.gamelanbekonang.api.RetrofitClient;
 import com.gamelanbekonang.api.UtilsApi;
 import com.gamelanbekonang.beans.Iklan;
+import com.gamelanbekonang.menuProfil.InformasiPublikActivity;
 import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
 
@@ -41,6 +42,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -60,6 +62,7 @@ public class DetailIklanActivity extends AppCompatActivity {
 //    private BaseApiService mApiService;
     private ApiService apiService;
     private Context mContext;
+    private CircleImageView civInfo;
 //    private FloatingActionButton fabTelpMess;
 
     @Override
@@ -67,6 +70,13 @@ public class DetailIklanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_iklan);
 
+        civInfo = (CircleImageView) findViewById(R.id.civ_infoiklan);
+        civInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DetailIklanActivity.this, InformasiPublikActivity.class));
+            }
+        });
         Bundle bundle = getIntent().getExtras();
         id     = bundle.getString("id");
 

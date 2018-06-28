@@ -77,7 +77,9 @@ public interface BaseApiService {
                                       @Field("new_password") String new_password,
                                       @Field("new_password_confirmation") String new_password_confirmation);
 
-
     @GET("myiklan")
     Call<ResponseBody> MyData(@Query("token") String token);
+
+    @GET("profile/{id}")
+    Call <ResponseBody> getInfo(@Path("infoId") String infoId);
 }
