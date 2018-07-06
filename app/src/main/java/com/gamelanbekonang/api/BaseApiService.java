@@ -81,5 +81,5 @@ public interface BaseApiService {
     Call<ResponseBody> MyData(@Query("token") String token);
 
     @GET("profile/{id}")
-    Call <ResponseBody> getInfo(@Path("infoId") String infoId);
+    Call <ResponseBody> getInfo(@Path("id") String id);
 }

@@ -1,7 +1,9 @@
 package com.gamelanbekonang.menuHome;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -32,6 +34,7 @@ import com.gamelanbekonang.api.RetroClient;
 import com.gamelanbekonang.api.RetrofitClient;
 import com.gamelanbekonang.api.UtilsApi;
 import com.gamelanbekonang.beans.Iklan;
+import com.gamelanbekonang.logRes.LoginActivity;
 import com.gamelanbekonang.menuProfil.InformasiPublikActivity;
 import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
@@ -91,21 +94,17 @@ public class DetailIklanActivity extends AppCompatActivity {
 //        fabTelpMess = findViewById(R.id.FAB_telp_mess);
         tbAddfavorite = findViewById(R.id.tb_add_favorite);
 
-        if (role_name.equals("customer")){
-
-        }else if (role_name.equals("seller")){
-
-        }
-
         tbAddfavorite.setChecked(false);
         tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite_border));
         tbAddfavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    postFavorite();
-                    tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_favorite_kuning));
-                    Toast.makeText(DetailIklanActivity.this, "iklan ditambahkan ke favorite", Toast.LENGTH_SHORT).show();
+                    if (!token.equals(null)){
+                        postFavorite();
+                        tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_favorite_kuning));
+                        Toast.makeText(DetailIklanActivity.this, "iklan ditambahkan ke favorite", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 else {
                     tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite_border));
@@ -169,6 +168,27 @@ public class DetailIklanActivity extends AppCompatActivity {
     private void loadBackdrop() {
 //        final ImageView imageView = findViewById(R.id.backdrop);
 //        Picasso.with(getApplication()).load(BaseApiService.BASE_URL_IMAGE+gambarIklan).centerCrop().resize(1600, 850).error(R.mipmap.ic_launcher).into(imageView);
+    }
+
+    private void alertLogin(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Belum Login");
+        builder.setMessage("anda harus login lebih dahulu")
+                .setIcon(R.mipmap.ic_icon_gw)
+                .setCancelable(false)
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent intent = new Intent(DetailIklanActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     //button back toolbar
