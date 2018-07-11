@@ -3,6 +3,7 @@ package com.gamelanbekonang.menuProfil;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -82,9 +83,9 @@ public class MyIklanActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 //        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 //        recyclerView.setLayoutManager(layoutManager);
-        final LinearLayoutManager mLayoutManager;
-        mLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(mLayoutManager);
+//        GridLayoutManager gridLayoutManager;
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(MyIklanActivity.this, 2);
+        recyclerView.setLayoutManager(gridLayoutManager);
         getData();
 
 
@@ -126,7 +127,7 @@ public class MyIklanActivity extends AppCompatActivity {
                             iklan.setStore_name(storename);
 
                             myiklan.add(iklan);
-                            AdapterIklan adapter = new AdapterIklan(MyIklanActivity.this, myiklan);
+                            AdapterMyIklan adapter = new AdapterMyIklan(MyIklanActivity.this, myiklan);
                             recyclerView.setAdapter(adapter);
 
                         }

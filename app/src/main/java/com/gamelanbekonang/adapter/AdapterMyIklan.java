@@ -33,7 +33,7 @@ public class AdapterMyIklan extends RecyclerView.Adapter<AdapterMyIklan.MyIklanV
     @Override
     public AdapterMyIklan.MyIklanViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.iklan_list, parent, false);
+                .inflate(R.layout.activity_item_myiklan, parent, false);
 
         return new AdapterMyIklan.MyIklanViewHolder(itemView);
 
@@ -44,7 +44,7 @@ public class AdapterMyIklan extends RecyclerView.Adapter<AdapterMyIklan.MyIklanV
 
         Iklan iklan = my_iklans.get(position);
         holder.tvJudul.setText(iklan.getJudul());
-        holder.tvVolume.setText(iklan.getVolume());
+//        holder.tvVolume.setText(iklan.getVolume());
 //            holder.tvWaktu.setText(iklan.getCreated_at());
         holder.tvHarga.setText(iklan.getHarga());
         holder.tvId.setText(iklan.getId());
@@ -52,11 +52,11 @@ public class AdapterMyIklan extends RecyclerView.Adapter<AdapterMyIklan.MyIklanV
                 .error(R.mipmap.ic_launcher)
                 .into(holder.ivGambar);
 
-        Picasso.with(context).load(ApiService.BASE_URL_IMAGEUSER+iklan.getUser_image())
-                .centerCrop()
-                .resize(80, 80)
-                .error(R.mipmap.ic_launcher)
-                .into(holder.civFotouser);
+//        Picasso.with(context).load(ApiService.BASE_URL_IMAGEUSER+iklan.getUser_image())
+//                .centerCrop()
+//                .resize(80, 80)
+//                .error(R.mipmap.ic_launcher)
+//                .into(holder.civFotouser);
 
     }
 
@@ -73,13 +73,13 @@ public class AdapterMyIklan extends RecyclerView.Adapter<AdapterMyIklan.MyIklanV
         public MyIklanViewHolder(View itemView) {
             super(itemView);
 
-            tvId        = itemView.findViewById(R.id.tv_iklan_idiklan);
-            tvJudul  = itemView.findViewById(R.id.tv_iklan_judul);
-            tvVolume = itemView.findViewById(R.id.tv_iklan_volume);
-            tvPerusahaan = itemView.findViewById(R.id.tv_iklan_perusahaan);
-            tvHarga     = itemView.findViewById(R.id.tv_iklan_harga);
-            civFotouser = itemView.findViewById(R.id.civ_iklan_fotouser);
-            ivGambar    = itemView.findViewById(R.id.iv_iklan_foto);
+            tvId        = itemView.findViewById(R.id.tv_myiklan_idiklan);
+            tvJudul  = itemView.findViewById(R.id.tv_myiklan_judul);
+//            tvVolume = itemView.findViewById(R.id.tv_iklan_volume);
+//            tvPerusahaan = itemView.findViewById(R.id.tv_iklan_perusahaan);
+            tvHarga     = itemView.findViewById(R.id.tv_myiklan_harga);
+//            civFotouser = itemView.findViewById(R.id.civ_iklan_fotouser);
+            ivGambar    = itemView.findViewById(R.id.iv_myiklan_foto);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

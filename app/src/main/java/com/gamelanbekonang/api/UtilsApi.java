@@ -6,7 +6,7 @@ package com.gamelanbekonang.api;
 
 public class UtilsApi {
     // ini adalah localhost.
-    public static final String BASE_URL_API = "http://bekonang-store.000webhostapp.com/api/v1/user/";
+    public static final String BASE_URL_API = "http://bekonangstore.herokuapp.com/api/v1/user/";
 
     // Mendeklarasikan Interface BaseApiService
     public static BaseApiService getAPIService(){

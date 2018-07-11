@@ -16,61 +16,31 @@
         <!--android:theme="@style/Base.Theme.AppCompat">-->
 
     <!--</android.support.v7.widget.Toolbar>-->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <!--<RelativeLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-        <TextView
-            android:id="@+id/lgn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            android:textSize="10pt"
-            android:layout_marginBottom="10sp"
-            android:textColor="@color/white"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="sans-serif"/>
-    </RelativeLayout>
+    <!--<android.support.v7.widget.Toolbar-->
+        <!--android:id="@+id/toolbar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?attr/actionBarSize"-->
+        <!--android:background="@color/colorPrimary"-->
+        <!--android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"-->
+        <!--app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />-->
+    <!--<TextView-->
+        <!--android:id="@+id/lgn"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Login"-->
+        <!--android:textSize="10pt"-->
+        <!--android:layout_marginBottom="10sp"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:fontFamily="sans-serif"/>-->
+<!--</RelativeLayout>-->
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginTop="-55dp"
-        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_next"
-        android:layout_width="33dp"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:layout_marginBottom="7dp"
-        android:textStyle="bold"
-        android:layout_marginRight="30dp"
-        android:layout_gravity="right"
-        android:backgroundTint="@color/white"
-        android:background="@drawable/ic_close_black_24dp"/>
-    <TextView
-        android:id="@+id/tv_skip"
-        android:layout_marginTop="-10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:text="skip"
-        android:textStyle="bold"
-        android:layout_marginRight="30dp"
-        android:layout_gravity="right"
-        android:textColor="@color/white"/>
-
-    </LinearLayout>
 
 
 
@@ -83,7 +53,37 @@
     android:layout_marginBottom="2dp"
     android:layout_marginTop="5dp"
     android:layout_marginRight="4dp">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/tv_next"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:textSize="20sp"
+            android:layout_marginBottom="7dp"
+            android:textStyle="bold"
+            android:layout_marginRight="30dp"
+            android:layout_gravity="right"
+            android:backgroundTint="@color/white"
+            android:background="@drawable/ic_close_black_24dp"/>
+        <TextView
+            android:id="@+id/tv_skip"
+            android:layout_marginTop="-10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="skip"
+            android:textStyle="bold"
+            android:layout_marginRight="30dp"
+            android:layout_gravity="right"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -116,6 +116,7 @@
             android:layout_width="119dp"
             android:layout_height="100dp"
             android:layout_marginBottom="5dp"
+            android:layout_marginTop="20dp"
             android:src="@mipmap/ic_icon_gw_round"
             app:civ_border_color="@color/color_home"
             android:layout_gravity="center"
@@ -202,7 +203,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="340dp"
+        android:layout_marginTop="370dp"
         android:gravity="center"
         android:orientation="vertical">
 

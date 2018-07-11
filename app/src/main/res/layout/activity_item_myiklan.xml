@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20px">
+            <ImageView
+                android:id="@+id/iv_myiklan_foto"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:layout_weight="1"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="right"
+                android:background="@drawable/btn_radius"
+                android:layout_marginLeft="5dp">
+                <TextView
+                    android:gravity="center"
+                    android:textSize="5pt"
+                    android:layout_marginLeft="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Rp"/>
+                <TextView
+                    android:id="@+id/tv_myiklan_harga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1000"
+                    android:textSize="8pt"
+                    android:textColor="@color/ambarFirebase"
+                    android:layout_marginLeft="5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ripple_effect"
+                android:paddingTop="5dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                        <!--android:layout_width="35dp"-->
+                        <!--android:layout_height="35dp"-->
+                        <!--android:id="@+id/civ_iklan_fotouser"-->
+                        <!--android:src="@mipmap/ic_launcher"/>-->
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="2"
+                    android:layout_marginLeft="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_myiklan_judul"
+                        android:text="Judul"
+                        android:textSize="9pt"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                        android:layout_marginTop="-5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <!--<TextView-->
+                        <!--android:id="@+id/tv_iklan_volume"-->
+                        <!--android:text="volume"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content" />-->
+                    <!--<TextView-->
+                        <!--android:id="@+id/tv_iklan_perusahaan"-->
+                        <!--android:text="perusahaan"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content" />-->
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_myiklan_idiklan"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"/>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
