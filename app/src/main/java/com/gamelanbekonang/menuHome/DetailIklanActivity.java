@@ -22,6 +22,7 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -60,12 +61,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static com.gamelanbekonang.logRes.LoginActivity.my_shared_preferences;
 
 public class DetailIklanActivity extends AppCompatActivity {
-    private String gambarIklan, noTelp, id, userId, token, role_name;
+    private String gambarIklan, noTelp, id, userId, token;
     private ToggleButton tbAddfavorite;
-//    private BaseApiService mApiService;
     private ApiService apiService;
     private Context mContext;
-    private CircleImageView civInfo;
+    private CircleImageView civFotoProfil;
+    private TextView tvLihatProfil, tvUsername, tvMember, tvJudulbarang, tvDeskripsi, tvDilihat, tvDihubungi, tvStok, tvAlamat;
+    private Toolbar toolbar;
+    private CollapsingToolbarLayout collapsingToolbar;
 //    private FloatingActionButton fabTelpMess;
 
     @Override
@@ -73,34 +76,41 @@ public class DetailIklanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_iklan);
 
-        civInfo = (CircleImageView) findViewById(R.id.civ_infoiklan);
-        civInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(DetailIklanActivity.this, InformasiPublikActivity.class));
-            }
-        });
+        tvLihatProfil = findViewById(R.id.lihatprofil_detiliklan);
+        toolbar = findViewById(R.id.toolbar);
+//        fabTelpMess = findViewById(R.id.FAB_telp_mess);
+        tbAddfavorite = findViewById(R.id.tb_add_favorite);
+        collapsingToolbar = findViewById(R.id.collapsing_toolbar);
+        tvUsername      = findViewById(R.id.username_detiliklan);
+        tvMember        = findViewById(R.id.member_detiliklan);
+        tvJudulbarang   = findViewById(R.id.judulbarang_detiliklan);
+        tvDeskripsi     = findViewById(R.id.deskripsi_detiliklan);
+        tvDilihat       = findViewById(R.id.dilihat_detiliklan);
+        tvDihubungi     = findViewById(R.id.dihubungi_detiliklan);
+        tvStok          = findViewById(R.id.stok_detiliklan);
+        tvAlamat        = findViewById(R.id.alamat_detiliklan);
+
         Bundle bundle = getIntent().getExtras();
         id     = bundle.getString("id");
 
         SharedPreferences sp = getApplicationContext().getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
         token = (sp.getString("token", ""));
-        role_name = (sp.getString("role_name", ""));
 
-        noTelp = "085226152856";
-        Log.d("aa", "onCreate: "+id);
-
-        final Toolbar toolbar = findViewById(R.id.toolbar);
-//        fabTelpMess = findViewById(R.id.FAB_telp_mess);
-        tbAddfavorite = findViewById(R.id.tb_add_favorite);
+        tvLihatProfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DetailIklanActivity.this, InformasiPublikActivity.class));
+            }
+        });
 
         tbAddfavorite.setChecked(false);
         tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite_border));
         tbAddfavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
                 if (isChecked) {
-                    if (!token.equals(null)){
+                    if (token.equals(null)){
                         postFavorite();
                         tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_favorite_kuning));
                         Toast.makeText(DetailIklanActivity.this, "iklan ditambahkan ke favorite", Toast.LENGTH_SHORT).show();
@@ -119,7 +129,7 @@ public class DetailIklanActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        CollapsingToolbarLayout collapsingToolbar = findViewById(R.id.collapsing_toolbar);
+
         collapsingToolbar.setTitle("aa");
 
 //        loadBackdrop();
@@ -164,12 +174,8 @@ public class DetailIklanActivity extends AppCompatActivity {
 
 //        apiService = UtilsApi.getAPICount();
         viewCount();
+        getDataIklanId();
 //
-    }
-
-    private void loadBackdrop() {
-//        final ImageView imageView = findViewById(R.id.backdrop);
-//        Picasso.with(getApplication()).load(BaseApiService.BASE_URL_IMAGE+gambarIklan).centerCrop().resize(1600, 850).error(R.mipmap.ic_launcher).into(imageView);
     }
 
     private void alertLogin(){
@@ -209,13 +215,34 @@ public class DetailIklanActivity extends AppCompatActivity {
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         try {
                             JSONObject object = new JSONObject(response.body().string());
-                            JSONArray jsonArray  = object.optJSONArray("iklan");
-                            for (int i = 0; i <jsonArray.length() ; i++) {
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                String idIklan  = jsonObject.optString("id");
+                            JSONObject jsonObject = object.optJSONObject("iklan");
+                            String judul = jsonObject.optString("judul");
+                            String image1   = jsonObject.optString("image1");
+                            String image2   = jsonObject.optString("image2");
+                            String image3   = jsonObject.optString("image3");
+                            String image4   = jsonObject.optString("image4");
+                            String image5   = jsonObject.optString("image5");
+                            String deskripsi = jsonObject.optString("deskripsi");
+                            String volume   = jsonObject.optString("volume");
+                            String stock    = jsonObject.optString("stock");
+                            String harga    = jsonObject.optString("harga");
+                            String created_at = jsonObject.optString("created_at");
+                            String view_count = jsonObject.optString("view_count");
+                            String contact_count = jsonObject.optString("contact_count");
 
+                            JSONObject jsonObject1 = jsonObject.optJSONObject("users");
+                            String fotoprofil   = jsonObject1.getString("image");
+                            String nama = jsonObject1.optString("name");
+                            String notelp       = jsonObject1.optString("notelp");
+                            String address      = jsonObject1.optString("address");
+                            String store_name   = jsonObject1.optString("store_name");
 
-                            }
+                            tvJudulbarang.setText(judul);
+                            tvDeskripsi.setText(deskripsi);
+                            tvDilihat.setText(view_count);
+                            tvDihubungi.setText(contact_count);
+                            tvStok.setText(stock);
+                            tvAlamat.setText(address);
 
                         } catch (IOException e) {
                             e.printStackTrace();

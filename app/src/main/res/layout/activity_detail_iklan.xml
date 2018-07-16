@@ -88,7 +88,7 @@
                     android:orientation="horizontal">
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/civ_infoiklan"
+                        android:id="@+id/fotouser_detiliklan"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:src="@mipmap/ic_launcher"/>
@@ -101,16 +101,19 @@
                         android:layout_marginLeft="15dp">
 
                         <TextView
+                            android:id="@+id/username_detiliklan"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Username"
                             android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
                         <TextView
+                            android:id="@+id/member_detiliklan"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Member Sejak" />
                         <TextView
+                            android:id="@+id/lihatprofil_detiliklan"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Lihat profile"
@@ -134,6 +137,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:id="@+id/judulbarang_detiliklan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Judul Barang"
@@ -147,7 +151,8 @@
                         app:trimCollapsedText="@string/lihat_semua"
                         app:trimLength="10"
                         app:colorClickableText="@color/ambarFirebase"
-                        android:text="deskripsi barang" />
+                        android:text="deskripsi barang"
+                        android:id="@+id/deskripsi_detiliklan"/>
 
                 </LinearLayout>
 
@@ -165,8 +170,75 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+                    <android.support.v7.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_weight="1">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center">
+                            <TextView
+                                android:id="@+id/dilihat_detiliklan"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="100"
+                                android:textStyle="bold"
+                                android:textColor="@color/Black"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Dilihat"/>
+                        </LinearLayout>
 
-
+                    </android.support.v7.widget.CardView>
+                    <android.support.v7.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="1">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center">
+                            <TextView
+                                android:id="@+id/dihubungi_detiliklan"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="100"
+                                android:textStyle="bold"
+                                android:textColor="@color/Black"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Dihubungi"/>
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+                    <android.support.v7.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_weight="1">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center">
+                            <TextView
+                                android:id="@+id/stok_detiliklan"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="100"
+                                android:textStyle="bold"
+                                android:textColor="@color/Black"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Stok"/>
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
 
                 </LinearLayout>
 
@@ -191,6 +263,7 @@
                         android:textColor="@color/kuningFirebase"/>
 
                     <TextView
+                        android:id="@+id/alamat_detiliklan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/ic_place"
