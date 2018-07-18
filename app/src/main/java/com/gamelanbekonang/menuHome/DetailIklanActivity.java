@@ -10,7 +10,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.renderscript.Sampler;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +25,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.daimajia.slider.library.Animations.DescriptionAnimation;
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.gamelanbekonang.MainActivity;
 import com.gamelanbekonang.R;
 import com.gamelanbekonang.adapter.AdapterIklan;
@@ -37,6 +40,7 @@ import com.gamelanbekonang.api.UtilsApi;
 import com.gamelanbekonang.beans.Iklan;
 import com.gamelanbekonang.logRes.LoginActivity;
 import com.gamelanbekonang.menuProfil.InformasiPublikActivity;
+import com.github.clans.fab.FloatingActionButton;
 import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
 
@@ -45,6 +49,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.MediaType;
@@ -61,7 +66,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static com.gamelanbekonang.logRes.LoginActivity.my_shared_preferences;
 
 public class DetailIklanActivity extends AppCompatActivity {
-    private String gambarIklan, noTelp, id, userId, token;
+    private String gambarIklan, noTelp, id, userId, token, imageSlider1, judulBarang, email;
     private ToggleButton tbAddfavorite;
     private ApiService apiService;
     private Context mContext;
@@ -69,6 +74,8 @@ public class DetailIklanActivity extends AppCompatActivity {
     private TextView tvLihatProfil, tvUsername, tvMember, tvJudulbarang, tvDeskripsi, tvDilihat, tvDihubungi, tvStok, tvAlamat;
     private Toolbar toolbar;
     private CollapsingToolbarLayout collapsingToolbar;
+    private SliderLayout sliderLayout;
+    private FloatingActionButton fabTelepon, fabSms, fabEmail;
 //    private FloatingActionButton fabTelpMess;
 
     @Override
@@ -80,15 +87,19 @@ public class DetailIklanActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
 //        fabTelpMess = findViewById(R.id.FAB_telp_mess);
         tbAddfavorite = findViewById(R.id.tb_add_favorite);
-        collapsingToolbar = findViewById(R.id.collapsing_toolbar);
+        collapsingToolbar = findViewById(R.id.judulbarang_detiliklan);
         tvUsername      = findViewById(R.id.username_detiliklan);
         tvMember        = findViewById(R.id.member_detiliklan);
-        tvJudulbarang   = findViewById(R.id.judulbarang_detiliklan);
+//        tvJudulbarang   = findViewById(R.id.judulbarang_detiliklan);
         tvDeskripsi     = findViewById(R.id.deskripsi_detiliklan);
         tvDilihat       = findViewById(R.id.dilihat_detiliklan);
         tvDihubungi     = findViewById(R.id.dihubungi_detiliklan);
         tvStok          = findViewById(R.id.stok_detiliklan);
         tvAlamat        = findViewById(R.id.alamat_detiliklan);
+        sliderLayout    = findViewById(R.id.slider_detailiklan);
+        fabTelepon      = findViewById(R.id.fab_telepon_detailiklan);
+        fabSms          = findViewById(R.id.fab_sms_detailiklan);
+        fabEmail        = findViewById(R.id.fab_email_detailiklan);
 
         Bundle bundle = getIntent().getExtras();
         id     = bundle.getString("id");
@@ -129,53 +140,53 @@ public class DetailIklanActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // Load image dari URL
+        HashMap<String,String> url_maps = new HashMap<String, String>();
+        url_maps.put("Hannibal", imageSlider1);
+//        url_maps.put("Big Bang Theory", "http://tvfiles.alphacoders.com/100/hdclearart-10.png");
+//        url_maps.put("House of Cards", "http://cdn3.nflximg.net/images/3093/2043093.jpg");
+//        url_maps.put("Game of Thrones", "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");
+        for(String name : url_maps.keySet()){
+            TextSliderView textSliderView = new TextSliderView(this);
+            // initialize a SliderLayout
+            textSliderView
+                    .description(name)
+                    .image(url_maps.get(name))
+                    .setScaleType(BaseSliderView.ScaleType.Fit);
+            //add your extra information
+//            textSliderView.bundle(new Bundle());
+//            textSliderView.getBundle()
+//                    .putString("extra",name);
+//            sliderLayout.addSlider(textSliderView);
+        }
+        sliderLayout.setPresetTransformer(SliderLayout.Transformer.Accordion);
+        sliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+        sliderLayout.setCustomAnimation(new DescriptionAnimation());
+        sliderLayout.setDuration(10000);
 
-        collapsingToolbar.setTitle("aa");
-
-//        loadBackdrop();
-
-//        fabTelpMess.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //Creating the instance of PopupMenu
-//                PopupMenu popup = new PopupMenu(DetailIklanActivity.this, fabTelpMess);
-//                //Inflating the Popup using xml file
-//                popup.getMenuInflater()
-//                        .inflate(R.menu.popup_telp, popup.getMenu());
-//
-//                //registering popup with OnMenuItemClickListener
-//                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-//                    public boolean onMenuItemClick(MenuItem item) {
-//
-//                        switch (item.getItemId()){
-//                            case R.id.popup_telephone :
-//                                Intent callIntent = new Intent(Intent.ACTION_CALL);
-//                                callIntent.setData(Uri.parse("tel:" +noTelp));
-//
-//                                if (ActivityCompat.checkSelfPermission(DetailIklanActivity.this,
-//                                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-//                                }
-//                                startActivity(callIntent);
-//                                return true;
-//
-//                            case R.id.popup_message :
-//                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", noTelp,
-//                                        null)));
-//
-//                                return true;
-//                        }
-//                        return false;
-//                    }
-//                });
-//
-//                popup.show(); //showing popup menu
-//            }
-//        }); //closing the setOnClickListener method
-
-//        apiService = UtilsApi.getAPICount();
         viewCount();
         getDataIklanId();
-//
+
+        fabTelepon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                telephone();
+            }
+        });
+
+        fabSms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                kirimSms();
+            }
+        });
+
+        fabEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                kirimEmail();
+            }
+        });
     }
 
     private void alertLogin(){
@@ -216,8 +227,8 @@ public class DetailIklanActivity extends AppCompatActivity {
                         try {
                             JSONObject object = new JSONObject(response.body().string());
                             JSONObject jsonObject = object.optJSONObject("iklan");
-                            String judul = jsonObject.optString("judul");
-                            String image1   = jsonObject.optString("image1");
+                            judulBarang     = jsonObject.optString("judul");
+                            imageSlider1    = jsonObject.optString("image1");
                             String image2   = jsonObject.optString("image2");
                             String image3   = jsonObject.optString("image3");
                             String image4   = jsonObject.optString("image4");
@@ -232,12 +243,13 @@ public class DetailIklanActivity extends AppCompatActivity {
 
                             JSONObject jsonObject1 = jsonObject.optJSONObject("users");
                             String fotoprofil   = jsonObject1.getString("image");
-                            String nama = jsonObject1.optString("name");
-                            String notelp       = jsonObject1.optString("notelp");
+                            String nama         = jsonObject1.optString("name");
+                            noTelp              = jsonObject1.optString("notelp");
+                            email               = jsonObject1.optString("email");
                             String address      = jsonObject1.optString("address");
                             String store_name   = jsonObject1.optString("store_name");
 
-                            tvJudulbarang.setText(judul);
+                            collapsingToolbar.setTitle(judulBarang);
                             tvDeskripsi.setText(deskripsi);
                             tvDilihat.setText(view_count);
                             tvDihubungi.setText(contact_count);
@@ -296,5 +308,31 @@ public class DetailIklanActivity extends AppCompatActivity {
                 });
     }
 
+    //////////////////telephone
+    private void telephone(){
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(Uri.parse("tel:" +noTelp));
 
+        if (ActivityCompat.checkSelfPermission(DetailIklanActivity.this,
+                Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+        }
+        startActivity(callIntent);
+    }
+
+    ////////////////////SMS
+    private void kirimSms(){
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", noTelp,
+                null)));
+    }
+
+    private void kirimEmail(){
+        Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+        sendIntent.setType("plain/text");
+        sendIntent.setData(Uri.parse("test@gmail.com"));
+        sendIntent.setClassName("com.google.android.gm", "com.gamelanbekonang.menuHome.DetailIklanActivity");
+        sendIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { "test@gmail.com" });
+//        sendIntent.putExtra(Intent.EXTRA_SUBJECT, "test");
+//        sendIntent.putExtra(Intent.EXTRA_TEXT, "hello. this is a message sent from my demo app :-)");
+        startActivity(sendIntent);
+    }
 }

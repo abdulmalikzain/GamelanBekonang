@@ -93,7 +93,6 @@ public class KategoriFragment extends Fragment {
         sliderLayout.setPresetTransformer(SliderLayout.Transformer.Accordion);
         sliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Left_Top);
         sliderLayout.setCustomAnimation(new DescriptionAnimation());
-
         sliderLayout.setDuration(4000);
 
         tvKenong.setText(kenong);

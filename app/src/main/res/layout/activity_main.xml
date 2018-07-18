@@ -40,7 +40,7 @@
         <android.support.v4.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/swipe_main"
+            android:id="@+id/swipe_home"
             android:layout_marginBottom="55dp"
             android:layout_below="@id/my_appbar_container">
 

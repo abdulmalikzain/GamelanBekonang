@@ -52,7 +52,7 @@ import retrofit2.Response;
 
 import static com.gamelanbekonang.logRes.LoginActivity.my_shared_preferences;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
     private ArrayList<Iklan> iklans ;
     private List<Iklan> iklans1;
     private AdapterIklan adapter;
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private BottomNavigationViewEx bottomNavigationViewEx;
     private String roleName, filename;
-    private SwipeRefreshLayout swipeMain;
+    private SwipeRefreshLayout swipeHome;
     boolean doubleBackToExitPressedOnce = false;
 
     private int previousTotal = 0;
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
         relativeLayout = findViewById(R.id.rel_home);
         frameLayout = findViewById(R.id.fragment_container);
-        swipeMain   = findViewById(R.id.swipe_main);
+        swipeHome   = findViewById(R.id.swipe_home);
 
         mToolbar = findViewById(R.id.toolbar_home);
         setSupportActionBar(mToolbar);
@@ -92,7 +92,16 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sp = getApplicationContext().getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
         roleName = (sp.getString("role_name", ""));
 
-
+        swipeHome.setColorSchemeResources(R.color.kuningFirebase,R.color.orangeFirebase,R.color.colorPrimary);
+        swipeHome.setOnRefreshListener(this);
+        swipeHome.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        swipeHome.setRefreshing(true);
+                                        getData();
+                                    }
+                                }
+        );
 
     }
 
@@ -205,33 +214,33 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         getData();
 
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener()
-        {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy)
-            {
-                visibleItemCount = mLayoutManager.getChildCount();
-                totalItemCount = mLayoutManager.getItemCount();
-                firstVisibleItem = mLayoutManager.findFirstVisibleItemPosition();
-
-                if (loading) {
-                    if (totalItemCount > previousTotal) {
-                        loading = false;
-                        previousTotal = totalItemCount;
-                    }
-                }
-                if (!loading && (totalItemCount - visibleItemCount)
-                        <= (firstVisibleItem + visibleThreshold)) {
-                    // End has been reached
-
-                    Log.i("Yaeye!", "end called");
-
-                    // Do something
-
-                    loading = true;
-                }
-            }
-        });
+//        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener()
+//        {
+//            @Override
+//            public void onScrolled(RecyclerView recyclerView, int dx, int dy)
+//            {
+//                visibleItemCount = mLayoutManager.getChildCount();
+//                totalItemCount = mLayoutManager.getItemCount();
+//                firstVisibleItem = mLayoutManager.findFirstVisibleItemPosition();
+//
+//                if (loading) {
+//                    if (totalItemCount > previousTotal) {
+//                        loading = false;
+//                        previousTotal = totalItemCount;
+//                    }
+//                }
+//                if (!loading && (totalItemCount - visibleItemCount)
+//                        <= (firstVisibleItem + visibleThreshold)) {
+//                    // End has been reached
+//
+//                    Log.i("Yaeye!", "end called");
+//
+//                    // Do something
+//
+//                    loading = true;
+//                }
+//            }
+//        });
     }
 
 //    private void loadJSON(){
@@ -258,6 +267,9 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
     private void getData() {
+
+        swipeHome.setRefreshing(true);
+
         ApiService apiService  = RetroClient.getInstanceRetrofit();
         apiService.getData().enqueue(new Callback<ResponseBody>() {
             @Override
@@ -293,6 +305,8 @@ public class MainActivity extends AppCompatActivity {
 
                     }
 
+                    swipeHome.setRefreshing(false);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -302,7 +316,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                swipeHome.setRefreshing(false);
             }
         });
     }
@@ -349,4 +363,8 @@ public class MainActivity extends AppCompatActivity {
         alert.show();
     }
 
+    @Override
+    public void onRefresh() {
+        getData();
+    }
 }
