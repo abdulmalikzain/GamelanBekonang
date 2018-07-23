@@ -1,5 +1,6 @@
 package com.gamelanbekonang.menuKategori;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.gamelanbekonang.R;
 import com.gamelanbekonang.adapter.AdapterIklan;
@@ -27,7 +29,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class KategoriIklanActivity extends AppCompatActivity {
+public class KategoriIklanActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     private Toolbar mActionToolbar;
     private ArrayList<Iklan> kategoris;
@@ -35,6 +37,7 @@ public class KategoriIklanActivity extends AppCompatActivity {
     private ApiService mApiService;
     private String tittle;
     private String idKategori;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,8 @@ public class KategoriIklanActivity extends AppCompatActivity {
         setContentView(R.layout.activity_kategori_iklan);
 
         mActionToolbar = findViewById(R.id.toolbar_kenong);
+        swipeRefreshLayout = findViewById(R.id.swipe_kategori);
+
         setSupportActionBar(mActionToolbar);
         getSupportActionBar().setTitle(tittle);
 
@@ -56,7 +61,18 @@ public class KategoriIklanActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         kategoris = new ArrayList<>();
-//        getData();
+        getData();
+
+        swipeRefreshLayout.setColorSchemeResources(R.color.kuningFirebase,R.color.orangeFirebase,R.color.colorPrimary);
+        swipeRefreshLayout.setOnRefreshListener(this);
+        swipeRefreshLayout.post(new Runnable() {
+                           @Override
+                           public void run() {
+                               swipeRefreshLayout.setRefreshing(true);
+                               getData();
+                           }
+                       }
+        );
     }
 
     //button back toolbar
@@ -69,8 +85,11 @@ public class KategoriIklanActivity extends AppCompatActivity {
 
     ////////////////////////////    PARSING RETROFIT TAMPIL DATA
     private void getData() {
+        swipeRefreshLayout.setRefreshing(true);
+
         Bundle bundle = getIntent().getExtras();
         idKategori     = bundle.getString("idCategory");
+        Toast.makeText(this, "id"+idKategori, Toast.LENGTH_SHORT).show();
         mApiService = RetroClient.getInstanceRetrofit();
         mApiService.getCategory(idKategori).enqueue(new Callback<ResponseBody>() {
             @Override
@@ -105,7 +124,7 @@ public class KategoriIklanActivity extends AppCompatActivity {
                         recyclerView.setAdapter(adapter);
 
                     }
-
+                    swipeRefreshLayout.setRefreshing(false);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -115,8 +134,13 @@ public class KategoriIklanActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
+    }
+
+    @Override
+    public void onRefresh() {
+        getData();
     }
 }

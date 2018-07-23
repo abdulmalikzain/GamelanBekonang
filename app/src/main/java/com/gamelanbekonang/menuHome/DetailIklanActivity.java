@@ -121,12 +121,12 @@ public class DetailIklanActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 if (isChecked) {
-                    if (token.equals(null)){
+                    if (token.equals("")){
+                        alertLogin();
+                    }else {
                         postFavorite();
                         tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_favorite_kuning));
                         Toast.makeText(DetailIklanActivity.this, "iklan ditambahkan ke favorite", Toast.LENGTH_SHORT).show();
-                    }else {
-                        alertLogin();
                     }
                 }
                 else {

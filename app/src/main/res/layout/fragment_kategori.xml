@@ -47,7 +47,6 @@
                 <android.support.v7.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="90dp"
-                    app:cardElevation="1dp"
                     android:layout_columnWeight="1"
                     android:layout_gravity="fill_horizontal"
                     android:foreground="?android:attr/selectableItemBackground"
@@ -77,6 +76,11 @@
                             android:id="@+id/tv_k_idbonang"
                             android:layout_width="0dp"
                             android:layout_height="0dp" />
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/bonang_name_kategori"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp" />
 
                     </LinearLayout>
 
@@ -84,7 +88,6 @@
                 <android.support.v7.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="90dp"
-                    app:cardElevation="1dp"
                     android:layout_gravity="fill_horizontal"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
@@ -115,6 +118,11 @@
                             android:id="@+id/tv_k_idkenong"
                             android:layout_width="0dp"
                             android:layout_height="0dp" />
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/kenong_name_kategori"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp" />
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
@@ -125,7 +133,7 @@
                     android:layout_gravity="fill_horizontal"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
-                    app:cardElevation="1dp">
+                    >
                     <LinearLayout
                         android:id="@+id/ll_kendang"
                         android:layout_gravity="center_horizontal|center_vertical"
@@ -153,6 +161,11 @@
                             android:id="@+id/tv_k_idkendang"
                             android:layout_width="0dp"
                             android:layout_height="0dp" />
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/kendang_name_kategori"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp" />
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
@@ -163,7 +176,7 @@
                     android:layout_gravity="fill_horizontal"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
-                    app:cardElevation="1dp">
+                    >
                     <LinearLayout
                         android:id="@+id/ll_gambang"
                         android:layout_gravity="center_horizontal|center_vertical"
@@ -191,6 +204,11 @@
                             android:id="@+id/tv_k_idgambang"
                             android:layout_width="0dp"
                             android:layout_height="0dp" />
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/gambang_name_kategori"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
             </GridLayout>
@@ -201,7 +219,6 @@
                 <android.support.v7.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="90dp"
-                    app:cardElevation="1dp"
                     android:layout_columnWeight="1"
                     android:layout_gravity="fill_horizontal"
                     android:foreground="?android:attr/selectableItemBackground"
@@ -233,13 +250,17 @@
                             android:id="@+id/tv_k_idpeking"
                             android:layout_width="0dp"
                             android:layout_height="0dp" />
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/peking_name_kategori"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp" />
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
                 <android.support.v7.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="90dp"
-                    app:cardElevation="1dp"
                     android:layout_gravity="fill_horizontal"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
@@ -272,6 +293,12 @@
                             android:layout_width="0dp"
                             android:layout_height="0dp" />
 
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/gong_name_kategori"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp" />
+
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
                 <android.support.v7.widget.CardView
@@ -281,7 +308,7 @@
                     android:layout_gravity="fill_horizontal"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
-                    app:cardElevation="1dp">
+                    >
                     <LinearLayout
                         android:id="@+id/ll_rebab"
                         android:layout_gravity="center_horizontal|center_vertical"
@@ -309,6 +336,11 @@
                             android:id="@+id/tv_k_idrebab"
                             android:layout_width="0dp"
                             android:layout_height="0dp" />
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/rebab_name_kategori"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp" />
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
@@ -319,7 +351,7 @@
                     android:layout_gravity="fill_horizontal"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
-                    app:cardElevation="1dp">
+                    >
                     <LinearLayout
                         android:layout_gravity="center_horizontal|center_vertical"
                         android:orientation="vertical"
@@ -335,7 +367,7 @@
 
                         <TextView
                             android:textAlignment="center"
-                            android:text="Sitter"
+                            android:text="Siter"
                             android:textColor="#000"
                             android:layout_marginTop="-10dp"
                             android:layout_gravity="center"
@@ -344,6 +376,11 @@
                         <TextView
                             android:visibility="gone"
                             android:id="@+id/tv_k_idsiter"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp" />
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/siter_name_kategori"
                             android:layout_width="0dp"
                             android:layout_height="0dp" />
 
@@ -357,7 +394,6 @@
                 <android.support.v7.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="90dp"
-                    app:cardElevation="1dp"
                     android:layout_columnWeight="1"
                     android:layout_gravity="fill_horizontal"
                     android:foreground="?android:attr/selectableItemBackground"
@@ -388,13 +424,17 @@
                             android:id="@+id/tv_k_idgender"
                             android:layout_width="0dp"
                             android:layout_height="0dp" />
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/gender_name_kategori"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp" />
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
                 <android.support.v7.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="90dp"
-                    app:cardElevation="1dp"
                     android:layout_gravity="fill_horizontal"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
@@ -425,6 +465,11 @@
                             android:id="@+id/tv_k_idsaron"
                             android:layout_width="0dp"
                             android:layout_height="0dp" />
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/saron_name_kategori"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp" />
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
@@ -435,7 +480,7 @@
                     android:layout_gravity="fill_horizontal"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
-                    app:cardElevation="1dp">
+                    >
                     <LinearLayout
                         android:id="@+id/ll_demung"
                         android:layout_gravity="center_horizontal|center_vertical"
@@ -463,6 +508,11 @@
                             android:id="@+id/tv_k_iddemung"
                             android:layout_width="0dp"
                             android:layout_height="0dp" />
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/demung_name_kategori"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp" />
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
@@ -473,7 +523,7 @@
                     android:layout_gravity="fill_horizontal"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
-                    app:cardElevation="1dp">
+                    >
                     <LinearLayout
                         android:id="@+id/ll_slentem"
                         android:layout_gravity="center_horizontal|center_vertical"
@@ -501,6 +551,11 @@
                             android:id="@+id/tv_k_idslenthem"
                             android:layout_width="0dp"
                             android:layout_height="0dp" />
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/slenthem_name_kategori"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp" />
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
@@ -512,7 +567,6 @@
                 <android.support.v7.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="90dp"
-                    app:cardElevation="1dp"
                     android:layout_columnWeight="1"
                     android:layout_gravity="fill_horizontal"
                     android:foreground="?android:attr/selectableItemBackground"
@@ -540,12 +594,16 @@
                             android:id="@+id/tv_k_idkethuk"
                             android:layout_width="0dp"
                             android:layout_height="0dp" />
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/kethuk_name_kategori"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
                 <android.support.v7.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="90dp"
-                    app:cardElevation="1dp"
                     android:layout_gravity="fill_horizontal"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
@@ -574,7 +632,7 @@
                     android:layout_gravity="fill_horizontal"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
-                    app:cardElevation="1dp">
+                    >
 
                 </android.support.v7.widget.CardView>
                 <android.support.v7.widget.CardView
