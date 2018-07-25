@@ -82,13 +82,20 @@ public class LoginActivity extends AppCompatActivity {
         mContext = this;
         mApiService = UtilsApi.getAPIService(); // meng-init yang ada di package apihelper
         initComponents();
+
+        if (session){
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.putExtra(id,"id");
+            intent.putExtra(email,"email");
+            intent.putExtra(name, "name");
+            finish();
+            startActivity(intent);
+        }
     }
-
-
 
     private void initComponents() {
         sharedpreferences = getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
-//        session = sharedpreferences.getBoolean(session_status, false);
+        session = sharedpreferences.getBoolean(session_status, false);
         String id = sharedpreferences.getString("id", null);
         image = sharedpreferences.getString("image", null);
         name = sharedpreferences.getString("name", null);
@@ -98,6 +105,8 @@ public class LoginActivity extends AppCompatActivity {
         store_name = sharedpreferences.getString("store_name", null);
         remember_token = sharedpreferences.getString("token", null);
 //        int i = sharedpreferences.getInt(value, 0);
+
+
 
         tv_next = (TextView)findViewById(R.id.tv_next);
         tv_skip = (TextView)findViewById(R.id.tv_skip);
@@ -171,13 +180,8 @@ public class LoginActivity extends AppCompatActivity {
                                     String address = jsonRESULTS.getJSONObject("user").getString("address");
                                     String store_name = jsonRESULTS.getJSONObject("user").getString("store_name");
                                     String remember_token = jsonRESULTS.getString("token");
-                                    Log.d(TAG, "tokennnnnnn: "+remember_token);
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                                     String namerules = jsonObject.optString("role_name");
-
-
-
-
 
 //                                    for (int i = 0 ; i < jsonArray.length() ; i++) {
 
@@ -187,6 +191,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                             //Creating editor to store values to shared preferences
                                             SharedPreferences.Editor editor = sharedPreferences.edit();
+                                            editor.putBoolean(session_status, true);
                                             editor.putString("id", id);
                                             editor.putString("image", image);
                                             editor.putString("name", nama);
@@ -198,13 +203,17 @@ public class LoginActivity extends AppCompatActivity {
                                             editor.commit();
                                             Log.d(TAG, "Custome: "+remember_token);
                                             loading.dismiss();
-                                            Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
+                                            Intent intent1 = new Intent(LoginActivity.this, MainActivity.class);
+                                            intent1.putExtra(id,"id");
+                                            intent1.putExtra(email,"email");
+                                            finish();
                                             startActivity(intent1);
 
                                         }else if (namerules.equals("seller")) {
                                             SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
                                             //Creating editor to store values to shared preferences
                                             SharedPreferences.Editor editor = sharedPreferences.edit();
+                                            editor.putBoolean(session_status,true);
                                             editor.putString("id", id);
                                             editor.putString("image", image);
                                             editor.putString("name", nama);
@@ -218,7 +227,10 @@ public class LoginActivity extends AppCompatActivity {
                                             Log.d(TAG, "Seller: "+remember_token);
                                             Log.d(TAG, "onResponse: ");
                                             loading.dismiss();
-                                            Intent intent2 = new Intent(getApplicationContext(), MainActivity.class);
+                                            Intent intent2 = new Intent(LoginActivity.this, MainActivity.class);
+                                            intent2.putExtra(id,"id");
+                                            intent2.putExtra(email,"email");
+                                            finish();
                                             startActivity(intent2);
                                         }
 

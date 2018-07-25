@@ -109,6 +109,7 @@ public class DetailIklanActivity extends AppCompatActivity {
 
         SharedPreferences sp = getApplicationContext().getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
         token = (sp.getString("token", ""));
+        Log.d("token", "wwwwwww: "+token);
 
         tvLihatProfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -299,6 +300,7 @@ public class DetailIklanActivity extends AppCompatActivity {
 
     private void postFavorite(){
         apiService = RetroClient.getInstanceRetrofit();
+        Log.d("postFavorite", "postFavorite: "+idUser+id);
         apiService.postFavorite(token, idUser,  id)
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
