@@ -171,6 +171,7 @@ public class LoginActivity extends AppCompatActivity {
                                     String address = jsonRESULTS.getJSONObject("user").getString("address");
                                     String store_name = jsonRESULTS.getJSONObject("user").getString("store_name");
                                     String remember_token = jsonRESULTS.getString("token");
+                                    Log.d(TAG, "tokennnnnnn: "+remember_token);
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                                     String namerules = jsonObject.optString("role_name");
 

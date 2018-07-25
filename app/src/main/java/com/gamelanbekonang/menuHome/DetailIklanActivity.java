@@ -66,12 +66,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static com.gamelanbekonang.logRes.LoginActivity.my_shared_preferences;
 
 public class DetailIklanActivity extends AppCompatActivity {
-    private String gambarIklan, noTelp, id, userId, token, imageSlider1, judulBarang, email;
+    private String gambarIklan, noTelp, id, idUser, token, imageSlider1, judulBarang, email;
     private ToggleButton tbAddfavorite;
     private ApiService apiService;
     private Context mContext;
     private CircleImageView civFotoProfil;
-    private TextView tvLihatProfil, tvUsername, tvMember, tvJudulbarang, tvDeskripsi, tvDilihat, tvDihubungi, tvStok, tvAlamat;
+    private TextView tvLihatProfil, tvUsername, tvMember, tvJudulbarang, tvDeskripsi, tvDilihat, tvDihubungi, tvStok, tvAlamat,
+            tvUserId;
     private Toolbar toolbar;
     private CollapsingToolbarLayout collapsingToolbar;
     private SliderLayout sliderLayout;
@@ -93,6 +94,7 @@ public class DetailIklanActivity extends AppCompatActivity {
 //        tvJudulbarang   = findViewById(R.id.judulbarang_detiliklan);
         tvDeskripsi     = findViewById(R.id.deskripsi_detiliklan);
         tvDilihat       = findViewById(R.id.dilihat_detiliklan);
+
         tvDihubungi     = findViewById(R.id.dihubungi_detiliklan);
         tvStok          = findViewById(R.id.stok_detiliklan);
         tvAlamat        = findViewById(R.id.alamat_detiliklan);
@@ -100,6 +102,7 @@ public class DetailIklanActivity extends AppCompatActivity {
         fabTelepon      = findViewById(R.id.fab_telepon_detailiklan);
         fabSms          = findViewById(R.id.fab_sms_detailiklan);
         fabEmail        = findViewById(R.id.fab_email_detailiklan);
+        tvUserId        = findViewById(R.id.userid_detailiklan);
 
         Bundle bundle = getIntent().getExtras();
         id     = bundle.getString("id");
@@ -110,7 +113,10 @@ public class DetailIklanActivity extends AppCompatActivity {
         tvLihatProfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(DetailIklanActivity.this, InformasiPublikActivity.class));
+                Intent intent = new Intent(DetailIklanActivity.this, InformasiPublikActivity.class);
+//                startActivity(new Intent(DetailIklanActivity.this, InformasiPublikActivity.class));
+                intent.putExtra("idUser", tvUserId.getText().toString().trim());
+                startActivity(intent);
             }
         });
 
@@ -142,7 +148,7 @@ public class DetailIklanActivity extends AppCompatActivity {
 
         // Load image dari URL
         HashMap<String,String> url_maps = new HashMap<String, String>();
-        url_maps.put("Hannibal", imageSlider1);
+        url_maps.put("Hannibal", ApiService.BASE_URL_IMAGEIKLAN+imageSlider1);
 //        url_maps.put("Big Bang Theory", "http://tvfiles.alphacoders.com/100/hdclearart-10.png");
 //        url_maps.put("House of Cards", "http://cdn3.nflximg.net/images/3093/2043093.jpg");
 //        url_maps.put("Game of Thrones", "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");
@@ -242,6 +248,7 @@ public class DetailIklanActivity extends AppCompatActivity {
                             String contact_count = jsonObject.optString("contact_count");
 
                             JSONObject jsonObject1 = jsonObject.optJSONObject("users");
+                            idUser = jsonObject.optString("id");
                             String fotoprofil   = jsonObject1.getString("image");
                             String nama         = jsonObject1.optString("name");
                             noTelp              = jsonObject1.optString("notelp");
@@ -255,6 +262,7 @@ public class DetailIklanActivity extends AppCompatActivity {
                             tvDihubungi.setText(contact_count);
                             tvStok.setText(stock);
                             tvAlamat.setText(address);
+                            tvUserId.setText(idUser);
 
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -291,7 +299,7 @@ public class DetailIklanActivity extends AppCompatActivity {
 
     private void postFavorite(){
         apiService = RetroClient.getInstanceRetrofit();
-        apiService.postFavorite(token, userId,  id)
+        apiService.postFavorite(token, idUser,  id)
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
