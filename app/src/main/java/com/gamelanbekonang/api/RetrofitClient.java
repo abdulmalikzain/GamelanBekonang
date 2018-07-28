@@ -86,7 +86,7 @@ public class RetrofitClient {
         }
 
 
-    static final String BASE_URL_MY_IKLAN = "https://bekonangstore.herokuapp.com/api/v1/user/";
+    static final String BASE_URL_MY_IKLAN = "http://gamelanwirun.com/api/v1/user/";
     ////////////////////////////////////////////
     public static Retrofit getMyClient(){
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();

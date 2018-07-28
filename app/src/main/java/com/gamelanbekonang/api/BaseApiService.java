@@ -27,10 +27,10 @@ import retrofit2.http.Query;
 public interface BaseApiService {
 
 //    String BASE_API_URL = "http://bekonang-store.000webhostapp.com";
-    String BASE_URL_IMAGE = "http://bekonangstore.herokuapp.com/images/iklans";
-    String BASE_URL_UPDATE_PROFIL ="https://bekonangstore.herokuapp.com/api/v1/user/myprofile/";
-    String BASE_URL_IMAGE_USER = "http://bekonangstore.herokuapp.com/images/users/";
-    String BASE_URL_CHANGE_PASS = "https://bekonangstore.herokuapp.com/api/v1/user/changePassword/";
+    String BASE_URL_IMAGE = "http://gamelanwirun.com/images/iklans";
+    String BASE_URL_UPDATE_PROFIL ="http://gamelanwirun.com/api/v1/user/myprofile/";
+    String BASE_URL_IMAGE_USER = "http://gamelanwirun.com/images/users/";
+    String BASE_URL_CHANGE_PASS = "http://gamelanwirun.com/api/v1/user/changePassword/";
 
 
     @FormUrlEncoded

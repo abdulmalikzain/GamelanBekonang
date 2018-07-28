@@ -20,7 +20,7 @@ public class RetroClient {
     }
 
 
-    static final String BASE_URL_API = "https://bekonangstore.herokuapp.com/api/v1/";
+    static final String BASE_URL_API = "http://gamelanwirun.com/api/v1/";
     ////////////////////////////////////////////
     public static Retrofit getClient1(){
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();

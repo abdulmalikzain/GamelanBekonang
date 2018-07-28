@@ -46,7 +46,7 @@
         <!--android:background="@color/cardview_shadow_start_color">-->
 
         <!--<de.hdodenhof.circleimageview.CircleImageView-->
-            <!--android:id="@+id/civ_informasiiklan"-->
+            <!--android:id="@+id/civ_informasipen"-->
             <!--android:layout_width="100dp"-->
             <!--android:layout_height="100dp"-->
             <!--android:layout_marginTop="10dp"-->

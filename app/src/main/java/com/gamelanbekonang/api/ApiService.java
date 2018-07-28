@@ -17,8 +17,8 @@ import retrofit2.http.Query;
 public interface ApiService {
 
 
-    String BASE_URL_IMAGEIKLAN = "http://bekonangstore.herokuapp.com/images/iklans/";
-    String BASE_URL_IMAGEUSER = "http://bekonangstore.herokuapp.com/images/users/";
+    String BASE_URL_IMAGEIKLAN = "http://gamelanwirun.com/images/iklans/";
+    String BASE_URL_IMAGEUSER = "http://gamelanwirun.com/images/users/";
 
 
     @GET("iklan")
