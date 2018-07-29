@@ -270,6 +270,12 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+    }
+
     //button back toolbar
 //    @Override
 //    public boolean onOptionsItemSelected(MenuItem item) {

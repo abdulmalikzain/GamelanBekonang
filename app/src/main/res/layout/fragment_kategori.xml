@@ -76,12 +76,6 @@
                             android:id="@+id/tv_k_idbonang"
                             android:layout_width="0dp"
                             android:layout_height="0dp" />
-                        <TextView
-                            android:visibility="gone"
-                            android:id="@+id/bonang_name_kategori"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp" />
-
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
@@ -118,12 +112,6 @@
                             android:id="@+id/tv_k_idkenong"
                             android:layout_width="0dp"
                             android:layout_height="0dp" />
-                        <TextView
-                            android:visibility="gone"
-                            android:id="@+id/kenong_name_kategori"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp" />
-
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
                 <android.support.v7.widget.CardView
@@ -161,14 +149,9 @@
                             android:id="@+id/tv_k_idkendang"
                             android:layout_width="0dp"
                             android:layout_height="0dp" />
-                        <TextView
-                            android:visibility="gone"
-                            android:id="@+id/kendang_name_kategori"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp" />
-
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
+
                 <android.support.v7.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="90dp"
@@ -190,7 +173,6 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="70dp" />
-
                         <TextView
                             android:textAlignment="center"
                             android:text="Gambang"
@@ -202,11 +184,6 @@
                         <TextView
                             android:visibility="gone"
                             android:id="@+id/tv_k_idgambang"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp" />
-                        <TextView
-                            android:visibility="gone"
-                            android:id="@+id/gambang_name_kategori"
                             android:layout_width="0dp"
                             android:layout_height="0dp" />
                     </LinearLayout>
@@ -250,12 +227,6 @@
                             android:id="@+id/tv_k_idpeking"
                             android:layout_width="0dp"
                             android:layout_height="0dp" />
-                        <TextView
-                            android:visibility="gone"
-                            android:id="@+id/peking_name_kategori"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp" />
-
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
                 <android.support.v7.widget.CardView
@@ -292,13 +263,6 @@
                             android:id="@+id/tv_k_idgong"
                             android:layout_width="0dp"
                             android:layout_height="0dp" />
-
-                        <TextView
-                            android:visibility="gone"
-                            android:id="@+id/gong_name_kategori"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp" />
-
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
                 <android.support.v7.widget.CardView
@@ -334,11 +298,6 @@
                         <TextView
                             android:visibility="gone"
                             android:id="@+id/tv_k_idrebab"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp" />
-                        <TextView
-                            android:visibility="gone"
-                            android:id="@+id/rebab_name_kategori"
                             android:layout_width="0dp"
                             android:layout_height="0dp" />
 
@@ -378,12 +337,6 @@
                             android:id="@+id/tv_k_idsiter"
                             android:layout_width="0dp"
                             android:layout_height="0dp" />
-                        <TextView
-                            android:visibility="gone"
-                            android:id="@+id/siter_name_kategori"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp" />
-
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
             </GridLayout>
@@ -424,12 +377,6 @@
                             android:id="@+id/tv_k_idgender"
                             android:layout_width="0dp"
                             android:layout_height="0dp" />
-                        <TextView
-                            android:visibility="gone"
-                            android:id="@+id/gender_name_kategori"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp" />
-
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
                 <android.support.v7.widget.CardView
@@ -465,12 +412,6 @@
                             android:id="@+id/tv_k_idsaron"
                             android:layout_width="0dp"
                             android:layout_height="0dp" />
-                        <TextView
-                            android:visibility="gone"
-                            android:id="@+id/saron_name_kategori"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp" />
-
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
                 <android.support.v7.widget.CardView
@@ -508,12 +449,6 @@
                             android:id="@+id/tv_k_iddemung"
                             android:layout_width="0dp"
                             android:layout_height="0dp" />
-                        <TextView
-                            android:visibility="gone"
-                            android:id="@+id/demung_name_kategori"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp" />
-
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
                 <android.support.v7.widget.CardView
@@ -551,12 +486,6 @@
                             android:id="@+id/tv_k_idslenthem"
                             android:layout_width="0dp"
                             android:layout_height="0dp" />
-                        <TextView
-                            android:visibility="gone"
-                            android:id="@+id/slenthem_name_kategori"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp" />
-
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
             </GridLayout>
@@ -594,11 +523,6 @@
                             android:id="@+id/tv_k_idkethuk"
                             android:layout_width="0dp"
                             android:layout_height="0dp" />
-                        <TextView
-                            android:visibility="gone"
-                            android:id="@+id/kethuk_name_kategori"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
                 <android.support.v7.widget.CardView
@@ -633,7 +557,6 @@
                     android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     >
-
                 </android.support.v7.widget.CardView>
                 <android.support.v7.widget.CardView
                     android:layout_width="0dp"
@@ -642,7 +565,7 @@
                     android:layout_gravity="fill_horizontal"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
-                    app:cardElevation="1dp">
+                    >
                 </android.support.v7.widget.CardView>
             </GridLayout>
 

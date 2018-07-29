@@ -15,9 +15,9 @@
         android:background="@drawable/white_grey_border_bottom"
         />
     <TextView
+        android:id="@+id/tv_judul_kategori"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Kenong"
         android:padding="13dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textColor="@color/ambarFirebase"/>

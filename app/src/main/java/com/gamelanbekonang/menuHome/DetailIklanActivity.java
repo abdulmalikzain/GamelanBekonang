@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.MailTo;
 import android.net.Uri;
 import android.renderscript.Sampler;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -107,6 +108,8 @@ public class DetailIklanActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         id     = bundle.getString("id");
 
+//        collapsingToolbar.setTitle("aa");
+
         SharedPreferences sp = getApplicationContext().getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
         token = (sp.getString("token", ""));
         Log.d("token", "wwwwwww: "+token);
@@ -116,7 +119,7 @@ public class DetailIklanActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(DetailIklanActivity.this, InformasiPublikActivity.class);
 //                startActivity(new Intent(DetailIklanActivity.this, InformasiPublikActivity.class));
-                intent.putExtra("idUser", tvUserId.getText().toString().trim());
+                intent.putExtra("user_id", tvUserId.getText().toString().trim());
                 startActivity(intent);
             }
         });
@@ -249,7 +252,8 @@ public class DetailIklanActivity extends AppCompatActivity {
                             String contact_count = jsonObject.optString("contact_count");
 
                             JSONObject jsonObject1 = jsonObject.optJSONObject("users");
-                            idUser = jsonObject.optString("id");
+                            idUser = jsonObject1.getString("id");
+                            Log.d("idUser", "onResponse: "+idUser);
                             String fotoprofil   = jsonObject1.getString("image");
                             String nama         = jsonObject1.optString("name");
                             noTelp              = jsonObject1.optString("notelp");
@@ -258,6 +262,7 @@ public class DetailIklanActivity extends AppCompatActivity {
                             String store_name   = jsonObject1.optString("store_name");
 
                             collapsingToolbar.setTitle(judulBarang);
+                            tvUsername.setText(nama);
                             tvDeskripsi.setText(deskripsi);
                             tvDilihat.setText(view_count);
                             tvDihubungi.setText(contact_count);
@@ -336,13 +341,10 @@ public class DetailIklanActivity extends AppCompatActivity {
     }
 
     private void kirimEmail(){
-        Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-        sendIntent.setType("plain/text");
-        sendIntent.setData(Uri.parse("test@gmail.com"));
-        sendIntent.setClassName("com.google.android.gm", "com.gamelanbekonang.menuHome.DetailIklanActivity");
-        sendIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { "test@gmail.com" });
-//        sendIntent.putExtra(Intent.EXTRA_SUBJECT, "test");
-//        sendIntent.putExtra(Intent.EXTRA_TEXT, "hello. this is a message sent from my demo app :-)");
-        startActivity(sendIntent);
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_EMAIL, email);
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Tanya Gamelan");
+        intent.setType("message/rfc822");
+        startActivity(Intent.createChooser(intent, "Choose an email client"));
     }
 }

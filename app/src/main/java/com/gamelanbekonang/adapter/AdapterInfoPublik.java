@@ -25,13 +25,10 @@ public class AdapterInfoPublik extends RecyclerView.Adapter<AdapterInfoPublik.In
     private ArrayList<Iklan> info_iklans;
     private Context context;
 
-
-    public AdapterInfoPublik(ArrayList<Iklan> info_iklans, Context context) {
+    public AdapterInfoPublik( Context context,ArrayList<Iklan> info_iklans) {
         this.info_iklans = info_iklans;
         this.context = context;
     }
-
-
 
     @Override
     public AdapterInfoPublik.InfoPublikViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

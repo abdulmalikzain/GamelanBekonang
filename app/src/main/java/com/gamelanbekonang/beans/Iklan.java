@@ -81,4 +81,6 @@ public class Iklan {
     public void setStore_name(String store_name) {
         this.store_name = store_name;
     }
+
+
 }

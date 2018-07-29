@@ -1,5 +1,6 @@
 package com.gamelanbekonang.menuProfil;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,12 +19,14 @@ import android.widget.Toast;
 import com.gamelanbekonang.MainActivity;
 import com.gamelanbekonang.R;
 import com.gamelanbekonang.adapter.AdapterIklan;
+import com.gamelanbekonang.adapter.AdapterInfoPublik;
 import com.gamelanbekonang.adapter.AdapterMyIklan;
 import com.gamelanbekonang.api.BaseApiService;
 import com.gamelanbekonang.api.RetrofitClient;
 import com.gamelanbekonang.api.UtilsApi;
 import com.gamelanbekonang.beans.Iklan;
 import com.gamelanbekonang.logRes.LoginActivity;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,7 +45,7 @@ import static com.gamelanbekonang.logRes.LoginActivity.my_shared_preferences;
 
 public class InformasiPublikActivity extends AppCompatActivity {
     private ArrayList<Iklan> infoiklan ;
-    private AdapterMyIklan adapter;
+    private AdapterInfoPublik adapter;
     private RecyclerView recyclerView;
     private Toolbar mActionToolbar;
     private BaseApiService mBaseApiService;
@@ -56,6 +59,11 @@ public class InformasiPublikActivity extends AppCompatActivity {
     private TextView  namepen, emailpen, perusahaanpen, alamatpen;
     private EditText idpen;
     private String judul, image1;
+    private int i;
+    private Dialog loading;
+    private String id;
+    private String id_user;
+    private String id_iklans;
 
 
     @Override
@@ -73,6 +81,9 @@ public class InformasiPublikActivity extends AppCompatActivity {
 //        emailpen = findViewById(R.id.tv_emailpen);
 //        perusahaanpen = findViewById(R.id.tv_perusahaanpen);
 //        alamatpen = findViewById(R.id.tv_alamatpen);
+        Bundle bundle = getIntent().getExtras();
+        id_user     = bundle.getString("user_id");
+        Log.d(TAG, "Muncul: "+id_user);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -106,26 +117,84 @@ public class InformasiPublikActivity extends AppCompatActivity {
 
     private void InfoData() {
         BaseApiService baseApiService  = RetrofitClient.getDataMyIklan();
-        baseApiService.getInfo(idinfo).enqueue(new Callback<ResponseBody>() {
+        baseApiService.getInfo(id_user).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
                     try {
-                        JSONObject object = new JSONObject(response.body().string());
-                        JSONObject infoObject = object.optJSONObject("user");
-                        String id = infoObject.optString("id");
-                        String image = infoObject.optString("image");
-                        String name = infoObject.optString("name");
-                        String email = infoObject.optString("email");
-                        String notelp = infoObject.optString("notelp");
-                        String address = infoObject.optString("address");
-                        String created_at = infoObject.optString("created_at");
-                        String store_name = infoObject.optString("store_name");
-                        String store_description = infoObject.optString("store_description");
+                        JSONObject jsonRESULTS = new JSONObject(response.body().string());
+                        JSONArray jsonArray = jsonRESULTS.getJSONObject("user").getJSONArray("iklans");
+//                        if (!jsonRESULTS.getString("msg").equals("404")){
+//                            String success =  jsonRESULTS.getString("msg");
+//                            Toast.makeText(mContext, success, Toast.LENGTH_SHORT).show();
+                            String id = jsonRESULTS.getJSONObject("user").getString("id");
+                            String image = jsonRESULTS.getJSONObject("user").getString("image");
+                            String nama = jsonRESULTS.getJSONObject("user").getString("name");
+                            String email = jsonRESULTS.getJSONObject("user").getString("email");
+                            String notelp = jsonRESULTS.getJSONObject("user").getString("notelp");
+                            String address = jsonRESULTS.getJSONObject("user").getString("address");
+                            String store_name = jsonRESULTS.getJSONObject("user").getString("store_name");
+                            String created_at = jsonRESULTS.getJSONObject("user").getString("created_at");
+
+                            for (int i = 0; i < jsonArray.length(); i++){
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String id_user = jsonObject.optString("user_id");
+                                String id_iklans = jsonObject.optString("id");
+                                String judul = jsonObject.optString("judul");
+                                String image1 = jsonObject.optString("image1");
+                                String image2 = jsonObject.optString("image2");
+                                String image3 = jsonObject.optString("image3");
+                                String image4 = jsonObject.optString("image4");
+                                String image5 = jsonObject.optString("image5");
+                                String deskripsi = jsonObject.optString("deskripsi");
+                                String volume = jsonObject.optString("volume");
+                                String stock = jsonObject.optString("stock");
+                                String harga = jsonObject.optString("harga");
+//                            String created_at = jsonObject.optString("created_at");
+                                String view_count = jsonObject.optString("view_count");
+                                String contact_count = jsonObject.optString("contact_count");
+
+                                Iklan iklan = new Iklan();
+                                iklan.setId(id_iklans);
+//                            iklan.setId(id_iklans);
+                                iklan.setJudul(judul);
+                                iklan.setImage1(image1);
+                                iklan.setVolume(volume);
+                                iklan.setHarga(harga);
+                                iklan.setUser_image(image);
+                                iklan.setStore_name(store_name);
+
+
+                                infoiklan.add(iklan);
+                                AdapterInfoPublik adapter = new AdapterInfoPublik(InformasiPublikActivity.this, infoiklan);
+                                recyclerView.setAdapter(adapter);
+                            }
 
 
 
-                        JSONArray infoArray1 = object.optJSONArray("iklans");
+
+
+
+
+
+//                        }
+
+
+//                        JSONObject object = new JSONObject(response.body().string());
+//                        JSONObject infoObject = object.optJSONObject("user");
+//                        String id = infoObject.optString("id");
+//                        String image = infoObject.optString("image");
+//                        String name = infoObject.optString("name");
+//                        String email = infoObject.optString("email");
+//                        String notelp = infoObject.optString("notelp");
+//                        String address = infoObject.optString("address");
+//                        String created_at = infoObject.optString("created_at");
+//                        String store_name = infoObject.optString("store_name");
+//                        String store_description = infoObject.optString("store_description");
+
+
+
+//                        JSONArray infoArray1 = object.optJSONArray("iklans");
 //                        String judul     = infoObject1.optString("judul");
 //                        String image1    = infoObject1.optString("image1");
 //                        String image2   = infoObject1.optString("image2");
@@ -147,19 +216,7 @@ public class InformasiPublikActivity extends AppCompatActivity {
 //                        alamatpen.setText(address);
 
 
-                        Iklan iklan = new Iklan();
-                        iklan.setId(id);
-                        iklan.setJudul(judul);
-                        iklan.setImage1(image1);
-                        iklan.setCreated_at(created_at);
-//                        iklan.setVolume(volume);
-//                        iklan.setHarga(harga);
-                        iklan.setUser_image(image);
-                        iklan.setStore_name(store_name);
 
-                            infoiklan.add(iklan);
-                            AdapterIklan adapter = new AdapterIklan(InformasiPublikActivity.this, infoiklan);
-                            recyclerView.setAdapter(adapter);
 
                         } catch (JSONException e) {
                         e.printStackTrace();
@@ -173,7 +230,6 @@ public class InformasiPublikActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-
             }
         });
     }

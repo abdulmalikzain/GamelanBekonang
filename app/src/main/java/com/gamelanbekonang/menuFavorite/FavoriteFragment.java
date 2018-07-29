@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -41,7 +42,7 @@ public class FavoriteFragment extends Fragment implements SwipeRefreshLayout.OnR
     private ApiService apiService;
     private String token, id, userId;
     private Context context;
-    private ArrayList<Iklan> list;
+    private List<Iklan> list;
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
 
@@ -52,10 +53,17 @@ public class FavoriteFragment extends Fragment implements SwipeRefreshLayout.OnR
         View view = inflater.inflate(R.layout.fragment_favorite, container, false);
 
         swipeRefreshLayout = view.findViewById(R.id.swipe_favorite);
+        recyclerView        = view.findViewById(R.id.rv_favorite);
 
         SharedPreferences sp = getContext().getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
         userId = (sp.getString("id", ""));
         token = (sp.getString("token", ""));
+        Log.d("isoooooooo", "onCreateView: "+token);
+
+        recyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        list = new ArrayList<>();
 
         getFavorite();
 
@@ -71,10 +79,7 @@ public class FavoriteFragment extends Fragment implements SwipeRefreshLayout.OnR
         );
 
         return view;
-
-
     }
-
 
     private void getFavorite(){
         swipeRefreshLayout.setRefreshing(true);
@@ -100,7 +105,6 @@ public class FavoriteFragment extends Fragment implements SwipeRefreshLayout.OnR
                                     String imageuser = jsonObject.getString("user_image");
                                     String storename = jsonObject.getString("store_name");
 
-                                    Log.d("judullllll", "onResponse: "+judul);
                                     Iklan iklan = new Iklan();
                                     iklan.setId(id);
                                     iklan.setJudul(judul);

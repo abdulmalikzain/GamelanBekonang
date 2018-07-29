@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gamelanbekonang.R;
@@ -36,8 +37,9 @@ public class KategoriIklanActivity extends AppCompatActivity implements SwipeRef
     private RecyclerView recyclerView;
     private ApiService mApiService;
     private String tittle;
-    private String idKategori;
+    private String idKategori, judul;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private TextView tvJudul;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class KategoriIklanActivity extends AppCompatActivity implements SwipeRef
 
         mActionToolbar = findViewById(R.id.toolbar_kenong);
         swipeRefreshLayout = findViewById(R.id.swipe_kategori);
+        tvJudul        = findViewById(R.id.tv_judul_kategori);
 
         setSupportActionBar(mActionToolbar);
         getSupportActionBar().setTitle(tittle);
@@ -101,13 +104,15 @@ public class KategoriIklanActivity extends AppCompatActivity implements SwipeRef
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String id = jsonObject.optString("id");
-                        String judul = jsonObject.optString("judul");
+                        judul = jsonObject.optString("judul");
                         String image1   = jsonObject.optString("image1");
                         String volume = jsonObject.optString("volume");
                         String harga = jsonObject.optString("harga");
                         String created_at = jsonObject.optString("created_at");
                         String imageuser = jsonObject.getString("user_image");
                         String storename = jsonObject.getString("store_name");
+
+                        tvJudul.setText(judul);
 
                         Iklan iklan = new Iklan();
                         iklan.setId(id);
