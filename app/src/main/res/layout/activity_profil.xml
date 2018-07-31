@@ -18,13 +18,15 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_photo"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/ic_akun"
         android:layout_below="@id/tabs_profil"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="50dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_gravity="right"
         app:civ_border_width="2dp" />
 
 

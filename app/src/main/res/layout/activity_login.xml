@@ -57,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:orientation="vertical">
 
         <TextView
@@ -112,27 +112,45 @@
             <!--android:background="@color/white"/>-->
 
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="119dp"
-            android:layout_height="100dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="20dp"
-            android:src="@mipmap/ic_icon_gw_round"
-            app:civ_border_color="@color/color_home"
+        <!--<de.hdodenhof.circleimageview.CircleImageView-->
+            <!--android:layout_width="119dp"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:layout_marginBottom="5dp"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:src="@mipmap/ic_icon_gw_round"-->
+            <!--app:civ_border_color="@color/color_home"-->
+            <!--android:layout_gravity="center"-->
+            <!--app:civ_border_width="2dp"-->
+            <!--app:civ_circle_background_color="@color/white" />-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gamelan Wirun"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="5sp"
+            android:textSize="33sp"
             android:layout_gravity="center"
-            app:civ_border_width="2dp"
-            app:civ_circle_background_color="@color/white" />
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:textColor="@color/Black"/>
+
+        <View
+            android:layout_width="240dp"
+            android:layout_gravity="center"
+            android:layout_height="4dp"
+            android:background="@color/colorPrimary"
+            android:layout_marginBottom="40dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Gamelan Wirun"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textColorHint="@color/white"
-            android:padding="8dp"
-            android:textColor="@color/white"/>
+            android:layout_marginTop="35sp"
+            android:textSize="16sp"
+            android:text="Silahkan Login dengan akun yang terdaftar"
+            android:textColor="@color/Black" />
+
+
 
         <LinearLayout
             android:layout_marginTop="20dp"
@@ -141,21 +159,26 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30sp"
+                android:layout_height="30sp"
                 android:textSize="18sp"
+                android:layout_marginTop="19sp"
+                android:backgroundTint="@color/white"
                 android:background="@drawable/ic_email_white_24dp"/>
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <EditText
             android:id="@+id/et_emaill"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textColorHint="@color/white"
-            android:padding="8dp"
             android:inputType="textEmailAddress"
-            android:textColor="@color/white"/>
+            android:textColor="@color/Black"/>
+            </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -165,34 +188,51 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30sp"
+                android:layout_height="30sp"
                 android:textSize="18sp"
+                android:layout_marginTop="19sp"
+                android:backgroundTint="@color/white"
                 android:background="@drawable/ic_lock_white_24dp"/>
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true">
             <EditText
             android:id="@+id/et_passwordl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
             android:textColorHint="@color/white"
-            android:textSize="18sp"
+            android:textSize="20sp"
                 android:password="true"
             android:inputType="textPassword"
-            android:padding="8dp"
-            android:layout_marginBottom="2dp"
-            android:textColor="@color/white"/>
-        </LinearLayout>
+            android:textColor="@color/Black"/>
+            </android.support.design.widget.TextInputLayout>
 
-        <CheckBox
-            android:id="@+id/checkBox"
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_resetpass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/white"
-            android:text="Tampilkan Password" />
+            android:text="Lupa Password ?"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7sp"
+            android:layout_gravity="right"/>
+        <!--<CheckBox-->
+            <!--android:id="@+id/checkBox"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:textSize="20sp"-->
+            <!--android:textStyle="bold"-->
+            <!--android:textColor="@color/Black"-->
+            <!--android:text="Tampilkan Password" />-->
 
 
 
@@ -203,7 +243,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="370dp"
+        android:layout_marginTop="420dp"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -212,49 +252,45 @@
             android:layout_width="300dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="28sp"
             android:background="@drawable/ripple_effect"
             android:text="LOGIN"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
             android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="40sp"
-            android:gravity="center"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:fontFamily="cursive"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:text="OR"
-            android:layout_marginTop="7dp"
-            android:layout_gravity="center"/>
-
-        <Button
-            android:id="@+id/btn_registerl"
+        
+        
+        <ImageView
             android:layout_width="300dp"
             android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
             android:layout_gravity="center"
-            android:layout_marginTop="7dp"
-            android:background="@drawable/ripple_effect"
-            android:text="REGISTER"
-            android:textColor="@color/colorPrimary"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:background="@drawable/or"/>
 
         <TextView
-            android:id="@+id/tv_reset"
+            android:id="@+id/btn_registerl"
             android:layout_width="wrap_content"
-            android:gravity="center"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:fontFamily="cursive"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:text="Reset Password"
-            android:layout_marginTop="7dp"
-            android:layout_gravity="center"/>
+            android:text="Silahkan Daftar ! Bagi yang belum punya akun"
+            android:textSize="16sp"
+            android:textColor="@color/white"/>
+        <!--<Button-->
+            <!--android:id="@+id/btn_registerl"-->
+            <!--android:layout_width="300dp"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginTop="7dp"-->
+            <!--android:background="@drawable/ripple_effect"-->
+            <!--android:text="REGISTER"-->
+            <!--android:textColor="@color/colorPrimary"-->
+            <!--android:textSize="18sp"-->
+            <!--android:textStyle="bold" />-->
+
+
+
+
+
+
 
 
     </LinearLayout>

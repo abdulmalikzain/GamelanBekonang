@@ -47,7 +47,8 @@ public class AdapterInfoPublik extends RecyclerView.Adapter<AdapterInfoPublik.In
 //            holder.tvWaktu.setText(iklan.getCreated_at());
         holder.tvHarga.setText(iklan.getHarga());
         holder.tvId.setText(iklan.getId());
-        Picasso.with(context).load(ApiService.BASE_URL_IMAGEIKLAN+iklan.getImage1())
+        Picasso.with(context)
+                .load(ApiService.BASE_URL_IMAGEIKLAN+iklan.getImage1())
                 .error(R.mipmap.ic_launcher)
                 .into(holder.ivGambar);
 

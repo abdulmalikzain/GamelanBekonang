@@ -27,6 +27,7 @@ import com.gamelanbekonang.api.UtilsApi;
 import com.gamelanbekonang.beans.Iklan;
 import com.gamelanbekonang.logRes.LoginActivity;
 import com.google.gson.JsonObject;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,6 +65,7 @@ public class InformasiPublikActivity extends AppCompatActivity {
     private String id;
     private String id_user;
     private String id_iklans;
+    private Context context;
 
 
     @Override
@@ -75,12 +77,12 @@ public class InformasiPublikActivity extends AppCompatActivity {
         setSupportActionBar(mActionToolbar);
         getSupportActionBar().setTitle("Informasi Penjual");
 
-//        civ_informasipen = findViewById(R.id.civ_informasipen);
-//        idpen = findViewById(R.id.et_idinfo);
-//        namepen = findViewById(R.id.tv_namapen);
-//        emailpen = findViewById(R.id.tv_emailpen);
-//        perusahaanpen = findViewById(R.id.tv_perusahaanpen);
-//        alamatpen = findViewById(R.id.tv_alamatpen);
+        civ_informasipen = findViewById(R.id.civ_informasipen);
+        idpen = findViewById(R.id.et_idinfo);
+        namepen = findViewById(R.id.tv_namapen);
+        emailpen = findViewById(R.id.tv_emailpen);
+        perusahaanpen = findViewById(R.id.tv_perusahaanpen);
+        alamatpen = findViewById(R.id.tv_alamatpen);
         Bundle bundle = getIntent().getExtras();
         id_user     = bundle.getString("user_id");
         Log.d(TAG, "Muncul: "+id_user);
@@ -116,7 +118,7 @@ public class InformasiPublikActivity extends AppCompatActivity {
     }
 
     private void InfoData() {
-        BaseApiService baseApiService  = RetrofitClient.getDataMyIklan();
+        final BaseApiService baseApiService  = RetrofitClient.getDataMyIklan();
         baseApiService.getInfo(id_user).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -135,6 +137,17 @@ public class InformasiPublikActivity extends AppCompatActivity {
                             String address = jsonRESULTS.getJSONObject("user").getString("address");
                             String store_name = jsonRESULTS.getJSONObject("user").getString("store_name");
                             String created_at = jsonRESULTS.getJSONObject("user").getString("created_at");
+
+
+                        idpen.setText(id);
+                        namepen.setText(nama);
+                        Picasso.with(getApplication())
+                                .load(BaseApiService.BASE_URL_IMAGE_USER+image)
+                                .placeholder(R.drawable.ic_akun)
+                                .into(civ_informasipen);
+                        emailpen.setText(email);
+                        perusahaanpen.setText(store_name);
+                        alamatpen.setText(address);
 
                             for (int i = 0; i < jsonArray.length(); i++){
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);

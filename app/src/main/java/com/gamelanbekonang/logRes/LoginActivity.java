@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -42,9 +43,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText etEmail;
     private EditText etPassword;
-    private TextView coba, tv_next, tv_skip;
+    private TextView coba, tv_next, tv_skip, tv_lupass;
     private Button btnLogin;
-    private Button btnRegister;
+    private TextView btnRegister;
     private CheckBox c;
     private ProgressDialog loading;
     private String TAG="";
@@ -114,18 +115,30 @@ public class LoginActivity extends AppCompatActivity {
         etEmail = (EditText) findViewById(R.id.et_emaill);
         etPassword = (EditText) findViewById(R.id.et_passwordl);
         btnLogin = (Button) findViewById(R.id.btn_loginl);
-        c = (CheckBox) findViewById(R.id.checkBox);
-        c.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+        tv_lupass = (TextView) findViewById(R.id.tv_resetpass);
+        tv_lupass.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (!isChecked){
-                    etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                } else {
-                    etPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                }
+            public void onClick(View v) {
+                String urlPass = "http://gamelanwirun.com/api/v1/user/recover";
+                Intent ipass = new Intent(Intent.ACTION_VIEW);
+                ipass.setData(Uri.parse(urlPass));
+                startActivity(ipass);
+
             }
         });
-        btnRegister = (Button) findViewById(R.id.btn_registerl);
+//        c = (CheckBox) findViewById(R.id.checkBox);
+//        c.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (!isChecked){
+//                    etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+//                } else {
+//                    etPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+//                }
+//            }
+//        });
+        btnRegister = (TextView) findViewById(R.id.btn_registerl);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
