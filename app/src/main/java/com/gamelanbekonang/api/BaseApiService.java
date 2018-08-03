@@ -1,17 +1,11 @@
 package com.gamelanbekonang.api;
 
-import com.google.gson.annotations.SerializedName;
-
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.Response;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-
-import retrofit2.http.Header;
-import retrofit2.http.PATCH;
 
 import retrofit2.http.Multipart;
 
@@ -31,6 +25,7 @@ public interface BaseApiService {
     String BASE_URL_UPDATE_PROFIL ="http://gamelanwirun.com/api/v1/user/myprofile/";
     String BASE_URL_IMAGE_USER = "http://gamelanwirun.com/images/users/";
     String BASE_URL_CHANGE_PASS = "http://gamelanwirun.com/api/v1/user/changePassword/";
+    String BASE_URL_LUPA_PASS = "http://gamelanwirun.com/api/v1/user/recover";
 
 
     @FormUrlEncoded
@@ -57,7 +52,7 @@ public interface BaseApiService {
 
     @Multipart
     @POST("myprofile")
-    Call<Result> postImage(@Part MultipartBody.Part image);
+    Call<ResponseBody> postImage(@Part MultipartBody.Part image);
 
     @FormUrlEncoded
     @POST("myprofile")
@@ -82,4 +77,8 @@ public interface BaseApiService {
 
     @GET("profile/{id}")
     Call <ResponseBody> getInfo(@Path("id") String id);
+
+    @FormUrlEncoded
+    @POST("recover")
+    Call<ResponseBody> lupapass(@Field("email") String email);
 }

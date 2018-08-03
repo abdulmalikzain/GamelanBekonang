@@ -67,6 +67,16 @@
                 android:hint="id"
                 android:editable="false"
                 android:inputType="none" />
+            <TextView
+                android:id="@+id/tv_token1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="40dp"
+                android:background="@null"
+                android:hint="id"
+                android:editable="false"
+                android:inputType="none" />
 
         </RelativeLayout>
         <RelativeLayout

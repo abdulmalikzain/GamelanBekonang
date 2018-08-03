@@ -202,105 +202,105 @@ public class EditProfilCustomer extends AppCompatActivity {
         startActivityForResult(Intent.createChooser(foto, "Pilih Foto"), 100);
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if ( requestCode ==100 && resultCode == Activity.RESULT_OK){
-            if (data == null){
-                Toast.makeText(this, "Gambar Tidak Ada", Toast.LENGTH_SHORT).show();
-                return;
-
-            }
-//            else {
-//                Toast.makeText(this, "Gambar Ada", Toast.LENGTH_SHORT).show();
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        if ( requestCode ==100 && resultCode == Activity.RESULT_OK){
+//            if (data == null){
+//                Toast.makeText(this, "Gambar Tidak Ada", Toast.LENGTH_SHORT).show();
+//                return;
+//
 //            }
-            Uri selectImageUri = data.getData();
-            String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-            Cursor c =getContentResolver().query(selectImageUri, filePathColumn, null, null, null);
-            if (c !=null){
-                c.moveToFirst();
-
-                int columnIndex = c.getColumnIndex(filePathColumn[0]);
-                imagePath = c.getString(columnIndex);
-
-//                Glide.with(this).load(new File(imagePath)).into(cvEditProfil);
-                Picasso.with(this).load(new File(imagePath)).into(cvProfilepcs);
-                img = new File(imagePath).getName();
-
-                //Creating a shared preference
-                SharedPreferences sharedPreferences = EditProfilCustomer.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
-
-                //Creating editor to store values to shared preferences
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                //Adding values to editor
-                editor.putString("image", BASE_URL_IMAGE_USER+f);
-                editor.commit();
-                uploadImage();
-//                Toast.makeText(this, "Mbuh", Toast.LENGTH_SHORT).show();
-                c.close();
-
-//                te.setVisibility(View.GONE);
-//                imageVi.setVisibility(View.VISIBLE);
-            }else {
-//                te.setVisibility(View.VISIBLE);
-//                imageVi.setVisibility(View.GONE);
-                Toast.makeText(this, "Gambar Tidak Ada", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    private void uploadImage() {
-        final ProgressDialog p  ;
-        p = new ProgressDialog(this);
-        p.setMessage("Proses Upload Foto");
-        p.show();
-
-        BaseApiService s = (BaseApiService) RetrofitClient.getUpdateProfilRetrofit();
-
-
-        File f = new File(imagePath);
-
-        Toast.makeText(EditProfilCustomer.this, "Gambar " +img, Toast.LENGTH_SHORT).show();
-
-        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), f);
-
-        final MultipartBody.Part part = MultipartBody.Part.createFormData("uploaded_file", f.getName(), requestFile);
-        Call<com.gamelanbekonang.api.Result> resultCAll = s.postImage(part);
-        resultCAll.enqueue(new Callback<com.gamelanbekonang.api.Result>() {
-            @Override
-            public void onResponse(Call<com.gamelanbekonang.api.Result> call, Response<com.gamelanbekonang.api.Result> response) {
-
-                p.dismiss();
-                if (response.isSuccessful()){
-                    if (response.body().getResult().equals("success")){
-                        Toast.makeText(EditProfilCustomer.this, "Sukses", Toast.LENGTH_SHORT).show();
-                    }
-
-                    else{
-                        Toast.makeText(EditProfilCustomer.this, "Upload Gambar Gagal", Toast.LENGTH_SHORT).show();
-                    }
-
-                }else {
-                    Toast.makeText(EditProfilCustomer.this, "Upload Gambar Gagal", Toast.LENGTH_SHORT).show();
-                }
-
-                imagePath = "";
-
-            }
-
-            @Override
-            public void onFailure(Call<com.gamelanbekonang.api.Result> call, Throwable t) {
-                Toast.makeText(EditProfilCustomer.this, "Gagal Upload Fail", Toast.LENGTH_SHORT).show();
-                p.dismiss();
-
-
-
-            }
-        });
-    }
+////            else {
+////                Toast.makeText(this, "Gambar Ada", Toast.LENGTH_SHORT).show();
+////            }
+//            Uri selectImageUri = data.getData();
+//            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+//
+//            Cursor c =getContentResolver().query(selectImageUri, filePathColumn, null, null, null);
+//            if (c !=null){
+//                c.moveToFirst();
+//
+//                int columnIndex = c.getColumnIndex(filePathColumn[0]);
+//                imagePath = c.getString(columnIndex);
+//
+////                Glide.with(this).load(new File(imagePath)).into(cvEditProfil);
+//                Picasso.with(this).load(new File(imagePath)).into(cvProfilepcs);
+//                img = new File(imagePath).getName();
+//
+//                //Creating a shared preference
+//                SharedPreferences sharedPreferences = EditProfilCustomer.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
+//
+//                //Creating editor to store values to shared preferences
+//                SharedPreferences.Editor editor = sharedPreferences.edit();
+//
+//                //Adding values to editor
+//                editor.putString("image", BASE_URL_IMAGE_USER+f);
+//                editor.commit();
+//                uploadImage();
+////                Toast.makeText(this, "Mbuh", Toast.LENGTH_SHORT).show();
+//                c.close();
+//
+////                te.setVisibility(View.GONE);
+////                imageVi.setVisibility(View.VISIBLE);
+//            }else {
+////                te.setVisibility(View.VISIBLE);
+////                imageVi.setVisibility(View.GONE);
+//                Toast.makeText(this, "Gambar Tidak Ada", Toast.LENGTH_SHORT).show();
+//            }
+//        }
+//    }
+//
+//    private void uploadImage() {
+//        final ProgressDialog p  ;
+//        p = new ProgressDialog(this);
+//        p.setMessage("Proses Upload Foto");
+//        p.show();
+//
+//        BaseApiService s = (BaseApiService) RetrofitClient.getUpdateProfilRetrofit();
+//
+//
+//        File f = new File(imagePath);
+//
+//        Toast.makeText(EditProfilCustomer.this, "Gambar " +img, Toast.LENGTH_SHORT).show();
+//
+//        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), f);
+//
+//        final MultipartBody.Part part = MultipartBody.Part.createFormData("uploaded_file", f.getName(), requestFile);
+//        Call<com.gamelanbekonang.api.Result> resultCAll = s.postImage(part);
+//        resultCAll.enqueue(new Callback<com.gamelanbekonang.api.Result>() {
+//            @Override
+//            public void onResponse(Call<com.gamelanbekonang.api.Result> call, Response<com.gamelanbekonang.api.Result> response) {
+//
+//                p.dismiss();
+//                if (response.isSuccessful()){
+//                    if (response.body().getResult().equals("success")){
+//                        Toast.makeText(EditProfilCustomer.this, "Sukses", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                    else{
+//                        Toast.makeText(EditProfilCustomer.this, "Upload Gambar Gagal", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                }else {
+//                    Toast.makeText(EditProfilCustomer.this, "Upload Gambar Gagal", Toast.LENGTH_SHORT).show();
+//                }
+//
+//                imagePath = "";
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<com.gamelanbekonang.api.Result> call, Throwable t) {
+//                Toast.makeText(EditProfilCustomer.this, "Gagal Upload Fail", Toast.LENGTH_SHORT).show();
+//                p.dismiss();
+//
+//
+//
+//            }
+//        });
+//    }
 
     private void initView() {
 

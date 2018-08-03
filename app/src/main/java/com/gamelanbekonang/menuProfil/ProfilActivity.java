@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,24 +18,30 @@ import android.widget.TextView;
 
 import com.gamelanbekonang.MainActivity;
 import com.gamelanbekonang.R;
+import com.gamelanbekonang.api.BaseApiService;
 import com.gamelanbekonang.logRes.LoginActivity;
 import com.squareup.picasso.Picasso;
+
+import java.net.URL;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.content.ContentValues.TAG;
 import static com.gamelanbekonang.api.BaseApiService.BASE_URL_IMAGE;
+import static com.gamelanbekonang.api.BaseApiService.BASE_URL_IMAGE_USER;
 import static com.gamelanbekonang.logRes.LoginActivity.my_shared_preferences;
 
 public class ProfilActivity extends AppCompatActivity {
 
-    SharedPreferences sharedpreferences;
+//    SharedPreferences sp;
     Context context;
-    private TextView tv_id, tv_name, tv_email, tv_notelp, tv_address, tv_reseller,keluar;
+    private TextView tv_id,tv_token1, tv_name, tv_email, tv_notelp, tv_address, tv_reseller,keluar;
     private CircleImageView civp;
     public static final  String value = "id";
     private int i;
     private Toolbar mActionToolbar;
+    private String id, image, name, email, notelp, address;
+    private String token;
 
 
     @Override
@@ -46,22 +53,32 @@ public class ProfilActivity extends AppCompatActivity {
         keluar = findViewById(R.id.tv_keluar);
         civp = findViewById(R.id.profile_photo);
         tv_id =  findViewById(R.id.tv_id);
+        tv_token1 = findViewById(R.id.tv_token1);
         tv_name = findViewById(R.id.tv_namep);
         tv_email = findViewById(R.id.tv_emailp);
         tv_address = findViewById(R.id.tv_address);
         tv_notelp = findViewById(R.id.tv_notelp);
         tv_reseller = findViewById(R.id.tv_reseller);
 
-//        SharedPreferences sharedPreferences = PreferenceManager
+        SharedPreferences sharedpreferences = getSharedPreferences(my_shared_preferences, MODE_PRIVATE);
+        id = (sharedpreferences.getString("id",""));
+        image = sharedpreferences.getString("image", null);
+        name = sharedpreferences.getString("name", null);
+        email = sharedpreferences.getString("email", null);
+        notelp = sharedpreferences.getString("notelp",null);
+        address = sharedpreferences.getString("address", null);
+        token = sharedpreferences.getString("token", null);
+
+//        SharedPreferences sp = PreferenceManager
 //                .getDefaultSharedPreferences(this);
-//        sharedpreferences = context.getSharedPreferences(my_shared_preferences, MODE_PRIVATE);
+//        sp = context.getSharedPreferences(my_shared_preferences, MODE_PRIVATE);
         SharedPreferences sp = getApplicationContext().getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
 
         String image = (sp.getString("image", ""));
-        Picasso.with(ProfilActivity.this)
-                .load(BASE_URL_IMAGE+image)
-                .placeholder(R.drawable.ic_akun)
-                .into(civp);
+        Picasso.with(this)
+                           .load(BaseApiService.BASE_URL_IMAGE_USER+image)
+                           .placeholder(R.drawable.ic_akun)
+                           .into(civp);
         String id = (sp.getString("id", ""));
         tv_id.setText(id);
         String name = (sp.getString("name", ""));
@@ -74,6 +91,8 @@ public class ProfilActivity extends AppCompatActivity {
         tv_address.setText(address);
         String namerules = (sp.getString("name", ""));
         tv_reseller.setText(namerules);
+//        String token = (sharedpreferences.getString("token",""));
+//        tv_token1.setText(token);
 
         mActionToolbar = (Toolbar) findViewById(R.id.tabs_profil);
         setSupportActionBar(mActionToolbar);

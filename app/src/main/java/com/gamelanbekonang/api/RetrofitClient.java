@@ -105,5 +105,24 @@ public class RetrofitClient {
         return getMyClient().create(BaseApiService.class);
     }
 
+    static final String BASE_URL_IMG_USR = "http://gamelanwirun.com/images/";
+    ////////////////////////////////////////////
+    public static Retrofit getImg(){
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL_MY_IKLAN)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build();
+        return retrofit;
+    }
+
+    public static BaseApiService getImgUsr(){
+        return getImg().create(BaseApiService.class);
+    }
+
 }
 

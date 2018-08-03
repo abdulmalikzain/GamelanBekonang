@@ -120,10 +120,10 @@ public class LoginActivity extends AppCompatActivity {
         tv_lupass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String urlPass = "http://gamelanwirun.com/api/v1/user/recover";
-                Intent ipass = new Intent(Intent.ACTION_VIEW);
-                ipass.setData(Uri.parse(urlPass));
-                startActivity(ipass);
+//                String urlPass = "http://gamelanwirun.com/api/v1/user/recover";
+//                Intent ipass = new Intent(Intent.ACTION_VIEW);
+//                ipass.setData(Uri.parse(urlPass));
+                startActivity(new Intent(mContext, LupaPasswordActivity.class));
 
             }
         });

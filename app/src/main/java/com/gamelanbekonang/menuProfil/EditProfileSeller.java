@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.gamelanbekonang.MainActivity;
 import com.gamelanbekonang.R;
 import com.gamelanbekonang.api.BaseApiService;
+import com.gamelanbekonang.api.Result;
 import com.gamelanbekonang.api.RetrofitClient;
 import com.gamelanbekonang.api.UtilsApi;
 import com.squareup.picasso.Picasso;
@@ -63,12 +64,14 @@ public class EditProfileSeller extends AppCompatActivity {
     private BaseApiService mApiService;
     private int MY_PERMISSIONS_REQUEST_FINE_LOCATION = 1;
     private SharedPreferences sharedpreferences;
+    public static final String SHARED_IMAGE = "image";
     private String imagePath;
     private String f;
     private String token;
     private String img;
     private String id;
     private String TAG;
+    private String image, name, email, notelp, address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,7 +116,7 @@ public class EditProfileSeller extends AppCompatActivity {
         etIdpsr = (EditText) findViewById(R.id.et_idprs);
         etIdpsr.setVisibility(View.INVISIBLE);
         et_token = (EditText) findViewById(R.id.et_tokenpsr);
-        et_token.setVisibility(View.INVISIBLE);
+//        et_token.setVisibility(View.INVISIBLE);
         cvProfilsr = findViewById(R.id.cv_profilsr);
         etNamapsr = (EditText) findViewById(R.id.et_namapsr);
         etEmailpsr = (EditText) findViewById(R.id.et_emailpsr);
@@ -133,6 +136,9 @@ public class EditProfileSeller extends AppCompatActivity {
 //        etNotelppsr.setText(notelp);
 //        String address = (sp.getString("address",""));
 //        etAlamatpsr.setText(address);
+
+
+
         sharedpreferences = getSharedPreferences(my_shared_preferences, MODE_PRIVATE);
         String name = (sharedpreferences.getString("name", ""));
         etNamapsr.setText(name);
@@ -181,17 +187,18 @@ public class EditProfileSeller extends AppCompatActivity {
         final String notelp = etNotelppsr.getText().toString();
         final String address = etAlamatpsr.getText().toString();
 
-        mApiService.updateProfile(token , id,etNamapsr.getText().toString().trim(),
+        mApiService.updateProfile(token , id,
+                etNamapsr.getText().toString(),
                 etEmailpsr.getText().toString(),
                 etAlamatpsr.getText().toString(),
                 etNotelppsr.getText().toString(),img)
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (response.isSuccessful()){
-                            progressDialog.dismiss();
-                            try {
-                                JSONObject object = new JSONObject(response.body().string());
+//                        if (response.isSuccessful()){
+//                            progressDialog.dismiss();
+//                            try {
+//                                JSONObject object = new JSONObject(response.body().string());
 //                                String messeage = object.optString("message");
 //                                Toast.makeText(EditProfileSeller.this, "" + messeage, Toast.LENGTH_SHORT).show();
 //                                Toast.makeText(EditProfileSeller.this, "" + messeage, Toast.LENGTH_SHORT).show();
@@ -205,6 +212,7 @@ public class EditProfileSeller extends AppCompatActivity {
 
                                 SharedPreferences.Editor editor = sp.edit();
                                 editor.putBoolean(session_status, true);
+                                editor.putString("token", token);
                                 editor.putString("name", name);
                                 editor.putString("email", email);
                                 editor.putString("address", address);
@@ -214,12 +222,13 @@ public class EditProfileSeller extends AppCompatActivity {
 
                                 Intent intent = new Intent(EditProfileSeller.this, MainActivity.class);
                                 startActivity(intent);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
+//                            }
+//                            catch (JSONException e) {
+//                                e.printStackTrace();
+//                            } catch (IOException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
                     }
 
                     @Override
@@ -265,13 +274,14 @@ public class EditProfileSeller extends AppCompatActivity {
                 img = new File(imagePath).getName();
 
                 //Creating a shared preference
-                SharedPreferences sharedPreferences = EditProfileSeller.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
+//                SharedPreferences sharedPreferences = EditProfileSeller.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
+
 
                 //Creating editor to store values to shared preferences
-                SharedPreferences.Editor editor = sharedPreferences.edit();
+                SharedPreferences.Editor editor = sharedpreferences.edit();
 
                 //Adding values to editor
-                editor.putString("image", BASE_URL_IMAGE_USER+f);
+                editor.putString(SHARED_IMAGE,"http://gamelanwirun.com/images/users/"+img);
                 editor.commit();
                 uploadImage();
 //                Toast.makeText(this, "Mbuh", Toast.LENGTH_SHORT).show();
@@ -294,41 +304,45 @@ public class EditProfileSeller extends AppCompatActivity {
         p.setMessage("Proses Upload Foto");
         p.show();
 
-        BaseApiService s = (BaseApiService) RetrofitClient.getUpdateProfilRetrofit();
+        BaseApiService s = (BaseApiService) RetrofitClient.getImgUsr();
 
 
         File f = new File(imagePath);
 
-        Toast.makeText(EditProfileSeller.this, "Gambar " +img, Toast.LENGTH_SHORT).show();
+        Toast.makeText(EditProfileSeller.this, "Gambar " +f, Toast.LENGTH_SHORT).show();
 
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), f);
 
-        final MultipartBody.Part part = MultipartBody.Part.createFormData("uploaded_file", f.getName(), requestFile);
-        Call<com.gamelanbekonang.api.Result> resultCAll = s.postImage(part);
-        resultCAll.enqueue(new Callback<com.gamelanbekonang.api.Result>() {
+        final MultipartBody.Part part = MultipartBody.Part.createFormData("image", f.getName(), requestFile);
+        Call<ResponseBody> resultCAll = s.postImage(part);
+        resultCAll.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<com.gamelanbekonang.api.Result> call, Response<com.gamelanbekonang.api.Result> response) {
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
+                sharedpreferences = EditProfileSeller.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
+                String token = sharedpreferences.getString("token", "");
+                et_token.setText(token);
+                Toast.makeText(EditProfileSeller.this, "Semoga Bisa", Toast.LENGTH_SHORT).show();
                 p.dismiss();
-                if (response.isSuccessful()){
-                    if (response.body().getResult().equals("success")){
-                        Toast.makeText(EditProfileSeller.this, "Sukses", Toast.LENGTH_SHORT).show();
-                    }
-
-                    else{
-                        Toast.makeText(EditProfileSeller.this, "Upload Gambar Gagal", Toast.LENGTH_SHORT).show();
-                    }
-
-                }else {
-                    Toast.makeText(EditProfileSeller.this, "Upload Gambar Gagal", Toast.LENGTH_SHORT).show();
-                }
+//                               if (response.isSuccessful()){
+//                    if (response.body().getResult().equals("success")){
+//                        Toast.makeText(EditProfileSeller.this, "Sukses", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                    else{
+//                        Toast.makeText(EditProfileSeller.this, "Upload Gambar Gagal", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                }else {
+//                    Toast.makeText(EditProfileSeller.this, "Upload Gambar Gagal", Toast.LENGTH_SHORT).show();
+//                }
 
                 imagePath = "";
 
             }
 
             @Override
-            public void onFailure(Call<com.gamelanbekonang.api.Result> call, Throwable t) {
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Toast.makeText(EditProfileSeller.this, "Gagal Upload Fail", Toast.LENGTH_SHORT).show();
                 p.dismiss();
 
@@ -348,6 +362,14 @@ public class EditProfileSeller extends AppCompatActivity {
     }
 
     private void initView() {
+        SharedPreferences sharedpreferences = getSharedPreferences(my_shared_preferences, MODE_PRIVATE);
+        id = (sharedpreferences.getString("id",""));
+        image = sharedpreferences.getString("image", null);
+        name = sharedpreferences.getString("name", null);
+        email = sharedpreferences.getString("email", null);
+        notelp = sharedpreferences.getString("notelp",null);
+        address = sharedpreferences.getString("address", null);
+        token = sharedpreferences.getString("token", null);
 
     }
 }

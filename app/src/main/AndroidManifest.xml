@@ -6,7 +6,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.WRITE_VOICEMAIL"/>
+    <uses-permission android:name="android.permission.WRITE_VOICEMAIL" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_icon_gw"
@@ -41,7 +42,8 @@
         <activity android:name=".menuProfil.GantiPasswordActivity" />
         <activity android:name=".menuProfil.EditProfilCustomer" />
         <activity android:name=".menuProfil.MyIklanActivity" />
-        <activity android:name=".menuProfil.InformasiPublikActivity"></activity>
+        <activity android:name=".menuProfil.InformasiPublikActivity" />
+        <activity android:name=".logRes.LupaPasswordActivity"></activity>
     </application>
 
 </manifest>
