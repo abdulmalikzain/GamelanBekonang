@@ -298,7 +298,7 @@ public class EditProfileSeller extends AppCompatActivity {
     }
 
     private void uploadImage() {
-
+        final String token = et_token.getText().toString();
         final ProgressDialog p  ;
         p = new ProgressDialog(this);
         p.setMessage("Proses Upload Foto");
@@ -314,7 +314,7 @@ public class EditProfileSeller extends AppCompatActivity {
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), f);
 
         final MultipartBody.Part part = MultipartBody.Part.createFormData("image", f.getName(), requestFile);
-        Call<ResponseBody> resultCAll = s.postImage(part);
+        Call<ResponseBody> resultCAll = s.postImage(part, token);
         resultCAll.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

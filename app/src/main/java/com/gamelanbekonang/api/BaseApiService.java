@@ -52,7 +52,8 @@ public interface BaseApiService {
 
     @Multipart
     @POST("myprofile")
-    Call<ResponseBody> postImage(@Part MultipartBody.Part image);
+    Call<ResponseBody> postImage(@Part MultipartBody.Part image,
+                                 @Query("token") String token);
 
     @FormUrlEncoded
     @POST("myprofile")

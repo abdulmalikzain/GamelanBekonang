@@ -94,7 +94,6 @@
                         android:layout_height="wrap_content">
 
                         <ImageView
-                            android:src="@drawable/kenong"
                             android:layout_gravity="center_horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="70dp" />
@@ -169,7 +168,6 @@
                         android:layout_height="wrap_content">
 
                         <ImageView
-                            android:src="@drawable/gambang"
                             android:layout_gravity="center_horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="70dp" />
@@ -209,7 +207,7 @@
                         android:layout_height="wrap_content">
 
                         <ImageView
-                            android:src="@drawable/bonang"
+                            android:src="@drawable/peking"
                             android:layout_gravity="center_horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="70dp" />
@@ -360,6 +358,7 @@
                         android:layout_height="wrap_content">
 
                         <ImageView
+                            android:src="@drawable/gender"
                             android:layout_gravity="center_horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="70dp" />
@@ -395,6 +394,7 @@
                         android:layout_height="wrap_content">
 
                         <ImageView
+                            android:src="@drawable/saron"
                             android:layout_gravity="center_horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="70dp" />
@@ -431,6 +431,7 @@
                         android:layout_height="wrap_content">
 
                         <ImageView
+                            android:src="@drawable/demung"
                             android:layout_gravity="center_horizontal"
                             android:layout_width="match_parent"
                             android:padding="5dp"
@@ -469,6 +470,7 @@
                         android:layout_height="wrap_content">
 
                         <ImageView
+                            android:src=""
                             android:layout_gravity="center_horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="70dp" />
@@ -507,6 +509,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
                         <ImageView
+                            android:src="@drawable/kethuk"
                             android:layout_gravity="center_horizontal"
                             android:layout_width="80dp"
                             android:layout_height="70dp" />
