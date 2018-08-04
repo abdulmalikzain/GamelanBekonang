@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gamelanbekonang.MainActivity;
@@ -40,6 +41,7 @@ import static com.gamelanbekonang.logRes.LoginActivity.my_shared_preferences;
 public class FavoriteFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
     private ApiService apiService;
+//    private TextView tv_tokenfav;
     private String token, id, userId;
     private Context context;
     private List<Iklan> list;
@@ -54,10 +56,14 @@ public class FavoriteFragment extends Fragment implements SwipeRefreshLayout.OnR
 
         swipeRefreshLayout = view.findViewById(R.id.swipe_favorite);
         recyclerView        = view.findViewById(R.id.rv_favorite);
+//        tv_tokenfav = view.findViewById(R.id.tv_tokenfav);
+//        tv_tokenfav.setVisibility(View.INVISIBLE);
+
 
         SharedPreferences sp = getContext().getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
         userId = (sp.getString("id", ""));
         token = (sp.getString("token", ""));
+//        tv_tokenfav.setText(token);
         Log.d("isoooooooo", "onCreateView: "+token);
 
         recyclerView.setHasFixedSize(true);
@@ -82,6 +88,7 @@ public class FavoriteFragment extends Fragment implements SwipeRefreshLayout.OnR
     }
 
     private void getFavorite(){
+//        final String token = tv_tokenfav.getText().toString();
         swipeRefreshLayout.setRefreshing(true);
         apiService = RetroClient.getInstanceRetrofit();
         apiService.getFavorite(token)
