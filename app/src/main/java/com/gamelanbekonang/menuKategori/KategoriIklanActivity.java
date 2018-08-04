@@ -64,7 +64,6 @@ public class KategoriIklanActivity extends AppCompatActivity implements SwipeRef
         recyclerView.setLayoutManager(layoutManager);
 
         kategoris = new ArrayList<>();
-        getData();
 
         swipeRefreshLayout.setColorSchemeResources(R.color.kuningFirebase,R.color.orangeFirebase,R.color.colorPrimary);
         swipeRefreshLayout.setOnRefreshListener(this);

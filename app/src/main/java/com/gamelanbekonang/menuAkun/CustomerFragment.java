@@ -32,6 +32,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.content.ContentValues.TAG;
 import static com.gamelanbekonang.api.BaseApiService.BASE_URL_IMAGE;
+import static com.gamelanbekonang.api.BaseApiService.BASE_URL_IMAGE_USER;
 import static com.gamelanbekonang.logRes.LoginActivity.my_shared_preferences;
 
 /**
@@ -84,7 +85,7 @@ public class CustomerFragment extends Fragment {
 
         String image = (sp.getString("image", ""));
         Picasso.with(getContext())
-                .load(BASE_URL_IMAGE+image)
+                .load(BASE_URL_IMAGE_USER+image)
                 .placeholder(R.drawable.ic_akun)
                 .into(civ_ctm);
         String id = (sp.getString("id", ""));
@@ -96,7 +97,6 @@ public class CustomerFragment extends Fragment {
         tv_notelpctm.setText(notelp);
         String address = (sp.getString("address",""));
         tv_addressctm.setText(address);
-        Log.d(TAG, "JKOEr: "+id+civ_ctm+name+email+notelp);
 
         keluar_ctm.setOnClickListener(new View.OnClickListener() {
             @Override

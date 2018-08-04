@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -28,6 +29,7 @@ import com.gamelanbekonang.api.BaseApiService;
 import com.gamelanbekonang.api.Result;
 import com.gamelanbekonang.api.RetrofitClient;
 import com.gamelanbekonang.api.UtilsApi;
+import com.gamelanbekonang.menuAkun.SellerFragment;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -83,6 +85,8 @@ public class EditProfileSeller extends AppCompatActivity {
         getSupportActionBar().setTitle("EDIT AKUN");
 
         mApiService = UtilsApi.getAPIService();
+
+
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -197,6 +201,10 @@ public class EditProfileSeller extends AppCompatActivity {
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 //                        if (response.isSuccessful()){
 //                            progressDialog.dismiss();
+//                        Bundle bundle = new Bundle();
+
+//                        SellerFragment sellerFragment = new SellerFragment();
+//                        sellerFragment.setArguments(bundle);
 //                            try {
 //                                JSONObject object = new JSONObject(response.body().string());
 //                                String messeage = object.optString("message");
@@ -222,6 +230,8 @@ public class EditProfileSeller extends AppCompatActivity {
 
                                 Intent intent = new Intent(EditProfileSeller.this, MainActivity.class);
                                 startActivity(intent);
+//                        startActivity(new Intent(getApplicationContext(), getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container.)));
+//                        getSupportFragmentManager().beginTransaction().replace(R.id.container,sellerFragment).commit();
 //                            }
 //                            catch (JSONException e) {
 //                                e.printStackTrace();
@@ -314,39 +324,38 @@ public class EditProfileSeller extends AppCompatActivity {
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), f);
 
         final MultipartBody.Part part = MultipartBody.Part.createFormData("image", f.getName(), requestFile);
-        Call<ResponseBody> resultCAll = s.postImage(part, token);
-        resultCAll.enqueue(new Callback<ResponseBody>() {
+        Log.d(TAG, "sssssssssssssssssssss: "+f);
+        Call<Result> resultCAll = s.postImage(part, token);
+        resultCAll.enqueue(new Callback<Result>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<Result> call, Response<Result> response) {
 
                 sharedpreferences = EditProfileSeller.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
                 String token = sharedpreferences.getString("token", "");
                 et_token.setText(token);
                 Toast.makeText(EditProfileSeller.this, "Semoga Bisa", Toast.LENGTH_SHORT).show();
                 p.dismiss();
-//                               if (response.isSuccessful()){
-//                    if (response.body().getResult().equals("success")){
-//                        Toast.makeText(EditProfileSeller.this, "Sukses", Toast.LENGTH_SHORT).show();
-//                    }
-//
-//                    else{
-//                        Toast.makeText(EditProfileSeller.this, "Upload Gambar Gagal", Toast.LENGTH_SHORT).show();
-//                    }
-//
-//                }else {
-//                    Toast.makeText(EditProfileSeller.this, "Upload Gambar Gagal", Toast.LENGTH_SHORT).show();
-//                }
+                               if (response.isSuccessful()){
+                    if (response.body().getResult().equals("success")){
+                        Toast.makeText(EditProfileSeller.this, "Sukses", Toast.LENGTH_SHORT).show();
+                    }
+
+                    else{
+                        Toast.makeText(EditProfileSeller.this, "Upload Gambar Gagal", Toast.LENGTH_SHORT).show();
+                    }
+
+                }else {
+                    Toast.makeText(EditProfileSeller.this, "Upload Gambar Gagal", Toast.LENGTH_SHORT).show();
+                }
 
                 imagePath = "";
 
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<Result> call, Throwable t) {
                 Toast.makeText(EditProfileSeller.this, "Gagal Upload Fail", Toast.LENGTH_SHORT).show();
                 p.dismiss();
-
-
 
             }
         });

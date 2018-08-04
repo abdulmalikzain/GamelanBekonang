@@ -116,8 +116,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             switch (item.getItemId()){
                 case R.id.navigation_home:
 //                    transaction.replace(R.id.fragment_container, new HomeFragment()).commit();
-                    Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(MainActivity.this, MainActivity.class);
+//                    startActivity(intent);
+                    getData();
                     relativeLayout.setVisibility(View.VISIBLE);
                     frameLayout.setVisibility(View.GONE);
                     return true;
@@ -214,7 +215,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         final LinearLayoutManager mLayoutManager;
         mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
-        getData();
+
 
 //        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener()
 //        {

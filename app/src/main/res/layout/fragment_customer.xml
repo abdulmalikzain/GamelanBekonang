@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/cardview_shadow_start_color">
+        android:background="@color/orangeFirebase">
 
         <LinearLayout
             android:layout_width="match_parent"

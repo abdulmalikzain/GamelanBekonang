@@ -42,6 +42,7 @@ public class ProfilActivity extends AppCompatActivity {
     private Toolbar mActionToolbar;
     private String id, image, name, email, notelp, address;
     private String token;
+    private BaseApiService B;
 
 
     @Override
@@ -72,10 +73,11 @@ public class ProfilActivity extends AppCompatActivity {
 //        SharedPreferences sp = PreferenceManager
 //                .getDefaultSharedPreferences(this);
 //        sp = context.getSharedPreferences(my_shared_preferences, MODE_PRIVATE);
+
         SharedPreferences sp = getApplicationContext().getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
 
         String image = (sp.getString("image", ""));
-        Picasso.with(this)
+        Picasso.with(getApplication())
                            .load(BaseApiService.BASE_URL_IMAGE_USER+image)
                            .placeholder(R.drawable.ic_akun)
                            .into(civp);
@@ -91,8 +93,8 @@ public class ProfilActivity extends AppCompatActivity {
         tv_address.setText(address);
         String namerules = (sp.getString("name", ""));
         tv_reseller.setText(namerules);
-//        String token = (sharedpreferences.getString("token",""));
-//        tv_token1.setText(token);
+        String token = (sharedpreferences.getString("token",""));
+        tv_token1.setText(token);
 
         mActionToolbar = (Toolbar) findViewById(R.id.tabs_profil);
         setSupportActionBar(mActionToolbar);

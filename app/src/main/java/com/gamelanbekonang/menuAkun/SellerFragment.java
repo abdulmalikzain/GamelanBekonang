@@ -93,7 +93,6 @@ public class SellerFragment extends Fragment {
         tv_alamatseller.setText(alamat);
         String notelp = (sp.getString("notelp", ""));
         tv_notelpseller.setText(notelp);
-        Log.d(TAG, "JKOEr: "+id+civ_seller+name+email+notelp);
 
         tv_keluarseller.setOnClickListener(new View.OnClickListener() {
             @Override
