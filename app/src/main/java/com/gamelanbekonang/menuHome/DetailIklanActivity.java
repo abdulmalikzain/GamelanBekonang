@@ -104,6 +104,7 @@ public class DetailIklanActivity extends AppCompatActivity {
         fabSms          = findViewById(R.id.fab_sms_detailiklan);
         fabEmail        = findViewById(R.id.fab_email_detailiklan);
         tvUserId        = findViewById(R.id.userid_detailiklan);
+        civFotoProfil   = findViewById(R.id.fotouser_detiliklan);
 
         Bundle bundle = getIntent().getExtras();
         id     = bundle.getString("id");
@@ -149,30 +150,6 @@ public class DetailIklanActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        // Load image dari URL
-        HashMap<String,String> url_maps = new HashMap<String, String>();
-        url_maps.put("Hannibal", ApiService.BASE_URL_IMAGEIKLAN+imageSlider1);
-//        url_maps.put("Big Bang Theory", "http://tvfiles.alphacoders.com/100/hdclearart-10.png");
-//        url_maps.put("House of Cards", "http://cdn3.nflximg.net/images/3093/2043093.jpg");
-//        url_maps.put("Game of Thrones", "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");
-        for(String name : url_maps.keySet()){
-            TextSliderView textSliderView = new TextSliderView(this);
-            // initialize a SliderLayout
-            textSliderView
-                    .description(name)
-                    .image(url_maps.get(name))
-                    .setScaleType(BaseSliderView.ScaleType.Fit);
-            //add your extra information
-//            textSliderView.bundle(new Bundle());
-//            textSliderView.getBundle()
-//                    .putString("extra",name);
-//            sliderLayout.addSlider(textSliderView);
-        }
-        sliderLayout.setPresetTransformer(SliderLayout.Transformer.Accordion);
-        sliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
-        sliderLayout.setCustomAnimation(new DescriptionAnimation());
-        sliderLayout.setDuration(10000);
 
         viewCount();
         getDataIklanId();
@@ -253,7 +230,6 @@ public class DetailIklanActivity extends AppCompatActivity {
 
                             JSONObject jsonObject1 = jsonObject.optJSONObject("users");
                             idUser = jsonObject1.getString("id");
-                            Log.d("idUser", "onResponse: "+idUser);
                             String fotoprofil   = jsonObject1.getString("image");
                             String nama         = jsonObject1.optString("name");
                             noTelp              = jsonObject1.optString("notelp");
@@ -262,13 +238,46 @@ public class DetailIklanActivity extends AppCompatActivity {
                             String store_name   = jsonObject1.optString("store_name");
 
                             collapsingToolbar.setTitle(judulBarang);
-                            tvUsername.setText(nama);
+                            tvUsername.setText(store_name);
                             tvDeskripsi.setText(deskripsi);
                             tvDilihat.setText(view_count);
                             tvDihubungi.setText(contact_count);
                             tvStok.setText(stock);
                             tvAlamat.setText(address);
                             tvUserId.setText(idUser);
+                            Picasso.with(getApplication()).load(ApiService.BASE_URL_IMAGEUSER+fotoprofil)
+                                    .placeholder(R.drawable.ic_launcher_background).into(civFotoProfil);
+
+
+                            if (image2.equals("")){
+                                image2 = ApiService.BASE_URL_IMAGEIKLAN+"logo.png";
+                                Log.d("llaa", "fotoooooooooo: "+image2);
+                            }
+
+                            // Load image dari URL
+                            HashMap<String,String> url_maps = new HashMap<String, String>();
+                            url_maps.put("Hannibal", ApiService.BASE_URL_IMAGEIKLAN+imageSlider1);
+                            url_maps.put("Hannibal", ApiService.BASE_URL_IMAGEIKLAN+image2);
+//        url_maps.put("Big Bang Theory", "http://tvfiles.alphacoders.com/100/hdclearart-10.png");
+//        url_maps.put("House of Cards", "http://cdn3.nflximg.net/images/3093/2043093.jpg");
+//        url_maps.put("Game of Thrones", "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");
+                            for(String name : url_maps.keySet()){
+                                TextSliderView textSliderView = new TextSliderView(getApplication());
+                                // initialize a SliderLayout
+                                textSliderView
+                                        .description(name)
+                                        .image(url_maps.get(name))
+                                        .setScaleType(BaseSliderView.ScaleType.Fit);
+                                //add your extra information
+                                textSliderView.bundle(new Bundle());
+                                textSliderView.getBundle()
+                                        .putString("extra",name);
+                                sliderLayout.addSlider(textSliderView);
+                            }
+                            sliderLayout.setPresetTransformer(SliderLayout.Transformer.Accordion);
+                            sliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+                            sliderLayout.setCustomAnimation(new DescriptionAnimation());
+                            sliderLayout.setDuration(10000);
 
                         } catch (IOException e) {
                             e.printStackTrace();

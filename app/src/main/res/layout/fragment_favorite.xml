@@ -7,6 +7,7 @@
     tools:context="com.gamelanbekonang.menuFavorite.FavoriteFragment">
 
     <RelativeLayout
+        android:id="@+id/relfavorite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
         <android.support.v7.widget.Toolbar
@@ -31,7 +32,7 @@
         android:layout_height="match_parent"
         android:id="@+id/swipe_favorite"
         android:layout_marginBottom="55dp"
-        android:layout_below="@id/my_appbar_container">
+        android:layout_below="@id/relfavorite">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_favorite"

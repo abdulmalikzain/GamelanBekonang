@@ -81,8 +81,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         swipeHome   = findViewById(R.id.swipe_home);
 
         mToolbar = findViewById(R.id.toolbar_home);
-        setSupportActionBar(mToolbar);
-        mToolbar.setTitle("Gamelan Wirun");
+//        setSupportActionBar(mToolbar);
+//        mToolbar.setTitle("Gamelan Wirun");
 
         initViews();
         setupBottomNavigationView();
