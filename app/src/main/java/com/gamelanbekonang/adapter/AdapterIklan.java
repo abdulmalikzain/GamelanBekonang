@@ -76,7 +76,7 @@ public class AdapterIklan extends RecyclerView.Adapter<AdapterIklan.IklanViewHol
                     post = getAdapterPosition();
 
                     Intent intent = new Intent(context, DetailIklanActivity.class);
-                    intent.putExtra("id", tvId.getText().toString().trim());
+                    intent.putExtra("idiklan", tvId.getText().toString().trim());
                     context.startActivity(intent);
                 }
             });

@@ -67,7 +67,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static com.gamelanbekonang.logRes.LoginActivity.my_shared_preferences;
 
 public class DetailIklanActivity extends AppCompatActivity {
-    private String gambarIklan, noTelp, id, idUser, token, imageSlider1, judulBarang, email;
+    private String gambarIklan, noTelp, id, idUser, token, imageSlider1, judulBarang, email, id_user;
     private ToggleButton tbAddfavorite;
     private ApiService apiService;
     private Context mContext;
@@ -107,12 +107,13 @@ public class DetailIklanActivity extends AppCompatActivity {
         civFotoProfil   = findViewById(R.id.fotouser_detiliklan);
 
         Bundle bundle = getIntent().getExtras();
-        id     = bundle.getString("id");
+        id     = bundle.getString("idiklan");
 
 //        collapsingToolbar.setTitle("aa");
 
         SharedPreferences sp = getApplicationContext().getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
         token = (sp.getString("token", ""));
+        id_user = (sp.getString("id", ""));
         Log.d("token", "wwwwwww: "+token);
 
         tvLihatProfil.setOnClickListener(new View.OnClickListener() {
@@ -125,7 +126,12 @@ public class DetailIklanActivity extends AppCompatActivity {
             }
         });
 
-        tbAddfavorite.setChecked(false);
+        if (id.equals(id_user)){
+            tbAddfavorite.setChecked(true);
+        }else {
+            tbAddfavorite.setChecked(false);
+        }
+
         tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite_border));
         tbAddfavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -236,6 +242,7 @@ public class DetailIklanActivity extends AppCompatActivity {
                             email               = jsonObject1.optString("email");
                             String address      = jsonObject1.optString("address");
                             String store_name   = jsonObject1.optString("store_name");
+
 
                             collapsingToolbar.setTitle(judulBarang);
                             tvUsername.setText(store_name);

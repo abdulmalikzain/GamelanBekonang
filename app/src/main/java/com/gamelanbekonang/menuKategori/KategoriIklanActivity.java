@@ -91,7 +91,6 @@ public class KategoriIklanActivity extends AppCompatActivity implements SwipeRef
 
         Bundle bundle = getIntent().getExtras();
         idKategori     = bundle.getString("idCategory");
-        Toast.makeText(this, "id"+idKategori, Toast.LENGTH_SHORT).show();
         mApiService = RetroClient.getInstanceRetrofit();
         mApiService.getCategory(idKategori).enqueue(new Callback<ResponseBody>() {
             @Override
@@ -145,6 +144,7 @@ public class KategoriIklanActivity extends AppCompatActivity implements SwipeRef
 
     @Override
     public void onRefresh() {
+        kategoris.clear();
         getData();
     }
 }

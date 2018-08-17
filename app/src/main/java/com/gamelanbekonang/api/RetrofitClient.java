@@ -105,7 +105,7 @@ public class RetrofitClient {
         return getMyClient().create(BaseApiService.class);
     }
 
-    static final String BASE_URL_IMG_USR = "http://gamelanwirun.com/images/";
+    static final String BASE_URL_IMG_USR = "http://gamelanwirun.com/images/users/";
     ////////////////////////////////////////////
     public static Retrofit getImg(){
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();

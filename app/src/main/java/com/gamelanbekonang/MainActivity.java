@@ -368,6 +368,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     @Override
     public void onRefresh() {
+        iklans1.clear();
+//        adapter.notifyDataSetChanged();
         getData();
     }
 }
