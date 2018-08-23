@@ -85,7 +85,7 @@ public class EditProfileSeller extends AppCompatActivity {
         setSupportActionBar(mActionToolbar);
         getSupportActionBar().setTitle("EDIT AKUN");
 
-        mApiService = UtilsApi.getAPIService();
+        initView();
 
 
 
@@ -118,29 +118,7 @@ public class EditProfileSeller extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-        etIdpsr = (EditText) findViewById(R.id.et_idprs);
-        etIdpsr.setVisibility(View.INVISIBLE);
-        et_token = (EditText) findViewById(R.id.et_tokenpsr);
-//        et_token.setVisibility(View.INVISIBLE);
-        cvProfilsr = findViewById(R.id.cv_profilsr);
-        etNamapsr = (EditText) findViewById(R.id.et_namapsr);
-        etEmailpsr = (EditText) findViewById(R.id.et_emailpsr);
-        etNotelppsr = (EditText) findViewById(R.id.et_notelppsr);
-        etAlamatpsr = (EditText) findViewById(R.id.et_alamatpsr);
-        btnSimpanpsr = (Button) findViewById(R.id.btn_simpanpsr);
 
-//        SharedPreferences sp = getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
-//
-//        String id = sp.getString("id","");
-//        etIdpsr.setText(id);
-//        String name = (sp.getString("name", ""));
-//        etNamapsr.setText(name);
-//        String email = (sp.getString("email",""));
-//        etEmailpsr.setText(email);
-//        String notelp =(sp.getString("notelp",""));
-//        etNotelppsr.setText(notelp);
-//        String address = (sp.getString("address",""));
-//        etAlamatpsr.setText(address);
 
 
 
@@ -164,7 +142,8 @@ public class EditProfileSeller extends AppCompatActivity {
         String token = (sharedpreferences.getString("token",""));
         et_token.setText(token);
         Log.d(TAG, "token: "+token);
-        initView();
+
+        mApiService = UtilsApi.getAPIService();
         btnSimpanpsr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -183,7 +162,7 @@ public class EditProfileSeller extends AppCompatActivity {
 
     private void UbahDataSeller() {
         progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Mohon Tunggu...");
+        progressDialog.setMessage("Mohon tunggu...");
         progressDialog.show();
         final String token = et_token.getText().toString();
         final String id = etIdpsr.getText().toString();
@@ -201,7 +180,7 @@ public class EditProfileSeller extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()){
-                            progressDialog.dismiss();
+//                            progressDialog.dismiss();
 //                        Bundle bundle = new Bundle();
 
 //                        SellerFragment sellerFragment = new SellerFragment();
@@ -216,22 +195,20 @@ public class EditProfileSeller extends AppCompatActivity {
 //                                Toast.makeText(EditProfileSeller.this, "" + messeage, Toast.LENGTH_SHORT).show();
 //                                Toast.makeText(EditProfileSeller.this, "" + messeage, Toast.LENGTH_SHORT).show();
 //                                Toast.makeText(EditProfileSeller.this, "" + messeage, Toast.LENGTH_SHORT).show();
-//                                Log.e("Response : ", messeage);
-                                SharedPreferences sp = getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
-
-                                SharedPreferences.Editor editor = sp.edit();
-                                editor.putBoolean(session_status, true);
-                                editor.putString("name", name);
-                                editor.putString("email", email);
-                                editor.putString("address", address);
-                                editor.putString("notelp", notelp);
-                                editor.commit();
+                                Log.e("Response : ", messeage);
+//                                SharedPreferences sp = getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
+//
+//                                SharedPreferences.Editor editor = sp.edit();
+//                                editor.putBoolean(session_status, true);
+//                                editor.putString("name", name);
+//                                editor.putString("email", email);
+//                                editor.putString("address", address);
+//                                editor.putString("notelp", notelp);
+//                                editor.commit();
                                 Toast.makeText(EditProfileSeller.this, ("Edit Profil Berhasil"), Toast.LENGTH_SHORT).show();
 
                                 Intent intent = new Intent(EditProfileSeller.this, MainActivity.class);
                                 startActivity(intent);
-//                        startActivity(new Intent(getApplicationContext(), getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container.)));
-//                        getSupportFragmentManager().beginTransaction().replace(R.id.container,sellerFragment).commit();
                             }
                             catch (JSONException e) {
                                 e.printStackTrace();
@@ -252,7 +229,7 @@ public class EditProfileSeller extends AppCompatActivity {
     private void showFileChooseGallery() {
 
         Intent foto = new Intent(Intent.ACTION_PICK);
-        foto.setType("image/png");
+        foto.setType("image/*");
         startActivityForResult(Intent.createChooser(foto, "Pilih Foto"), 100);
     }
 
@@ -291,7 +268,7 @@ public class EditProfileSeller extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedpreferences.edit();
 
                 //Adding values to editor
-                editor.putString("image","http://gamelanwirun.com/images/users/"+h);
+                editor.putString("image","http://gamelanwirun.com/api/v1/user/"+h);
                 editor.commit();
                 uploadImage();
 //                Toast.makeText(this, "Mbuh", Toast.LENGTH_SHORT).show();
@@ -323,12 +300,12 @@ public class EditProfileSeller extends AppCompatActivity {
 
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), f);
 
-        MultipartBody.Part part = MultipartBody.Part.createFormData("image", f.getName(), requestFile);
+        final MultipartBody.Part part = MultipartBody.Part.createFormData("image", f.getName(), requestFile);
         Log.d(TAG, "sssssssssssssssssssss: "+f);
-        Call<Result> resultCAll = s.postImage(part, token);
-        resultCAll.enqueue(new Callback<Result>() {
+        Call<ResponseBody> resultCAll = s.postImage(part, token);
+        resultCAll.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<Result> call, Response<Result> response) {
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
 //                sharedpreferences = EditProfileSeller.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
 //                String token = sharedpreferences.getString("token", "");
@@ -353,7 +330,7 @@ public class EditProfileSeller extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Result> call, Throwable t) {
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Toast.makeText(EditProfileSeller.this, "Gagal Upload Fail", Toast.LENGTH_SHORT).show();
                 p.dismiss();
 
@@ -371,14 +348,18 @@ public class EditProfileSeller extends AppCompatActivity {
     }
 
     private void initView() {
-        SharedPreferences sharedpreferences = getSharedPreferences(my_shared_preferences, MODE_PRIVATE);
-        id = (sharedpreferences.getString("id",""));
-        image = sharedpreferences.getString("image", null);
-        name = sharedpreferences.getString("name", null);
-        email = sharedpreferences.getString("email", null);
-        notelp = sharedpreferences.getString("notelp",null);
-        address = sharedpreferences.getString("address", null);
-        token = sharedpreferences.getString("token", null);
+
+        etIdpsr = (EditText) findViewById(R.id.et_idprs);
+        etIdpsr.setVisibility(View.INVISIBLE);
+        et_token = (EditText) findViewById(R.id.et_tokenpsr);
+//        et_token.setVisibility(View.INVISIBLE);
+        cvProfilsr = findViewById(R.id.cv_profilsr);
+        etNamapsr = (EditText) findViewById(R.id.et_namapsr);
+        etEmailpsr = (EditText) findViewById(R.id.et_emailpsr);
+        etNotelppsr = (EditText) findViewById(R.id.et_notelppsr);
+        etAlamatpsr = (EditText) findViewById(R.id.et_alamatpsr);
+        btnSimpanpsr = (Button) findViewById(R.id.btn_simpanpsr);
+
 
     }
 }

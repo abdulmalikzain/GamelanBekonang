@@ -10,11 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.gamelanbekonang.R;
 import com.gamelanbekonang.menuAkun.BantuanActivity;
 import com.gamelanbekonang.menuAkun.TentangActivity;
-
 import java.util.ArrayList;
 
 public class AdapterAkunSeller extends RecyclerView.Adapter<AdapterAkunSeller.ViewHolder> {

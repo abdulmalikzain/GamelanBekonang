@@ -84,7 +84,7 @@ public class InformasiPublikActivity extends AppCompatActivity {
         perusahaanpen = findViewById(R.id.tv_perusahaanpen);
         alamatpen = findViewById(R.id.tv_alamatpen);
         Bundle bundle = getIntent().getExtras();
-        id_user     = bundle.getString("user_id");
+        id_user     = bundle.getString("id_penjual");
         Log.d(TAG, "Muncul: "+id_user);
 
         if (getSupportActionBar() != null) {

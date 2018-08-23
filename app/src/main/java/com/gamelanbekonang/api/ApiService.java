@@ -50,13 +50,4 @@ public interface ApiService {
     Call <ResponseBody> viewCount(@Path("iklanId") String iklanId,
                                   @Field("_method") String Key);
 
-//<<<<<<< Updated upstream
-//    @FormUrlEncoded
-//    @POST("iklan/{iklanId}/contactcount")
-//    Call <ResponseBody> cantactCount(@Path("iklanId") String iklanId,
-//                                  @Field("_method") String Key);
-//=======
-//
-//
-//>>>>>>> Stashed changes
 }

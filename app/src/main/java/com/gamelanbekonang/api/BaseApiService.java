@@ -6,9 +6,7 @@ import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-
 import retrofit2.http.Multipart;
-
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
@@ -20,7 +18,6 @@ import retrofit2.http.Query;
 
 public interface BaseApiService {
 
-//    String BASE_API_URL = "http://bekonang-store.000webhostapp.com";
     String BASE_URL_IMAGE = "http://gamelanwirun.com/images/iklans";
     String BASE_URL_UPDATE_PROFIL ="http://gamelanwirun.com/api/v1/user/myprofile/";
     String BASE_URL_IMAGE_USER = "http://gamelanwirun.com/images/users/";
@@ -38,9 +35,7 @@ public interface BaseApiService {
     Call<ResponseBody> registerRequest(@Field("name") String name,
                                        @Field("email") String email,
                                        @Field("notelp") String notelp,
-//                                       @Field("address") String address,
                                        @Field("password") String password);
-//                                       @Field("password_confirmation") String password_confirmation);
 
 
 
@@ -52,7 +47,7 @@ public interface BaseApiService {
 
     @Multipart
     @POST("myprofile")
-    Call<Result> postImage(@Part MultipartBody.Part image,
+    Call<ResponseBody> postImage(@Part MultipartBody.Part image,
                                  @Query("token") String token);
 
     @FormUrlEncoded
@@ -82,4 +77,7 @@ public interface BaseApiService {
     @FormUrlEncoded
     @POST("recover")
     Call<ResponseBody> lupapass(@Field("email") String email);
+
+    @GET("logout")
+    Call<ResponseBody> LogOut(@Query("token")String token);
 }

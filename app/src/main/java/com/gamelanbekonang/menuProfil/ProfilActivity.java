@@ -19,12 +19,17 @@ import android.widget.TextView;
 import com.gamelanbekonang.MainActivity;
 import com.gamelanbekonang.R;
 import com.gamelanbekonang.api.BaseApiService;
+import com.gamelanbekonang.api.RetrofitClient;
 import com.gamelanbekonang.logRes.LoginActivity;
 import com.squareup.picasso.Picasso;
 
 import java.net.URL;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.content.ContentValues.TAG;
 import static com.gamelanbekonang.api.BaseApiService.BASE_URL_IMAGE;
@@ -127,23 +132,39 @@ public class ProfilActivity extends AppCompatActivity {
     }
 
     private void keluar() {
-        SharedPreferences sharedPreferences = ProfilActivity.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
 
-        //Creating editor to store values to shared preferences
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(LoginActivity.session_status, false);
-        editor.putString("id", null);
-        editor.putString("image", null);
-        editor.putString("name", null);
-        editor.putString("email", null);
-        editor.putString("notelp", null);
-        editor.putString("address", null);
-        editor.clear();
-        editor.commit();
-        finish();
+        BaseApiService bs = RetrofitClient.getDataMyIklan();
+        bs.LogOut(token).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-        Intent intent1 = new Intent(ProfilActivity.this, MainActivity.class);
-        startActivity(intent1);
+                SharedPreferences sharedPreferences = ProfilActivity.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
+
+                //Creating editor to store values to shared preferences
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean(LoginActivity.session_status, false);
+                editor.putString("id", null);
+                editor.putString("image", null);
+                editor.putString("name", null);
+                editor.putString("email", null);
+                editor.putString("notelp", null);
+                editor.putString("address", null);
+                editor.clear();
+                editor.commit();
+                finish();
+
+                Intent intent1 = new Intent(ProfilActivity.this, MainActivity.class);
+                startActivity(intent1);
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
+
+
 
     }
 

@@ -8,9 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.gamelanbekonang.api.ApiService;
-import com.gamelanbekonang.api.BaseApiService;
 import com.gamelanbekonang.menuHome.DetailIklanActivity;
 import com.gamelanbekonang.R;
 import com.gamelanbekonang.beans.Iklan;
@@ -96,7 +94,5 @@ public class AdapterIklan extends RecyclerView.Adapter<AdapterIklan.IklanViewHol
     public int getItemCount() {
         return iklans.size();
     }
-
-
 
 }

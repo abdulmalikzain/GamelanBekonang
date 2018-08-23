@@ -67,7 +67,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static com.gamelanbekonang.logRes.LoginActivity.my_shared_preferences;
 
 public class DetailIklanActivity extends AppCompatActivity {
-    private String gambarIklan, noTelp, id, idUser, token, imageSlider1, judulBarang, email, id_user;
+    private String gambarIklan, noTelp, id, token, imageSlider1, judulBarang, email, id_user;
     private ToggleButton tbAddfavorite;
     private ApiService apiService;
     private Context mContext;
@@ -109,8 +109,6 @@ public class DetailIklanActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         id     = bundle.getString("idiklan");
 
-//        collapsingToolbar.setTitle("aa");
-
         SharedPreferences sp = getApplicationContext().getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
         token = (sp.getString("token", ""));
         id_user = (sp.getString("id", ""));
@@ -120,8 +118,7 @@ public class DetailIklanActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DetailIklanActivity.this, InformasiPublikActivity.class);
-//                startActivity(new Intent(DetailIklanActivity.this, InformasiPublikActivity.class));
-                intent.putExtra("user_id", tvUserId.getText().toString().trim());
+                intent.putExtra("id_penjual", tvUserId.getText().toString().trim());
                 startActivity(intent);
             }
         });
@@ -235,7 +232,7 @@ public class DetailIklanActivity extends AppCompatActivity {
                             String contact_count = jsonObject.optString("contact_count");
 
                             JSONObject jsonObject1 = jsonObject.optJSONObject("users");
-                            idUser = jsonObject1.getString("id");
+                            String idPenjual    = jsonObject1.getString("id");
                             String fotoprofil   = jsonObject1.getString("image");
                             String nama         = jsonObject1.optString("name");
                             noTelp              = jsonObject1.optString("notelp");
@@ -243,7 +240,7 @@ public class DetailIklanActivity extends AppCompatActivity {
                             String address      = jsonObject1.optString("address");
                             String store_name   = jsonObject1.optString("store_name");
 
-
+                            tvUserId.setText(idPenjual);
                             collapsingToolbar.setTitle(judulBarang);
                             tvUsername.setText(store_name);
                             tvDeskripsi.setText(deskripsi);
@@ -251,7 +248,7 @@ public class DetailIklanActivity extends AppCompatActivity {
                             tvDihubungi.setText(contact_count);
                             tvStok.setText(stock);
                             tvAlamat.setText(address);
-                            tvUserId.setText(idUser);
+//                            tvUserId.setText(idUser);
                             Picasso.with(getApplication()).load(ApiService.BASE_URL_IMAGEUSER+fotoprofil)
                                     .placeholder(R.drawable.ic_launcher_background).into(civFotoProfil);
 
@@ -321,8 +318,7 @@ public class DetailIklanActivity extends AppCompatActivity {
 
     private void postFavorite(){
         apiService = RetroClient.getInstanceRetrofit();
-        Log.d("postFavorite", "postFavorite: "+idUser+id);
-        apiService.postFavorite(token, idUser,  id)
+        apiService.postFavorite(token, id_user,  id)
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
