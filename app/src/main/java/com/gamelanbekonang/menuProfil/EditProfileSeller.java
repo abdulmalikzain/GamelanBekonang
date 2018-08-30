@@ -12,7 +12,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -26,10 +25,8 @@ import android.widget.Toast;
 import com.gamelanbekonang.MainActivity;
 import com.gamelanbekonang.R;
 import com.gamelanbekonang.api.BaseApiService;
-import com.gamelanbekonang.api.Result;
 import com.gamelanbekonang.api.RetrofitClient;
 import com.gamelanbekonang.api.UtilsApi;
-import com.gamelanbekonang.menuAkun.SellerFragment;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -88,30 +85,19 @@ public class EditProfileSeller extends AppCompatActivity {
         initView();
 
 
-
-
-
         if (ContextCompat.checkSelfPermission(EditProfileSeller.this,
                 Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
-            // Should we show an explanation?
+            //
             if (ActivityCompat.shouldShowRequestPermissionRationale(EditProfileSeller.this,
                     Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                // Show an expanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
 
             } else {
-
-                // No explanation needed, we can request the permission.
 
                 ActivityCompat.requestPermissions(EditProfileSeller.this,
                         new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                         MY_PERMISSIONS_REQUEST_FINE_LOCATION);
 
-                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                // app-defined int constant. The callback method gets the
-                // result of the request.
             }
         }
         if (getSupportActionBar() != null) {
@@ -180,31 +166,10 @@ public class EditProfileSeller extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()){
-//                            progressDialog.dismiss();
-//                        Bundle bundle = new Bundle();
-
-//                        SellerFragment sellerFragment = new SellerFragment();
-//                        sellerFragment.setArguments(bundle);
                             try {
                                 JSONObject object = new JSONObject(response.body().string());
                                 String messeage = object.optString("message");
-//                                Toast.makeText(EditProfileSeller.this, "" + messeage, Toast.LENGTH_SHORT).show();
-//                                Toast.makeText(EditProfileSeller.this, "" + messeage, Toast.LENGTH_SHORT).show();
-//                                Toast.makeText(EditProfileSeller.this, "" + messeage, Toast.LENGTH_SHORT).show();
-//                                Toast.makeText(EditProfileSeller.this, "" + messeage, Toast.LENGTH_SHORT).show();
-//                                Toast.makeText(EditProfileSeller.this, "" + messeage, Toast.LENGTH_SHORT).show();
-//                                Toast.makeText(EditProfileSeller.this, "" + messeage, Toast.LENGTH_SHORT).show();
-//                                Toast.makeText(EditProfileSeller.this, "" + messeage, Toast.LENGTH_SHORT).show();
-                                Log.e("Response : ", messeage);
-//                                SharedPreferences sp = getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
 //
-//                                SharedPreferences.Editor editor = sp.edit();
-//                                editor.putBoolean(session_status, true);
-//                                editor.putString("name", name);
-//                                editor.putString("email", email);
-//                                editor.putString("address", address);
-//                                editor.putString("notelp", notelp);
-//                                editor.commit();
                                 Toast.makeText(EditProfileSeller.this, ("Edit Profil Berhasil"), Toast.LENGTH_SHORT).show();
 
                                 Intent intent = new Intent(EditProfileSeller.this, MainActivity.class);
@@ -243,9 +208,6 @@ public class EditProfileSeller extends AppCompatActivity {
                 return;
 
             }
-//            else {
-//                Toast.makeText(this, "Gambar Ada", Toast.LENGTH_SHORT).show();
-//            }
             Uri selectImageUri = data.getData();
             String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
@@ -256,7 +218,6 @@ public class EditProfileSeller extends AppCompatActivity {
                 int columnIndex = c.getColumnIndex(filePathColumn[0]);
                 imagePath = c.getString(columnIndex);
 
-//                Glide.with(this).load(new File(imagePath)).into(cvEditProfil);
                 Picasso.with(this).load(new File(imagePath)).into(cvProfilsr);
                 h = new File(imagePath).getName();
 
@@ -271,14 +232,9 @@ public class EditProfileSeller extends AppCompatActivity {
                 editor.putString("image","http://gamelanwirun.com/api/v1/user/"+h);
                 editor.commit();
                 uploadImage();
-//                Toast.makeText(this, "Mbuh", Toast.LENGTH_SHORT).show();
                 c.close();
 
-//                te.setVisibility(View.GONE);
-//                imageVi.setVisibility(View.VISIBLE);
             }else {
-//                te.setVisibility(View.VISIBLE);
-//                imageVi.setVisibility(View.GONE);
                 Toast.makeText(this, "Gambar Tidak Ada", Toast.LENGTH_SHORT).show();
             }
         }
@@ -291,7 +247,7 @@ public class EditProfileSeller extends AppCompatActivity {
         p.setMessage("Proses Upload Foto");
         p.show();
 
-        BaseApiService s = (BaseApiService) RetrofitClient.getImgUsr();
+//        BaseApiService s = (BaseApiService) RetrofitClient.getImgUsr();
 
 
         File f = new File(imagePath);
@@ -300,30 +256,16 @@ public class EditProfileSeller extends AppCompatActivity {
 
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), f);
 
-        final MultipartBody.Part part = MultipartBody.Part.createFormData("image", f.getName(), requestFile);
+        final MultipartBody.Part part = MultipartBody.Part.createFormData("myprofil", f.getName(), requestFile);
         Log.d(TAG, "sssssssssssssssssssss: "+f);
-        Call<ResponseBody> resultCAll = s.postImage(part, token);
+        Call<ResponseBody> resultCAll = mApiService.postImage(part, token);
         resultCAll.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-//                sharedpreferences = EditProfileSeller.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
-//                String token = sharedpreferences.getString("token", "");
-//                et_token.setText(token);
                 Toast.makeText(EditProfileSeller.this, "Semoga Bisa", Toast.LENGTH_SHORT).show();
                 p.dismiss();
-//                               if (response.isSuccessful()){
-//                    if (response.body().getResult().equals("success")){
-//                        Toast.makeText(EditProfileSeller.this, "Sukses", Toast.LENGTH_SHORT).show();
-//                    }
 //
-//                    else{
-//                        Toast.makeText(EditProfileSeller.this, "Upload Gambar Gagal", Toast.LENGTH_SHORT).show();
-//                    }
-//
-//                }else {
-//                    Toast.makeText(EditProfileSeller.this, "Upload Gambar Gagal", Toast.LENGTH_SHORT).show();
-//                }
 
                 imagePath = "";
 
@@ -352,7 +294,6 @@ public class EditProfileSeller extends AppCompatActivity {
         etIdpsr = (EditText) findViewById(R.id.et_idprs);
         etIdpsr.setVisibility(View.INVISIBLE);
         et_token = (EditText) findViewById(R.id.et_tokenpsr);
-//        et_token.setVisibility(View.INVISIBLE);
         cvProfilsr = findViewById(R.id.cv_profilsr);
         etNamapsr = (EditText) findViewById(R.id.et_namapsr);
         etEmailpsr = (EditText) findViewById(R.id.et_emailpsr);

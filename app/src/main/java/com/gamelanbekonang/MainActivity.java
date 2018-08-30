@@ -81,9 +81,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         swipeHome   = findViewById(R.id.swipe_home);
 
         mToolbar = findViewById(R.id.toolbar_home);
-//        setSupportActionBar(mToolbar);
-//        mToolbar.setTitle("Gamelan Wirun");
-
         initViews();
         setupBottomNavigationView();
 
@@ -115,9 +112,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
             switch (item.getItemId()){
                 case R.id.navigation_home:
-//                    transaction.replace(R.id.fragment_container, new HomeFragment()).commit();
-//                    Intent intent = new Intent(MainActivity.this, MainActivity.class);
-//                    startActivity(intent);
                     getData();
                     relativeLayout.setVisibility(View.VISIBLE);
                     frameLayout.setVisibility(View.GONE);
@@ -183,7 +177,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     }
 
-    //////////////BECK PRESED
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
@@ -206,68 +199,15 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
 
 
-    ////////////////////////////    PARSING RETROFIT TAMPIL DATA
     private void initViews(){
         recyclerView = findViewById(R.id.rv_iklan);
         recyclerView.setHasFixedSize(true);
-//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-//        recyclerView.setLayoutManager(layoutManager);
         final LinearLayoutManager mLayoutManager;
         mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
 
 
-//        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener()
-//        {
-//            @Override
-//            public void onScrolled(RecyclerView recyclerView, int dx, int dy)
-//            {
-//                visibleItemCount = mLayoutManager.getChildCount();
-//                totalItemCount = mLayoutManager.getItemCount();
-//                firstVisibleItem = mLayoutManager.findFirstVisibleItemPosition();
-//
-//                if (loading) {
-//                    if (totalItemCount > previousTotal) {
-//                        loading = false;
-//                        previousTotal = totalItemCount;
-//                    }
-//                }
-//                if (!loading && (totalItemCount - visibleItemCount)
-//                        <= (firstVisibleItem + visibleThreshold)) {
-//                    // End has been reached
-//
-//                    Log.i("Yaeye!", "end called");
-//
-//                    // Do something
-//
-//                    loading = true;
-//                }
-//            }
-//        });
     }
-
-//    private void loadJSON(){
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(BaseApiService.BASE_API_URL)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//        ApiService request = retrofit.create(ApiService.class);
-//        Call<RetroClient> call = request.getJSON();
-//        call.enqueue(new Callback<RetroClient>() {
-//            @Override
-//            public void onResponse(Call<RetroClient> call, Response<RetroClient> response) {
-//                RetroClient jsonResponse = response.body();
-//                iklans = new ArrayList<>(Arrays.asList(jsonResponse.getIklan()));
-//                adapter = new AdapterIklan(MainActivity.this, iklans);
-//                recyclerView.setAdapter(adapter);
-//            }
-//
-//            @Override
-//            public void onFailure(Call<RetroClient> call, Throwable t) {
-//                Log.d("Error",t.getMessage());
-//            }
-//        });
-//    }
 
     private void getData() {
 

@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-
-import com.gamelanbekonang.MainActivity;
 import com.gamelanbekonang.R;
 
 public class SplashScreen extends AppCompatActivity {
@@ -32,7 +30,6 @@ public class SplashScreen extends AppCompatActivity {
                     startActivity(i);
                     finish();
                 }
-
             }
         };
         timer.start();

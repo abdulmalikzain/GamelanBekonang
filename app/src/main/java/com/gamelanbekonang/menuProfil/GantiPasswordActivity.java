@@ -16,15 +16,9 @@ import android.widget.Toast;
 
 import com.gamelanbekonang.R;
 import com.gamelanbekonang.api.BaseApiService;
-import com.gamelanbekonang.api.RetrofitClient;
 import com.gamelanbekonang.api.UtilsApi;
 import com.gamelanbekonang.logRes.LoginActivity;
-import com.squareup.picasso.Picasso;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -78,11 +72,8 @@ public class GantiPasswordActivity extends AppCompatActivity {
 
         sharedpreferences = getSharedPreferences(my_shared_preferences, MODE_PRIVATE);
         String current_password = (sharedpreferences.getString("current_password", ""));
-//        etPasswordsr.setText(current_password);
         String new_password = (sharedpreferences.getString("new_password", ""));
-//        etNewpasssr.setText(new_password);
         String new_password_confirmation = (sharedpreferences.getString("new_password_confirmation", ""));
-//        etConfrimpassr.setText(new_password_confirmation);
 
 
         String id = (sharedpreferences.getString("id", ""));
@@ -116,9 +107,7 @@ public class GantiPasswordActivity extends AppCompatActivity {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()){
                     progressDialog.dismiss();
-                    Log.d(TAG, "PLISSSS: "+token+etPasswordsr+etConfrimpassr);
-                    //                        JSONObject object = new JSONObject(response.body().string());
-//                        String token = object.getJSONObject("user").getString("token");
+                    Log.d(TAG, "PLISSSS: "+token+etPasswordsr+etConfrimpassr);;
 
                     SharedPreferences sp = getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
 
@@ -131,7 +120,6 @@ public class GantiPasswordActivity extends AppCompatActivity {
                     editor.commit();
                     Toast.makeText(GantiPasswordActivity.this, ("Ganti Password Berhasil"), Toast.LENGTH_SHORT).show();
 
-//                        startActivity(new Intent(GantiPasswordActivity.this, LoginActivity.class));
                     Intent intent = new Intent(GantiPasswordActivity.this, LoginActivity.class);
                     startActivity(intent);
 

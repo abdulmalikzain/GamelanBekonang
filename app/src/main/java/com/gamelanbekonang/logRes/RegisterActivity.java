@@ -12,17 +12,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.gamelanbekonang.R;
 import com.gamelanbekonang.api.BaseApiService;
 import com.gamelanbekonang.api.UtilsApi;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
-
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -66,9 +61,7 @@ public class RegisterActivity extends AppCompatActivity {
         etNama = (EditText) findViewById(R.id.et_namar);
         etEmail = (EditText) findViewById(R.id.et_emailr);
         etNotelp = (EditText) findViewById(R.id.et_notelpr);
-//        etAddress = findViewById(R.id.et_addressr);
         etPassword = (EditText) findViewById(R.id.et_passwordr);
-//        etConfirm = (EditText) findViewById(R.id.et_confirmpasswordr);
         btnRegister = (Button) findViewById(R.id.btn_registerr);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +82,6 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()){
-                            Log.i("debug", "onResponse: BERHASIL");
                             loading.dismiss();
                             try {
                                 JSONObject jsonRESULTS = new JSONObject(response.body().string());

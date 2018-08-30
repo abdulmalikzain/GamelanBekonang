@@ -7,7 +7,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-
 import com.gamelanbekonang.R;
 import com.gamelanbekonang.menuBantuan.CaraDaftarActivity;
 import com.gamelanbekonang.menuBantuan.JualBeliActivity;

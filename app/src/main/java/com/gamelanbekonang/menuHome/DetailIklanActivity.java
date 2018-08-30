@@ -7,9 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.net.MailTo;
 import android.net.Uri;
-import android.renderscript.Sampler;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -20,8 +18,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -30,22 +26,14 @@ import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
-import com.gamelanbekonang.MainActivity;
 import com.gamelanbekonang.R;
-import com.gamelanbekonang.adapter.AdapterIklan;
 import com.gamelanbekonang.api.ApiService;
-import com.gamelanbekonang.api.BaseApiService;
 import com.gamelanbekonang.api.RetroClient;
-import com.gamelanbekonang.api.RetrofitClient;
-import com.gamelanbekonang.api.UtilsApi;
-import com.gamelanbekonang.beans.Iklan;
 import com.gamelanbekonang.logRes.LoginActivity;
 import com.gamelanbekonang.menuProfil.InformasiPublikActivity;
 import com.github.clans.fab.FloatingActionButton;
-import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -53,16 +41,10 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.gamelanbekonang.logRes.LoginActivity.my_shared_preferences;
 
@@ -78,7 +60,6 @@ public class DetailIklanActivity extends AppCompatActivity {
     private CollapsingToolbarLayout collapsingToolbar;
     private SliderLayout sliderLayout;
     private FloatingActionButton fabTelepon, fabSms, fabEmail;
-//    private FloatingActionButton fabTelpMess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,12 +68,10 @@ public class DetailIklanActivity extends AppCompatActivity {
 
         tvLihatProfil = findViewById(R.id.lihatprofil_detiliklan);
         toolbar = findViewById(R.id.toolbar);
-//        fabTelpMess = findViewById(R.id.FAB_telp_mess);
         tbAddfavorite = findViewById(R.id.tb_add_favorite);
         collapsingToolbar = findViewById(R.id.judulbarang_detiliklan);
         tvUsername      = findViewById(R.id.username_detiliklan);
         tvMember        = findViewById(R.id.member_detiliklan);
-//        tvJudulbarang   = findViewById(R.id.judulbarang_detiliklan);
         tvDeskripsi     = findViewById(R.id.deskripsi_detiliklan);
         tvDilihat       = findViewById(R.id.dilihat_detiliklan);
 
@@ -112,7 +91,6 @@ public class DetailIklanActivity extends AppCompatActivity {
         SharedPreferences sp = getApplicationContext().getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
         token = (sp.getString("token", ""));
         id_user = (sp.getString("id", ""));
-        Log.d("token", "wwwwwww: "+token);
 
         tvLihatProfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,11 +101,13 @@ public class DetailIklanActivity extends AppCompatActivity {
             }
         });
 
-        if (id.equals(id_user)){
-            tbAddfavorite.setChecked(true);
-        }else {
-            tbAddfavorite.setChecked(false);
-        }
+//        if (id.equals(id_user)){
+//            tbAddfavorite.setChecked(true);
+//        }else {
+//            tbAddfavorite.setChecked(false);
+//        }
+
+        tbAddfavorite.setChecked(false);
 
         tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite_border));
         tbAddfavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -145,7 +125,8 @@ public class DetailIklanActivity extends AppCompatActivity {
                 }
                 else {
                     tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite_border));
-                    Toast.makeText(DetailIklanActivity.this, "diahpus dari Favorite", Toast.LENGTH_SHORT).show();
+//                    delFavorite();
+                    Toast.makeText(DetailIklanActivity.this, "diahapus dari Favorite", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -217,6 +198,7 @@ public class DetailIklanActivity extends AppCompatActivity {
                         try {
                             JSONObject object = new JSONObject(response.body().string());
                             JSONObject jsonObject = object.optJSONObject("iklan");
+                            String idIklanquery = jsonObject.optString("id");
                             judulBarang     = jsonObject.optString("judul");
                             imageSlider1    = jsonObject.optString("image1");
                             String image2   = jsonObject.optString("image2");
@@ -248,36 +230,36 @@ public class DetailIklanActivity extends AppCompatActivity {
                             tvDihubungi.setText(contact_count);
                             tvStok.setText(stock);
                             tvAlamat.setText(address);
-//                            tvUserId.setText(idUser);
                             Picasso.with(getApplication()).load(ApiService.BASE_URL_IMAGEUSER+fotoprofil)
                                     .placeholder(R.drawable.ic_launcher_background).into(civFotoProfil);
 
-
-                            if (image2.equals("")){
-                                image2 = ApiService.BASE_URL_IMAGEIKLAN+"logo.png";
-                                Log.d("llaa", "fotoooooooooo: "+image2);
+                            if (id.equals(idIklanquery)){
+                                tbAddfavorite.setChecked(true);
+                            }else {
+                                tbAddfavorite.setChecked(false);
                             }
 
-                            // Load image dari URL
-                            HashMap<String,String> url_maps = new HashMap<String, String>();
-                            url_maps.put("Hannibal", ApiService.BASE_URL_IMAGEIKLAN+imageSlider1);
-                            url_maps.put("Hannibal", ApiService.BASE_URL_IMAGEIKLAN+image2);
-//        url_maps.put("Big Bang Theory", "http://tvfiles.alphacoders.com/100/hdclearart-10.png");
-//        url_maps.put("House of Cards", "http://cdn3.nflximg.net/images/3093/2043093.jpg");
-//        url_maps.put("Game of Thrones", "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");
-                            for(String name : url_maps.keySet()){
-                                TextSliderView textSliderView = new TextSliderView(getApplication());
-                                // initialize a SliderLayout
-                                textSliderView
-                                        .description(name)
-                                        .image(url_maps.get(name))
-                                        .setScaleType(BaseSliderView.ScaleType.Fit);
-                                //add your extra information
-                                textSliderView.bundle(new Bundle());
-                                textSliderView.getBundle()
-                                        .putString("extra",name);
-                                sliderLayout.addSlider(textSliderView);
-                            }
+//                            if (image2.equals("")){
+//                                image2 = ApiService.BASE_URL_IMAGEIKLAN+"logo.png";
+//                                Log.d("llaa", "fotoooooooooo: "+image2);
+//                            }
+//
+//                            // Load image dari URL
+//                            HashMap<String,String> url_maps = new HashMap<String, String>();
+//                            url_maps.put("Hannibal", ApiService.BASE_URL_IMAGEIKLAN+imageSlider1);
+//                            url_maps.put("Hannibal", ApiService.BASE_URL_IMAGEIKLAN+image2);
+//
+//                            for(String name : url_maps.keySet()){
+//                                TextSliderView textSliderView = new TextSliderView(getApplication());
+//                                textSliderView
+//                                        .description(name)
+//                                        .image(url_maps.get(name))
+//                                        .setScaleType(BaseSliderView.ScaleType.Fit);
+//                                textSliderView.bundle(new Bundle());
+//                                textSliderView.getBundle()
+//                                        .putString("extra",name);
+//                                sliderLayout.addSlider(textSliderView);
+//                            }
                             sliderLayout.setPresetTransformer(SliderLayout.Transformer.Accordion);
                             sliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
                             sliderLayout.setCustomAnimation(new DescriptionAnimation());
@@ -292,7 +274,6 @@ public class DetailIklanActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Log.e("debug", "onFailure: ERROR > " + t.getMessage());
                         Toast.makeText(mContext, "Koneksi Internet Bermasalah", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -323,13 +304,28 @@ public class DetailIklanActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()){
-                            Log.i("debug", "onResponse: BERHASIL");
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Log.e("debug", "onFailure: ERROR > " + t.getMessage());
+                        Toast.makeText(mContext, "Koneksi Internet Bermasalah", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void delFavorite(){
+        apiService = RetroClient.getInstanceRetrofit();
+        apiService.delFavorite(id, token, "DELETE"  )
+                .enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()){
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
                         Toast.makeText(mContext, "Koneksi Internet Bermasalah", Toast.LENGTH_SHORT).show();
                     }
                 });

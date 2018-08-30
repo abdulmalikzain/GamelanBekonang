@@ -4,36 +4,26 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
-import android.support.annotation.RequiresPermission;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.gamelanbekonang.MainActivity;
 import com.gamelanbekonang.R;
 import com.gamelanbekonang.api.BaseApiService;
 import com.gamelanbekonang.api.UtilsApi;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
-
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -71,17 +61,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-//        mActionToolbar = (Toolbar) findViewById(R.id.tabs_login);
-//        setSupportActionBar(mActionToolbar);
-//        getSupportActionBar().setTitle("LOGIN ACCOUNT");
-//
-//        if (getSupportActionBar() != null) {
-//            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//            getSupportActionBar().setDisplayShowHomeEnabled(true);
-//        }
 
         mContext = this;
-        mApiService = UtilsApi.getAPIService(); // meng-init yang ada di package apihelper
+        mApiService = UtilsApi.getAPIService();
         initComponents();
 
         if (session){
@@ -105,8 +87,6 @@ public class LoginActivity extends AppCompatActivity {
         address = sharedpreferences.getString("address", null);
         store_name = sharedpreferences.getString("store_name", null);
         remember_token = sharedpreferences.getString("token", null);
-//        int i = sharedpreferences.getInt(value, 0);
-
 
 
         tv_next = (TextView)findViewById(R.id.tv_next);
@@ -120,24 +100,12 @@ public class LoginActivity extends AppCompatActivity {
         tv_lupass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                String urlPass = "http://gamelanwirun.com/api/v1/user/recover";
-//                Intent ipass = new Intent(Intent.ACTION_VIEW);
-//                ipass.setData(Uri.parse(urlPass));
+
                 startActivity(new Intent(mContext, LupaPasswordActivity.class));
 
             }
         });
-//        c = (CheckBox) findViewById(R.id.checkBox);
-//        c.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if (!isChecked){
-//                    etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-//                } else {
-//                    etPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-//                }
-//            }
-//        });
+
         btnRegister = (TextView) findViewById(R.id.btn_registerl);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -181,8 +149,7 @@ public class LoginActivity extends AppCompatActivity {
                                 JSONObject jsonRESULTS = new JSONObject(response.body().string());
                                 JSONArray jsonArray = jsonRESULTS.getJSONObject("user").getJSONArray("roles");
                                 if (!jsonRESULTS.getString("msg").equals("404")){
-                                    // Jika login berhasil maka data nama yang ada di response API
-                                    // akan diparsing ke activity selanjutnya.
+
                                     String success =  jsonRESULTS.getString("msg");
                                     Toast.makeText(mContext, success, Toast.LENGTH_SHORT).show();
                                     String id = jsonRESULTS.getJSONObject("user").getString("id");
@@ -196,13 +163,12 @@ public class LoginActivity extends AppCompatActivity {
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                                     String namerules = jsonObject.optString("role_name");
 
-//                                    for (int i = 0 ; i < jsonArray.length() ; i++) {
+//
 
 
                                         if (namerules.equals("customer")) {
                                             SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
 
-                                            //Creating editor to store values to shared preferences
                                             SharedPreferences.Editor editor = sharedPreferences.edit();
                                             editor.putBoolean(session_status, true);
                                             editor.putString("id", id);
@@ -214,8 +180,8 @@ public class LoginActivity extends AppCompatActivity {
                                             editor.putString("role_name", namerules);
                                             editor.putString("token", remember_token);
                                             editor.commit();
-                                            Log.d(TAG, "Custome: "+remember_token);
                                             loading.dismiss();
+
                                             Intent intent1 = new Intent(LoginActivity.this, MainActivity.class);
                                             intent1.putExtra(id,"id");
                                             intent1.putExtra(email,"email");
@@ -224,7 +190,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                         }else if (namerules.equals("seller")) {
                                             SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
-                                            //Creating editor to store values to shared preferences
+
                                             SharedPreferences.Editor editor = sharedPreferences.edit();
                                             editor.putBoolean(session_status,true);
                                             editor.putString("id", id);
@@ -237,8 +203,7 @@ public class LoginActivity extends AppCompatActivity {
                                             editor.putString("token", remember_token);
                                             editor.putString("store_name", store_name);
                                             editor.commit();
-                                            Log.d(TAG, "Seller: "+remember_token);
-                                            Log.d(TAG, "onResponse: ");
+
                                             loading.dismiss();
                                             Intent intent2 = new Intent(LoginActivity.this, MainActivity.class);
                                             intent2.putExtra(id,"id");
@@ -247,17 +212,12 @@ public class LoginActivity extends AppCompatActivity {
                                             startActivity(intent2);
                                         }
 
-//                                    }
-
 
                                 }else {
-                                    // Jika login gagal
+
                                     String error_message = jsonRESULTS.getString("404");
                                     Toast.makeText(mContext, error_message, Toast.LENGTH_SHORT).show();
-
-//                                    Log.d(TAG, "opo yaa: "+error_message);
                                 }
-
 
                         }catch (JSONException e) {
                                 e.printStackTrace();
@@ -276,7 +236,6 @@ public class LoginActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                        Log.e("debug", "onFailure: ERROR > " + t.toString());
                         loading.dismiss();
                         Toast.makeText(mContext, "Login Gagal", Toast.LENGTH_SHORT).show();
                     }
@@ -289,11 +248,5 @@ public class LoginActivity extends AppCompatActivity {
         finishAffinity();
     }
 
-    //button back toolbar
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        if (item.getItemId()== android.R.id.home)
-//            finish();
-//        return super.onOptionsItemSelected(item);
-//    }
+
 }

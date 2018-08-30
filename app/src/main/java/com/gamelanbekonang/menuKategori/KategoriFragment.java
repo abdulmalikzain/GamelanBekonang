@@ -3,13 +3,11 @@ package com.gamelanbekonang.menuKategori;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
@@ -18,7 +16,6 @@ import com.gamelanbekonang.R;
 
 import java.util.HashMap;
 
-import static android.content.ContentValues.TAG;
 
 
 public class KategoriFragment extends Fragment {
@@ -66,13 +63,6 @@ public class KategoriFragment extends Fragment {
         tvKethuk         = view.findViewById(R.id.tv_k_idkethuk);
         tvSlenthem         = view.findViewById(R.id.tv_k_idslenthem);
 
-        // Load image dari URL
-//        HashMap<String,String> url_maps = new HashMap<String, String>();
-//        url_maps.put("Hannibal", "http://static2.hypable.com/wp-content/uploads/2013/12/hannibal-season-2-release-date.jpg");
-//        url_maps.put("Big Bang Theory", "http://tvfiles.alphacoders.com/100/hdclearart-10.png");
-//        url_maps.put("House of Cards", "http://cdn3.nflximg.net/images/3093/2043093.jpg");
-//        url_maps.put("Game of Thrones", "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");
-        // Load Image Dari res/drawable
         HashMap<String,Integer> file_maps = new HashMap<String, Integer>();
         file_maps.put("Gamelan Emas",R.drawable.gamelanemas);
         file_maps.put("Pengrajin Gamelan",R.drawable.pem);

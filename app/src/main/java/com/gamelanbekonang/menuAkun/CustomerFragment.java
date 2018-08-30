@@ -1,6 +1,5 @@
 package com.gamelanbekonang.menuAkun;
 
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,29 +8,20 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.gamelanbekonang.MainActivity;
 import com.gamelanbekonang.R;
 import com.gamelanbekonang.logRes.LoginActivity;
 import com.gamelanbekonang.menuBantuan.CaraDaftarActivity;
 import com.gamelanbekonang.menuBantuan.JualBeliActivity;
 import com.gamelanbekonang.menuBantuan.KebijakanActivity;
 import com.gamelanbekonang.menuBantuan.KetentuanActivity;
-import com.gamelanbekonang.menuProfil.EditProfilCustomer;
 import com.gamelanbekonang.menuProfil.EditProfileSeller;
 import com.gamelanbekonang.menuProfil.GantiPasswordActivity;
-import com.gamelanbekonang.menuProfil.ProfilActivity;
 import com.squareup.picasso.Picasso;
-
 import de.hdodenhof.circleimageview.CircleImageView;
-
-import static android.content.ContentValues.TAG;
-import static com.gamelanbekonang.api.BaseApiService.BASE_URL_IMAGE;
 import static com.gamelanbekonang.api.BaseApiService.BASE_URL_IMAGE_USER;
 import static com.gamelanbekonang.logRes.LoginActivity.my_shared_preferences;
 
@@ -62,10 +52,8 @@ public class CustomerFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
         keluar_ctm = view.findViewById(R.id.tv_keluarctm);
         civ_ctm = view.findViewById(R.id.civ_customer);
-//        tv_idctm =  view.findViewById(R.id.tv_idctm);
         tv_namectm = view.findViewById(R.id.tv_namectm);
         tv_emailctm = view.findViewById(R.id.tv_emailctm);
         tv_addressctm= view.findViewById(R.id.tv_alamatctm);
@@ -78,9 +66,6 @@ public class CustomerFragment extends Fragment {
         ketentuanctm = view.findViewById(R.id.tv_ketentuanctm);
         tv_notelpctm = view.findViewById(R.id.tv_notelpctm);
 
-//        SharedPreferences sharedPreferences = PreferenceManager
-//                .getDefaultSharedPreferences(this);
-//        sharedpreferences = context.getSharedPreferences(my_shared_preferences, MODE_PRIVATE);
         SharedPreferences sp = getContext().getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
 
         String image = (sp.getString("image", ""));

@@ -9,12 +9,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.gamelanbekonang.R;
 import com.gamelanbekonang.logRes.LoginActivity;
 import com.gamelanbekonang.menuBantuan.CaraDaftarActivity;
@@ -25,11 +23,7 @@ import com.gamelanbekonang.menuProfil.GantiPasswordActivity;
 import com.gamelanbekonang.menuProfil.EditProfileSeller;
 import com.gamelanbekonang.menuProfil.MyIklanActivity;
 import com.squareup.picasso.Picasso;
-
-
 import de.hdodenhof.circleimageview.CircleImageView;
-
-import static android.content.ContentValues.TAG;
 import static com.gamelanbekonang.api.BaseApiService.BASE_URL_IMAGE_USER;
 import static com.gamelanbekonang.logRes.LoginActivity.my_shared_preferences;
 
@@ -52,7 +46,6 @@ public class SellerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_seller, container, false);
     }
 
@@ -61,7 +54,6 @@ public class SellerFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         civ_seller = view.findViewById(R.id.civ_seller);
-//        tv_idseller =  view.findViewById(R.id.tv_idseller);
         tv_nameseller = view.findViewById(R.id.tv_nameseller);
         tv_emailseller = view.findViewById(R.id.tv_emailseller);
         tv_alamatseller = view.findViewById(R.id.tv_alamatseller);

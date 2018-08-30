@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-
 import com.gamelanbekonang.R;
 
 public class JualBeliActivity extends AppCompatActivity {
@@ -26,7 +25,6 @@ public class JualBeliActivity extends AppCompatActivity {
         }
     }
 
-    //button back toolbar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId()== android.R.id.home)

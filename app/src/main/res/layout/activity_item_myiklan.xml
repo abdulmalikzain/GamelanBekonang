@@ -55,12 +55,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-
-                    <!--<de.hdodenhof.circleimageview.CircleImageView-->
-                        <!--android:layout_width="35dp"-->
-                        <!--android:layout_height="35dp"-->
-                        <!--android:id="@+id/civ_iklan_fotouser"-->
-                        <!--android:src="@mipmap/ic_launcher"/>-->
                 </LinearLayout>
 
                 <LinearLayout
@@ -78,16 +72,6 @@
                         android:layout_marginTop="-5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
-                    <!--<TextView-->
-                        <!--android:id="@+id/tv_iklan_volume"-->
-                        <!--android:text="volume"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content" />-->
-                    <!--<TextView-->
-                        <!--android:id="@+id/tv_iklan_perusahaan"-->
-                        <!--android:text="perusahaan"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content" />-->
 
                 </LinearLayout>
 

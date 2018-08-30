@@ -4,21 +4,14 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 
-import com.gamelanbekonang.MainActivity;
 import com.gamelanbekonang.R;
-import com.gamelanbekonang.adapter.AdapterIklan;
 import com.gamelanbekonang.adapter.AdapterMyIklan;
-import com.gamelanbekonang.api.ApiService;
 import com.gamelanbekonang.api.BaseApiService;
-import com.gamelanbekonang.api.RetroClient;
 import com.gamelanbekonang.api.RetrofitClient;
 import com.gamelanbekonang.api.UtilsApi;
 import com.gamelanbekonang.beans.Iklan;
@@ -29,7 +22,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -65,14 +57,7 @@ public class MyIklanActivity extends AppCompatActivity {
         }
         SharedPreferences sharedpreferences = getSharedPreferences(my_shared_preferences, MODE_PRIVATE);
         token = (sharedpreferences.getString("token", ""));
-//        et_tokenmyi.setText(token);
         idmyi = (sharedpreferences.getString("id", ""));
-        Log.d(TAG,"Munculllll: "+token);
-
-
-//        et_tokenmyi =(EditText) findViewById(R.id.et_tokenmyi);
-//        et_tokenmyi.setVisibility(View.INVISIBLE);
-
         mBaseApiService = UtilsApi.getAPIService();
         initView();
         myiklan = new ArrayList<>();
@@ -81,22 +66,13 @@ public class MyIklanActivity extends AppCompatActivity {
     private void initView() {
         recyclerView = findViewById(R.id.rv_myiklan);
         recyclerView.setHasFixedSize(true);
-//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-//        recyclerView.setLayoutManager(layoutManager);
-//        GridLayoutManager gridLayoutManager;
         GridLayoutManager gridLayoutManager = new GridLayoutManager(MyIklanActivity.this, 2);
         recyclerView.setLayoutManager(gridLayoutManager);
         getData();
-
-
-//        et_idmyik = (EditText) findViewById(R.id.et_idmyiklan);
-
-
     }
 
     private void getData() {
         BaseApiService baseApiService  = RetrofitClient.getDataMyIklan();
-//        final String token = et_tokenmyi.getText().toString();
                 baseApiService.MyData(token).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

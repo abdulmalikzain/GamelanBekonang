@@ -6,16 +6,13 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.gamelanbekonang.R;
 import com.gamelanbekonang.adapter.AdapterIklan;
 import com.gamelanbekonang.api.ApiService;
 import com.gamelanbekonang.api.RetroClient;
-import com.gamelanbekonang.api.RetrofitClient;
 import com.gamelanbekonang.beans.Iklan;
 
 import org.json.JSONArray;

@@ -49,21 +49,6 @@
                     android:visibility="invisible"
                     tools:ignore="Suspicious0dp" />
 
-                <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:textSize="28sp"-->
-                <!--android:fontFamily="casual"-->
-                <!--android:textStyle="bold"-->
-                <!--android:textColor="@color/Black"-->
-                <!--android:text="REGISTER"/>-->
-                <!--<View-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="2dp"-->
-                <!--android:background="@color/white"-->
-                <!--android:layout_marginBottom="15dp"/>-->
-
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/cv_profilsr"
                     android:layout_width="119dp"
@@ -83,18 +68,6 @@
                     android:textColorHint="@color/white"
                     android:padding="8dp"
                     android:textColor="@color/white"/>
-                <!--<LinearLayout-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content">-->
-                    <!--<de.hdodenhof.circleimageview.CircleImageView-->
-                        <!---->
-                        <!--android:layout_width="110dp"-->
-                        <!--android:layout_height="90dp"-->
-                        <!--android:src="@drawable/ic_akun"-->
-                        <!--app:civ_border_color="@color/color_home"-->
-                        <!--app:civ_border_width="2dp"-->
-                        <!--app:civ_circle_background_color="@color/white" />-->
-                <!--</LinearLayout>-->
 
                 <LinearLayout
                     android:layout_width="match_parent"

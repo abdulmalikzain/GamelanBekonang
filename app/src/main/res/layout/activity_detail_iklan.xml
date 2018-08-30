@@ -23,14 +23,6 @@
             app:expandedTitleMarginStart="48dp"
             app:expandedTitleMarginEnd="64dp">
 
-            <!--<ImageView-->
-                <!--android:id="@+id/backdrop"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:scaleType="centerCrop"-->
-                <!--android:fitsSystemWindows="true"-->
-                <!--app:layout_collapseMode="parallax" />-->
-
             <com.daimajia.slider.library.SliderLayout
                 android:id="@+id/slider_detailiklan"
                 android:layout_width="match_parent"

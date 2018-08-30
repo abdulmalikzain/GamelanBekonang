@@ -37,30 +37,6 @@
         android:layout_centerInParent="true"
         android:padding="19dp"
         android:orientation="vertical">
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:textSize="28sp"-->
-            <!--android:fontFamily="casual"-->
-            <!--android:textStyle="bold"-->
-            <!--android:textColor="@color/Black"-->
-            <!--android:text="REGISTER"/>-->
-        <!--<View-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="2dp"-->
-            <!--android:background="@color/white"-->
-            <!--android:layout_marginBottom="15dp"/>-->
-
-        <!--<de.hdodenhof.circleimageview.CircleImageView-->
-            <!--android:layout_width="119dp"-->
-            <!--android:layout_height="100dp"-->
-            <!--android:src="@drawable/ic_register_black_24dp"-->
-            <!--app:civ_border_color="@color/color_home"-->
-            <!--android:layout_gravity="center"-->
-            <!--app:civ_border_width="2dp"-->
-            <!--app:civ_circle_background_color="@color/white" />-->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -95,7 +71,6 @@
 
         </LinearLayout>
 
-            <!--android:background="@color/cardview_shadow_start_color"-->
 
         <LinearLayout
             android:layout_marginTop="10dp"
@@ -142,20 +117,6 @@
             android:inputType="textEmailAddress"
             android:textColor="@color/white"/>
             </LinearLayout>
-        <!--<EditText-->
-            <!--android:id="@+id/et_addressr"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:hint="Isikan Alamat anda"-->
-            <!--android:backgroundTint="@color/white"-->
-            <!--android:drawableLeft="@drawable/ic_location_on_black_24dp"-->
-            <!--android:textSize="18sp"-->
-            <!--android:fontFamily="casual"-->
-            <!--android:textColorHint="@color/white"-->
-            <!--android:padding="8dp"-->
-            <!--android:inputType="textEmailAddress"-->
-            <!--android:textColor="@color/white"/>-->
             <LinearLayout
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
@@ -179,20 +140,6 @@
             android:padding="8dp"
             android:textColor="@color/white"/>
             </LinearLayout>
-        <!--<EditText-->
-            <!--android:id="@+id/et_confirmpasswordr"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:hint="Confirmation Password (minimal 6 karakter)"-->
-            <!--android:textSize="18sp"-->
-            <!--android:fontFamily="casual"-->
-            <!--android:drawableLeft="@drawable/ic_lock_white_24dp"-->
-            <!--android:backgroundTint="@color/white"-->
-            <!--android:textColorHint="@color/white"-->
-            <!--android:inputType="textPassword"-->
-            <!--android:padding="8dp"-->
-            <!--android:textColor="@color/white"/>-->
 
         <Button
             android:id="@+id/btn_registerr"

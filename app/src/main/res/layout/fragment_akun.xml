@@ -40,27 +40,6 @@
         android:layout_marginRight="3dp"
         android:layout_marginBottom="2dp"
         app:cardBackgroundColor="@color/cardview_shadow_start_color">
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:orientation="vertical">-->
-
-            <!--<de.hdodenhof.circleimageview.CircleImageView-->
-                <!--android:layout_width="100dp"-->
-                <!--android:layout_height="100dp"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:layout_marginTop="40dp"-->
-                <!--app:civ_border_width="3dp"-->
-                <!--android:src="@drawable/ic_akun"/>-->
-            <!--<TextView-->
-                <!--android:id="@+id/tv_detailakun"-->
-                <!--android:gravity="center"-->
-                <!--android:text="Akun Detail"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content" />-->
-
-
-        <!--</LinearLayout>-->
 
         <TextView
             android:layout_width="match_parent"
@@ -84,25 +63,4 @@
             android:text="LOGIN"  />
 
     </android.support.v7.widget.CardView>
-
-    <!--<android.support.v7.widget.CardView-->
-        <!--android:layout_marginTop="365dp"-->
-        <!--android:layout_marginLeft="3dp"-->
-        <!--android:layout_marginRight="3dp"-->
-        <!--android:layout_marginBottom="2dp"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="230dp">-->
-    <!--<ScrollView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
-
-        <!--<android.support.v7.widget.RecyclerView-->
-            <!--android:id="@+id/rv_akun"-->
-            <!--android:scrollbars="vertical"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
-
-        <!--</android.support.v7.widget.RecyclerView>-->
-    <!--</ScrollView>-->
-    <!--</android.support.v7.widget.CardView>-->
 </FrameLayout>
