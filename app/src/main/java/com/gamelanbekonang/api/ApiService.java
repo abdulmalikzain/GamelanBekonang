@@ -3,6 +3,7 @@ package com.gamelanbekonang.api;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -40,7 +41,8 @@ public interface ApiService {
     @GET("wishlist")
     Call <ResponseBody> getFavorite(@Query("token") String token);
 
-    @GET("wishlist/{id}")
+    @FormUrlEncoded
+    @POST("wishlist/{id}")
     Call <ResponseBody> delFavorite(@Path("id") String id,
                                     @Query("token") String token,
                                     @Field("_method") String method);

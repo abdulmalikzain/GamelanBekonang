@@ -2,6 +2,7 @@ package com.gamelanbekonang.menuHome;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -49,7 +50,7 @@ import retrofit2.Response;
 import static com.gamelanbekonang.logRes.LoginActivity.my_shared_preferences;
 
 public class DetailIklanActivity extends AppCompatActivity {
-    private String gambarIklan, noTelp, id, token, imageSlider1, judulBarang, email, id_user;
+    private String gambarIklan, noTelp, id, token, imageSlider1, judulBarang, email, id_user, idIklanquery;
     private ToggleButton tbAddfavorite;
     private ApiService apiService;
     private Context mContext;
@@ -60,6 +61,7 @@ public class DetailIklanActivity extends AppCompatActivity {
     private CollapsingToolbarLayout collapsingToolbar;
     private SliderLayout sliderLayout;
     private FloatingActionButton fabTelepon, fabSms, fabEmail;
+    private ProgressDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,36 +103,6 @@ public class DetailIklanActivity extends AppCompatActivity {
             }
         });
 
-//        if (id.equals(id_user)){
-//            tbAddfavorite.setChecked(true);
-//        }else {
-//            tbAddfavorite.setChecked(false);
-//        }
-
-        tbAddfavorite.setChecked(false);
-
-        tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite_border));
-        tbAddfavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                if (isChecked) {
-                    if (token.equals("")){
-                        alertLogin();
-                    }else {
-                        postFavorite();
-                        tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_favorite_kuning));
-                        Toast.makeText(DetailIklanActivity.this, "iklan ditambahkan ke favorite", Toast.LENGTH_SHORT).show();
-                    }
-                }
-                else {
-                    tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite_border));
-//                    delFavorite();
-                    Toast.makeText(DetailIklanActivity.this, "diahapus dari Favorite", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -158,6 +130,8 @@ public class DetailIklanActivity extends AppCompatActivity {
                 kirimEmail();
             }
         });
+
+
     }
 
     private void alertLogin(){
@@ -190,6 +164,11 @@ public class DetailIklanActivity extends AppCompatActivity {
     }
 
     private void getDataIklanId(){
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+//        pDialog.setMessage("Logging in ...");
+        showDialog();
+
         apiService = RetroClient.getInstanceRetrofit();
         apiService.getDataId(id)
                 .enqueue(new Callback<ResponseBody>() {
@@ -198,7 +177,7 @@ public class DetailIklanActivity extends AppCompatActivity {
                         try {
                             JSONObject object = new JSONObject(response.body().string());
                             JSONObject jsonObject = object.optJSONObject("iklan");
-                            String idIklanquery = jsonObject.optString("id");
+                            idIklanquery = jsonObject.optString("id");
                             judulBarang     = jsonObject.optString("judul");
                             imageSlider1    = jsonObject.optString("image1");
                             String image2   = jsonObject.optString("image2");
@@ -233,37 +212,39 @@ public class DetailIklanActivity extends AppCompatActivity {
                             Picasso.with(getApplication()).load(ApiService.BASE_URL_IMAGEUSER+fotoprofil)
                                     .placeholder(R.drawable.ic_launcher_background).into(civFotoProfil);
 
+
                             if (id.equals(idIklanquery)){
                                 tbAddfavorite.setChecked(true);
                             }else {
                                 tbAddfavorite.setChecked(false);
-                            }
 
-//                            if (image2.equals("")){
-//                                image2 = ApiService.BASE_URL_IMAGEIKLAN+"logo.png";
-//                                Log.d("llaa", "fotoooooooooo: "+image2);
-//                            }
-//
-//                            // Load image dari URL
-//                            HashMap<String,String> url_maps = new HashMap<String, String>();
-//                            url_maps.put("Hannibal", ApiService.BASE_URL_IMAGEIKLAN+imageSlider1);
-//                            url_maps.put("Hannibal", ApiService.BASE_URL_IMAGEIKLAN+image2);
-//
-//                            for(String name : url_maps.keySet()){
-//                                TextSliderView textSliderView = new TextSliderView(getApplication());
-//                                textSliderView
-//                                        .description(name)
-//                                        .image(url_maps.get(name))
-//                                        .setScaleType(BaseSliderView.ScaleType.Fit);
-//                                textSliderView.bundle(new Bundle());
-//                                textSliderView.getBundle()
-//                                        .putString("extra",name);
-//                                sliderLayout.addSlider(textSliderView);
-//                            }
-                            sliderLayout.setPresetTransformer(SliderLayout.Transformer.Accordion);
-                            sliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
-                            sliderLayout.setCustomAnimation(new DescriptionAnimation());
-                            sliderLayout.setDuration(10000);
+                            }
+                            tbAddfavorite.setChecked(false);
+                            tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite_border));
+                            tbAddfavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                                @Override
+                                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                                    if (isChecked) {
+                                        if (token.equals("")){
+                                            alertLogin();
+                                        }else {
+//                            postFavorite();
+                                            delFavorite();
+                                            tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_favorite_kuning));
+                                            Toast.makeText(DetailIklanActivity.this, "iklan ditambahkan ke favorite", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                    else {
+                                        tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite_border));
+//                        delFavorite();
+                                        Toast.makeText(DetailIklanActivity.this, "diahapus dari Favorite", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+
+                            hideDialog();
 
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -275,6 +256,7 @@ public class DetailIklanActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                         Toast.makeText(mContext, "Koneksi Internet Bermasalah", Toast.LENGTH_SHORT).show();
+                        hideDialog();
                     }
                 });
     }
@@ -316,7 +298,7 @@ public class DetailIklanActivity extends AppCompatActivity {
 
     private void delFavorite(){
         apiService = RetroClient.getInstanceRetrofit();
-        apiService.delFavorite(id, token, "DELETE"  )
+        apiService.delFavorite(id, token, "DELETE")
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -354,5 +336,15 @@ public class DetailIklanActivity extends AppCompatActivity {
         intent.putExtra(Intent.EXTRA_SUBJECT, "Tanya Gamelan");
         intent.setType("message/rfc822");
         startActivity(Intent.createChooser(intent, "Choose an email client"));
+    }
+
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
     }
 }

@@ -93,7 +93,7 @@ public class FavoriteFragment extends Fragment implements SwipeRefreshLayout.OnR
 
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                    String id = jsonObject.optString("id");
+                                    String id = jsonObject.optString("iklan_id");
                                     String judul = jsonObject.optString("judul");
                                     String image1   = jsonObject.optString("image1");
                                     String volume = jsonObject.optString("volume");
