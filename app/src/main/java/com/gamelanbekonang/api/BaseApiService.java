@@ -1,5 +1,7 @@
 package com.gamelanbekonang.api;
 
+import com.gamelanbekonang.beans.ResponseApiModel;
+
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -47,8 +49,7 @@ public interface BaseApiService {
 
     @Multipart
     @POST("myprofile")
-    Call<ResponseBody> postImage(@Part MultipartBody.Part image,
-                                 @Query("token") String token);
+    Call<ResponseBody> postImage(@Part MultipartBody.Part image);
 
     @FormUrlEncoded
     @POST("myprofile")
@@ -80,4 +81,9 @@ public interface BaseApiService {
 
     @GET("logout")
     Call<ResponseBody> LogOut(@Query("token")String token);
+
+    @Multipart
+    @POST("changepic")
+    Call<ResponseApiModel> gantiFoto(@Part MultipartBody.Part image,
+                                     @Query("token") String token);
 }

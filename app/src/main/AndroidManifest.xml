@@ -7,8 +7,8 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.WRITE_VOICEMAIL" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -45,7 +45,8 @@
         <activity android:name=".menuProfil.EditProfilCustomer" />
         <activity android:name=".menuProfil.MyIklanActivity" />
         <activity android:name=".menuProfil.InformasiPublikActivity" />
-        <activity android:name=".logRes.LupaPasswordActivity"></activity>
+        <activity android:name=".logRes.LupaPasswordActivity" />
+        <activity android:name=".menuProfil.UploadImage"></activity>
     </application>
 
 </manifest>

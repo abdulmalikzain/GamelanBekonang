@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -46,6 +47,7 @@ import retrofit2.Response;
 
 import static com.gamelanbekonang.api.BaseApiService.BASE_URL_IMAGE_USER;
 import static com.gamelanbekonang.logRes.LoginActivity.my_shared_preferences;
+import static com.gamelanbekonang.logRes.LoginActivity.session_status;
 
 public class EditProfileSeller extends AppCompatActivity {
 
@@ -72,6 +74,7 @@ public class EditProfileSeller extends AppCompatActivity {
     private String TAG;
     private String image, name, email, notelp, address;
     private String h;
+    private int REQUEST_GALLERY = 9544;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,7 +142,8 @@ public class EditProfileSeller extends AppCompatActivity {
         cvProfilsr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showFileChooseGallery();
+//                showFileChooseGallery();
+                startActivity(new Intent(EditProfileSeller.this, UploadImage.class));
             }
         });
     }
@@ -166,20 +170,28 @@ public class EditProfileSeller extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()){
-                            try {
-                                JSONObject object = new JSONObject(response.body().string());
-                                String messeage = object.optString("message");
-//
-                                Toast.makeText(EditProfileSeller.this, ("Edit Profil Berhasil"), Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+//                            try {
+//                                JSONObject object = new JSONObject(response.body().string());
+//                                String messeage = object.optString("message");
+                            SharedPreferences sp = getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
 
+                            SharedPreferences.Editor editor = sp.edit();
+                            editor.putBoolean(session_status, true);
+                            editor.putString("name", name);
+                            editor.putString("email", email);
+                            editor.putString("address", address);
+                            editor.putString("notelp", notelp);
+                            editor.commit();
+                                Toast.makeText(EditProfileSeller.this, ("Edit Profil Berhasil"), Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(EditProfileSeller.this, MainActivity.class);
                                 startActivity(intent);
-                            }
-                            catch (JSONException e) {
-                                e.printStackTrace();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+//                            }
+//                            catch (JSONException e) {
+//                                e.printStackTrace();
+//                            } catch (IOException e) {
+//                                e.printStackTrace();
+//                            }
                         }
                     }
 
@@ -191,94 +203,95 @@ public class EditProfileSeller extends AppCompatActivity {
 
     }
 
-    private void showFileChooseGallery() {
-
-        Intent foto = new Intent(Intent.ACTION_PICK);
-        foto.setType("image/*");
-        startActivityForResult(Intent.createChooser(foto, "Pilih Foto"), 100);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if ( requestCode ==100 && resultCode == Activity.RESULT_OK){
-            if (data == null){
-                Toast.makeText(this, "Gambar Tidak Ada", Toast.LENGTH_SHORT).show();
-                return;
-
-            }
-            Uri selectImageUri = data.getData();
-            String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-            Cursor c =getContentResolver().query(selectImageUri, filePathColumn, null, null, null);
-            if (c == null){
-                c.moveToFirst();
-
-                int columnIndex = c.getColumnIndex(filePathColumn[0]);
-                imagePath = c.getString(columnIndex);
-
-                Picasso.with(this).load(new File(imagePath)).into(cvProfilsr);
-                h = new File(imagePath).getName();
-
-                //Creating a shared preference
-                SharedPreferences sharedPreferences = EditProfileSeller.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
-
-
-                //Creating editor to store values to shared preferences
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-
-                //Adding values to editor
-                editor.putString("image","http://gamelanwirun.com/api/v1/user/"+h);
-                editor.commit();
-                uploadImage();
-                c.close();
-
-            }else {
-                Toast.makeText(this, "Gambar Tidak Ada", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    private void uploadImage() {
-        final String token = et_token.getText().toString();
-        final ProgressDialog p  ;
-        p = new ProgressDialog(this);
-        p.setMessage("Proses Upload Foto");
-        p.show();
-
-//        BaseApiService s = (BaseApiService) RetrofitClient.getImgUsr();
-
-
-        File f = new File(imagePath);
-
-        Toast.makeText(EditProfileSeller.this, "Gambar " +f, Toast.LENGTH_SHORT).show();
-
-        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), f);
-
-        final MultipartBody.Part part = MultipartBody.Part.createFormData("myprofil", f.getName(), requestFile);
-        Log.d(TAG, "sssssssssssssssssssss: "+f);
-        Call<ResponseBody> resultCAll = mApiService.postImage(part, token);
-        resultCAll.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-                Toast.makeText(EditProfileSeller.this, "Semoga Bisa", Toast.LENGTH_SHORT).show();
-                p.dismiss();
+//    private void showFileChooseGallery() {
 //
+//        Intent foto = new Intent(Intent.ACTION_PICK);
+//        foto.setType("image/*");
+//        startActivityForResult(Intent.createChooser(foto, "Pilih Foto"), 100);
+//    }
+//
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        if ( requestCode == REQUEST_GALLERY && resultCode == Activity.RESULT_OK){
+//            if (data == null){
+//                Toast.makeText(this, "Gambar Tidak Ada", Toast.LENGTH_SHORT).show();
+//                return;
+//
+//            }
+//            Uri selectImageUri = data.getData();
+//            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+//
+//            Cursor cursor =getContentResolver().query(selectImageUri, filePathColumn, null, null, null);
+//            if (cursor != null){
+//                cursor.moveToFirst();
+//
+//                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+//                imagePath = cursor.getString(columnIndex);
+//
+//                Picasso.with(this).load(new File(imagePath)).into(cvProfilsr);
+//                h = new File(imagePath).getName();
+//
+//                //Creating a shared preference
+//                SharedPreferences sharedPreferences = EditProfileSeller.this.getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
+//
+//
+//                //Creating editor to store values to shared preferences
+//                SharedPreferences.Editor editor = sharedpreferences.edit();
+//
+//                //Adding values to editor
+//                editor.putString(SHARED_IMAGE,"http://gamelanwirun.com/api/v1/user/"+h);
+//                editor.commit();
+//                uploadImage();
+//                cursor.close();
+//
+//            }else {
+//                Toast.makeText(this, "Gambar Tidak Ada", Toast.LENGTH_SHORT).show();
+//            }
+//        }
+//
+//
+//    }
 
-                imagePath = "";
-
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(EditProfileSeller.this, "Gagal Upload Fail", Toast.LENGTH_SHORT).show();
-                p.dismiss();
-
-            }
-        });
-    }
+//    private void uploadImage() {
+//        final ProgressDialog p  ;
+//        p = new ProgressDialog(this);
+//        p.setMessage("Proses Upload Foto");
+//        p.show();
+//        final String token = et_token.getText().toString();
+//
+//
+////        BaseApiService s = (BaseApiService) RetrofitClient.getImgUsr();
+//
+//
+//        File f = new File(imagePath);
+//
+//        Toast.makeText(EditProfileSeller.this, "Gambar " +f, Toast.LENGTH_SHORT).show();
+//
+//        final RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-file"), f);
+//        MultipartBody.Part part = MultipartBody.Part.createFormData("image", f.getName(), requestFile);
+//        Call<ResponseBody> resultCAll = mApiService.postImage(part);
+//        resultCAll.enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                p.dismiss();
+//                Toast.makeText(EditProfileSeller.this, "Semoga Bisa", Toast.LENGTH_SHORT).show();
+//
+////
+//
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                p.dismiss();
+//                Toast.makeText(EditProfileSeller.this, "Gagal Upload Fail", Toast.LENGTH_SHORT).show();
+//
+//
+//            }
+//        });
+//    }
 
 
     //button back toolbar

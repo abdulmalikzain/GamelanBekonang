@@ -20,6 +20,7 @@ import com.gamelanbekonang.menuBantuan.KebijakanActivity;
 import com.gamelanbekonang.menuBantuan.KetentuanActivity;
 import com.gamelanbekonang.menuProfil.EditProfileSeller;
 import com.gamelanbekonang.menuProfil.GantiPasswordActivity;
+import com.gamelanbekonang.menuProfil.UploadImage;
 import com.squareup.picasso.Picasso;
 import de.hdodenhof.circleimageview.CircleImageView;
 import static com.gamelanbekonang.api.BaseApiService.BASE_URL_IMAGE_USER;
@@ -73,6 +74,12 @@ public class CustomerFragment extends Fragment {
                 .load(BASE_URL_IMAGE_USER+image)
                 .placeholder(R.drawable.ic_akun)
                 .into(civ_ctm);
+        civ_ctm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), UploadImage.class));
+            }
+        });
         String id = (sp.getString("id", ""));
         String name = (sp.getString("name", ""));
         tv_namectm.setText(name);
