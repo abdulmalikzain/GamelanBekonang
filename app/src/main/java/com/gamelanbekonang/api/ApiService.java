@@ -28,6 +28,10 @@ public interface ApiService {
     @GET("iklan/{iklanId}")
     Call<ResponseBody> getDataId(@Path("iklanId") String iklanId);
 
+    @GET("iklanLog/{iklanId}")
+    Call<ResponseBody> getDadtaLog(@Path("iklanId") String iklanId,
+                                   @Query("token") String token);
+
     @GET("category/{categoryId}")
     Call <ResponseBody> getCategory(@Path("categoryId") String categoryId);
 

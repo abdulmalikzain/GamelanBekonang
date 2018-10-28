@@ -131,7 +131,7 @@ public class FavoriteFragment extends Fragment implements SwipeRefreshLayout.OnR
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Toast.makeText(context, "Koneksi Internet Bermasalah", Toast.LENGTH_SHORT).show();
+
                         swipeRefreshLayout.setRefreshing(false);
                     }
                 });
@@ -140,6 +140,6 @@ public class FavoriteFragment extends Fragment implements SwipeRefreshLayout.OnR
     @Override
     public void onRefresh() {
         list.clear();
-        getFavorite();
+//        getFavorite();
     }
 }
