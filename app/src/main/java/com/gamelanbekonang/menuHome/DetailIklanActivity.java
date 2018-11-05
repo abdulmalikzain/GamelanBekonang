@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -60,9 +61,9 @@ public class DetailIklanActivity extends AppCompatActivity {
             tvUserId;
     private Toolbar toolbar;
     private CollapsingToolbarLayout collapsingToolbar;
-    private SliderLayout sliderLayout;
     private FloatingActionButton fabTelepon, fabSms, fabEmail;
     private ProgressDialog pDialog;
+    private ImageView IVimageIklan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,12 +82,12 @@ public class DetailIklanActivity extends AppCompatActivity {
         tvDihubungi     = findViewById(R.id.dihubungi_detiliklan);
         tvStok          = findViewById(R.id.stok_detiliklan);
         tvAlamat        = findViewById(R.id.alamat_detiliklan);
-        sliderLayout    = findViewById(R.id.slider_detailiklan);
         fabTelepon      = findViewById(R.id.fab_telepon_detailiklan);
         fabSms          = findViewById(R.id.fab_sms_detailiklan);
         fabEmail        = findViewById(R.id.fab_email_detailiklan);
         tvUserId        = findViewById(R.id.userid_detailiklan);
         civFotoProfil   = findViewById(R.id.fotouser_detiliklan);
+        IVimageIklan    = findViewById(R.id.Iviklan_detailiklan);
 
         Bundle bundle = getIntent().getExtras();
         id     = bundle.getString("idiklan");
@@ -206,6 +207,7 @@ public class DetailIklanActivity extends AppCompatActivity {
                             email               = jsonObject1.optString("email");
                             String address      = jsonObject1.optString("address");
                             String store_name   = jsonObject1.optString("store_name");
+//                            Log.d("databiasa", "onResponse: "+stock);
 
                             tvUserId.setText(idPenjual);
                             collapsingToolbar.setTitle(judulBarang);
@@ -225,18 +227,7 @@ public class DetailIklanActivity extends AppCompatActivity {
                                 @Override
                                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                                    if (isChecked) {
-
-//                            postFavorite();
-                                            delFavorite();
-                                            tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_favorite_kuning));
-                                            Toast.makeText(DetailIklanActivity.this, "iklan ditambahkan ke favorite", Toast.LENGTH_SHORT).show();
-                                    }
-                                    else {
-                                        tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite_border));
-//                        delFavorite();
-                                        Toast.makeText(DetailIklanActivity.this, "diahapus dari Favorite", Toast.LENGTH_SHORT).show();
-                                    }
+                                    alertLogin();
                                 }
                             });
 
@@ -274,10 +265,6 @@ public class DetailIklanActivity extends AppCompatActivity {
                             idIklanquery = jsonObject.optString("id");
                             judulBarang     = jsonObject.optString("judul");
                             imageSlider1    = jsonObject.optString("image1");
-                            String image2   = jsonObject.optString("image2");
-                            String image3   = jsonObject.optString("image3");
-                            String image4   = jsonObject.optString("image4");
-                            String image5   = jsonObject.optString("image5");
                             String deskripsi = jsonObject.optString("deskripsi");
                             String volume   = jsonObject.optString("volume");
                             String stock    = jsonObject.optString("stock");
@@ -285,6 +272,16 @@ public class DetailIklanActivity extends AppCompatActivity {
                             String created_at = jsonObject.optString("created_at");
                             String view_count = jsonObject.optString("view_count");
                             String contact_count = jsonObject.optString("contact_count");
+
+                            final JSONArray jsonArray1 = jsonObject.optJSONArray("photos");
+                            for (int i = 0; i < jsonArray1.length() ; i++) {
+                                JSONObject jsonObject1 = jsonArray1.getJSONObject(i);
+                                String filename = jsonObject1.optString("filename");
+
+                                Picasso.with(getApplication()).load(ApiService.BASE_URL_IMAGEIKLAN+filename)
+                                        .placeholder(R.drawable.ic_launcher_background).into(IVimageIklan);
+
+                            }
 
                             final JSONObject jsonObject1 = jsonObject.optJSONObject("users");
                             String idPenjual    = jsonObject1.getString("id");
@@ -295,55 +292,55 @@ public class DetailIklanActivity extends AppCompatActivity {
                             String address      = jsonObject1.optString("address");
                             String store_name   = jsonObject1.optString("store_name");
 
-                            JSONArray jsonArray = object.optJSONArray("wishlists");
-                            for (int i = 0; i < jsonArray.length() ; i++) {
-                            JSONObject jsonObject2 = jsonArray.getJSONObject(i);
-                            String idWishlists = jsonObject2.getString("id");
-                            String idIklanWishlists = jsonObject2.getString("iklan_id");
 
-                            if (!id.equals(idIklanWishlists)){
+                            String sukses =  object.getString("wishlists");
+                            if (sukses.equals("Belum")){
                                 tbAddfavorite.setChecked(false);
                                 tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite_border));
                                 tbAddfavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                                     @Override
                                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
                                         if (isChecked) {
                                             postFavorite();
                                             tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_favorite_kuning));
                                             Toast.makeText(DetailIklanActivity.this, "iklan ditambahkan ke favorite", Toast.LENGTH_SHORT).show();
-                                        }
-                                        else {
-                                            tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite_border));
+                                        }else {
                                             delFavorite();
-                                            Toast.makeText(DetailIklanActivity.this, "diahapus dari Favorite", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(DetailIklanActivity.this, "iklan dihapus dari favorite", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });
+
                             }else {
-                                tbAddfavorite.setChecked(true);
-                                tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite_border));
-                                tbAddfavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                                    @Override
-                                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                JSONArray jsonArray = object.optJSONArray("wishlists");
+                                for (int i = 0; i < jsonArray.length() ; i++) {
+                                    JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+                                    String idIklanWishlists = jsonObject2.getString("iklan_id");
 
-                                        if (isChecked) {
+                                    if (id.equals(idIklanWishlists)) {
+                                        tbAddfavorite.setChecked(true);
+                                        tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite_kuning));
+                                        tbAddfavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                                            @Override
+                                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                                            postFavorite();
-                                            tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_favorite_kuning));
-                                            Toast.makeText(DetailIklanActivity.this, "iklan ditambahkan ke favorite", Toast.LENGTH_SHORT).show();
-                                        }
-                                        else {
-                                            tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite_border));
-                                            delFavorite();
-                                            Toast.makeText(DetailIklanActivity.this, "diahapus dari Favorite", Toast.LENGTH_SHORT).show();
-                                        }
+                                                if (isChecked) {
+                                                    postFavorite();
+                                                    tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite_kuning));
+                                                    Toast.makeText(DetailIklanActivity.this, "iklan ditambahkan ke favorite", Toast.LENGTH_SHORT).show();
+                                                } else {
+                                                    delFavorite();
+                                                    tbAddfavorite.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_favorite_border));
+                                                    Toast.makeText(DetailIklanActivity.this, "iklan dihapus dari favorite", Toast.LENGTH_SHORT).show();
+                                                }
+
+                                            }
+                                        });
                                     }
-                                });
+//
+                                }
                             }
 
-
-                            }
 
                             tvUserId.setText(idPenjual);
                             collapsingToolbar.setTitle(judulBarang);
@@ -367,7 +364,7 @@ public class DetailIklanActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Log.e("debug", "onFailure: ERROR > " + t.getMessage());
+                        hideDialog();
                     }
                 });
 
@@ -380,7 +377,7 @@ public class DetailIklanActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()){
-                            Log.i("debug", "onResponse: BERHASIL");
+                            Log.i("debug", "onResponse: BERHASIL nambah view");
                         }
                     }
 

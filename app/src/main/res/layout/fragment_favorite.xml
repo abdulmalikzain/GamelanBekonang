@@ -27,6 +27,17 @@
             android:layout_centerInParent="true"/>
     </RelativeLayout>
 
+        <TextView
+            android:id="@+id/tv_datakosong_wishlist"
+            android:gravity="center"
+            android:text="Belum Ada Iklan yang ditambahkan di Favorite"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:textStyle="bold"
+            android:layout_below="@id/relfavorite"
+            android:background="#fff"/>
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

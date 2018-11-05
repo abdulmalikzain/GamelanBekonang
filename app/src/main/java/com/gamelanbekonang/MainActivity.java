@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                         transaction.replace(R.id.fragment_container, new HomeFragment()).commit();
                         relativeLayout.setVisibility(View.VISIBLE);
                         frameLayout.setVisibility(View.GONE);
-                        return true;
+                        return false;
                     }
 
 
@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                         transaction.replace(R.id.fragment_container, new HomeFragment()).commit();
                         relativeLayout.setVisibility(View.VISIBLE);
                         frameLayout.setVisibility(View.GONE);
-                        return true;
+                        return false;
                     }
 
             }
@@ -225,7 +225,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String id = jsonObject.optString("id");
                         String judul = jsonObject.optString("judul");
-                        String image1   = jsonObject.optString("image1");
+                        String image1   = jsonObject.optString("filename");
                         String volume = jsonObject.optString("volume");
                         String harga = jsonObject.optString("harga");
                         String created_at = jsonObject.optString("created_at");
@@ -279,6 +279,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
+
                     }
                 });
         AlertDialog alert = builder.create();

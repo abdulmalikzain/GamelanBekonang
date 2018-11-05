@@ -11,7 +11,7 @@ public class Iklan {
 
     private String id;
     private String judul;
-    private String image1;
+    private String filename;
     private String volume;
     private String harga;
     private String created_at;
@@ -35,11 +35,11 @@ public class Iklan {
     }
 
     public String getImage1() {
-        return image1;
+        return filename;
     }
 
-    public void setImage1(String image1) {
-        this.image1 = image1;
+    public void setImage1(String filename) {
+        this.filename = filename;
     }
 
     public String getVolume() {

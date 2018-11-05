@@ -100,7 +100,7 @@ public class KategoriIklanActivity extends AppCompatActivity implements SwipeRef
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String id = jsonObject.optString("id");
                         judul = jsonObject.optString("judul");
-                        String image1   = jsonObject.optString("image1");
+                        String image1   = jsonObject.optString("filename");
                         String volume = jsonObject.optString("volume");
                         String harga = jsonObject.optString("harga");
                         String created_at = jsonObject.optString("created_at");

@@ -45,6 +45,7 @@ public class FavoriteFragment extends Fragment implements SwipeRefreshLayout.OnR
     private Context context;
     private List<Iklan> list;
     private RecyclerView recyclerView;
+    private TextView tvDatakosong;
     private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
@@ -54,6 +55,7 @@ public class FavoriteFragment extends Fragment implements SwipeRefreshLayout.OnR
 
         swipeRefreshLayout = view.findViewById(R.id.swipe_favorite);
         recyclerView        = view.findViewById(R.id.rv_favorite);
+        tvDatakosong        = view.findViewById(R.id.tv_datakosong_wishlist);
 
         SharedPreferences sp = getContext().getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
         userId = (sp.getString("id", ""));
@@ -89,34 +91,40 @@ public class FavoriteFragment extends Fragment implements SwipeRefreshLayout.OnR
                             Log.i("debug", "onResponse: BERHASIL");
                             try {
                                 JSONObject object = new JSONObject(response.body().string());
-                                JSONArray jsonArray  = object.optJSONArray("wishlists");
+                                String dataKosong = object.getString("wishlists");
+                                if (dataKosong.equals("Anda")){
+                                    tvDatakosong.setVisibility(View.VISIBLE);
+                                }else {
+                                    JSONArray jsonArray  = object.optJSONArray("wishlists");
+                                    for (int i = 0; i < jsonArray.length(); i++) {
+                                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                        String id = jsonObject.optString("iklan_id");
+                                        String judul = jsonObject.optString("judul");
+                                        String image1   = jsonObject.optString("filename");
+                                        String volume = jsonObject.optString("volume");
+                                        String harga = jsonObject.optString("harga");
+                                        String created_at = jsonObject.optString("created_at");
+                                        String imageuser = jsonObject.getString("user_image");
+                                        String storename = jsonObject.getString("store_name");
 
-                                for (int i = 0; i < jsonArray.length(); i++) {
-                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                    String id = jsonObject.optString("iklan_id");
-                                    String judul = jsonObject.optString("judul");
-                                    String image1   = jsonObject.optString("image1");
-                                    String volume = jsonObject.optString("volume");
-                                    String harga = jsonObject.optString("harga");
-                                    String created_at = jsonObject.optString("created_at");
-                                    String imageuser = jsonObject.getString("user_image");
-                                    String storename = jsonObject.getString("store_name");
+                                        Iklan iklan = new Iklan();
+                                        iklan.setId(id);
+                                        iklan.setJudul(judul);
+                                        iklan.setImage1(image1);
+                                        iklan.setCreated_at(created_at);
+                                        iklan.setVolume(volume);
+                                        iklan.setHarga(harga);
+                                        iklan.setUser_image(imageuser);
+                                        iklan.setStore_name(storename);
 
-                                    Iklan iklan = new Iklan();
-                                    iklan.setId(id);
-                                    iklan.setJudul(judul);
-                                    iklan.setImage1(image1);
-                                    iklan.setCreated_at(created_at);
-                                    iklan.setVolume(volume);
-                                    iklan.setHarga(harga);
-                                    iklan.setUser_image(imageuser);
-                                    iklan.setStore_name(storename);
+                                        list.add(iklan);
+                                        AdapterIklan adapter = new AdapterIklan(getContext(), list);
+                                        recyclerView.setAdapter(adapter);
 
-                                    list.add(iklan);
-                                    AdapterIklan adapter = new AdapterIklan(getContext(), list);
-                                    recyclerView.setAdapter(adapter);
+                                    }
 
                                 }
+
 
                                 swipeRefreshLayout.setRefreshing(false);
 
