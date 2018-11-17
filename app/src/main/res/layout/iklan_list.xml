@@ -35,7 +35,7 @@
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:id="@+id/civ_iklan_fotouser"
-                        android:src="@mipmap/ic_launcher"/>
+                        android:src="@drawable/user_ic"/>
                 </LinearLayout>
 
                 <LinearLayout

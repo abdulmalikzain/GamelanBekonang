@@ -19,6 +19,11 @@ import com.gamelanbekonang.api.RetrofitClient;
 import com.gamelanbekonang.logRes.LoginActivity;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -31,6 +36,7 @@ public class ProfilActivity extends AppCompatActivity {
     Context context;
     private TextView tv_id,tv_token1, tv_name, tv_email, tv_notelp, tv_address, tv_reseller,keluar;
     private CircleImageView civp;
+    private BaseApiService baseApiService;
     public static final  String value = "id";
     private int i;
     private Toolbar mActionToolbar;
@@ -57,20 +63,23 @@ public class ProfilActivity extends AppCompatActivity {
 
         SharedPreferences sharedpreferences = getSharedPreferences(my_shared_preferences, MODE_PRIVATE);
         id = (sharedpreferences.getString("id",""));
-        image = sharedpreferences.getString("image", null);
+//        image = sharedpreferences.getString("image", null);
         name = sharedpreferences.getString("name", null);
         email = sharedpreferences.getString("email", null);
         notelp = sharedpreferences.getString("notelp",null);
         address = sharedpreferences.getString("address", null);
         token = sharedpreferences.getString("token", null);
 
+
+
+        getDataFoto();
+
+
+
         SharedPreferences sp = getApplicationContext().getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
 
-        String image = (sp.getString("image", ""));
-        Picasso.with(getApplication())
-                           .load(BaseApiService.BASE_URL_IMAGE_USER+image)
-                           .placeholder(R.drawable.ic_akun)
-                           .into(civp);
+//        String image = (sp.getString("image", ""));
+
         String id = (sp.getString("id", ""));
         tv_id.setText(id);
         String name = (sp.getString("name", ""));
@@ -112,6 +121,39 @@ public class ProfilActivity extends AppCompatActivity {
 
                     }
                 }).show();
+            }
+        });
+    }
+
+    private void getDataFoto() {
+        baseApiService = RetrofitClient.getDataMyIklan();
+        baseApiService.getInfo(id).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    JSONObject object = new JSONObject(response.body().string());
+                    JSONObject jsonObject = object.optJSONObject("user");
+                    id = jsonObject.optString("id");
+                    image = jsonObject.optString("iamge");
+
+
+                    Picasso.with(getApplication())
+                            .load(BaseApiService.BASE_URL_IMAGE_USER+image)
+                            .placeholder(R.drawable.user_ic)
+                            .into(civp);
+
+                } catch (JSONException e) {
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
             }
         });
     }

@@ -58,7 +58,7 @@ public class DetailIklanActivity extends AppCompatActivity {
     private Context mContext;
     private CircleImageView civFotoProfil;
     private TextView tvLihatProfil, tvUsername, tvMember, tvJudulbarang, tvDeskripsi, tvDilihat, tvDihubungi, tvStok, tvAlamat,
-            tvUserId;
+            tvUserId, tvHarga, tvVolume;
     private Toolbar toolbar;
     private CollapsingToolbarLayout collapsingToolbar;
     private FloatingActionButton fabTelepon, fabSms, fabEmail;
@@ -88,6 +88,8 @@ public class DetailIklanActivity extends AppCompatActivity {
         tvUserId        = findViewById(R.id.userid_detailiklan);
         civFotoProfil   = findViewById(R.id.fotouser_detiliklan);
         IVimageIklan    = findViewById(R.id.Iviklan_detailiklan);
+        tvHarga         = findViewById(R.id.harga_detailikla);
+        tvVolume        = findViewById(R.id.volume_detailiklan);
 
         Bundle bundle = getIntent().getExtras();
         id     = bundle.getString("idiklan");
@@ -117,10 +119,12 @@ public class DetailIklanActivity extends AppCompatActivity {
 
         viewCount();
 
+
         fabTelepon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 telephone();
+                viewContactCount();
             }
         });
 
@@ -128,6 +132,7 @@ public class DetailIklanActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 kirimSms();
+                viewContactCount();
             }
         });
 
@@ -135,6 +140,7 @@ public class DetailIklanActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 kirimEmail();
+                viewContactCount();
             }
         });
 
@@ -186,11 +192,6 @@ public class DetailIklanActivity extends AppCompatActivity {
                             JSONObject jsonObject = object.optJSONObject("iklan");
                             idIklanquery = jsonObject.optString("id");
                             judulBarang     = jsonObject.optString("judul");
-                            imageSlider1    = jsonObject.optString("image1");
-                            String image2   = jsonObject.optString("image2");
-                            String image3   = jsonObject.optString("image3");
-                            String image4   = jsonObject.optString("image4");
-                            String image5   = jsonObject.optString("image5");
                             String deskripsi = jsonObject.optString("deskripsi");
                             String volume   = jsonObject.optString("volume");
                             String stock    = jsonObject.optString("stock");
@@ -207,18 +208,30 @@ public class DetailIklanActivity extends AppCompatActivity {
                             email               = jsonObject1.optString("email");
                             String address      = jsonObject1.optString("address");
                             String store_name   = jsonObject1.optString("store_name");
-//                            Log.d("databiasa", "onResponse: "+stock);
+
+                            final JSONArray jsonArray1 = jsonObject.optJSONArray("photos");
+                            for (int i = 0; i < jsonArray1.length() ; i++) {
+                                JSONObject jsonObject2 = jsonArray1.getJSONObject(i);
+                                String filename = jsonObject2.optString("filename");
+
+                                Picasso.with(getApplication()).load(ApiService.BASE_URL_IMAGEIKLAN+filename)
+                                        .placeholder(R.drawable.ic_launcher_background).into(IVimageIklan);
+
+                            }
 
                             tvUserId.setText(idPenjual);
                             collapsingToolbar.setTitle(judulBarang);
-                            tvUsername.setText(store_name);
+                            tvUsername.setText(nama);
+                            tvMember.setText(store_name);
                             tvDeskripsi.setText(deskripsi);
                             tvDilihat.setText(view_count);
                             tvDihubungi.setText(contact_count);
                             tvStok.setText(stock);
+                            tvHarga.setText(harga);
+                            tvVolume.setText(volume);
                             tvAlamat.setText(address);
                             Picasso.with(getApplication()).load(ApiService.BASE_URL_IMAGEUSER+fotoprofil)
-                                    .placeholder(R.drawable.ic_launcher_background).into(civFotoProfil);
+                                    .placeholder(R.drawable.user_ic).into(civFotoProfil);
 
 
                             tbAddfavorite.setChecked(false);
@@ -264,7 +277,6 @@ public class DetailIklanActivity extends AppCompatActivity {
                             final JSONObject jsonObject = object.optJSONObject("iklan");
                             idIklanquery = jsonObject.optString("id");
                             judulBarang     = jsonObject.optString("judul");
-                            imageSlider1    = jsonObject.optString("image1");
                             String deskripsi = jsonObject.optString("deskripsi");
                             String volume   = jsonObject.optString("volume");
                             String stock    = jsonObject.optString("stock");
@@ -344,14 +356,17 @@ public class DetailIklanActivity extends AppCompatActivity {
 
                             tvUserId.setText(idPenjual);
                             collapsingToolbar.setTitle(judulBarang);
-                            tvUsername.setText(store_name);
+                            tvUsername.setText(nama);
+                            tvMember.setText(store_name);
                             tvDeskripsi.setText(deskripsi);
                             tvDilihat.setText(view_count);
                             tvDihubungi.setText(contact_count);
                             tvStok.setText(stock);
+                            tvHarga.setText(harga);
+                            tvVolume.setText(volume);
                             tvAlamat.setText(address);
                             Picasso.with(getApplication()).load(ApiService.BASE_URL_IMAGEUSER+fotoprofil)
-                                    .placeholder(R.drawable.ic_launcher_background).into(civFotoProfil);
+                                    .placeholder(R.drawable.user_ic).into(civFotoProfil);
 
                             hideDialog();
 
@@ -384,6 +399,25 @@ public class DetailIklanActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                         Log.e("debug", "onFailure: ERROR > " + t.getMessage());
+                    }
+                });
+    }
+
+    private void viewContactCount(){
+        apiService = RetroClient.getInstanceRetrofit();
+        apiService.contactCount(id, "PATCH")
+                .enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()){
+
+                            Log.d("HAHAHAHAHHAHA", "contactcount: "+id);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+
                     }
                 });
     }

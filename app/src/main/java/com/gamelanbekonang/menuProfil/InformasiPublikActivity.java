@@ -57,6 +57,7 @@ public class InformasiPublikActivity extends AppCompatActivity {
     private String id_user;
     private String id_iklans;
     private Context context;
+    private String nama;
 
 
     @Override
@@ -114,47 +115,43 @@ public class InformasiPublikActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     try {
                         JSONObject jsonRESULTS = new JSONObject(response.body().string());
-                        JSONArray jsonArray = jsonRESULTS.getJSONObject("user").getJSONArray("iklans");
-                            String id = jsonRESULTS.getJSONObject("user").getString("id");
-                            String image = jsonRESULTS.getJSONObject("user").getString("image");
-                            String nama = jsonRESULTS.getJSONObject("user").getString("name");
-                            String email = jsonRESULTS.getJSONObject("user").getString("email");
-                            String notelp = jsonRESULTS.getJSONObject("user").getString("notelp");
-                            String address = jsonRESULTS.getJSONObject("user").getString("address");
-                            String store_name = jsonRESULTS.getJSONObject("user").getString("store_name");
-                            String created_at = jsonRESULTS.getJSONObject("user").getString("created_at");
+                        JSONArray jsonArray = jsonRESULTS.getJSONArray("iklan");
+
+                        JSONArray jsonArray1 = jsonRESULTS.optJSONArray("user");
+                        Log.d(TAG, "AAAAAAA: "+jsonArray1);
+                        for (int i = 0; i < jsonArray1.length(); i++){
+                            JSONObject jsonObject1 = jsonArray1.getJSONObject(i);
+                            String image = jsonObject1.optString("image");
+                            String nama = jsonObject1.optString("name");
+                            String store_name = jsonObject1.optString("store_name");
+                            String email = jsonObject1.optString("email");
+                            String address = jsonObject1.optString("address");
+
+                            namepen.setText(nama);
+                            Picasso.with(getApplication())
+                                    .load(BaseApiService.BASE_URL_IMAGE_USER+image)
+                                    .placeholder(R.drawable.user_ic)
+                                    .into(civ_informasipen);
+                            emailpen.setText(email);
+                            perusahaanpen.setText(store_name);
+                            alamatpen.setText(address);
+                        }
 
 
-                        idpen.setText(id);
-                        namepen.setText(nama);
-                        Picasso.with(getApplication())
-                                .load(BaseApiService.BASE_URL_IMAGE_USER+image)
-                                .placeholder(R.drawable.ic_akun)
-                                .into(civ_informasipen);
-                        emailpen.setText(email);
-                        perusahaanpen.setText(store_name);
-                        alamatpen.setText(address);
+                        for (int i = 0; i < jsonArray.length(); i++){
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            String id_iklans = jsonObject.optString("id");
+                            String judul = jsonObject.optString("judul");
+                            String image1 = jsonObject.optString("filename");
+                            String volume = jsonObject.optString("volume");
+                            String stock = jsonObject.optString("stock");
+                            String harga = jsonObject.optString("harga");
+                            String view_count = jsonObject.optString("view_count");
+                            String contact_count = jsonObject.optString("contact_count");
 
-                            for (int i = 0; i < jsonArray.length(); i++){
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                String id_user = jsonObject.optString("user_id");
-                                String id_iklans = jsonObject.optString("id");
-                                String judul = jsonObject.optString("judul");
-                                String image1 = jsonObject.optString("image1");
-                                String image2 = jsonObject.optString("image2");
-                                String image3 = jsonObject.optString("image3");
-                                String image4 = jsonObject.optString("image4");
-                                String image5 = jsonObject.optString("image5");
-                                String deskripsi = jsonObject.optString("deskripsi");
-                                String volume = jsonObject.optString("volume");
-                                String stock = jsonObject.optString("stock");
-                                String harga = jsonObject.optString("harga");
-                                String view_count = jsonObject.optString("view_count");
-                                String contact_count = jsonObject.optString("contact_count");
-
-                                Iklan iklan = new Iklan();
+                            Iklan iklan = new Iklan();
                                 iklan.setId(id_iklans);
-                                iklan.setJudul(judul);
+                                iklan.setJudul(nama);
                                 iklan.setImage1(image1);
                                 iklan.setVolume(volume);
                                 iklan.setHarga(harga);

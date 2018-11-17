@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.gamelanbekonang.R;
+import com.gamelanbekonang.api.BaseApiService;
+import com.gamelanbekonang.api.RetrofitClient;
 import com.gamelanbekonang.logRes.LoginActivity;
 import com.gamelanbekonang.menuBantuan.CaraDaftarActivity;
 import com.gamelanbekonang.menuBantuan.JualBeliActivity;
@@ -23,7 +25,18 @@ import com.gamelanbekonang.menuProfil.GantiPasswordActivity;
 import com.gamelanbekonang.menuProfil.EditProfileSeller;
 import com.gamelanbekonang.menuProfil.MyIklanActivity;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
 import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 import static com.gamelanbekonang.api.BaseApiService.BASE_URL_IMAGE_USER;
 import static com.gamelanbekonang.logRes.LoginActivity.my_shared_preferences;
 
@@ -36,6 +49,9 @@ public class SellerFragment extends Fragment {
     private TextView tv_tentangsr, tv_caradftsr, tv_tipssr, tv_kebijakansr, tv_ketentuansr, tv_iklanseller, tv_editsr,tv_editpasssr;
     private CircleImageView civ_seller;
     public static final  String value = "id";
+    private BaseApiService baseApiService;
+    private String id;
+    private String image;
 
     public SellerFragment() {
         // Required empty public constructor
@@ -68,13 +84,15 @@ public class SellerFragment extends Fragment {
         tv_ketentuansr = view.findViewById(R.id.tv_ketentuansr);
         tv_keluarseller = view.findViewById(R.id.tv_keluarseller);
 
+//        getDataFoto();
+
 
         SharedPreferences sp = getContext().getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
 
         String image = (sp.getString("image", ""));
         Picasso.with(getContext())
                 .load(BASE_URL_IMAGE_USER+image)
-                .placeholder(R.drawable.ic_akun)
+                .placeholder(R.drawable.user_ic)
                 .into(civ_seller);
         String id = (sp.getString("id", ""));
         String name = (sp.getString("name", ""));
@@ -105,6 +123,7 @@ public class SellerFragment extends Fragment {
                 }).show();
             }
         });
+
         tv_editsr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,7 +181,9 @@ public class SellerFragment extends Fragment {
             }
         });
     }
-    private void keluarseller() {
+
+
+            private void keluarseller() {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
 
         //Creating editor to store values to shared preferences
@@ -181,7 +202,40 @@ public class SellerFragment extends Fragment {
         startActivity(intent1);
     }
 
-
+//    private void getDataFoto() {
+//        baseApiService = RetrofitClient.getDataMyIklan();
+//        baseApiService.getInfo(id).enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                try {
+//                    JSONObject object = new JSONObject(response.body().string());
+//                    JSONObject jsonObject = object.optJSONObject("user");
+//                    String id = jsonObject.optString("id");
+//                    String image = jsonObject.optString("iamge");
+//
+//
+//                    Picasso.with(getActivity())
+//                            .load(BaseApiService.BASE_URL_IMAGE_USER+image)
+//                            .placeholder(R.drawable.user_ic)
+//                            .into(civ_seller);
+//
+//                } catch (JSONException e) {
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//
+//
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//
+//            }
+//
+//
+//});
+//    }
 }
 
 

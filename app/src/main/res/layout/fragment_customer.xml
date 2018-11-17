@@ -30,13 +30,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/orangeFirebase">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="150dp"
+            android:orientation="vertical"
+            android:background="@drawable/bgpr">
             <TextView
                 android:id="@+id/tv_idctm"
                 android:layout_width="match_parent"
@@ -49,7 +49,7 @@
                 android:id="@+id/civ_customer"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
-                android:src="@drawable/ic_akun"
+                android:src="@drawable/user_ic"
                 android:layout_gravity="center"
                 app:civ_border_width="3dp" />
 
@@ -59,6 +59,7 @@
                 android:layout_height="wrap_content"
                 android:text="Username"
                 android:gravity="center"
+                android:textStyle="bold"
                 android:layout_marginBottom="4sp"
                 android:textSize="18sp"/>
         </LinearLayout>

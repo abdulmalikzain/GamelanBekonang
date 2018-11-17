@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.gamelanbekonang.R;
+import com.gamelanbekonang.api.BaseApiService;
+import com.gamelanbekonang.api.RetrofitClient;
 import com.gamelanbekonang.logRes.LoginActivity;
 import com.gamelanbekonang.menuBantuan.CaraDaftarActivity;
 import com.gamelanbekonang.menuBantuan.JualBeliActivity;
@@ -22,7 +24,18 @@ import com.gamelanbekonang.menuProfil.EditProfileSeller;
 import com.gamelanbekonang.menuProfil.GantiPasswordActivity;
 import com.gamelanbekonang.menuProfil.UploadImage;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
 import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 import static com.gamelanbekonang.api.BaseApiService.BASE_URL_IMAGE_USER;
 import static com.gamelanbekonang.logRes.LoginActivity.my_shared_preferences;
 
@@ -35,6 +48,9 @@ public class CustomerFragment extends Fragment {
     private TextView tentangctm, caradaftarctm, tipsctm, kebijkanctm, ketentuanctm,tv_editpcm, tv_gantipassctm;
     private CircleImageView civ_ctm;
     public static final  String value = "id";
+    private BaseApiService baseApiService;
+    private String id;
+    private String image;
 
     public CustomerFragment() {
         // Required empty public constructor
@@ -67,12 +83,14 @@ public class CustomerFragment extends Fragment {
         ketentuanctm = view.findViewById(R.id.tv_ketentuanctm);
         tv_notelpctm = view.findViewById(R.id.tv_notelpctm);
 
+//        getDataFoto();
+
         SharedPreferences sp = getContext().getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
 
         String image = (sp.getString("image", ""));
         Picasso.with(getContext())
                 .load(BASE_URL_IMAGE_USER+image)
-                .placeholder(R.drawable.ic_akun)
+                .placeholder(R.drawable.user_ic)
                 .into(civ_ctm);
         civ_ctm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,5 +196,38 @@ public class CustomerFragment extends Fragment {
         Intent intent1 = new Intent(getActivity(), LoginActivity.class);
         startActivity(intent1);
     }
-
+//    private void getDataFoto() {
+//        baseApiService = RetrofitClient.getDataMyIklan();
+//        baseApiService.getInfo(id).enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                try {
+//                    JSONObject object = new JSONObject(response.body().string());
+//                    JSONObject jsonObject = object.optJSONObject("user");
+//                    String id = jsonObject.optString("id");
+//                    String image = jsonObject.optString("iamge");
+//
+//
+//                    Picasso.with(getActivity())
+//                            .load(BaseApiService.BASE_URL_IMAGE_USER+image)
+//                            .placeholder(R.drawable.user_ic)
+//                            .into(civ_ctm);
+//
+//                } catch (JSONException e) {
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//
+//
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//
+//            }
+//
+//
+//        });
+//    }
 }

@@ -56,4 +56,10 @@ public interface ApiService {
     Call <ResponseBody> viewCount(@Path("iklanId") String iklanId,
                                   @Field("_method") String Key);
 
+
+    @FormUrlEncoded
+    @POST("iklan/{iklan}/contactcount")
+    Call<ResponseBody> contactCount(@Path("iklan")String id,
+                                    @Field("_method") String keys);
+
 }

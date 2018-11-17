@@ -48,7 +48,7 @@ public class AdapterIklan extends RecyclerView.Adapter<AdapterIklan.IklanViewHol
             Picasso.with(context).load(ApiService.BASE_URL_IMAGEUSER+iklan.getUser_image())
                     .centerCrop()
                     .resize(80, 80)
-                    .error(R.mipmap.ic_launcher)
+                    .error(R.drawable.user_ic)
                     .into(holder.civFotouser);
     }
 
